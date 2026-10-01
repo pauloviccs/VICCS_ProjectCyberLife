@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPEN//77: Night City Life-Sim - GDD & Arquitetura Técnica</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            max-height: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 340px;
+            }
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #0891b2;
+            color: #0891b2;
+            font-weight: 600;
+            background-color: #f0fdf4;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 custom-scrollbar">
+
+    <!-- Chosen Palette: Warm Neutrals & Cyan Accent - Background #f8fafc, Cards #ffffff, Primary Text #0f172a, Accent #0891b2, Highlight Coral #e11d48 -->
+    <!-- Application Structure Plan: Projetado como um dashboard executivo interativo com abas navegáveis, simuladores dinâmicos de Ciberpsicose e Arquitetura de Hardware, gráficos comparativos em Chart.js e matrizes filtráveis de carreiras e necessidades biológicas. Essa estrutura transforma a densa documentação técnica e conceitual do GDD em uma experiência fluida, facilitando o entendimento das dependências do servidor e das mecânicas de jogo. -->
+    <!-- Visualization & Content Choices: 1. Benchmark de Frameworks WebUI -> Gráfico de Barras (Chart.js) -> Comparação de Svelte 5, React 19 e Vue 3. 2. Curva de Decaimento Fisiológico -> Gráfico de Linhas (Chart.js) -> Projeção de 24h de depleção biológica. 3. Drenagem Econômica -> Gráfico de Rosca (Chart.js) -> Distribuição de custos de vida diários em Night City. 4. Simulador de Ciberpsicose -> Controles de Faixa (HTML Input Range) + Canvas Meter -> Cálculo em tempo real de carga térmica e estabilidade neural. 5. Arquitetura de Routing Buckets -> Diagrama em Grid HTML/CSS -> Explicação da habitação multi-instanciada nos Megabuildings. Todas as visualizações utilizam Canvas ou HTML/CSS estruturado, sem o uso de SVG ou Mermaid JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Top Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="bg-cyan-600 text-white code-font font-bold px-2.5 py-1 rounded text-sm tracking-wider">OPEN//77</span>
+                    <div>
+                        <h1 class="text-lg font-bold text-slate-900 leading-tight">Night City Life-Sim RP</h1>
+                        <p class="text-xs text-slate-500">Documento de Design de Jogo & Arquitetura de Alta Performance</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-3 text-xs code-font">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                        ● Versão 2.31 / Phantom Liberty
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        .NET 8 Runtime
+                    </span>
+                </div>
+            </div>
+
+            <!-- Tab Navigation Bar -->
+            <nav class="flex space-x-1 sm:space-x-4 overflow-x-auto border-t border-slate-100 py-2 custom-scrollbar text-sm font-medium text-slate-600">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn active px-3 py-2 rounded-md whitespace-nowrap transition-colors">
+                    📋 Visão Geral & Core Loop
+                </button>
+                <button onclick="switchTab('architecture')" id="tab-architecture" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors">
+                    ⚙️ Arquitetura & Stack Técnica
+                </button>
+                <button onclick="switchTab('biometrics')" id="tab-biometrics" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors">
+                    🧠 Biometria & Ciberpsicose
+                </button>
+                <button onclick="switchTab('housing')" id="tab-housing" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors">
+                    🏢 Habitação & Buckets
+                </button>
+                <button onclick="switchTab('economy')" id="tab-economy" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors">
+                    💼 Carreiras & Economia
+                </button>
+                <button onclick="switchTab('roadmap')" id="tab-roadmap" class="tab-btn px-3 py-2 rounded-md whitespace-nowrap transition-colors">
+                    🗺️ Roadmap & Testes
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION 1: VISÃO GERAL & CORE LOOP -->
+        <section id="sec-overview" class="tab-content space-y-8">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-3">Visão Geral do Projeto</h2>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                    Este projeto redefine a experiência de multiplayer em Night City ao transformar a metrópole de <em>Cyberpunk 2077</em> em uma plataforma de simulação de vida profunda (<em>Life-Sim</em>), inspirada em jogos como <strong>The Sims 4</strong> e redefinida sob os pilares do Roleplay estruturado. Em vez de focar prioritariamente no combate violento, o servidor coloca o jogador no centro das exigências biológicas, do trabalho especializado, do pagamento de contas e das contradições tecnológicas do universo cyberpunk.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <div class="text-cyan-600 font-bold text-lg mb-1">🧬 Sobrevivência Vital</div>
+                        <p class="text-xs text-slate-600">Gestão contínua de nutrição, higiene, descanso e saúde mental sob penalidades dinâmicas no desempenho físico e social.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <div class="text-cyan-600 font-bold text-lg mb-1">🏙️ Sociedade Persistente</div>
+                        <p class="text-xs text-slate-600">Economia circular com aluguéis, contas de serviços públicos, licenças corporativas e serviços de emergência privados.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <div class="text-cyan-600 font-bold text-lg mb-1">⚠️ Risco de Ciberpsicose</div>
+                        <p class="text-xs text-slate-600">O excesso de implantes cibernéticos sem uso de neurobloqueadores gera episódios psicóticos e aciona contratos da MaxTac.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gameplay Loop Diagram & Interactive Step Description -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-900 mb-2">O Ciclo Diário de Jogabilidade (Loop Primário)</h3>
+                <p class="text-slate-600 text-sm mb-6">
+                    Abaixo está o ciclo dinâmico que estrutura a rotina de cada cidadão em Night City. Clique nos passos para explorar as mecânicas associadas.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <button onclick="selectLoopStep(1)" id="loop-btn-1" class="loop-step-btn p-4 rounded-lg border-2 border-cyan-600 bg-cyan-50 text-left transition-all">
+                        <div class="text-xs font-bold text-cyan-700 code-font">FASE 01</div>
+                        <div class="font-bold text-slate-900 mt-1">Manutenção Biológica</div>
+                        <div class="text-xs text-slate-500 mt-2">Despertar, refeição, higiene e dosagem de neurobloqueadores.</div>
+                    </button>
+
+                    <button onclick="selectLoopStep(2)" id="loop-btn-2" class="loop-step-btn p-4 rounded-lg border-2 border-slate-200 bg-white text-left hover:border-slate-300 transition-all">
+                        <div class="text-xs font-bold text-slate-400 code-font">FASE 02</div>
+                        <div class="font-bold text-slate-900 mt-1">Atividade Produtiva</div>
+                        <div class="text-xs text-slate-500 mt-2">Turnos de trabalho em corporações, socorro tático ou contratos.</div>
+                    </button>
+
+                    <button onclick="selectLoopStep(3)" id="loop-btn-3" class="loop-step-btn p-4 rounded-lg border-2 border-slate-200 bg-white text-left hover:border-slate-300 transition-all">
+                        <div class="text-xs font-bold text-slate-400 code-font">FASE 03</div>
+                        <div class="font-bold text-slate-900 mt-1">Socialização & Consumo</div>
+                        <div class="text-xs text-slate-500 mt-2">Frequência a bares, compras de veículos e interações de guilda.</div>
+                    </button>
+
+                    <button onclick="selectLoopStep(4)" id="loop-btn-4" class="loop-step-btn p-4 rounded-lg border-2 border-slate-200 bg-white text-left hover:border-slate-300 transition-all">
+                        <div class="text-xs font-bold text-slate-400 code-font">FASE 04</div>
+                        <div class="font-bold text-slate-900 mt-1">Gestão Patrimonial</div>
+                        <div class="text-xs text-slate-500 mt-2">Pagamento de aluguel, compra de mobília e upgrade de ciberware.</div>
+                    </button>
+                </div>
+
+                <!-- Interactive Loop Detail Panel -->
+                <div id="loop-detail-panel" class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <h4 id="loop-detail-title" class="font-bold text-slate-900 text-lg">Fase 1: Manutenção Biológica</h4>
+                    <p id="loop-detail-desc" class="text-sm text-slate-600 mt-2 leading-relaxed">
+                        Ao acordar no seu apartamento em um Megabuilding, o personagem apresenta níveis degradados de hidratação e sono. O jogador deve utilizar as instalações da residência (chuveiro, geladeira, cama) ou recorrer a vendedores ambulantes. Negligenciar esta fase resulta em penalidades diretas na recuperação de estamina e no campo visual do cliente.
+                    </p>
+                    <div id="loop-detail-tags" class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-2 py-1 bg-slate-200 text-slate-700 text-xs rounded code-font">Sistemas: Vitais Lua</span>
+                        <span class="px-2 py-1 bg-slate-200 text-slate-700 text-xs rounded code-font">Animações: Sincronizadas</span>
+                        <span class="px-2 py-1 bg-slate-200 text-slate-700 text-xs rounded code-font">Persistência: Redis Cache</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ARQUITETURA & STACK TÉCNICA -->
+        <section id="sec-architecture" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Arquitetura do Servidor & Performance</h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    Para sustentar centenas de jogadores em simultâneo com concorrência em tempo real e atualização de inventários complexos sem provocar lag no motor gráfico da REDengine, a plataforma OPEN//77 adota uma arquitetura em camadas totalmente assíncrona.
+                </p>
+
+                <!-- Stack Table -->
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 code-font">
+                                <th class="p-3 font-semibold">Camada</th>
+                                <th class="p-3 font-semibold">Tecnologia</th>
+                                <th class="p-3 font-semibold">Função Principal</th>
+                                <th class="p-3 font-semibold">Impacto na Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="p-3 font-medium text-slate-900">Servidor Base</td>
+                                <td class="p-3 code-font text-cyan-700 font-medium">Linux x64 (.NET 8 Runtime)</td>
+                                <td class="p-3 text-slate-600">Binário do servidor OPEN//77</td>
+                                <td class="p-3 text-slate-600">Eficiência máxima em I/O e threads com baixíssimo consumo de memória base.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-slate-900">Runtime Scripts</td>
+                                <td class="p-3 code-font text-cyan-700 font-medium">Lua 5.4 isolado</td>
+                                <td class="p-3 text-slate-600">Lógica de regras de negócio de cada recurso</td>
+                                <td class="p-3 text-slate-600">VMs separadas por recurso com suporte nativo a Hot-Reload instantâneo.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-slate-900">Cache / Estado Volátil</td>
+                                <td class="p-3 code-font text-cyan-700 font-medium">Redis 7 (In-Memory)</td>
+                                <td class="p-3 text-slate-600">Sessões ativas, biometria e posições espaciais</td>
+                                <td class="p-3 text-slate-600">Leitura/Escrita sub-milissegundo, eliminando travamentos de banco de dados.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-slate-900">Persistência Central</td>
+                                <td class="p-3 code-font text-cyan-700 font-medium">PostgreSQL 16 + PgBouncer</td>
+                                <td class="p-3 text-slate-600">Histórico financeiro, inventários e propriedades</td>
+                                <td class="p-3 text-slate-600">Garantia ACID e manipulação otimizada de JSONB com pool de conexões.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-slate-900">Front-End / NUI</td>
+                                <td class="p-3 code-font text-cyan-700 font-medium">Svelte 5 + Tailwind CSS</td>
+                                <td class="p-3 text-slate-600">Interfaces do usuário, HUDs e Smartphone</td>
+                                <td class="p-3 text-slate-600">Ausência de Virtual DOM, compilação cirúrgica direta no Chromium out-of-process.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Charts Row: Framework Comparison & Database Flow -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Chart 1: JS Framework Benchmark for NUI -->
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 text-base mb-1">Comparativo de Frameworks Front-End para NUI</h3>
+                        <p class="text-xs text-slate-500 mb-4">Avaliação de impacto no cliente WebView2 do OPEN//77 (Menor é melhor).</p>
+                        <div class="chart-container">
+                            <canvas id="chartFrameworks"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Flow Description: Write-Behind Caching -->
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Estratégia de Persistência: Write-Behind Caching</h3>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                                Para evitar sobrecarga no banco de dados com atualizações contínuas (como o consumo de água a cada minuto ou alteração de temperatura corporal), o servidor utiliza um fluxo desacoplado em duas fases:
+                            </p>
+                            <div class="space-y-3">
+                                <div class="bg-white p-3 rounded border border-slate-200 flex items-start space-x-3">
+                                    <span class="bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded text-xs code-font">PASSO 1</span>
+                                    <div class="text-xs text-slate-700">
+                                        <strong>Mutações de Alta Frequência:</strong> Gravações atômicas diretas na memória RAM do Redis 7 via scripts Lua. Duração: ~0.2ms.
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-slate-200 flex items-start space-x-3">
+                                    <span class="bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded text-xs code-font">PASSO 2</span>
+                                    <div class="text-xs text-slate-700">
+                                        <strong>Agendador Assíncrono:</strong> Flush periódico em lotes a cada 5 minutos para o PostgreSQL 16.
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-slate-200 flex items-start space-x-3">
+                                    <span class="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded text-xs code-font">EXCEÇÃO</span>
+                                    <div class="text-xs text-slate-700">
+                                        <strong>Transações Financeiras Críticas:</strong> Escrita síncrona com Lock no PostgreSQL via <code class="code-font bg-slate-100 px-1">Open77.database</code> para impedir dupes.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-xs text-slate-500">
+                            *Essa estrutura garante um Tickrate constante do servidor acima de 60 Hz mesmo sob alta carga de jogadores.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: BIOMETRIA & CIBERPSICOSE -->
+        <section id="sec-biometrics" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Gestão Biomecânica & Ciberpsicose</h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    A saúde do personagem em Night City não é apenas uma barra de vida. Trata-se de uma matriz viva composta por 6 parâmetros fisiológicos e cibernéticos interdependentes.
+                </p>
+
+                <!-- Interactive Simulator Box -->
+                <div class="bg-slate-900 text-white p-6 rounded-xl shadow-md mb-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                        <div>
+                            <span class="text-xs text-cyan-400 code-font uppercase tracking-widest">Simulador Interativo NUI</span>
+                            <h3 class="text-xl font-bold">Calculadora de Estabilidade Neural & Risco MaxTac</h3>
+                        </div>
+                        <div class="mt-2 md:mt-0 bg-slate-800 px-3 py-1 rounded text-xs code-font text-slate-300">
+                            Protocolo Kiroshi Optical v2.3
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Controls -->
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <label class="text-slate-300">Quantidade de Implantes Militares:</label>
+                                    <span id="val-implants" class="code-font font-bold text-cyan-400">2</span>
+                                </div>
+                                <input type="range" id="input-implants" min="0" max="8" value="2" oninput="updateCyberSimulator()" class="w-full accent-cyan-500 cursor-pointer">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <label class="text-slate-300">Uso Contínuo de Neurobloqueadores:</label>
+                                    <span id="val-blockers" class="code-font font-bold text-cyan-400">Sim</span>
+                                </div>
+                                <select id="input-blockers" onchange="updateCyberSimulator()" class="w-full bg-slate-800 border border-slate-700 text-white text-xs rounded p-2 focus:ring-1 focus:ring-cyan-500">
+                                    <option value="1">Sim (Medicação em dia)</option>
+                                    <option value="0.3">Parcial (Doses ignoradas)</option>
+                                    <option value="0">Nenhum (Esgotado)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <label class="text-slate-300">Uso do Sandevistan / Dash (Esforço Físico):</label>
+                                    <span id="val-stress" class="code-font font-bold text-cyan-400">Médio</span>
+                                </div>
+                                <input type="range" id="input-stress" min="1" max="5" value="2" oninput="updateCyberSimulator()" class="w-full accent-cyan-500 cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- Results Gauge & Status -->
+                        <div class="bg-slate-800 p-5 rounded-lg border border-slate-700 flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-slate-400 mb-2">Diagnóstico Neuro-Cibernético em Tempo Real:</div>
+                                <div class="flex items-baseline space-x-2">
+                                    <span class="text-xs text-slate-400">Estabilidade Neural:</span>
+                                    <span id="sim-stability" class="text-2xl font-bold code-font text-emerald-400">85%</span>
+                                </div>
+                                <div class="flex items-baseline space-x-2 mt-1">
+                                    <span class="text-xs text-slate-400">Carga Térmica Ocular:</span>
+                                    <span id="sim-heat" class="text-lg font-bold code-font text-cyan-400">38°C</span>
+                                </div>
+                            </div>
+
+                            <div id="sim-status-box" class="mt-4 p-3 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300 text-xs">
+                                <strong>Status Normal:</strong> Sem sinais de degeneração neural ou distorções no overlay ocular Kiroshi.
+                            </div>
+
+                            <div class="mt-3 text-[10px] text-slate-500 code-font">
+                                *Caso a Estabilidade Neural caia abaixo de 20%, uma diretiva de neutralização é enviada automaticamente para as unidades MaxTac do NCPD.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Degradation Line Chart -->
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Curva Diária Média de Depleção Vital (Sem Intervenção)</h3>
+                    <p class="text-xs text-slate-500 mb-4">Evolução do desgaste biológico ao longo de 24 horas de jogo sem consumo de alimentos, água ou sono.</p>
+                    <div class="chart-container">
+                        <canvas id="chartDegradation"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: HABITAÇÃO & BUCKETS -->
+        <section id="sec-housing" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Habitação & Modo de Construção (Build & Decorate)</h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    A moradia em Night City é a base de regeneração e personalização do jogador. Para viabilizar a habitação de centenas de jogadores dentro dos mesmos prédios emblemáticos (como os Megabuildings), o OPEN//77 utiliza um sistema avançado de instanciamento por <strong>Routing Buckets</strong> combinado com <strong>PolyZones 3D</strong>.
+                </p>
+
+                <!-- Visual Explanation of Routing Buckets -->
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 mb-8">
+                    <h3 class="font-bold text-slate-900 text-base mb-3">Isolamento Espacial via Routing Buckets (Instanciamento Vertical)</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded border border-slate-200">
+                            <div class="text-xs font-bold text-cyan-600 code-font mb-1">BUCKET #101</div>
+                            <div class="font-bold text-slate-900 text-sm">Apartamento 402 - Jogador A</div>
+                            <p class="text-xs text-slate-500 mt-2">Mesmas coordenadas XYZ físicas no mapa. Entidades e mobílias são visíveis apenas para o Jogador A.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-slate-200">
+                            <div class="text-xs font-bold text-cyan-600 code-font mb-1">BUCKET #102</div>
+                            <div class="font-bold text-slate-900 text-sm">Apartamento 402 - Jogador B</div>
+                            <p class="text-xs text-slate-500 mt-2">Mesmo espaço tridimensional. Tráfego de rede e voz isolados. Sem colisão física com a instância do Jogador A.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-slate-200">
+                            <div class="text-xs font-bold text-cyan-600 code-font mb-1">BUCKET #103</div>
+                            <div class="font-bold text-slate-900 text-sm">Apartamento 402 - Jogador C</div>
+                            <p class="text-xs text-slate-500 mt-2">Permite que prédios gigantescos tenham centenas de moradores individuais sem estourar o limite de mapa.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded border border-slate-200 text-xs text-slate-600 leading-relaxed">
+                        <strong class="text-slate-900">Mecânica do Elevador:</strong> Quando o jogador clica no botão do elevador no saguão, o servidor executa a rotina <code class="code-font bg-slate-100 px-1 text-cyan-800">Open77.elevators.goTo</code>, altera o <code class="code-font bg-slate-100 px-1 text-cyan-800">routing_bucket</code> do cliente para o ID único de sua propriedade e autoriza a abertura da porta na sua instância personalizada.
+                    </div>
+                </div>
+
+                <!-- Build & Decorate Features -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">O Modo de Decoração (Build Mode)</h3>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li class="flex items-start">
+                                <span class="text-cyan-600 font-bold mr-2">✓</span>
+                                <span><strong>Câmera Livre Aérea:</strong> Ao ativar o terminal da casa, o cliente aciona a API de <code class="code-font text-slate-800">Scripted Cameras</code>, travando o avatar do jogador e liberando voo suave.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-cyan-600 font-bold mr-2">✓</span>
+                                <span><strong>Gizmo de Precisão 3D:</strong> Manipulação de móveis nos eixos X, Y e Z através de controles gráficos nativos (<code class="code-font text-slate-800">Entity Gizmos</code>).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-cyan-600 font-bold mr-2">✓</span>
+                                <span><strong>Validação de Perímetro (PolyZone):</strong> O servidor valida se o objeto colocado está estritamente dentro da área limite da residência antes de salvar no PostgreSQL.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Utilidade das Mobílias</h3>
+                        <div class="space-y-2 text-xs text-slate-600">
+                            <div class="p-2 bg-white rounded border border-slate-200">
+                                <strong>🛏️ Cama Ortopédica:</strong> Regenera 100% da Energia e restaura o vigor biológico sem efeitos colaterais.
+                            </div>
+                            <div class="p-2 bg-white rounded border border-slate-200">
+                                <strong>🍳 Fogão de Síntese:</strong> Permite cozinhar pratos com bônus de saciedade estendida e sabor apetitoso.
+                            </div>
+                            <div class="p-2 bg-white rounded border border-slate-200">
+                                <strong>💻 Terminal de Rede:</strong> Acesso ao mercado financeiro, pagamento de contas e navegação na Net local.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CARREIRAS & ECONOMIA -->
+        <section id="sec-economy" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Carreiras, Renda & Economia Circular</h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    A economia de Night City foi projetada para ser uma malha circular. Os salários altos pagos pelas corporações e contratos são continuamente drenados por custos de manutenção obrigatórios, evitando a inflação acentuada do servidor.
+                </p>
+
+                <!-- Filterable Careers List -->
+                <div class="mb-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                        <h3 class="font-bold text-slate-900 text-base">Trilhas de Carreira Profissional</h3>
+                        <!-- Filter buttons -->
+                        <div class="flex flex-wrap gap-1 text-xs">
+                            <button onclick="filterCareers('all')" id="cfilter-all" class="px-2.5 py-1 rounded bg-cyan-600 text-white font-medium">Todas</button>
+                            <button onclick="filterCareers('corp')" id="cfilter-corp" class="px-2.5 py-1 rounded bg-slate-200 text-slate-700 font-medium hover:bg-slate-300">Corporativo</button>
+                            <button onclick="filterCareers('gov')" id="cfilter-gov" class="px-2.5 py-1 rounded bg-slate-200 text-slate-700 font-medium hover:bg-slate-300">Serviços Públicos</button>
+                            <button onclick="filterCareers('street')" id="cfilter-street" class="px-2.5 py-1 rounded bg-slate-200 text-slate-700 font-medium hover:bg-slate-300">Submundo / Ruas</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="careers-grid">
+                        <!-- Career Card 1 -->
+                        <div class="career-card c-corp bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-slate-900 text-sm">Corporativo (Corpo-Rat)</span>
+                                    <span class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] rounded font-bold code-font">ARASAKA / MILITECH</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Auditorias, invasão defensiva de dados e consolidação de relatórios em escritório corporativo.</p>
+                            </div>
+                            <div class="text-xs pt-2 border-t border-slate-200 text-slate-500">
+                                <strong>Exigência:</strong> Traje formal impecável & Higiene > 80%.
+                            </div>
+                        </div>
+
+                        <!-- Career Card 2 -->
+                        <div class="career-card c-gov bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-slate-900 text-sm">Socorrista Trauma Team</span>
+                                    <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] rounded font-bold code-font">TRAUMA TEAM INT.</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Atendimento de chamados biomonitores de emergência, voo tático e extração sob fogo cruzado.</p>
+                            </div>
+                            <div class="text-xs pt-2 border-t border-slate-200 text-slate-500">
+                                <strong>Exigência:</strong> Certificação médica & Pilotagem tática.
+                            </div>
+                        </div>
+
+                        <!-- Career Card 3 -->
+                        <div class="career-card c-gov bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-slate-900 text-sm">Policial Metropolitano</span>
+                                    <span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] rounded font-bold code-font">NCPD DEPT.</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Patrulhamento preventivo em viaturas, atendimento de assaltos e investigação com scanner Kiroshi.</p>
+                            </div>
+                            <div class="text-xs pt-2 border-t border-slate-200 text-slate-500">
+                                <strong>Exigência:</strong> Ficha criminal limpa & Treino de tiro.
+                            </div>
+                        </div>
+
+                        <!-- Career Card 4 -->
+                        <div class="career-card c-street bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-slate-900 text-sm">Ripperdoc Clandestino</span>
+                                    <span class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] rounded font-bold code-font">CLÍNICAS WATSON</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Instalação cirúrgica de cibernéticos, recarga de sprays de refrigeração e sintose de medicação.</p>
+                            </div>
+                            <div class="text-xs pt-2 border-t border-slate-200 text-slate-500">
+                                <strong>Exigência:</strong> Conhecimento em bioengenharia.
+                            </div>
+                        </div>
+
+                        <!-- Career Card 5 -->
+                        <div class="career-card c-street bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-slate-900 text-sm">Edgerunner Autônomo</span>
+                                    <span class="px-2 py-0.5 bg-rose-100 text-rose-800 text-[10px] rounded font-bold code-font">MERCENÁRIO / FIXERS</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Contratos pontuais passados por Fixers: espionagem, resgate de alvos e transporte de carga perigosa.</p>
+                            </div>
+                            <div class="text-xs pt-2 border-t border-slate-200 text-slate-500">
+                                <strong>Exigência:</strong> Reputação nas Ruas (Street Cred).
+                            </div>
+                        </div>
+
+                        <!-- Career Card 6 -->
+                        <div class="career-card c-corp bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-slate-900 text-sm">Comércio & Entretenimento</span>
+                                    <span class="px-2 py-0.5 bg-slate-200 text-slate-800 text-[10px] rounded font-bold code-font">BARES & CLUBES</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Gestão de estabelecimentos noturnos, preparo de coquetéis com bônus e organização de festas.</p>
+                            </div>
+                            <div class="text-xs pt-2 border-t border-slate-200 text-slate-500">
+                                <strong>Exigência:</strong> Capital para arrendamento do espaço.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Economic Sink Chart -->
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base mb-1">Distribuição das Drenagens Monetárias (Money Sinks)</h3>
+                    <p class="text-xs text-slate-500 mb-4">Destino dos Eurodólares drenados dos jogadores para equilibrar a inflação da economia.</p>
+                    <div class="chart-container">
+                        <canvas id="chartEconomy"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: ROADMAP & TESTES -->
+        <section id="sec-roadmap" class="tab-content hidden space-y-8">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Roadmap de Implementação & Testes de Carga</h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    O desenvolvimento do servidor está dividido em 4 fases estratégicas para garantir estabilidade de rede antes da abertura para a comunidade.
+                </p>
+
+                <!-- Interactive Timeline / Roadmap -->
+                <div class="space-y-4 mb-8">
+                    <!-- Phase 1 -->
+                    <div class="p-4 rounded-lg border-l-4 border-cyan-600 bg-slate-50 border-y border-r border-slate-200">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-slate-900 text-sm">Fase 1: Infraestrutura Base & Persistência</span>
+                            <span class="text-xs font-bold code-font text-cyan-700 bg-cyan-100 px-2 py-0.5 rounded">CONCLUÍDO</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-2">Instalação do host Linux (.NET 8), integração do PostgreSQL 16 + Redis 7 e biblioteca base de eventos de rede em Lua 5.4.</p>
+                        <div class="text-[11px] text-slate-500 code-font">
+                            Criteria de aceite: Latência em cache &lt; 2ms e sincronização fluida de conexões.
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="p-4 rounded-lg border-l-4 border-blue-600 bg-slate-50 border-y border-r border-slate-200">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-slate-900 text-sm">Fase 2: Motor de Biometria & NUI Svelte 5</span>
+                            <span class="text-xs font-bold code-font text-blue-700 bg-blue-100 px-2 py-0.5 rounded">EM ANDAMENTO</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-2">Criação das rotinas de decaimento de necessidades, montagem da UI em Svelte 5 com Tailwind CSS e ponte de mensagens via <code class="code-font text-slate-800">open77-webui</code>.</p>
+                        <div class="text-[11px] text-slate-500 code-font">
+                            Criteria de aceite: HUD executando a 60+ FPS sem vazamento de memória DOM.
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="p-4 rounded-lg border-l-4 border-amber-500 bg-slate-50 border-y border-r border-slate-200">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-slate-900 text-sm">Fase 3: Sistemas Habitacionais & Economia</span>
+                            <span class="text-xs font-bold code-font text-amber-700 bg-amber-100 px-2 py-0.5 rounded">PLANEJADO</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-2">Mapeamento de PolyZones nos Megabuildings, controle de elevadores/portas, modo de construção e catálogo de móveis.</p>
+                        <div class="text-[11px] text-slate-500 code-font">
+                            Criteria de aceite: 100+ interiores instanciados simultaneamente sem sobreposição de estado.
+                        </div>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="p-4 rounded-lg border-l-4 border-slate-400 bg-slate-50 border-y border-r border-slate-200">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold text-slate-900 text-sm">Fase 4: Imersão, Facções & Alpha Fechado</span>
+                            <span class="text-xs font-bold code-font text-slate-600 bg-slate-200 px-2 py-0.5 rounded">AGUARDANDO</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-2">Áudio 3D espacial com <code class="code-font text-slate-800">open-voice</code>, reputação de gangues e testes de carga extrema com bots simulados.</p>
+                        <div class="text-[11px] text-slate-500 code-font">
+                            Criteria de aceite: Tickrate estável de 60 Hz sob concorrência em horário de pico.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Hardware Estimator -->
+                <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base mb-2">Simulador de Requisitos de Hardware do Host</h3>
+                    <p class="text-xs text-slate-500 mb-4">Ajuste o número de jogadores simultâneos esperados para estimar os recursos necessários do servidor.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-700 mb-1">Jogadores Simultâneos (CCU):</label>
+                            <input type="range" id="input-ccu" min="32" max="512" step="32" value="128" oninput="updateHardwareEstimator()" class="w-full accent-cyan-600 cursor-pointer">
+                            <div class="text-right text-xs code-font font-bold text-cyan-700 mt-1" id="val-ccu">128 Jogadores</div>
+                        </div>
+
+                        <div class="col-span-2 bg-white p-4 rounded border border-slate-200 grid grid-cols-3 gap-2 text-center">
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">vCPU Recomendadas</div>
+                                <div class="text-lg font-bold code-font text-slate-900" id="res-cpu">8 Cores</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">RAM Dedicada</div>
+                                <div class="text-lg font-bold code-font text-slate-900" id="res-ram">16 GB</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase font-semibold">Instância Redis</div>
+                                <div class="text-lg font-bold code-font text-cyan-600" id="res-redis">4 GB RAM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>OPEN//77 Life-Sim RP Architecture & Design Document. Desenvolvido para execução em servidores independentes Cyberpunk 2077.</p>
+            <p class="mt-1 code-font text-[11px]">Tecnologias: .NET 8 • Lua 5.4 • Redis 7 • PostgreSQL 16 • Svelte 5 • Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic & Chart Initialization -->
+    <script>
+        // Tab Navigation Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('sec-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        // Gameplay Loop Step Selection
+        const loopStepsData = {
+            1: {
+                title: 'Fase 1: Manutenção Biológica',
+                desc: 'Ao acordar no seu apartamento em um Megabuilding, o personagem apresenta níveis degradados de hidratação e sono. O jogador deve utilizar as instalações da residência (chuveiro, geladeira, cama) ou recorrer a vendedores ambulantes. Negligenciar esta fase resulta em penalidades diretas na recuperação de estamina e no campo visual do cliente.',
+                tags: ['Sistemas: Vitais Lua', 'Animações: Sincronizadas', 'Persistência: Redis Cache']
+            },
+            2: {
+                title: 'Fase 2: Atividade Produtiva',
+                desc: 'Deslocamento até a corporação, batalhão da polícia, hospital ou ponto de contrato. Cumprimento de turnos operacionais ou minigames profissionais para gerar receita limpa ou suja em eurodólares.',
+                tags: ['Sistemas: Jobs / Factions', 'Interface: NUI Svelte', 'API: Open77.database']
+            },
+            3: {
+                title: 'Fase 3: Socialização & Consumo',
+                desc: 'Encontros interpessoais em bares e clubes noturnos com bônus passivos de redução de exaustão. Uso do sistema de voz espacial 3D (open-voice) e animações bilaterais sincronizadas.',
+                tags: ['Sistemas: open-voice', 'Mecânica: Bônus de Afinidade', 'Rede: State Bags']
+            },
+            4: {
+                title: 'Fase 4: Gestão Patrimonial',
+                desc: 'Acesso aos terminais do banco para pagamento de tarifas, compra de mobílias no modo Build & Decorate e instalação de aprimoramentos cibernéticos em Ripperdocs licenciados.',
+                tags: ['Sistemas: Housing Buckets', 'Modo: Build Mode Gizmos', 'Persistência: PostgreSQL']
+            }
+        };
+
+        function selectLoopStep(stepNum) {
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById('loop-btn-' + i);
+                if (i === stepNum) {
+                    btn.className = 'loop-step-btn p-4 rounded-lg border-2 border-cyan-600 bg-cyan-50 text-left transition-all';
+                    btn.querySelector('.code-font').className = 'text-xs font-bold text-cyan-700 code-font';
+                } else {
+                    btn.className = 'loop-step-btn p-4 rounded-lg border-2 border-slate-200 bg-white text-left hover:border-slate-300 transition-all';
+                    btn.querySelector('.code-font').className = 'text-xs font-bold text-slate-400 code-font';
+                }
+            }
+
+            const data = loopStepsData[stepNum];
+            document.getElementById('loop-detail-title').innerText = data.title;
+            document.getElementById('loop-detail-desc').innerText = data.desc;
+
+            const tagsContainer = document.getElementById('loop-detail-tags');
+            tagsContainer.innerHTML = '';
+            data.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'px-2 py-1 bg-slate-200 text-slate-700 text-xs rounded code-font';
+                span.innerText = tag;
+                tagsContainer.appendChild(span);
+            });
+        }
+
+        // Cyberware Simulator Logic
+        function updateCyberSimulator() {
+            const implants = parseInt(document.getElementById('input-implants').value);
+            const blockerMult = parseFloat(document.getElementById('input-blockers').value);
+            const stress = parseInt(document.getElementById('input-stress').value);
+
+            document.getElementById('val-implants').innerText = implants;
+            
+            let stressText = 'Baixo';
+            if (stress === 2) stressText = 'Médio';
+            if (stress === 3) stressText = 'Elevado';
+            if (stress === 4) stressText = 'Intenso';
+            if (stress === 5) stressText = 'Crítico';
+            document.getElementById('val-stress').innerText = stressText;
+
+            // Calculations
+            let baseStability = 100 - (implants * 9);
+            if (blockerMult < 1) {
+                baseStability -= (1 - blockerMult) * 30;
+            }
+            baseStability -= (stress - 1) * 4;
+
+            if (baseStability < 5) baseStability = 5;
+            if (baseStability > 100) baseStability = 100;
+
+            let heat = 36.5 + (implants * 1.2) + (stress * 1.5);
+
+            const stabEl = document.getElementById('sim-stability');
+            const heatEl = document.getElementById('sim-heat');
+            const boxEl = document.getElementById('sim-status-box');
+
+            stabEl.innerText = Math.round(baseStability) + '%';
+            heatEl.innerText = heat.toFixed(1) + '°C';
+
+            if (baseStability > 60) {
+                stabEl.className = 'text-2xl font-bold code-font text-emerald-400';
+                boxEl.className = 'mt-4 p-3 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300 text-xs';
+                boxEl.innerHTML = '<strong>Status Normal:</strong> Sem sinais de degeneração neural ou distorções no overlay ocular Kiroshi.';
+            } else if (baseStability > 25) {
+                stabEl.className = 'text-2xl font-bold code-font text-amber-400';
+                boxEl.className = 'mt-4 p-3 rounded bg-amber-950/60 border border-amber-800 text-amber-300 text-xs';
+                boxEl.innerHTML = '<strong>Alerta de Tensão Neural:</strong> Tremores oculares moderados e latência no tempo de resposta dos membros.';
+            } else {
+                stabEl.className = 'text-2xl font-bold code-font text-rose-500 animate-pulse';
+                boxEl.className = 'mt-4 p-3 rounded bg-rose-950/80 border border-rose-800 text-rose-200 text-xs font-bold';
+                boxEl.innerHTML = '⚠️ <strong>EPISÓDIO DE CIBERPSICOSE IMMINENTE:</strong> Alucinações estocásticas ativadas. Alerta prioritário despachado para a MaxTac!';
+            }
+        }
+
+        // Careers Filter
+        function filterCareers(category) {
+            const cards = document.querySelectorAll('.career-card');
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else if (category === 'corp' && card.classList.contains('c-corp')) {
+                    card.classList.remove('hidden');
+                } else if (category === 'gov' && card.classList.contains('c-gov')) {
+                    card.classList.remove('hidden');
+                } else if (category === 'street' && card.classList.contains('c-street')) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Button styling
+            ['all', 'corp', 'gov', 'street'].forEach(c => {
+                const btn = document.getElementById('cfilter-' + c);
+                if (c === category) {
+                    btn.className = 'px-2.5 py-1 rounded bg-cyan-600 text-white font-medium';
+                } else {
+                    btn.className = 'px-2.5 py-1 rounded bg-slate-200 text-slate-700 font-medium hover:bg-slate-300';
+                }
+            });
+        }
+
+        // Hardware Estimator
+        function updateHardwareEstimator() {
+            const ccu = parseInt(document.getElementById('input-ccu').value);
+            document.getElementById('val-ccu').innerText = ccu + ' Jogadores';
+
+            let cpu = 4;
+            let ram = 8;
+            let redisRam = 2;
+
+            if (ccu >= 128) { cpu = 8; ram = 16; redisRam = 4; }
+            if (ccu >= 256) { cpu = 16; ram = 32; redisRam = 8; }
+            if (ccu >= 384) { cpu = 24; ram = 64; redisRam = 12; }
+            if (ccu >= 512) { cpu = 32; ram = 128; redisRam = 16; }
+
+            document.getElementById('res-cpu').innerText = cpu + ' Cores';
+            document.getElementById('res-ram').innerText = ram + ' GB';
+            document.getElementById('res-redis').innerText = redisRam + ' GB RAM';
+        }
+
+        // Initialize Chart.js Graphs
+        window.addEventListener('DOMContentLoaded', () => {
+            // Chart 1: Frameworks Benchmark
+            const ctxFrameworks = document.getElementById('chartFrameworks').getContext('2d');
+            new Chart(ctxFrameworks, {
+                type: 'bar',
+                data: {
+                    labels: ['Svelte 5 (Runes)', 'Vue 3 (Proxy)', 'React 19 (VDOM)'],
+                    datasets: [
+                        {
+                            label: 'Tamanho do Bundle Base (KB)',
+                            data: [15, 45, 140],
+                            backgroundColor: '#0891b2'
+                        },
+                        {
+                            label: 'Risco de Pausa GC (Escala 1-10)',
+                            data: [1, 4, 8],
+                            backgroundColor: '#f43f5e'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            // Chart 2: Vital Needs Degradation
+            const ctxDegradation = document.getElementById('chartDegradation').getContext('2d');
+            new Chart(ctxDegradation, {
+                type: 'line',
+                data: {
+                    labels: ['0h', '4h', '8h', '12h', '16h', '20h', '24h'],
+                    datasets: [
+                        {
+                            label: 'Nutrição (%)',
+                            data: [100, 80, 60, 40, 20, 5, 0],
+                            borderColor: '#059669',
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Hidratação (%)',
+                            data: [100, 70, 40, 15, 0, 0, 0],
+                            borderColor: '#0284c7',
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Energia / Sono (%)',
+                            data: [100, 85, 70, 50, 30, 10, 0],
+                            borderColor: '#d97706',
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+
+            // Chart 3: Money Sinks Breakdown
+            const ctxEconomy = document.getElementById('chartEconomy').getContext('2d');
+            new Chart(ctxEconomy, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Aluguel Imobiliário',
+                        'Manutenção de Cyberware',
+                        'Seguro Trauma Team',
+                        'Alimentação & Bebidas',
+                        'Tarifas & Licenças NCPD'
+                    ],
+                    datasets: [{
+                        data: [35, 25, 15, 15, 10],
+                        backgroundColor: [
+                            '#0891b2',
+                            '#d97706',
+                            '#e11d48',
+                            '#059669',
+                            '#64748b'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

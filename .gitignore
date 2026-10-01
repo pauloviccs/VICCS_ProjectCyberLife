@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Environment variables & credentials
+.env
+.env.*
+!.env.example
+
+# Server runtime logs & caches
+Server/cache/
+Server/logs/
+Server/crashdumps/
+*.log
+*.dmp
+
+# Temporary and build files
+*.tmp
+*.bak
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE caches
+.idea/
+*.suo
+*.user
