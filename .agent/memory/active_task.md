@@ -11,8 +11,8 @@
 - [x] Criação dos nós ausentes em `.agent/guidelines/` (`code_style.md` e `ui_ux.md`).
 - [x] Atualização completa de `stack.md`, `architecture.md` e `database_schema.md`.
 - [x] Sincronização do `.agent/overview/PROJECT_STATUS.md`.
-- [x] Reestruturação do backlog em `.agent/memory/todos.md` baseado no plano de 9 fases.
 - [x] Registro da sincronização em `.agent/memory/changelog.md`.
+- [x] Criação do `.gitignore`, `README.md` principal e push inicial com tag `v0.0.1` no GitHub (`https://github.com/pauloviccs/VICCS_ProjectCyberLife.git`).
 
 ## Próximo Marco de Execução (Fase 1: Núcleo do Servidor)
 - [ ] Criar arquivo de configuração `Server/server.jsonc` (portas, database connection, autorizações e lista de inicialização).

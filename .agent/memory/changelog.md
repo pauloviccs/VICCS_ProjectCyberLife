@@ -11,6 +11,7 @@
 ### Atualizado
 - **Sincronização de Status Geral:** Atualizado `.agent/overview/PROJECT_STATUS.md` mapeando todos os módulos do repositório (`Server/`, `GDD_Website/`, `Main_Website/`, `.agent/`, `.agents/`), ferramentas MCP ativas e recursos tipados.
 - **Homologação da Stack Real:** Atualizados `.agent/context/stack.md`, `.agent/context/architecture.md` e `.agent/context/database_schema.md` para refletir as capacidades reais da plataforma OPEN//77 (MariaDB 10.11+ / MySQL 8 com InnoDB e `database.access`, aliado a `CacheService` Lua in-memory com Write-Behind, descartando dependências externas incompatíveis de Postgres/Redis).
+- **Lançamento Inicial no GitHub (v0.0.1):** Inicializado o repositório Git, configurado `.gitignore`, gerado o `README.md` principal e efetuado o push da branch `main` com tag `v0.0.1` em `https://github.com/pauloviccs/VICCS_ProjectCyberLife.git`.
 - **Estado de Memória Ativa:** Atualizado `.agent/memory/active_task.md` finalizando a etapa de fundação e preparando o início da Fase 1 (`server.jsonc`, `ls_core`, `ls_data`).
 
 ---
