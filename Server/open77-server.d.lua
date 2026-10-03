@@ -768,9 +768,9 @@ function GetNumResources() end
 ---
 --- Since: 2.31.13+op77.67
 --- Reasons: invalid_argument, invalid_position, player_not_found, position_unknown, sessions_unavailable
----@param reason any
----@param reason any
-function GetPlayerDistance(reason, reason) end
+---@param playerA any
+---@param playerB any
+function GetPlayerDistance(playerA, playerB) end
 
 --- FiveM-style alias for `Open77.players.endpoint`.
 ---
@@ -2305,10 +2305,10 @@ function TriggerCancellableEvent(event, ___) end
 --- Reasons: invalid_target, network_unavailable, permission_denied:network.events
 ---@param event string
 ---@param playerId any
----@param ___? any
+---@vararg any
 ---@return any true true, or false
 ---@return any reason reason
-function TriggerClientEvent(event, playerId, ___) end
+function TriggerClientEvent(event, playerId, ...) end
 
 --- Publishes an event host-wide: every running resource that handles the name receives it.
 ---
@@ -2317,9 +2317,9 @@ function TriggerClientEvent(event, playerId, ___) end
 --- Since: 2.31.13+op77.45
 --- Reasons: event_argument_limit, event_payload_not_serializable, event_queue_limit, invalid_event_name, reserved_hacking_event, resource_preparing, resource_stopping
 ---@param event string
----@param ___? any
+---@vararg any
 ---@return any true true, or false, reason
-function TriggerEvent(event, ___) end
+function TriggerEvent(event, ...) end
 
 --- Sends a client event too large for one net event, paced at a byte rate (FiveM spelling).
 ---
@@ -4559,10 +4559,10 @@ function Open77.EventVerdict:status() end
 --- Reasons: export_arguments_not_serializable, invalid_export_name, resource_preparing, resource_stopping
 ---@param target any
 ---@param name any
----@param ___ any
+---@vararg any
 ---@return any promise promise, or nil
 ---@return any reason reason when dispatch is refused
-function Open77.exports.call(target, name, ___) end
+function Open77.exports.call(target, name, ...) end
 
 --- Calls another server resource's export inline on this thread.
 ---
@@ -4572,9 +4572,9 @@ function Open77.exports.call(target, name, ___) end
 --- Reasons: export_arguments_not_serializable, export_host_error, export_not_found, export_recursion_limit, export_resource_unavailable, export_stack_limit, export_target_stopped, invalid_export_name, resource_preparing, resource_stopping
 ---@param target any
 ---@param name any
----@param ___ any
+---@vararg any
 ---@return any whatever whatever the export returns
-function Open77.exports.callSync(target, name, ___) end
+function Open77.exports.callSync(target, name, ...) end
 
 --- Reads one hacking action by id: the current upload or its bounded terminal receipt.
 ---

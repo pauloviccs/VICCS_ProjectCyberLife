@@ -1,0 +1,184 @@
+{
+  "schema": "op77.incident/1",
+  "incidentId": "b1016c92-e276-4da7-9d0b-bbc826c38067",
+  "kind": "engine-crash",
+  "occurredAtUtc": "2026-10-02T20:29:38.7645534\u002B00:00",
+  "collectedAtUtc": "2026-10-02T20:30:21.4844807\u002B00:00",
+  "processId": 4012,
+  "processStartedAtUtc": "2026-10-02T20:28:58.5003546\u002B00:00",
+  "exitCode": -1073741819,
+  "lastPhase": "active",
+  "server": {
+    "id": "38d7c275-be7a-4ece-b0d2-7c8ac12ac265",
+    "endpoint": "26.102.47.161:11778",
+    "version": "0.1.0",
+    "protocol": "1.44",
+    "gameBuild": 23100,
+    "requiredModsDigest": null,
+    "observedAtUtc": "2026-10-02T20:28:58.4718891\u002B00:00"
+  },
+  "description": "",
+  "fault": {
+    "exceptionCode": "0xc0000005",
+    "moduleOffset": "cyberpunk2077.exe\u002B0x00bf9a5d",
+    "fingerprint": "5e30fee4fb247617956697f1ffbbf0bbe4d5c0ed1a5f4307d0b558b37113eef8",
+    "confidence": "module-offset-not-root-cause",
+    "evidencePath": "crash/open77-crash-probe.log"
+  },
+  "versions": {
+    "launcher": "2.31.21\u002Bop77.121",
+    "clientPackage": "2.31.21\u002Bop77.124",
+    "clientSha256": "8e3e4a672bc1fbf479face4a5c6af3cc33752a0454174de96118dd4af874d1b0",
+    "installedPackages": {
+      "cybercmd-compat": "0.0.0\u002Bcontent.497769dd7da4",
+      "open77-core": "2.31.21\u002Bop77.124",
+      "open77-webui": "2.31.21\u002Bop77.124",
+      "red4ext": "1.30.0\u002Bcontent.0d8ae532b623",
+      "redscript": "0.0.0\u002Bcontent.31f79822adfc"
+    },
+    "sourceCommit": null,
+    "observation": "Files hashed at collection time. Compare runtime.json compatibility artifacts for preconnection hashes; neither proves loaded module identity when joining an already-running game."
+  },
+  "system": {
+    "os": "Microsoft Windows 10.0.26200",
+    "architecture": "X64",
+    "runtime": ".NET 10.0.10",
+    "processors": 12
+  },
+  "privacy": {
+    "policy": "diagnostics-v1",
+    "sensitive": false,
+    "memoryDumpIncluded": false,
+    "redaction": "allowlisted collection plus best-effort text scrubbing; review before sharing",
+    "excludes": [
+      "account sessions",
+      "credentials",
+      "saves",
+      "screenshots",
+      "voice recordings",
+      "browser databases"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "report.txt",
+      "bytes": 129,
+      "sha256": "840c8cc6bfc0a199b121291494e6916b5cf57983c977fc35772475dac6b1c1cc",
+      "status": "collected"
+    },
+    {
+      "path": "launcher.log",
+      "bytes": 221080,
+      "sha256": "10e076a9da53ae6e1462624707786a3cb98bdbd4d5cf26569790a4dbd9a35cbf",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/open77-crash-probe.log",
+      "bytes": 10553,
+      "sha256": "f1ee3a4cd1fd75081d9fa515ef574e7e72dfa0db0d681da1bbf258a96e6f634b",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/open77-2026-10-02-17-28-59.log",
+      "bytes": 298154,
+      "sha256": "3b6aedbcf6d2241e5511d5cc97db379944cc5d2b451d99d6bc9c3eccc14fd96f",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/red4ext-2026-10-02-17-28-58.log",
+      "bytes": 1733,
+      "sha256": "f11514eae38759df6c23e05ec8e8a307c56e62a6b7de12383a29f5dbebd0a254",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/open77-2026-10-02-16-32-16.log",
+      "bytes": 503343,
+      "sha256": "4a0bd3673a488a2e278548c0edb7775eefd33f0f7d78fdba76c2ba947448a6d4",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/red4ext-2026-10-02-16-32-15.log",
+      "bytes": 2062,
+      "sha256": "f9586ec374abec3545adcbd443b8b2a66ae670b212f47cba4567c76685f5f545",
+      "status": "collected"
+    },
+    {
+      "path": "r6-logs/redscript_rCURRENT.log",
+      "bytes": 1887,
+      "sha256": "2639d546743df2382f3d25c6897fd7b58d959e17c7d708a64f00b2cf516a5395",
+      "status": "collected"
+    },
+    {
+      "path": "state/projection.json",
+      "bytes": 100977,
+      "sha256": "c30b7dced49230965417446c8b3658c2ceacc4c320090c834ca0c5ffa3ef2c3a",
+      "status": "collected"
+    },
+    {
+      "path": "state/red4ext-ignored.json",
+      "bytes": 168,
+      "sha256": "5241efede97dc6093b19e29c1367d1682e5cb30aa8f17d5d2eec9bbeec9270ee",
+      "status": "collected"
+    },
+    {
+      "path": "state/installed.json",
+      "bytes": 223,
+      "sha256": "cf2f6238f3f258ba15017eb66c2a02d9e52ceec2a4543be7d8767f7863f86ffd",
+      "status": "collected"
+    },
+    {
+      "path": "crash/open77-crash-probe.log",
+      "bytes": 10553,
+      "sha256": "f1ee3a4cd1fd75081d9fa515ef574e7e72dfa0db0d681da1bbf258a96e6f634b",
+      "status": "collected"
+    },
+    {
+      "path": "resources.json",
+      "bytes": 10585,
+      "sha256": "5471c7f4bcef855269168eca7a2c901af067d393592e3a716cc4e595f34442e7",
+      "status": "collected"
+    },
+    {
+      "path": "crash/engine-report.txt",
+      "bytes": 6665,
+      "sha256": "a12485014ed6557a8cf7df9463c391079db7b7dfcd2de11d9717d4904e6e5c44",
+      "status": "collected"
+    },
+    {
+      "path": "crash/engine-stacktrace.txt",
+      "bytes": 174,
+      "sha256": "dccff0106a7c22423bcb7a41c8d90af0fa40ab0486ea745d4f2c60b48d7e6ef4",
+      "status": "collected"
+    },
+    {
+      "path": "timeline.json",
+      "bytes": 16727,
+      "sha256": "355a62a8f6462f84544d81b641620727c518f9ee380b38938377113204e4240b",
+      "status": "collected"
+    },
+    {
+      "path": "artifacts.json",
+      "bytes": 18999,
+      "sha256": "08da4b89d8eaf193806c89218ddf4ab37231d8d523949f6558e612d18e5b17d7",
+      "status": "collected"
+    },
+    {
+      "path": "symbols.json",
+      "bytes": 613,
+      "sha256": "856f33bd509a906a557cdc0613a2c9c40dc14c78569c6706d981ccf188a91fac",
+      "status": "collected"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 31968,
+      "sha256": "2850af09992bdce1d8c6f3c19791d938a4cd83c0383f5bfc79323d24c6a6e01e",
+      "status": "collected"
+    }
+  ],
+  "missingEvidence": [],
+  "diagnosis": {
+    "rootCause": null,
+    "status": "not-established",
+    "instruction": "Observations and fingerprints are not proof of causality."
+  }
+}

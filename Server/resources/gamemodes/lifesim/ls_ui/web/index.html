@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night City LifeSim - Kiroshi Biomonitor</title>
+    <link rel="stylesheet" href="./open77-ui.css">
+    <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+    <main id="hud-viewport">
+        <section id="biomonitor" class="kiroshi-biomonitor" aria-label="Biomonitor Kiroshi">
+            <div class="scanlines"></div>
+            
+            <header class="bio-header">
+                <div class="bio-title-group">
+                    <span class="bio-eyebrow">// KIROSHI OPTICS // V.2.0.77</span>
+                    <h1 class="bio-title">BIOMONITOR</h1>
+                </div>
+                <div id="status-badge" class="bio-status-badge">
+                    <span class="bio-status-dot"></span>
+                    <span id="status-text">SYS: NOMINAL</span>
+                </div>
+            </header>
+
+            <!-- TELEMETRIA FINANCEIRA (EURODÓLARES E$) -->
+            <div class="economy-strip" id="economy-strip">
+                <div class="economy-stat cash">
+                    <span class="economy-tag">E$ CASH</span>
+                    <span class="economy-val" id="economy-cash">0</span>
+                </div>
+                <div class="economy-sep"></div>
+                <div class="economy-stat bank">
+                    <span class="economy-tag">E$ BANK</span>
+                    <span class="economy-val" id="economy-bank">0</span>
+                </div>
+            </div>
+
+            <div class="vitals-grid">
+                <!-- FOME / CAL -->
+                <div class="vital-row" data-vital="hunger">
+                    <div class="vital-info">
+                        <span class="vital-label">
+                            <span class="vital-tag">CAL</span>
+                            <span>Nutrição</span>
+                        </span>
+                        <span class="vital-val">100%</span>
+                    </div>
+                    <div class="vital-track">
+                        <div class="vital-fill"></div>
+                    </div>
+                </div>
+
+                <!-- SEDE / H2O -->
+                <div class="vital-row" data-vital="thirst">
+                    <div class="vital-info">
+                        <span class="vital-label">
+                            <span class="vital-tag">H2O</span>
+                            <span>Hidratação</span>
+                        </span>
+                        <span class="vital-val">100%</span>
+                    </div>
+                    <div class="vital-track">
+                        <div class="vital-fill"></div>
+                    </div>
+                </div>
+
+                <!-- ENERGIA / BAT -->
+                <div class="vital-row" data-vital="energy">
+                    <div class="vital-info">
+                        <span class="vital-label">
+                            <span class="vital-tag">BAT</span>
+                            <span>Stamina</span>
+                        </span>
+                        <span class="vital-val">100%</span>
+                    </div>
+                    <div class="vital-track">
+                        <div class="vital-fill"></div>
+                    </div>
+                </div>
+
+                <!-- HIGIENE / BIO -->
+                <div class="vital-row" data-vital="hygiene">
+                    <div class="vital-info">
+                        <span class="vital-label">
+                            <span class="vital-tag">BIO</span>
+                            <span>Sanitário</span>
+                        </span>
+                        <span class="vital-val">100%</span>
+                    </div>
+                    <div class="vital-track">
+                        <div class="vital-fill"></div>
+                    </div>
+                </div>
+
+                <!-- CARGA NEURAL / ESTRESSE -->
+                <div class="vital-row" data-vital="stress">
+                    <div class="vital-info">
+                        <span class="vital-label">
+                            <span class="vital-tag">NEU</span>
+                            <span>Carga Neural</span>
+                        </span>
+                        <span class="vital-val">0%</span>
+                    </div>
+                    <div class="vital-track">
+                        <div class="vital-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARRA DE ARRASTO DO BIOMONITOR (Ativa em modo de edição) -->
+            <div id="drag-handle" class="drag-handle">
+                <span class="drag-icon">✥</span>
+                <span>ARRASTAR BIOMONITOR</span>
+            </div>
+
+            <footer class="bio-footer">
+                <span id="telemetry-status">TELEMETRY: ACTIVE</span>
+                <span>TRAUMA LINK: SECURE</span>
+            </footer>
+        </section>
+
+        <!-- TOOLBAR DE REPOSICIONAMENTO (Exibida durante o arrasto do HUD) -->
+        <div id="reposition-toolbar" class="reposition-toolbar hidden">
+            <div class="toolbar-content">
+                <div class="toolbar-hint">
+                    <span class="toolbar-indicator"></span>
+                    <span class="toolbar-text">MODO DE REPOSICIONAMENTO // CLIQUE E ARRASTE O BIOMONITOR</span>
+                </div>
+                <div class="toolbar-buttons">
+                    <button id="btn-save-pos" class="kiroshi-btn confirm" type="button">
+                        <span class="btn-bracket">[</span> SALVAR POSIÇÃO <span class="btn-bracket">]</span>
+                    </button>
+                    <button id="btn-cancel-pos" class="kiroshi-btn cancel" type="button">
+                        <span class="btn-bracket">[</span> CANCELAR <span class="btn-bracket">]</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DE CONFIGURAÇÃO /biomonitor -->
+        <div id="settings-modal" class="kiroshi-modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-card">
+                <div class="hologram-bracket tl"></div>
+                <div class="hologram-bracket tr"></div>
+                <div class="hologram-bracket bl"></div>
+                <div class="hologram-bracket br"></div>
+                <div class="scanlines"></div>
+
+                <header class="modal-header">
+                    <div class="modal-title-group">
+                        <span class="modal-eyebrow">KIROSHI//OPTICS - INTERFACE HUD</span>
+                        <h2 class="modal-title">CONFIGURAÇÕES DO BIOMONITOR</h2>
+                    </div>
+                    <div class="modal-header-meta">
+                        <span class="sync-badge"><span class="sync-dot"></span>SYNCHRONIZED</span>
+                        <button id="btn-close-modal-x" class="btn-close-x" type="button" aria-label="Fechar">[ESC]</button>
+                    </div>
+                </header>
+
+                <div class="modal-body">
+                    <p class="modal-desc">
+                        Ajuste as preferências de visualização e posicionamento espacial do seu Biomonitor Kiroshi na retina neural.
+                    </p>
+
+                    <div class="modal-actions">
+                        <button id="btn-reposition" class="kiroshi-btn primary action-btn" type="button">
+                            <span class="btn-bracket">[</span> REPOSICIONAR BIOMONITOR <span class="btn-bracket">]</span>
+                        </button>
+                        <button id="btn-reset-pos" class="kiroshi-btn secondary action-btn" type="button">
+                            <span class="btn-bracket">[</span> RESETAR POSIÇÃO PADRÃO <span class="btn-bracket">]</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-status-info">
+                        <span class="info-label">MEMÓRIA DE POSICIONAMENTO:</span>
+                        <span id="pos-status-text" class="info-value">ATIVO (SALVAMENTO PERSISTENTE)</span>
+                    </div>
+                </div>
+
+                <footer class="modal-footer">
+                    <div class="hud-status-line">
+                        <span class="status-indicator"></span>
+                        <span class="status-msg">CALIBRAÇÃO RETINIANA ATIVA</span>
+                    </div>
+                    <div class="hud-keybinds">
+                        <button id="btn-close-modal" class="kiroshi-btn text key-group" type="button">
+                            <kbd>ESC</kbd> <span>FECHAR</span>
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- MODAL ATM KIOSK / NIGHT CITY CENTRAL BANK -->
+        <div id="atm-modal" class="kiroshi-modal atm-terminal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-card atm-card">
+                <div class="hologram-bracket tl"></div>
+                <div class="hologram-bracket tr"></div>
+                <div class="hologram-bracket bl"></div>
+                <div class="hologram-bracket br"></div>
+                <div class="scanlines"></div>
+
+                <header class="modal-header atm-header">
+                    <div class="modal-title-group">
+                        <span class="modal-eyebrow atm-eyebrow">NC-FINANCIAL//ATM NETWORK - V.2077</span>
+                        <h2 class="modal-title atm-title">TERMINAL DE AUTOATENDIMENTO</h2>
+                    </div>
+                    <div class="modal-header-meta">
+                        <span class="sync-badge"><span class="sync-dot"></span>SYNCHRONIZED</span>
+                        <button id="btn-close-atm-x" class="btn-close-x" type="button" aria-label="Fechar">[ESC]</button>
+                    </div>
+                </header>
+
+                <div class="modal-body atm-body">
+                    <!-- BALANÇOS AO VIVO -->
+                    <div class="atm-balance-display">
+                        <div class="atm-bal-box cash">
+                            <span class="bal-label">E$ CARTEIRA (EM MÃOS)</span>
+                            <span class="bal-value" id="atm-cash-val">0</span>
+                        </div>
+                        <div class="atm-bal-box bank">
+                            <span class="bal-label">E$ CONTA BANCÁRIA</span>
+                            <span class="bal-value" id="atm-bank-val">0</span>
+                        </div>
+                    </div>
+
+                    <!-- MENSAGEM DE FEEDBACK DO TERMINAL -->
+                    <div id="atm-feedback" class="atm-feedback hidden"></div>
+
+                    <!-- OPERAÇÕES RÁPIDAS -->
+                    <div class="atm-section">
+                        <span class="atm-section-label">// SAQUE RÁPIDO (CONTA &rarr; CARTEIRA)</span>
+                        <div class="atm-quick-grid">
+                            <button class="atm-btn quick-withdraw" data-amount="100" type="button">E$ 100</button>
+                            <button class="atm-btn quick-withdraw" data-amount="500" type="button">E$ 500</button>
+                            <button class="atm-btn quick-withdraw" data-amount="1000" type="button">E$ 1.000</button>
+                            <button class="atm-btn quick-withdraw" data-amount="5000" type="button">E$ 5.000</button>
+                        </div>
+                    </div>
+
+                    <div class="atm-section">
+                        <span class="atm-section-label">// DEPÓSITO RÁPIDO (CARTEIRA &rarr; CONTA)</span>
+                        <div class="atm-quick-grid">
+                            <button class="atm-btn quick-deposit" data-amount="100" type="button">E$ 100</button>
+                            <button class="atm-btn quick-deposit" data-amount="500" type="button">E$ 500</button>
+                            <button class="atm-btn quick-deposit" data-amount="1000" type="button">E$ 1.000</button>
+                            <button class="atm-btn quick-deposit all" data-amount="all" type="button">DEPOSITAR TUDO</button>
+                        </div>
+                    </div>
+
+                    <!-- VALOR CUSTOMIZADO -->
+                    <div class="atm-section custom-transaction">
+                        <span class="atm-section-label">// OPERAÇÃO MANUAL</span>
+                        <div class="atm-input-row">
+                            <input type="number" id="atm-custom-amount" class="atm-input" placeholder="Valor em E$" min="1" step="1">
+                            <button id="btn-atm-custom-withdraw" class="atm-btn action withdraw" type="button">SACAR</button>
+                            <button id="btn-atm-custom-deposit" class="atm-btn action deposit" type="button">DEPOSITAR</button>
+                        </div>
+                    </div>
+
+                    <!-- TRANSFERÊNCIA ELETRÔNICA ENTRE CIDADÃOS -->
+                    <div class="atm-section transfer-section">
+                        <span class="atm-section-label">// TRANSFERÊNCIA ELETRÔNICA (REDE NIGHT CITY)</span>
+                        <div class="atm-input-row">
+                            <input type="number" id="atm-transfer-target" class="atm-input target" placeholder="ID Cidadão" min="1">
+                            <input type="number" id="atm-transfer-amount" class="atm-input amount" placeholder="E$ Valor" min="1">
+                            <button id="btn-atm-transfer" class="atm-btn action transfer" type="button">TRANSFERIR</button>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="modal-footer atm-footer">
+                    <div class="hud-status-line">
+                        <span class="status-indicator"></span>
+                        <span class="status-msg">CONEXÃO SEGURA NC BANK // ENCRIPTADO 256-BIT</span>
+                    </div>
+                    <div class="hud-keybinds">
+                        <button id="btn-close-atm" class="kiroshi-btn text key-group" type="button">
+                            <kbd>ESC</kbd> <span>ENCERRAR SESSÃO</span>
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- MODAL DISPENSADOR / MÁQUINA DE VENDAS ALL-FOODS -->
+        <div id="vending-modal" class="kiroshi-modal vending-terminal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-card vending-card">
+                <div class="hologram-bracket tl"></div>
+                <div class="hologram-bracket tr"></div>
+                <div class="hologram-bracket bl"></div>
+                <div class="hologram-bracket br"></div>
+                <div class="scanlines"></div>
+
+                <header class="modal-header vending-header">
+                    <div class="modal-title-group">
+                        <span class="modal-eyebrow">ALL-FOODS//AUTONOMOUS NETWORK - 24/7 CONVENIENCE</span>
+                        <h2 class="modal-title">DISPENSADOR DE ALIMENTOS & BEBIDAS</h2>
+                    </div>
+                    <div class="modal-header-meta">
+                        <span class="sync-badge"><span class="sync-dot"></span>SYNCHRONIZED</span>
+                        <button id="btn-close-vending-x" class="btn-close-x" type="button" aria-label="Fechar">[ESC]</button>
+                    </div>
+                </header>
+
+                <div class="modal-body vending-body">
+                    <!-- BARRA DE SALDO DO CLIENTE -->
+                    <div class="vending-user-bar">
+                        <div class="user-eco-pill">
+                            <span class="pill-label">E$ CARTEIRA:</span>
+                            <span class="pill-val cash" id="vending-cash-val">0</span>
+                        </div>
+                        <div class="user-eco-pill">
+                            <span class="pill-label">E$ BANCO:</span>
+                            <span class="pill-val bank" id="vending-bank-val">0</span>
+                        </div>
+                    </div>
+
+                    <!-- FILTROS DE CATEGORIA -->
+                    <div class="vending-categories">
+                        <button class="vending-cat-btn active" data-cat="all" type="button">[ TODOS ]</button>
+                        <button class="vending-cat-btn" data-cat="food" type="button">[ COMIDA (CAL) ]</button>
+                        <button class="vending-cat-btn" data-cat="drink" type="button">[ BEBIDA (H2O) ]</button>
+                        <button class="vending-cat-btn" data-cat="medical" type="button">[ ESTIMULANTES ]</button>
+                    </div>
+
+                    <!-- MENSAGEM DE FEEDBACK DO DISPENSADOR -->
+                    <div id="vending-feedback" class="vending-feedback hidden"></div>
+
+                    <!-- GRID DE PRODUTOS -->
+                    <div class="vending-grid" id="vending-grid">
+                        <!-- Renderizado dinamicamente via app.js -->
+                    </div>
+                </div>
+
+                <footer class="modal-footer vending-footer">
+                    <div class="hud-status-line">
+                        <span class="status-indicator"></span>
+                        <span class="status-msg">DISPENSADOR PRONTO // SELECIONE UM ITEM</span>
+                    </div>
+                    <div class="hud-keybinds">
+                        <button id="btn-close-vending" class="kiroshi-btn text key-group" type="button">
+                            <kbd>ESC</kbd> <span>SAIR DO DISPENSADOR</span>
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- MODAL RIPPERDOC CLINIC / VIKTOR VECTOR -->
+        <div id="ripperdoc-modal" class="kiroshi-modal ripperdoc-terminal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-card ripperdoc-card">
+                <div class="hologram-bracket tl"></div>
+                <div class="hologram-bracket tr"></div>
+                <div class="hologram-bracket bl"></div>
+                <div class="hologram-bracket br"></div>
+                <div class="scanlines"></div>
+
+                <header class="modal-header ripperdoc-header">
+                    <div class="modal-title-group">
+                        <span class="modal-eyebrow">VIKTOR-VECTOR//SURGICAL LAB - LICENSED RIPPERDOC OS</span>
+                        <h2 class="modal-title">ESTAÇÃO CIRÚRGICA DE CIBERIMPLANTES</h2>
+                    </div>
+                    <div class="modal-header-meta">
+                        <span class="sync-badge"><span class="sync-dot"></span>SYNCHRONIZED</span>
+                        <button id="btn-close-ripperdoc-x" class="btn-close-x" type="button" aria-label="Fechar">[ESC]</button>
+                    </div>
+                </header>
+
+                <div class="modal-body ripperdoc-body">
+                    <!-- PAINEL SUPERIOR: ABAS DE NAVEGAÇÃO -->
+                    <div class="ripper-nav-tabs">
+                        <button id="tab-btn-cyberware" class="ripper-tab-btn active" type="button">[ PROCEDIMENTOS CIRÚRGICOS ]</button>
+                        <button id="tab-btn-pharma" class="ripper-tab-btn" type="button">[ FARMÁCIA & NEUROBLOQUEADORES ]</button>
+                    </div>
+
+                    <div class="ripper-layout">
+                        <!-- COLUNA ESQUERDA: DIAGNÓSTICO BIOMÉTRICO AO VIVO -->
+                        <aside class="ripper-patient-stats">
+                            <span class="section-tag">// TELEMETRIA DO PACIENTE</span>
+                            
+                            <div class="diag-card">
+                                <span class="diag-label">ESTABILIDADE NEURAL</span>
+                                <div class="diag-bar-track">
+                                     <div id="ripper-diag-stability-fill" class="diag-bar-fill" style="width: 90%;"></div>
+                                </div>
+                                <span id="ripper-diag-stability-val" class="diag-val">90.0%</span>
+                            </div>
+
+                            <div class="diag-card">
+                                <span class="diag-label">TEMPERATURA OCULAR</span>
+                                <div class="diag-bar-track">
+                                    <div id="ripper-diag-heat-fill" class="diag-bar-fill heat" style="width: 45%;"></div>
+                                </div>
+                                <span id="ripper-diag-heat-val" class="diag-val">36.5°C</span>
+                            </div>
+
+                            <div class="diag-meta-box">
+                                <div class="meta-row">
+                                    <span>NEUROBLOQUEADOR:</span>
+                                    <span id="ripper-diag-blocker" class="meta-status">ATIVO</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span>STATUS CIBERPSICOSE:</span>
+                                    <span id="ripper-diag-psychosis" class="meta-status">NOMINAL</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span>IMPLANTES TOTAIS:</span>
+                                    <span id="ripper-diag-count" class="meta-status">2 PEÇAS</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span>E$ NIGHT CITY BANK:</span>
+                                    <span id="ripper-diag-bank" class="meta-status highlight">0</span>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <!-- COLUNA DIREITA: CATÁLOGO DE IMPLANTES OU FARMÁCIA -->
+                        <main class="ripper-content-area">
+                            <!-- FEEDBACK CIRÚRGICO -->
+                            <div id="ripper-feedback" class="ripper-feedback hidden"></div>
+
+                            <!-- PAINEL 1: CIBERWARE POR SLOTS -->
+                            <div id="ripper-panel-cyberware" class="ripper-panel active">
+                                <div class="ripper-slot-selector">
+                                    <button class="slot-filter-btn active" data-slot="all">[ TODOS ]</button>
+                                    <button class="slot-filter-btn" data-slot="ocular">OCULAR</button>
+                                    <button class="slot-filter-btn" data-slot="frontal_cortex">CÓRTEX</button>
+                                    <button class="slot-filter-btn" data-slot="circulatory">CIRCULATÓRIO</button>
+                                    <button class="slot-filter-btn" data-slot="integumentary">PELE</button>
+                                    <button class="slot-filter-btn" data-slot="operating_sys">S.O.</button>
+                                    <button class="slot-filter-btn" data-slot="arms">BRAÇOS</button>
+                                    <button class="slot-filter-btn" data-slot="legs">PERNAS</button>
+                                </div>
+                                <div class="ripper-implants-grid" id="ripper-implants-grid">
+                                    <!-- Renderizado dinamicamente via app.js -->
+                                </div>
+                            </div>
+
+                            <!-- PAINEL 2: FARMÁCIA -->
+                            <div id="ripper-panel-pharma" class="ripper-panel hidden">
+                                <div class="pharma-grid" id="ripper-pharma-grid">
+                                    <!-- Renderizado dinamicamente via app.js -->
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+
+                <footer class="modal-footer ripperdoc-footer">
+                    <div class="hud-status-line">
+                        <span class="status-indicator"></span>
+                        <span class="status-msg">MONITORAMENTO BIOMÉTRICO ATIVO // CIRURGIA PRONTA</span>
+                    </div>
+                    <div class="hud-keybinds">
+                        <button id="btn-close-ripperdoc" class="kiroshi-btn text key-group" type="button">
+                            <kbd>ESC</kbd> <span>DESCONECTAR DA MACA</span>
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+
+
+        <!-- EFEITO DE DANO ORGÂNICO (DESIDRATAÇÃO / INANIÇÃO) -->
+        <div id="damage-vignette" class="damage-vignette"></div>
+    </main>
+
+    <script src="./app.js"></script>
+</body>
+</html>

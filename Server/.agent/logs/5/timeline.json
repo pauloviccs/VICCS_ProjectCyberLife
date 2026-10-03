@@ -1,0 +1,182 @@
+[
+  {
+    "atUtc": "2026-10-02T03:22:10.6929875\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:10.7043632\u002B00:00",
+    "kind": "connect-request",
+    "detail": "26.102.47.161:11778"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:28.7599967\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "handshaking"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:29.7780672\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "active"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.7871695\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "active"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.8978613\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.9001953\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.9033986\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.90706\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.9120059\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T03:22:30.9157561\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:01.0894952\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:01.0921621\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:01.0954087\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:01.0981687\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:01.1016667\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:01.1037992\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:31.26652\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:31.2689489\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:31.2715497\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:31.2744428\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:31.2775286\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T03:23:31.2816317\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:01.4213395\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:01.426452\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:01.4291142\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:01.4315273\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:01.434609\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:01.4371063\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:31.5877433\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:31.5899812\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:31.5921929\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:31.5946178\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:31.5972028\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:31.5993468\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T03:24:39.6414879\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  }
+]

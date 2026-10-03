@@ -1,0 +1,114 @@
+=============================================================================
+COMANDOS DE VITAIS & BIOMETRIA (/vitals)
+=============================================================================
+
+1. Comando Principal:
+/vitals fill [alvo] (ou /vitals heal / /vitals max):
+- Preenchimento Completo: Fome = 100%, Sede = 100%, Energia = 100%, Higiene = 100%, Estresse/Carga Neural = 0%.
+- Cura Física (HP): Restaura a integridade do ped ao máximo de vida permitido nativamente via Open77.players.setHealth.
+- Sincronização Atômica Tripla: Atualiza imediatamente o cache de memória do ls_data, replica no State Bag ls.vitals.v e despacha evento de rede ls:vitals:sync para atualizar a HUD NUI sem nenhum atraso.
+- Feedback no Chat: O admin recebe confirmação e o jogador notificado recebe um aviso no Biomonitor.
+
+2. Resolução Inteligente de Alvos (resolvePlayerTarget):
+- Omitido ou "me": /vitals fill (preenche a si mesmo).
+- Com Aspas ou Sem: /vitals fill "jogador" ou /vitals fill jogador.
+- Por ID Numérico: /vitals fill 1.
+- Por Substring/Nome Parcial: /vitals fill vic (encontra viccs automaticamente se não houver ambiguidade).
+- Global: /vitals fill all ou /vitals fill todos (preenche e cura todas as sessões conectadas).
+
+3. Comandos Complementares:
+- /vitals drain [alvo]: Zera fome, sede e energia para 0% (ótimo para testar o vignette vermelho de dano biológico e penalidades em tempo recorde).
+- /vitals set [alvo] <h> <t> <e> <hy> <s>: Permite calibrar valores exatos de teste.
+- /vitals rate <multiplicador>: Altera o ritmo do decaimento biológico em tempo real (ex: 2.0 = o dobro da velocidade).
+- /vitals log: Exibe no console/chat o snapshot de telemetria biológica de todos os jogadores online.
+- /vitals help: Manual de comandos na tela com sintaxe e exemplos.
+
+4. Segurança & ACL Nativa:
+- Adicionada a capacidade "acl.read" ao manifesto ls_vitals/open77.lua.
+- O comando só pode ser disparado por operadores/administradores (papel operator no acl.jsonc) ou via console do servidor. Jogadores comuns recebem aviso de acesso negado caso tentem usar fill ou drain.
+
+=============================================================================
+COMANDOS FINANCEIROS & ECONOMIA (/money e /carteira)
+=============================================================================
+
+1. Comandos do Cidadão:
+- /carteira (ou /wallet ou /saldo):
+  Exibe no chat os saldos de dinheiro físico em mãos (E$ Cash) e saldo bancário digital (E$ Bank).
+- /money pay <alvo> <quantia>:
+  Transfere notas físicas de dinheiro vivo em mãos diretamente para outro cidadão próximo.
+  Exemplo: /money pay vic 200
+
+2. Comandos Administrativos (/money) - Requer papel operator / acl.read:
+- /money bal [alvo] (ou /money balance / /money saldo):
+  Consulta os saldos de carteira e banco de si mesmo ou de qualquer jogador.
+  Suporta omitido, aspas, ID numérico, substring/nome parcial e "all".
+  Exemplo: /money bal vic
+  Exemplo: /money bal all
+
+- /money give <alvo> <cash|bank> <quantia>:
+  Concede Eurodólares com transação atômica no MariaDB e registro no livro razão (ls_transactions).
+  Exemplo: /money give vic cash 1000
+  Exemplo: /money give all bank 2500
+
+- /money take <alvo> <cash|bank> <quantia>:
+  Confisca/remove Eurodólares com cláusula guarda que impede saldo negativo.
+  Exemplo: /money take vic cash 300
+
+- /money set <alvo> <cash|bank> <quantia>:
+  Define o saldo exato (cash ou bank) do jogador no banco de dados.
+  Exemplo: /money set vic bank 50000
+
+- /money help:
+  Manual in-game no console/chat com sintaxe e exemplos.
+
+=============================================================================
+INTERFACES NUI DIEGÉTICAS (PARADIGMA INTERFACE-FIRST)
+=============================================================================
+
+1. Terminal ATM de Autoatendimento Bancário:
+- /atm (ou /banco ou /bank):
+  Abre o Terminal Holográfico do Night City Central Bank.
+  - Saque Rápido: E$ 100, E$ 500, E$ 1.000, E$ 5.000.
+  - Depósito Rápido: E$ 100, E$ 500, E$ 1.000 e DEPOSITAR TUDO.
+  - Operação Manual: Saque ou depósito digitado.
+  - Transferência Eletrônica: PIX Night City com verificação de destinatário.
+  - Export Lua: exports["ls_ui"]:openAtm()
+
+2. Dispensador / Máquina de Vendas 24/7 (All-Foods):
+- /vending (ou /loja ou /conveniencia):
+  Abre a Vitrine Digital Interativa de Alimentos, Bebidas e Estimulantes.
+  - Filtros: [ TODOS ], [ COMIDA ], [ BEBIDA ], [ ESTIMULANTES ].
+  - Cards detalhados com stats biológicos (+CAL, +H2O, +BAT, +BIO) e preço.
+  - Opções de pagamento: "PAGAR CASH" ou "PAGAR BANCO" por clique.
+  - Export Lua: exports["ls_ui"]:openVending()
+
+3. Estação Cirúrgica Ripperdoc & Farmácia Corporal (Viktor Vector Lab):
+- /ripperdoc:
+  Abre a Estação Médica Cirúrgica e Farmacêutica completa.
+  - Aba Procedimentos Cirúrgicos: Seleção por slot anatômico (Ocular, Córtex, Circulatório, Pele, S.O., Braços, Pernas), indicador de raridade, custo neural, calor térmico e botão "PROCEDIMENTO CIRÚRGICO".
+  - Aba Farmácia & Neurobloqueadores: Compra e administração de injetores contra ciberpsicose e sprays criogênicos.
+  - Painel de Diagnóstico do Paciente: Estabilidade neural %, temperatura ocular °C, contagem de implantes e saldo bancário ao vivo.
+  - Export Lua: exports["ls_ui"]:openRipperdoc()
+
+4. Configurações de HUD Kiroshi:
+- /biomonitor:
+  Abre menu de calibração espacial livre (modo arrasto na tela) e memória persistente no banco.
+  - Export Lua: exports["ls_ui"]:openSettings()
+
+=============================================================================
+ATALHOS RÁPIDOS EM CHAT (FALLBACKS & COMANDOS SECUNDÁRIOS)
+=============================================================================
+
+1. Cidadão & Transações Ágeis de Rua:
+- /pagar <alvo> <quantia> (ou /pay):
+  Entrega notas físicas de dinheiro vivo direto na mão de outro cidadão ao lado.
+  Perfeito para transações rápidas em becos, subornos, corridas ou gorjetas sem travar o mouse em interface.
+  Exemplo: /pagar 2 150
+- /carteira (ou /wallet ou /saldo):
+  Consulta rápida de saldo no chat caso a HUD esteja oculta ou para checagem imediata.
+- /comprar <itemKey>:
+  Compra rápida de item por nome no console/chat caso deseje atalho via teclado.
+- /farmacia <pharmaId>:
+  Compra rápida de fármaco no console/chat.
+- /ripperdoc list ou /ripperdoc buy <implantId>:
+  Consulta e instalação rápida via CLI administrativa.

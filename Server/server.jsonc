@@ -1,0 +1,66 @@
+{
+  "$schema": "./config/server.schema.json",
+  "schemaVersion": 1,
+  "identity": {
+    "name": "VICCS Night City Life-Sim RP",
+    "description": "Simulação social e biológica profunda inspirada em The Sims no universo de Cyberpunk 2077.",
+    "locale": "pt-BR",
+    "tags": [
+      "lifesim",
+      "roleplay",
+      "brazil",
+      "portugues",
+      "cyberpunk"
+    ],
+    "visibility": "public"
+  },
+  "network": {
+    "port": 11778,
+    "publicEndpoint": "26.102.47.161:11778",
+    "maximumPlayers": 32
+  },
+  "simulation": {
+    "tickRate": 30,
+    "snapshotRate": 20,
+    "expectedGameBuild": 23100,
+    "helloTimeoutSeconds": 30
+  },
+  "masterServer": {
+    "enabled": true,
+    "licenseKey": "op77_live_svWGISMFenupfaZhE31mGddAGzuTQHE-hP-YnxUZbh0",
+    "publishPlayerList": true
+  },
+  "accessControl": {
+    "file": "acl.jsonc"
+  },
+  "voice": {
+    "enabled": true,
+    "quality": "standard",
+    "proximityDistance": 15.0
+  },
+  "database": {
+    "enabled": true,
+    "connectionString": "Server=127.0.0.1;Port=3306;Database=open77_lifesim;User ID=root;Password=;",
+    "maxRows": 1000
+  },
+  "warden": {
+    "enabled": true,
+    "listenUrl": "http://127.0.0.1:11780"
+  },
+  "resources": {
+    "enabled": true,
+    "root": "resources",
+    "download": {
+      "enabled": true,
+      "listenUrl": "http://0.0.0.0:11779/",
+      "publicBaseUrl": "http://26.102.47.161:11779/"
+    },
+    "load": [
+      "system/*",
+      "polyzone",
+      "open77_equipment",
+      "open77_wardrobe",
+      "gamemodes/lifesim/*"
+    ]
+  }
+}

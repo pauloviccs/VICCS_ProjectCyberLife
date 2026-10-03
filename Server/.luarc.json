@@ -1,11 +1,61 @@
 {
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
   "runtime.version": "Lua 5.4",
   "workspace.library": [
     "open77-client.d.lua",
-    "open77-server.d.lua"
+    "open77-server.d.lua",
+    "open77-manifest.d.lua"
   ],
+  "workspace.ignoreDir": [
+    "resources/system",
+    "resources/gamemodes/freeroam",
+    "resources/polyzone",
+    "resources/open77_equipment",
+    "resources/open77_wardrobe",
+    "resources/gamemodes/open77_freeroam",
+    "resources/gamemodes/open77_cyberware_lab",
+    "**/open77.lua"
+  ],
+  "diagnostics.ignoredFiles": "Disable",
   "diagnostics.globals": [
+    "Open77",
+    "LS",
+    "Core",
+    "CoreConfig",
+    "Database",
+    "Migrations",
+    "CacheService",
+    "Placement",
+    "DataReady",
+    "MySQL",
+    "json",
     "exports",
-    "source"
+    "source",
+    "CreateThread",
+    "Wait",
+    "SetTimeout",
+    "GetGameTimer",
+    "TriggerEvent",
+    "TriggerLocalEvent",
+    "TriggerClientEvent",
+    "TriggerServerEvent",
+    "TriggerLatentClientEvent",
+    "RegisterNetEvent",
+    "AddEventHandler",
+    "RegisterCommand",
+    "GetCurrentResourceName",
+    "GetInvokingResource",
+    "GetInvokingResourceGeneration",
+    "RegisterKeyMapping",
+    "GetPlayerName",
+    "Player",
+    "WebUI",
+    "SetPlayerRoutingBucket",
+    "SetRoutingBucketPopulationEnabled",
+    "SetRoutingBucketEntityLockdownMode"
+  ],
+  "diagnostics.disable": [
+    "lowercase-global",
+    "duplicate-doc-field"
   ]
 }

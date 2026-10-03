@@ -1,0 +1,4 @@
+Error reason: Unhandled exception
+Expression: EXCEPTION_ACCESS_VIOLATION (0xC0000005)
+Message: The thread attempted to read inaccessible data at 0x38.
+File: <Unknown>(0)

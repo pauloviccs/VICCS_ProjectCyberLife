@@ -1,0 +1,12 @@
+{
+  "active": [],
+  "distribution": {
+    "digest": null,
+    "generation": null,
+    "phase": null,
+    "source": null,
+    "evidence": "last runtime observation; digest identifies the resource set, not a semantic per-resource version"
+  },
+  "cachedPackageDigests": [],
+  "warning": "Cached packages are NOT proof of the active resource set. Runtime observations are timestamped in timeline.json."
+}

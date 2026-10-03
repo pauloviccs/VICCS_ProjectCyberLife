@@ -1,0 +1,4 @@
+OPEN//77 diagnostics bundle
+written    2026-10-02 02:20:18 -03:00
+launcher   2.31.21+op77.121
+clientPackage 2.31.21+op77.121

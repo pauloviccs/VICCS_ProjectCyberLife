@@ -1,0 +1,388 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open77.dev/schemas/server-v1.json",
+  "title": "Open77 dedicated server configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "identity", "network", "simulation", "masterServer"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "logging": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "verbose": { "type": "boolean", "default": false, "description": "Legacy switch: true selects trace, false selects info. An explicit logging.level takes priority. Also controlled with --verbose / --no-verbose." },
+        "level": { "type": ["string", "null"], "enum": ["trace", "debug", "info", "warn", "error", null], "default": null, "description": "Minimum server-console/Warden severity. Null uses the legacy verbose switch. --log-level or OP77_CONFIG__LOGGING__LEVEL also sets this field." }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "description", "locale", "tags", "visibility"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 96 },
+        "description": { "type": "string", "maxLength": 512 },
+        "locale": {
+          "type": "string",
+          "pattern": "^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$"
+        },
+        "tags": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,23}$"
+          }
+        },
+        "website": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "maxLength": 2048
+        },
+        "discord": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "maxLength": 2048
+        },
+        "icon": {
+          "type": ["string", "null"],
+          "description": "Relative PNG path, square, at most 256 KiB. Warden enforces exactly the bounds below on upload (Branding/BrandingConstraints.cs); the loader below is looser, which is the trap. USE 64-512 px per side: this server accepts 32-512 (ServerIconLoader) but the website's display guard rejects anything under 64 on the shorter side (app/src/lib/server-images.ts), so only the overlap actually renders and a 32-48 px icon validates here then silently shows a placeholder on the site. That guard also rejects a longer/shorter skew above 1.2, so keep it exactly square. 256x256 recommended."
+        },
+        "banner": {
+          "type": ["string", "null"],
+          "description": "Relative PNG/JPEG/WebP path for the wide hero image; width 320-4096 px, aspect 2.0-5.0 and at most 2 MiB. 1200x400 (3:1) is the recommended size. BUDGET, and it binds far tighter than the 2 MiB: the icon and the banner travel base64-encoded inside ONE registration request, and the master caps a request body at 512 KiB (master/src/Open77.Master/Program.cs), so the two files together must stay under ~378 KiB of raw bytes. Over that, the registration is refused with a bare HTTP 413 and the server does not appear in the catalogue AT ALL -- a worse failure than having no branding. Warden checks the pair before writing; a hand-placed pair is flagged at startup. See Branding/BrandingConstraints.cs."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "unlisted", "private"]
+        }
+      }
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["port", "publicEndpoint", "maximumPlayers"],
+      "properties": {
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "publicEndpoint": {
+          "type": ["string", "null"],
+          "description": "Public hostname or IP with port, e.g. play.example.net:11778."
+        },
+        "maximumPlayers": { "type": "integer", "minimum": 1, "maximum": 4096 }
+      }
+    },
+    "simulation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tickRate", "snapshotRate", "expectedGameBuild", "helloTimeoutSeconds"],
+      "properties": {
+        "tickRate": { "type": "integer", "minimum": 1, "maximum": 240 },
+        "snapshotRate": { "type": "integer", "minimum": 1, "maximum": 240 },
+        "maximumAiVehiclesPerSimulator": { "type": "integer", "minimum": 1, "maximum": 128, "default": 128, "description": "Admission slots per native AI simulator, including pending traffic placements. Healthy existing owners are retained. The default is the server's own per-simulator ceiling of 128; the server has no total driver-job limit." },
+        "expectedGameBuild": { "type": "integer", "minimum": 1 },
+        "helloTimeoutSeconds": { "type": "integer", "minimum": 1, "maximum": 60 },
+        "playerInterestRadius": { "type": "number", "minimum": 0, "maximum": 100000 },
+        "playerInterestHysteresis": { "type": "number", "minimum": 0, "maximum": 10000 },
+        "playerInterestDeferredBootstrap": { "type": "boolean", "default": false, "description": "With a positive player interest radius, wait for placement before announcing nearby peers instead of seeding the full bucket on admission." }
+      }
+    },
+    "combat": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Server-wide combat policy for car impacts on players. Optional; every field defaults to the behaviour before it existed.",
+      "properties": {
+        "vehicleHitCreditsDriver": { "type": "boolean", "default": false, "description": "Credit the seated driver the server finds behind a car impact as the attacker, through the ordinary PvP policy (friendly fire, teams, combat scopes, god mode, resource arbiters, per-victim caps); death cause becomes vehicle. False keeps the impact the victim's own environment hit. The culprit is published to resources either way (open77:playerHitByVehicle)." },
+        "vehicleHitSpeedDamage": { "type": "boolean", "default": false, "description": "Price an identified car impact from the server-observed relative speed with the curve below. False keeps the flat 10 HP vanilla 2.31 applies." },
+        "vehicleHitDamageFloor": { "type": "number", "minimum": 0, "maximum": 300, "default": 10, "description": "Health points at and below vehicleHitDamageFloorSpeed." },
+        "vehicleHitDamageFloorSpeed": { "type": "number", "minimum": 0, "maximum": 200, "default": 5, "description": "Metres per second up to which the floor price applies." },
+        "vehicleHitDamageCap": { "type": "number", "minimum": 0, "maximum": 300, "default": 90, "description": "Health points at and above vehicleHitDamageCapSpeed (linear in between). Keep it below the maximum health pool if one impact from full health must never kill." },
+        "vehicleHitDamageCapSpeed": { "type": "number", "minimum": 0, "maximum": 200, "default": 30, "description": "Metres per second from which the cap applies; must exceed vehicleHitDamageFloorSpeed." },
+        "vehicleHitAudit": { "type": "boolean", "default": false, "description": "Log-only count of suspected car strikes nobody reported (a driven vehicle's server path crossing a living player at speed with no impact report). Changes no damage." },
+        "handheldDischarges": { "type": "boolean", "default": true, "description": "Admit handheld discharge declarations: the server binds each living body, sends its client the binding, and admits fire declarations against the drawn catalogued weapon and a per-class cadence. A receipt damages nothing by itself; platform-priced NPC hits require one, and handheldVehicleDamage consumes them. False: no binding is sent and platform-priced NPCs cannot be priced from a player's hit." },
+        "handheldVehicleDamage": { "type": "boolean", "default": false, "description": "Apply a handheld gun hit on a car another client simulates (or nobody does) to the canonical vehicle health, consuming one admitted discharge receipt per car. Requires handheldDischarges. Off until two-client live acceptance." }
+      }
+    },
+    "replication": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Protocol38 replication rollback switches. Optional; every field defaults to the shipped behaviour. Each switch takes one protocol38 mechanism back to what it replaced, without a rebuild. A field left out or null keeps the legacy environment variable where one exists (OP77_CONTACT_STEWARD, OP77_CONTACT_EPISODES, OP77_GNS_TRAFFIC_LANES: exactly 0 turns the switch off), then the default; an explicit value always wins over the environment. Read once at startup: restart to apply.",
+      "properties": {
+        "contactSteward": { "type": ["boolean", "null"], "default": true, "description": "Contact steward: an unattended car about to be struck is simulated by the approaching driver, so observers see it pushed. False: the struck car stays at owner 0 and moves on the striker's screen only. Legacy fallback: OP77_CONTACT_STEWARD=0." },
+        "contactEpisodes": { "type": ["boolean", "null"], "default": true, "description": "Cross-reporter contact episode arbitration: both owners' reports of one car/car crash become one event. False: every accepted report is its own event and the counterpart is delivered at once. Legacy fallback: OP77_CONTACT_EPISODES=0." },
+        "trafficLanes": { "type": ["boolean", "null"], "default": true, "description": "GNS traffic lanes (ordered, timed motion, voice) on connections opened afterwards. False: every new connection keeps the native single lane. Legacy fallback: OP77_GNS_TRAFFIC_LANES=0." },
+        "hitRewindStrict": { "type": ["boolean", "null"], "default": false, "description": "Strict hit rewind: a player hit must match the victim's rewound path; the newest pose is no longer an alternative. False keeps the rewind never stricter than the check it replaced." },
+        "timedMotionWindowMs": { "type": ["integer", "null"], "minimum": 5, "maximum": 100, "default": 20, "description": "Native send-queue allowance of a timed motion batch, in milliseconds. 15 is the rollback of the near-lane phase. Above the 40 ms reliable window, motion can delay reliable traffic by the difference." },
+        "timedVehicleValidationTicks": { "type": ["integer", "null"], "minimum": 1, "maximum": 30, "default": 6, "description": "Vehicle scopes are revalidated every this many server ticks, viewers sliced (5 Hz at the default 30 Hz tick). 1 restores per-tick validation." },
+        "timedStarvationShareMs": { "type": ["integer", "null"], "anyOf": [{ "const": 0 }, { "minimum": 10, "maximum": 1000 }], "default": 50, "description": "After this many milliseconds without a timed motion admission while reliable traffic holds the link, one timed batch may pass. 0 restores the strict reliable-always-first rule; otherwise 10 to 1000." }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Server-authoritative integrated Opus voice policy.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "quality": { "type": "string", "enum": ["low", "standard", "high", "ultra"] },
+        "proximityDistance": { "type": "number", "minimum": 0, "maximum": 1000 },
+        "minimumClientProximityDistance": { "type": "number", "minimum": 0, "maximum": 1000 },
+        "maximumClientProximityDistance": { "type": "number", "minimum": 0, "maximum": 1000 },
+        "maximumChannelAudience": { "type": "integer", "minimum": 1, "maximum": 1024 },
+        "maximumSimultaneousTalkers": { "type": "integer", "minimum": 1, "maximum": 1024 },
+        "maximumTalkersPerRecipient": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "globalEgressKbps": { "type": "integer", "minimum": 0, "maximum": 1000000 },
+        "recipientEgressKbps": { "type": "integer", "minimum": 0, "maximum": 100000 },
+        "ingressRejectLimit": { "type": "integer", "minimum": 20, "maximum": 100000 },
+        "ingressRejectWindowSeconds": { "type": "integer", "minimum": 1, "maximum": 300 },
+        "ingressBackoffMilliseconds": { "type": "integer", "minimum": 50, "maximum": 10000 }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "root": { "type": "string", "minLength": 1 },
+        "load": {
+          "type": "array",
+          "description": "Ordered resource directory rules. Entries add matches; a leading ! removes them. Paths are relative to resources.root unless absolute and support *, ? and **.",
+          "maxItems": 256,
+          "items": { "type": "string", "minLength": 1, "maxLength": 2048 }
+        },
+        "autoStart": { "type": "boolean" },
+        "watchIntervalMilliseconds": { "type": "integer", "minimum": 0, "maximum": 60000 },
+        "download": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "listenUrl": { "type": "string", "format": "uri" },
+            "publicBaseUrl": { "type": "string", "format": "uri" },
+            "cacheDirectory": { "type": "string", "minLength": 1 },
+            "signingKeyFile": { "type": "string", "minLength": 1 },
+            "chunkSizeBytes": { "type": "integer", "minimum": 65536, "maximum": 4194304 }
+          }
+        }
+      }
+    },
+    "requiredMods": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The mods every player must load to join this world. Absent or empty means 'requires nothing', which is what every server means until an owner opts in.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "unsecured": {
+          "type": "boolean",
+          "description": "UNSECURED MODE. Lets this server require executable packages that carry no verified attestation (and lets a resource preload them). Every server list shows the server with an 'unsecured' flag and players must confirm the risk before joining. Off by default."
+        },
+        "note": { "type": "string", "maxLength": 512 },
+        "packages": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Two custody models. An 'indexed' package names an entry in the platform's signed index and may carry only minVersion; a 'hosted' package is served by this server and must pin version, sha256 and sizeBytes.",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
+              "source": { "enum": ["indexed", "hosted"] },
+              "displayName": { "type": "string", "maxLength": 96 },
+              "minVersion": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+){0,3}(-[0-9A-Za-z.-]{1,32})?$" },
+              "version": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+){0,3}(-[0-9A-Za-z.-]{1,32})?$" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "sizeBytes": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "accessControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative JSONC file containing authenticated public-key ACL principals."
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "connectionString": {
+          "type": "string",
+          "description": "MySQL connection string used by resources with the database.access permission."
+        },
+        "maxRows": { "type": "integer", "minimum": 1, "maximum": 1000000 }
+      }
+    },
+    "http": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Outbound HTTP for resources holding the http.request permission (PerformHttpRequest). Off by default; nothing is reachable until allowedHosts names a destination. Redirects are never followed.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "allowedHosts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Exact hosts (discord.com) or one level of subdomain (*.example.com). No scheme, path or port."
+        },
+        "timeoutSeconds": { "type": "integer", "minimum": 1, "maximum": 60 },
+        "maxResponseBytes": { "type": "integer", "minimum": 1024, "maximum": 16777216 }
+      }
+    },
+    "httpHandlers": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Inbound HTTP for resources holding the http.serve permission (Open77.http.listen / SetHttpHandler). Off by default and bound to loopback by default; plain HTTP with no authentication, so anything reachable from the internet goes behind a reverse proxy. Routes are /<resource>/<prefix>.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "listenUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Absolute http:// origin the listener binds, e.g. http://127.0.0.1:11781. No https, no path."
+        },
+        "timeoutSeconds": {
+          "type": "integer", "minimum": 1, "maximum": 60,
+          "description": "How long a request waits for its Lua handler before the server answers 504 handler_timeout on its behalf."
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Independent read-only Prometheus endpoint at /metrics. Disabled by default; no Warden session or running capture required.",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "listenUrl": { "type": "string", "format": "uri", "default": "http://127.0.0.1:11783", "description": "One HTTP origin with an IP literal or localhost. Remote binding requires a bearer token; terminate TLS at a reverse proxy." },
+        "tokenEnvironmentVariable": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,63}$", "default": "OP77_METRICS_TOKEN", "description": "Environment variable containing a 32–256 character bearer token. Missing is permitted only on loopback. Never put the token itself in this file." }
+      }
+    },
+    "warden": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The Warden in-process admin panel. Off by default.",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "hubFileGatewayOrigin": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "Trusted Hub file gateway origin. HTTPS, or HTTP with an explicit loopback IP for local testing. No path, credentials, query or fragment. Omit to disable Hub installation."
+        },
+        "listenUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Absolute HTTP URL the admin panel binds, e.g. http://0.0.0.0:11780."
+        }
+      }
+    },
+    "rcon": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Authenticated Open77 TCP RCON for dashboard backends, independent of the Warden HTTP listener. Secrets are read from environment variables.",
+      "properties": {
+        "enabled": { "type": "boolean", "default": false },
+        "bindAddress": { "type": "string", "default": "127.0.0.1", "description": "IPv4 or IPv6 literal. Non-loopback plaintext requires allowInsecureRemote." },
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535, "default": 11782 },
+        "passwordEnvironmentVariable": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,127}$", "default": "OP77_RCON_PASSWORD" },
+        "allowWardenAccounts": { "type": "boolean", "default": false },
+        "permissions": { "type": "array", "maxItems": 128, "items": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-z0-9.*_-]+$" }, "default": ["*"] },
+        "allowInsecureRemote": { "type": "boolean", "default": false },
+        "tlsCertificateFile": { "type": ["string", "null"], "description": "PFX/PKCS#12 certificate with private key; relative to the configuration directory." },
+        "tlsCertificatePasswordEnvironmentVariable": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,127}$", "default": "OP77_RCON_CERT_PASSWORD" },
+        "maxConnections": { "type": "integer", "minimum": 1, "maximum": 256, "default": 32 },
+        "maxConnectionsPerIp": { "type": "integer", "minimum": 1, "maximum": 256, "default": 8 },
+        "maxFrameBytes": { "type": "integer", "minimum": 65536, "maximum": 4194304, "default": 1048576 },
+        "maxInFlightRequests": { "type": "integer", "minimum": 1, "maximum": 32, "default": 8 },
+        "maxRequestsPerSecond": { "type": "integer", "minimum": 1, "maximum": 1000, "default": 30 },
+        "authenticationTimeoutSeconds": { "type": "integer", "minimum": 1, "maximum": 60, "default": 10 },
+        "requestTimeoutSeconds": { "type": "integer", "minimum": 1, "maximum": 600, "default": 60 },
+        "idleTimeoutSeconds": { "type": "integer", "minimum": 10, "maximum": 86400, "default": 600 },
+        "sessionLifetimeSeconds": { "type": "integer", "minimum": 10, "maximum": 86400, "default": 3600 },
+        "maxUploadBytes": { "type": "integer", "minimum": 1, "maximum": 1073741824, "default": 67108864 }
+      }
+    },
+    "convars": {
+      "type": "object",
+      "description": "FiveM-style convars: a flat name/value bag of strings read from Lua by GetConvar, GetConvarInt and GetConvarBool. This is a COMPATIBILITY SHIM so a resource ported from FiveM runs without its configuration layer being rewritten; it is not the mechanism to reach for when writing something new. Open77.tunables is better on every axis that matters -- a tunable is declared with a type and a range, validated on every write, retunable by the operator from the Warden panel while the server runs, persisted across a restart, and scoped to the resource that declared it, which also receives onTunableChanged. A convar is an untyped string, server-wide, and a SetConvar from Lua is in-memory only and gone on the next restart. Keep it credential-free -- this file is tracked, so a token or password belongs in the environment like every other credential in this schema.",
+      "propertyNames": { "pattern": "^[A-Za-z0-9_.:-]{1,128}$" },
+      "additionalProperties": { "type": "string", "maxLength": 4096 }
+    },
+    "startup": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What this server does to itself once it has finished starting.",
+      "properties": {
+        "commands": {
+          "type": "array",
+          "maxItems": 64,
+          "description": "Console commands run once, in order, after resources have started -- the server-side equivalent of exec in a server.cfg. Each line goes through the same dispatcher as a line typed at the stdin console and carries exactly that authority, never a player's. Per server by design: this is how a gamemode's host pins world state (for example Pursuit's fixed clock and weather) without editing a resource every other server also loads. A line the dispatcher refuses is logged as an error and the server starts anyway. Keep it credential-free -- this file is tracked, so a token or password belongs in the environment.",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^[^\\u0000-\\u001F\\u007F]+$"
+          }
+        }
+      }
+    },
+    "masterServer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "serverId": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Stable server identity issued or approved by the Master."
+        },
+        "url": {
+          "type": ["string", "null"],
+          "format": "uri"
+        },
+        "tokenEnvironmentVariable": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,63}$"
+        },
+        "identityFile": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative file used for the automatically generated Master identity."
+        },
+        "heartbeatIntervalSeconds": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 300
+        },
+        "licenseKey": {
+          "type": ["string", "null"],
+          "pattern": "^op77_live_[A-Za-z0-9_-]{43}$",
+          "description": "Platform license key created in the keymaster. Prefer the environment variable so this file stays credential-free."
+        },
+        "licenseKeyEnvironmentVariable": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,63}$",
+          "description": "Environment variable consulted when licenseKey is not set (default OP77_LICENSE_KEY)."
+        },
+        "requireConnectTicket": {
+          "type": "boolean",
+          "description": "Require a valid master-signed connect ticket in ClientHello to join."
+        },
+        "publishPlayerList": {
+          "type": "boolean",
+          "description": "Publish the display names of the players currently online with the heartbeat, so the server's public page shows who is on and not just how many. Default true: those names are already visible to everyone in the world and joining is free. Nothing else is published - no account id, no address, no position. Set false and the directory answers players: null, which is distinct from an empty roster."
+        },
+        "devLocalAuth": {
+          "type": "boolean",
+          "description": "Local development bypass. When true the server accepts unauthenticated clients (no master certificate, no connect ticket) and binds the game socket to loopback only. Accepted ONLY when enabled=false, visibility=private and requireConnectTicket=false; never usable on a public/mastered server. For agent/MCP local dev without the prod launcher."
+        }
+      }
+    }
+  }
+}

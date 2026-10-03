@@ -1,0 +1,62 @@
+[
+  {
+    "atUtc": "2026-10-01T16:38:30.6764074\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-01T16:38:30.6833464\u002B00:00",
+    "kind": "connect-request",
+    "detail": "147.185.221.213:5494"
+  },
+  {
+    "atUtc": "2026-10-01T16:39:39.1255033\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  },
+  {
+    "atUtc": "2026-10-01T16:39:52.1327555\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-01T16:39:52.1328618\u002B00:00",
+    "kind": "connect-request",
+    "detail": "127.0.0.1:11778"
+  },
+  {
+    "atUtc": "2026-10-01T16:41:02.4958198\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  },
+  {
+    "atUtc": "2026-10-01T16:41:07.6087119\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-01T16:41:07.6087946\u002B00:00",
+    "kind": "connect-request",
+    "detail": "34.32.22.165:11778"
+  },
+  {
+    "atUtc": "2026-10-01T16:42:03.9168676\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  },
+  {
+    "atUtc": "2026-10-01T16:43:33.637789\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-01T16:43:33.6378247\u002B00:00",
+    "kind": "connect-request",
+    "detail": "127.0.0.1:11778"
+  },
+  {
+    "atUtc": "2026-10-01T16:45:04.1494111\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  }
+]

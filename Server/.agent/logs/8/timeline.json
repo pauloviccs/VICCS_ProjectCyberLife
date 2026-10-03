@@ -1,0 +1,432 @@
+[
+  {
+    "atUtc": "2026-10-02T17:53:00.326326\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:00.3348941\u002B00:00",
+    "kind": "connect-request",
+    "detail": "26.102.47.161:11778"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:16.1338427\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "failed"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:34.6485979\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:41.1291073\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:41.1292096\u002B00:00",
+    "kind": "connect-request",
+    "detail": "26.102.47.161:11778"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:56.8889832\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "failed"
+  },
+  {
+    "atUtc": "2026-10-02T17:55:33.7632579\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  },
+  {
+    "atUtc": "2026-10-02T18:05:53.6541331\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T18:05:53.6541797\u002B00:00",
+    "kind": "connect-request",
+    "detail": "26.102.47.161:11778"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:13.3975323\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "connecting"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:14.4073319\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "handshaking"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.5857664\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "active"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.8485088\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.870555\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.877804\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.8813403\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.9751459\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:15.9836186\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:46.528583\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:46.5378336\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:46.5465722\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:46.5575579\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:46.5680356\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:06:46.5779824\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:16.7611612\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:16.7683125\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:16.777549\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:16.789252\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:16.7993742\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:16.8068997\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:46.9399914\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:46.9495777\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:46.9581255\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:46.9674125\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:46.9776321\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:07:46.9856544\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:17.1296926\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:17.1402505\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:17.1497703\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:17.1601138\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:17.1717893\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:17.1807411\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:47.3558539\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:47.3662048\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:47.3771647\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:47.3862774\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:47.3978435\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:08:47.407616\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:17.5802408\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:17.5931118\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:17.6040081\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:17.616044\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:17.6286202\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:17.6399426\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:47.8228496\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:47.8360795\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:47.8482364\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:47.8612947\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:47.8749595\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:09:47.8882899\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:18.0347653\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:18.0464529\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:18.0563123\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:18.06809\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:18.0806387\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:18.0909544\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:48.2574744\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:48.2689283\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:48.2794682\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:48.2912687\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:48.302571\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:10:48.3130759\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:18.4616779\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:18.4730009\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:18.4831571\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:18.4937154\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:18.5058918\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:18.5159899\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:48.6841483\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "net.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:48.6957403\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.list"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:48.7076032\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "resource.distribution"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:48.719246\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "char.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:48.7318952\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "webui.status"
+  },
+  {
+    "atUtc": "2026-10-02T18:11:48.7426939\u002B00:00",
+    "kind": "runtime-snapshot",
+    "detail": "script.state"
+  },
+  {
+    "atUtc": "2026-10-02T18:12:14.8477533\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  }
+]

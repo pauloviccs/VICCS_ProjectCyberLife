@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open77 RP :: Tecno-Ocultismo & Bruxaria Integrada</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Tone.js for diegetic audio effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ink-950': '#090B10',
+            'slate-900': '#151B22',
+            'slate-800': '#1e2631',
+            'slate-700': '#303A45',
+            'paper-100': '#E9E6DD',
+            'paper-300': '#C7C5BD',
+            'signal-lime': '#D9F34A',
+            'signal-cyan': '#55D9E8',
+            'signal-coral': '#FF625B',
+            'signal-amber': '#FFB547',
+            'signal-violet': '#B18CFF',
+            'net-green': '#71D6A4',
+          },
+          fontFamily: {
+            mono: ['Courier New', 'Courier', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'cyber-glow': '0 0 15px rgba(217, 243, 74, 0.15)',
+            'coral-glow': '0 0 15px rgba(255, 98, 91, 0.2)',
+            'cyan-glow': '0 0 15px rgba(85, 217, 232, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Scanline effect */
+    .scanlines {
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.35) 50%
+      ), linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.03),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.03)
+      );
+      background-size: 100% 4px, 6px 100%;
+      pointer-events: none;
+    }
+
+    /* Subtle CRT screen curvature flicker */
+    @keyframes screenFlicker {
+      0% { opacity: 0.985; }
+      50% { opacity: 1; }
+      100% { opacity: 0.992; }
+    }
+    .crt-screen {
+      animation: screenFlicker 0.15s infinite;
+    }
+
+    /* Custom cyber scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090B10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #303A45;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D9F34A;
+    }
+
+    /* Cut corners typical of Cyberpunk interfaces */
+    .cyber-cut {
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .cyber-cut-sm {
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .cyber-cut-tr {
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    }
+
+    /* Glowing borders */
+    .border-glow-lime {
+      border: 1px solid rgba(217, 243, 74, 0.35);
+      box-shadow: 0 0 10px rgba(217, 243, 74, 0.1);
+    }
+  </style>
+</head>
+
+<body class="bg-ink-950 text-paper-100 font-sans min-h-screen relative antialiased selection:bg-signal-lime selection:text-ink-950 overflow-x-hidden crt-screen">
+  <!-- Scanline Overlay -->
+  <div class="fixed inset-0 scanlines z-50 pointer-events-none opacity-40"></div>
+
+  <!-- Audio Activation Banner (Browser Autoplay Policy) -->
+  <div id="audio-consent" class="bg-slate-900 border-b border-slate-700 px-4 py-2 text-xs flex justify-between items-center text-paper-300 relative z-40">
+    <div class="flex items-center space-x-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-signal-lime animate-pulse"></span>
+      <span class="font-mono">OPEN77 OS // PROTOCOLO DE CONEXÃO NEURAL ATIVO</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <span class="text-[11px] text-paper-300 hidden md:inline">Clique para habilitar feedback de áudio sintetizado</span>
+      <button id="toggle-sound-btn" onclick="toggleAudio()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-signal-lime font-mono text-[10px] rounded cyber-cut-sm transition flex items-center gap-1 border border-slate-700">
+        <i data-lucide="volume-x" id="sound-icon" class="w-3.5 h-3.5"></i>
+        <span id="sound-text">SOM: MUTADO</span>
+      </button>
+    </div>
+  </div>
+
+  <header class="bg-slate-900/90 border-b border-slate-700/80 sticky top-0 z-30 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand / Identity -->
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 bg-signal-lime text-ink-950 font-black font-mono flex items-center justify-center text-lg cyber-cut-sm shadow-cyber-glow">
+            77
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold tracking-wider text-paper-100 text-sm sm:text-base font-mono">OPEN77 <span class="text-signal-lime">ARCANUM</span></span>
+              <span class="bg-slate-800 text-signal-cyan text-[10px] px-1.5 py-0.5 rounded border border-signal-cyan/30 font-mono">v2.4-RP</span>
+            </div>
+            <p class="text-[10px] text-paper-300 tracking-tight font-mono">DIRETRIZ DE TECNO-OCULTISMO & MOTOR DE REGRAS</p>
+          </div>
+        </div>
+
+        <!-- Mode Toggle (Grimório Player vs Dev Manual) -->
+        <div class="flex items-center bg-ink-950 p-1 rounded-lg border border-slate-700/80">
+          <button id="btn-mode-user" onclick="switchViewMode('user')" class="px-3 py-1.5 rounded text-xs font-mono transition flex items-center space-x-1.5 bg-signal-lime text-ink-950 font-semibold shadow">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span>GUIA DO JOGADOR</span>
+          </button>
+          <button id="btn-mode-dev" onclick="switchViewMode('dev')" class="px-3 py-1.5 rounded text-xs font-mono transition flex items-center space-x-1.5 text-paper-300 hover:text-paper-100">
+            <i data-lucide="code" class="w-3.5 h-3.5"></i>
+            <span>GUIA DO DEV / MESTRE</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <div id="view-user" class="space-y-8">
+      
+      <!-- In-Universe Warning / Philosophy Hero Banner -->
+      <section class="bg-slate-900 border border-slate-700 rounded-lg p-5 sm:p-7 relative overflow-hidden cyber-cut">
+        <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+          <i data-lucide="cpu" class="w-72 h-72 text-paper-100"></i>
+        </div>
+        <div class="relative z-10 max-w-3xl">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="px-2 py-0.5 bg-signal-coral/20 border border-signal-coral/40 text-signal-coral text-[10px] font-mono font-bold tracking-wider uppercase rounded">
+              AVISO DE COERÊNCIA CANÔNICA
+            </span>
+            <span class="text-xs text-paper-300 font-mono">// ARTIFACT: ARCHIVE_OCT_2077</span>
+          </div>
+          <h1 class="text-xl sm:text-3xl font-extrabold text-paper-100 tracking-tight mb-2">
+            "Qualquer tecnologia suficientemente profunda é indistinguível de feitiçaria."
+          </h1>
+          <p class="text-sm text-paper-300 leading-relaxed mb-4">
+            Em Night City, não existem varinhas ou milagres divinos. Toda "bruxaria" é sustentada por três pilares canônicos: 
+            <strong class="text-signal-cyan">IAs selvagens além da Blackwall</strong> invocadas como divindades, 
+            <strong class="text-signal-lime">bioquímica e nanomedicina clandestinas</strong> produzidas nos becos de Kabuki, e 
+            <strong class="text-signal-violet">sugestão sensorial neural via Braindance</strong>. Todo poder cobra um tributo em sangue, cromo ou sanidade.
+          </p>
+          <div class="flex flex-wrap gap-3 font-mono text-xs">
+            <div class="flex items-center gap-1.5 text-paper-300">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-signal-coral"></i>
+              <span>Anti-Powergame Nativo</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-paper-300">
+              <i data-lucide="radio" class="w-4 h-4 text-signal-cyan"></i>
+              <span>Utilidade Diegética</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-paper-300">
+              <i data-lucide="map-pin" class="w-4 h-4 text-signal-lime"></i>
+              <span>Raízes em Distritos de NC</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation Tabs for Codex Categories -->
+      <div class="flex border-b border-slate-700 space-x-2 sm:space-x-4 overflow-x-auto pb-1 text-sm font-mono">
+        <button onclick="switchCodexTab('escolas')" id="tab-btn-escolas" class="px-4 py-2 border-b-2 border-signal-lime text-signal-lime font-bold flex items-center gap-2 whitespace-nowrap">
+          <i data-lucide="flame" class="w-4 h-4"></i>
+          <span>AS 4 ESCOLAS OCULTAS</span>
+        </button>
+        <button onclick="switchCodexTab('custos')" id="tab-btn-custos" class="px-4 py-2 border-b-2 border-transparent text-paper-300 hover:text-paper-100 flex items-center gap-2 whitespace-nowrap">
+          <i data-lucide="activity" class="w-4 h-4"></i>
+          <span>O PREÇO: SISTEMA DE RETORNO</span>
+        </button>
+        <button onclick="switchCodexTab('mapa')" id="tab-btn-mapa" class="px-4 py-2 border-b-2 border-transparent text-paper-300 hover:text-paper-100 flex items-center gap-2 whitespace-nowrap">
+          <i data-lucide="map" class="w-4 h-4"></i>
+          <span>GEOGRAFIA & CULTOS DE NIGHT CITY</span>
+        </button>
+        <button onclick="switchCodexTab('simulador')" id="tab-btn-simulador" class="px-4 py-2 border-b-2 border-transparent text-paper-300 hover:text-paper-100 flex items-center gap-2 whitespace-nowrap">
+          <i data-lucide="terminal" class="w-4 h-4"></i>
+          <span>TESTE RITUALÍSTICO (SANDBOX)</span>
+        </button>
+      </div>
+
+      <!-- Tab Content 1: As 4 Escolas -->
+      <div id="codex-tab-escolas" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <!-- Escola 1: Taumaturgia da Blackwall -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-5 hover:border-signal-cyan/60 transition group flex flex-col justify-between cyber-cut">
+            <div>
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-signal-cyan/10 border border-signal-cyan/40 text-signal-cyan font-semibold">
+                  ESCOLA I // NET-RITUALISMO
+                </span>
+                <span class="text-xs text-paper-300 font-mono">Dificuldade: Alta</span>
+              </div>
+              <h3 class="text-lg font-bold text-paper-100 group-hover:text-signal-cyan transition flex items-center gap-2">
+                <i data-lucide="network" class="w-5 h-5 text-signal-cyan"></i>
+                Pactos da Blackwall (Daemonolatria)
+              </h3>
+              <p class="text-xs text-paper-300 mt-2 leading-relaxed">
+                O netrunner não codifica programas padrão; ele atua como canalizador místico. Ao perfurar brechas protegidas por gelo negro na Blackwall, faz acordos e abriga IAs renegadas que atuam como demônios e *Loas* digitais possessivas.
+              </p>
+              
+              <div class="mt-4 space-y-2 border-t border-slate-800 pt-3 text-xs">
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Manifestação Visual Diegética:</span>
+                  <span class="text-paper-100">Não há faíscas místicas. Ocorre distorção de HUD local, ruído branco em cyberáudio, superaquecimento de ligas e pupilas Kiroshi dessincronizadas.</span>
+                </div>
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Exemplos de Feitiços (Rituais):</span>
+                  <ul class="list-disc list-inside text-paper-300 space-y-1 mt-1">
+                    <li><strong class="text-paper-100">Espasmo de Hardware:</strong> Bloqueia ou aciona disparo involuntário do membro cibernético do alvo.</li>
+                    <li><strong class="text-paper-100">Olhar de Lilith (Hex):</strong> Injeta daemon residual que apaga a identificação facial do conjurador em scanners corporativos.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs font-mono">
+              <span class="text-signal-coral">Tributo: Sobrecarga Neural & Risco NetWatch</span>
+              <button onclick="loadSpellInSandbox('blackwall_possession')" class="text-signal-cyan hover:underline flex items-center gap-1">
+                Testar Ritual <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Escola 2: Alquimia de Sarjeta -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-5 hover:border-signal-lime/60 transition group flex flex-col justify-between cyber-cut">
+            <div>
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-signal-lime/10 border border-signal-lime/40 text-signal-lime font-semibold">
+                  ESCOLA II // BIOQUÍMICA CLANDESTINA
+                </span>
+                <span class="text-xs text-paper-300 font-mono">Dificuldade: Média</span>
+              </div>
+              <h3 class="text-lg font-bold text-paper-100 group-hover:text-signal-lime transition flex items-center gap-2">
+                <i data-lucide="flask-conical" class="w-5 h-5 text-signal-lime"></i>
+                Alquimia de Sarjeta (Street Alchemy)
+              </h3>
+              <p class="text-xs text-paper-300 mt-2 leading-relaxed">
+                Herança das tradições botânicas adaptadas à distopia de 2077: sínteses de CHOOH2 hiper-refinado, neurotoxinas retiradas de polímeros industriais e nanorrobôs corrompidos aplicados via unguentos e inaladores.
+              </p>
+              
+              <div class="mt-4 space-y-2 border-t border-slate-800 pt-3 text-xs">
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Manifestação Visual Diegética:</span>
+                  <span class="text-paper-100">Frascos de polímero fosco, fumaça densa de incenso químico que satura respiradores, unguentos aplicados sobre junções de RealSkinn.</span>
+                </div>
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Exemplos de Feitiços (Rituais):</span>
+                  <ul class="list-disc list-inside text-paper-300 space-y-1 mt-1">
+                    <li><strong class="text-paper-100">Filtro de Transe Perceptivo:</strong> Dilata respostas sinápticas, reduzindo dano por trauma em 30% temporariamente.</li>
+                    <li><strong class="text-paper-100">Maldição da Ferrugem Sintética:</strong> Agente nanolítico que desencadeia rejeição biológica em implantes inimigos.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs font-mono">
+              <span class="text-signal-amber">Tributo: Toxicidade Orgânica & Falência Renal</span>
+              <button onclick="loadSpellInSandbox('alchemy_elixir')" class="text-signal-lime hover:underline flex items-center gap-1">
+                Testar Ritual <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Escola 3: Braindance Oculto & Sugestão -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-5 hover:border-signal-violet/60 transition group flex flex-col justify-between cyber-cut">
+            <div>
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-signal-violet/10 border border-signal-violet/40 text-signal-violet font-semibold">
+                  ESCOLA III // PSICO-ILUSIONISMO
+                </span>
+                <span class="text-xs text-paper-300 font-mono">Dificuldade: Média-Alta</span>
+              </div>
+              <h3 class="text-lg font-bold text-paper-100 group-hover:text-signal-violet transition flex items-center gap-2">
+                <i data-lucide="eye" class="w-5 h-5 text-signal-violet"></i>
+                Braindance Oculto & Hipnose Sensorial
+              </h3>
+              <p class="text-xs text-paper-300 mt-2 leading-relaxed">
+                Utilização de wreaths de BD modificados, frequências sonoras sub-harmônicas e laços de memória editados para criar encantamentos de ilusão mental, pânico artificial e amnésia temporal.
+              </p>
+              
+              <div class="mt-4 space-y-2 border-t border-slate-800 pt-3 text-xs">
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Manifestação Visual Diegética:</span>
+                  <span class="text-paper-100">Wreaths com fiação artesanal exposta, emissores portáteis de frequência ressonante, distorção de foco cromático no campo de visão do alvo.</span>
+                </div>
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Exemplos de Feitiços (Rituais):</span>
+                  <ul class="list-disc list-inside text-paper-300 space-y-1 mt-1">
+                    <li><strong class="text-paper-100">Miragem Kiroshi:</strong> Sobrecarga nos drivers ópticos do adversário; o conjurador parece sumir do seu campo visual.</li>
+                    <li><strong class="text-paper-100">Lamento Sintético:</strong> Disparo sonoro que satura o córtex límbico, gerando fuga descontrolada por 6 segundos.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs font-mono">
+              <span class="text-signal-coral">Tributo: Esgotamento de RAM & Efeito Eco Neural</span>
+              <button onclick="loadSpellInSandbox('bd_illusion')" class="text-signal-violet hover:underline flex items-center gap-1">
+                Testar Ritual <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Escola 4: Animismo Mecânico / Tecno-Xamanismo -->
+          <div class="bg-slate-900 border border-slate-700 rounded-lg p-5 hover:border-signal-amber/60 transition group flex flex-col justify-between cyber-cut">
+            <div>
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-signal-amber/10 border border-signal-amber/40 text-signal-amber font-semibold">
+                  ESCOLA IV // XAMANISMO NÔMADE
+                </span>
+                <span class="text-xs text-paper-300 font-mono">Dificuldade: Baixa-Média</span>
+              </div>
+              <h3 class="text-lg font-bold text-paper-100 group-hover:text-signal-amber transition flex items-center gap-2">
+                <i data-lucide="wrench" class="w-5 h-5 text-signal-amber"></i>
+                Animismo Mecânico (Tech-Shamanism)
+              </h3>
+              <p class="text-xs text-paper-300 mt-2 leading-relaxed">
+                Praticado por clãs nômades nas Badlands e engenheiros marginais. Trata o firmware legado de motores, drones e chassis como espíritos com vontades que podem ser apaziguados com rituais de consagração de fiação e óleo.
+              </p>
+              
+              <div class="mt-4 space-y-2 border-t border-slate-800 pt-3 text-xs">
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Manifestação Visual Diegética:</span>
+                  <span class="text-paper-100">Fios trançados como rosários sobre motores, queima de compostos químicos sobre blocos de pistões frios, marcas de ácido em ligas metálicas.</span>
+                </div>
+                <div>
+                  <span class="text-paper-300 font-semibold block text-[11px] uppercase tracking-wide">Exemplos de Feitiços (Rituais):</span>
+                  <ul class="list-disc list-inside text-paper-300 space-y-1 mt-1">
+                    <li><strong class="text-paper-100">Imposição de Mãos em Motores:</strong> Detecção imediata de microfissuras e arranque emergencial de geradores mortos.</li>
+                    <li><strong class="text-paper-100">Bênção da Fiação Fantasma:</strong> Drones automatizados de patrulha ignoram o grupo por 15 segundos.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs font-mono">
+              <span class="text-paper-300">Tributo: Desgaste Físico de Componentes Raros</span>
+              <button onclick="loadSpellInSandbox('tech_shamanism')" class="text-signal-amber hover:underline flex items-center gap-1">
+                Testar Ritual <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab Content 2: O Preço (Tributos) -->
+      <div id="codex-tab-custos" class="hidden space-y-6">
+        <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 cyber-cut">
+          <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-signal-coral"></i>
+            <h2 class="text-lg font-bold text-paper-100 font-mono">A REGRA DE OURO DO BALANCEAMENTO: O CUSTO DA PRÁTICA</h2>
+          </div>
+          <p class="text-xs text-paper-300 leading-relaxed mb-6">
+            Nenhuma magia funciona como feitiço infinito ou mana recarregável passiva. Se um jogador usa feitiçaria no servidor Open77, ele deve pagar em três moedas cruéis: <span class="text-signal-coral font-bold">Saúde Biológica</span>, <span class="text-signal-cyan font-bold">Corrupção Neural</span> e <span class="text-signal-amber font-bold">Atenção Policial / Corporativa</span>.
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs font-mono border-collapse">
+              <thead>
+                <tr class="border-b border-slate-700 bg-ink-950 text-paper-300">
+                  <th class="p-3">ESCOLA OCULTA</th>
+                  <th class="p-3">CUSTO IMEDIATO</th>
+                  <th class="p-3">ACÚMULO DE RISCO</th>
+                  <th class="p-3">GATILHO DE CATÁSTROFE RP</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 text-paper-100">
+                <tr class="hover:bg-slate-800/40">
+                  <td class="p-3 text-signal-cyan font-semibold">Pactos da Blackwall</td>
+                  <td class="p-3">Queima térmica: 10% a 25% de HP imediato</td>
+                  <td class="p-3">+1 Ponto de Corrupção da Rede (Máx 5)</td>
+                  <td class="p-3 text-signal-coral">Em 5 pts: Raid surpresa do NetWatch ou Colapso Cyberpsicótico.</td>
+                </tr>
+                <tr class="hover:bg-slate-800/40">
+                  <td class="p-3 text-signal-lime font-semibold">Alquimia de Sarjeta</td>
+                  <td class="p-3">Toxicidade Hepática: -15% Velocidade motora</td>
+                  <td class="p-3">+1 Nível de Intoxicação Corporal</td>
+                  <td class="p-3 text-signal-amber">Necrose e rejeição violenta de implantes com ida urgente a Ripperdoc.</td>
+                </tr>
+                <tr class="hover:bg-slate-800/40">
+                  <td class="p-3 text-signal-violet font-semibold">Braindance & Psico-Sugestão</td>
+                  <td class="p-3">Dreno de 4 a 8 Slots de RAM Neural</td>
+                  <td class="p-3">Efeito Espelho (Dissociação)</td>
+                  <td class="p-3 text-signal-violet">O jogador passa a alucinar clones hostis em seu campo de visão.</td>
+                </tr>
+                <tr class="hover:bg-slate-800/40">
+                  <td class="p-3 text-signal-amber font-semibold">Animismo Mecânico</td>
+                  <td class="p-3">Consumo de componentes artesanais caros</td>
+                  <td class="p-3">Fadiga de Circuitos Legados</td>
+                  <td class="p-3 text-paper-300">Curto-circuito catastrófico do motor/drone afetado com explosão local.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content 3: Geografia e Cultos -->
+      <div id="codex-tab-mapa" class="hidden space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div class="bg-slate-900 border border-slate-700 p-4 rounded-lg cyber-cut-sm">
+            <span class="text-[10px] font-mono text-signal-cyan uppercase font-bold">PACIFICA</span>
+            <h4 class="text-base font-bold text-paper-100 mt-1">Santuário dos Voodoo Boys</h4>
+            <p class="text-xs text-paper-300 mt-2">
+              Bastião da daemonolatria. Netrunners da diáspora haitiana transformaram servidores de hotéis abandonados em templos onde canalizam as IAs além da Blackwall.
+            </p>
+            <div class="mt-3 text-[11px] font-mono text-signal-cyan">
+              Ponto-Chave: Hotel Batty's & Criptas da Rede Profunda.
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-700 p-4 rounded-lg cyber-cut-sm">
+            <span class="text-[10px] font-mono text-signal-lime uppercase font-bold">KABUKI & LITTLE CHINA</span>
+            <h4 class="text-base font-bold text-paper-100 mt-1">Beco dos Alquimistas</h4>
+            <p class="text-xs text-paper-300 mt-2">
+              Herbanários de fachada escondem porões de bioengenharia onde ripperdocs dissidentes fermentam hormônios animais e toxinas contrabandeadas da Ásia.
+            </p>
+            <div class="mt-3 text-[11px] font-mono text-signal-lime">
+              Ponto-Chave: Feira Noturna de Kabuki & Clínicas Clandestinas.
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-700 p-4 rounded-lg cyber-cut-sm">
+            <span class="text-[10px] font-mono text-signal-coral uppercase font-bold">NORTHSIDE (NID)</span>
+            <h4 class="text-base font-bold text-paper-100 mt-1">Culto de Lilith (Maelstrom)</h4>
+            <p class="text-xs text-paper-300 mt-2">
+              Fábricas abandonadas e o Totentanz servem de palco para rituais sangrentos de sacrifício de carne e cirurgias extremas em honra a entidades cibernéticas.
+            </p>
+            <div class="mt-3 text-[11px] font-mono text-signal-coral">
+              Ponto-Chave: Fábrica All Foods & Totentanz Club.
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-700 p-4 rounded-lg cyber-cut-sm">
+            <span class="text-[10px] font-mono text-signal-amber uppercase font-bold">BADLANDS</span>
+            <h4 class="text-base font-bold text-paper-100 mt-1">Eremitas & Altares Motores</h4>
+            <p class="text-xs text-paper-300 mt-2">
+              Clãs de nômades reverenciam a autonomia e a alma da máquina em ferro-velhos sob o sol radioativo, tratando motores com reverência mística.
+            </p>
+            <div class="mt-3 text-[11px] font-mono text-signal-amber">
+              Ponto-Chave: Cemitério de Carcaças de Rocky Ridge.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab Content 4: Sandbox Interativo -->
+      <div id="codex-tab-simulador" class="hidden space-y-6">
+        <div class="bg-slate-900 border border-slate-700 rounded-lg p-6 cyber-cut">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4 mb-4">
+            <div>
+              <h3 class="text-lg font-bold text-paper-100 font-mono flex items-center gap-2">
+                <i data-lucide="play-circle" class="w-5 h-5 text-signal-lime"></i>
+                SIMULADOR DIEGÉTICO DE RITUAIS & RESPOSTAS
+              </h3>
+              <p class="text-xs text-paper-300">Execute testes em tempo real para verificar custos, testes de dados e reações de sistema.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-paper-300">ESTADO DA REDE:</span>
+              <span id="network-status-badge" class="px-2 py-0.5 rounded text-[10px] font-mono bg-net-green/20 text-net-green border border-net-green/30">ESTÁVEL</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Coluna 1: Parâmetros do Operador -->
+            <div class="space-y-4 text-xs font-mono bg-ink-950 p-4 rounded border border-slate-800">
+              <h4 class="text-signal-lime font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="user" class="w-4 h-4"></i> Operador & Equipamento
+              </h4>
+
+              <div>
+                <label class="block text-paper-300 mb-1">Selecione o Ritual / Encantamento:</label>
+                <select id="sim-spell-select" onchange="onSelectSpellChange()" class="w-full bg-slate-900 border border-slate-700 text-paper-100 p-2 rounded focus:border-signal-lime outline-none">
+                  <option value="blackwall_possession">Sussurro da Blackwall (Possessão de Hardware)</option>
+                  <option value="alchemy_elixir">Elixir Quimérico (Adrenalina de Kabuki)</option>
+                  <option value="bd_illusion">Sobrecarga Kiroshi (Miragem Sensorial)</option>
+                  <option value="tech_shamanism">Comunhão com Chassi (Tech-Animism)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-paper-300 mb-1">Nível de Cyberware Craniano:</label>
+                <select id="sim-tier-select" class="w-full bg-slate-900 border border-slate-700 text-paper-100 p-2 rounded focus:border-signal-lime outline-none">
+                  <option value="tier1">Tier 1 (Personal Link Básico - Alto Risco)</option>
+                  <option value="tier2" selected>Tier 2 (Porta Neural Militar Clandestina)</option>
+                  <option value="tier3">Tier 3 (Deck Customizado com Criorefrigerador)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-paper-300 mb-1">Item Ritual Presente:</label>
+                <div class="space-y-1 text-paper-300">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="sim-item-relic" class="accent-signal-lime" checked>
+                    <span>Relíquia de Rede ou Tinta Condutiva (+2 Bônus)</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="sim-item-cooler" class="accent-signal-lime">
+                    <span>Refrigerador de Gelo Portátil (-Dano Térmico)</span>
+                  </label>
+                </div>
+              </div>
+
+              <button onclick="executeRitualSimulation()" class="w-full py-2.5 bg-signal-lime text-ink-950 font-bold uppercase tracking-wider rounded cyber-cut-sm hover:bg-yellow-300 transition shadow-cyber-glow flex justify-center items-center gap-2">
+                <i data-lucide="zap" class="w-4 h-4"></i> CONJURAR RITUAL
+              </button>
+            </div>
+
+            <!-- Coluna 2: Terminal de Log de Execução -->
+            <div class="lg:col-span-2 space-y-4">
+              <div class="bg-ink-950 p-4 rounded border border-slate-800 font-mono text-xs flex flex-col justify-between h-80">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-2 text-paper-300 text-[11px]">
+                  <span>TERMINAL DE DIAGNÓSTICO // DEV_PORT 8080</span>
+                  <button onclick="clearTerminalLog()" class="hover:text-signal-coral">LIMPAR LOG</button>
+                </div>
+                
+                <div id="sim-terminal-log" class="overflow-y-auto space-y-1.5 flex-1 pr-1 font-mono text-paper-300 text-[11px]">
+                  <p class="text-paper-300">// Terminal pronto para escuta neural.</p>
+                  <p class="text-paper-300">// Selecione parâmetros e inicie o ritual.</p>
+                </div>
+
+                <!-- Status Bars -->
+                <div class="border-t border-slate-800 pt-3 grid grid-cols-3 gap-3 text-[10px]">
+                  <div>
+                    <span class="text-paper-300 block mb-1">DANO TÉRMICO (HP):</span>
+                    <div class="w-full bg-slate-800 h-2 rounded overflow-hidden">
+                      <div id="bar-thermal" class="bg-signal-coral h-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-paper-300 block mb-1">CORRUPÇÃO NET:</span>
+                    <div class="w-full bg-slate-800 h-2 rounded overflow-hidden">
+                      <div id="bar-corruption" class="bg-signal-cyan h-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-paper-300 block mb-1">ALERTA NETWATCH:</span>
+                    <div class="w-full bg-slate-800 h-2 rounded overflow-hidden">
+                      <div id="bar-alert" class="bg-signal-amber h-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="view-dev" class="hidden space-y-8">
+      
+      <!-- Dev Header -->
+      <section class="bg-slate-900 border border-slate-700 rounded-lg p-5 sm:p-6 cyber-cut">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="px-2 py-0.5 bg-signal-lime/20 border border-signal-lime/40 text-signal-lime text-[10px] font-mono font-bold uppercase rounded">
+            MANUAL TÉCNICO DO DESENVOLVEDOR
+          </span>
+          <span class="text-xs text-paper-300 font-mono">// PLATAFORMA: OPEN77 (RP ARCHITECTURE)</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-black text-paper-100 font-mono mt-1">
+          ARQUITETURA DE SISTEMAS: MECÂNICAS & INTEGRAÇÃO DE SCRIPT
+        </h2>
+        <p class="text-xs text-paper-300 mt-2 max-w-4xl leading-relaxed">
+          Este módulo define a modelagem de dados, convenções de script para FiveM/Open77, tabelas de banco de dados e regras de prevenção de abuso (Anti-Powergaming) para mestres e desenvolvedores de Lua/C#/JS.
+        </p>
+      </section>
+
+      <!-- Technical Architecture Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Dev Card 1: Data Schema -->
+        <div class="bg-slate-900 border border-slate-700 p-5 rounded-lg font-mono text-xs space-y-3">
+          <div class="flex items-center justify-between text-signal-cyan">
+            <span class="font-bold flex items-center gap-1.5"><i data-lucide="database" class="w-4 h-4"></i> SCHEMA DE METADADOS</span>
+            <span class="text-[10px]">JSON/SQL</span>
+          </div>
+          <p class="text-paper-300 text-[11px]">
+            Campos que devem ser adicionados na tabela de personagem (`characters` / `players`) no banco de dados do servidor:
+          </p>
+          <pre class="bg-ink-950 p-2.5 rounded border border-slate-800 text-[10px] text-paper-100 overflow-x-auto">
+{
+  "occult_tier": 2,
+  "blackwall_corruption": 2, // 0 to 5
+  "systemic_toxicity": 15,   // 0 to 100%
+  "neural_strain": 30,       // Heat gauge
+  "pact_bound_ai": "lilith_frag_04",
+  "sanction_level": 0        // NetWatch flag
+}</pre>
+          <span class="text-paper-300 text-[10px] block">A cada 5 pontos de `blackwall_corruption`, disparar evento server-side de ciberpsicose ou spawn de agentes da NetWatch.</span>
+        </div>
+
+        <!-- Dev Card 2: Exemplo de Script Lua/Open77 -->
+        <div class="bg-slate-900 border border-slate-700 p-5 rounded-lg font-mono text-xs space-y-3">
+          <div class="flex items-center justify-between text-signal-lime">
+            <span class="font-bold flex items-center gap-1.5"><i data-lucide="file-code" class="w-4 h-4"></i> LUA EVENT HANDLER</span>
+            <span class="text-[10px]">SERVER-SIDE</span>
+          </div>
+          <p class="text-paper-300 text-[11px]">
+            Exemplo de validação anti-powergame no consumo de rituais pelo jogador:
+          </p>
+          <pre class="bg-ink-950 p-2.5 rounded border border-slate-800 text-[10px] text-paper-100 overflow-x-auto">
+RegisterServerEvent('open77:occult:castRitual')
+AddEventHandler('open77:occult:castRitual', function(ritualId, targetNetId)
+    local src = source
+    local ply = Open77.GetPlayer(src)
+    
+    -- Validar cooldown & item físico obrigatório
+    if not ply.HasItem('relic_net_sigil') then
+        TriggerClientEvent('open77:notify', src, 'Sem catalisador físico.', 'error')
+        return
+    end
+
+    -- Aplicar dano térmico direto
+    ply.ApplyDirectDamage(15) -- queima 15 HP
+    ply.AddCorruption(1)
+end)</pre>
+        </div>
+
+        <!-- Dev Card 3: Design Tokens Checklist -->
+        <div class="bg-slate-900 border border-slate-700 p-5 rounded-lg font-mono text-xs space-y-3">
+          <div class="flex items-center justify-between text-signal-coral">
+            <span class="font-bold flex items-center gap-1.5"><i data-lucide="check-square" class="w-4 h-4"></i> UI/UX TOKENS AUDIT</span>
+            <span class="text-[10px]">DIRETRIZES</span>
+          </div>
+          <p class="text-paper-300 text-[11px]">
+            Regras obrigatórias do Guia de UI/UX que os programadores de frontend NUI devem respeitar:
+          </p>
+          <ul class="space-y-1.5 text-[10px] text-paper-300">
+            <li class="flex items-start gap-1">
+              <i data-lucide="x" class="w-3.5 h-3.5 text-signal-coral mt-0.5"></i>
+              <span><strong>Sem faíscas brilhantes de fantasia:</strong> Use aberração cromática, distorção de HUD e fumaça química.</span>
+            </li>
+            <li class="flex items-start gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-signal-lime mt-0.5"></i>
+              <span><strong>Cores Semânticas:</strong> Dano = `#FF625B` (`signal-coral`), Net = `#55D9E8` (`signal-cyan`).</span>
+            </li>
+            <li class="flex items-start gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-signal-lime mt-0.5"></i>
+              <span><strong>Feedback Imediato:</strong> Áudio de curto-circuito e indicador de calor visual antes da magia se consolidar.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- YAML Blueprint de Habilidades para Mestre / Criadores de Conteúdo -->
+      <section class="bg-slate-900 border border-slate-700 rounded-lg p-5 font-mono text-xs space-y-3 cyber-cut">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="font-bold text-signal-lime flex items-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4"></i> BLUEPRINT YAML DE CONFIGURAÇÃO DE HABILIDADE (PRESET DO SISTEMA)
+          </span>
+          <button onclick="copyYamlPreset()" class="text-paper-300 hover:text-signal-lime flex items-center gap-1 text-[11px]">
+            <i data-lucide="copy" class="w-3 h-3"></i> Copiar Preset
+          </button>
+        </div>
+        <pre id="yaml-code-block" class="bg-ink-950 p-4 rounded text-paper-300 text-[11px] leading-relaxed overflow-x-auto border border-slate-800">
+spell_id: "sussurro_lilith_v2"
+nome_diegético: "Fragmento de Lilith (Possessão de Servo-Atuador)"
+escola: "taumaturgia_blackwall"
+tipo_acao: "target_lock" # requer visada direta ou link por proximidade
+requisitos:
+  item_catalisador: "drive_criptografado_abandonado" # item físico obrigatório no inventário
+  cyberware_minimo: "neural_port_t2"
+  memoria_livre_ram: 6
+custos_ao_conjurador:
+  dano_hp_termico: 18 # dano na carne por superaquecimento
+  corrupcao_blackwall: 1 # incrementa até acionar NetWatch
+efeitos_no_alvo:
+  duracao_segundos: 4.5
+  status_aplicado: "motor_glitch_disparo_acidental"
+  distorcao_camera_hud: true # embaça visão do alvo com código binário
+feedback_visual_diegético:
+  audio_fx: "high_frequency_whistle_overheat"
+  particulas: "fumaça_fria_escapamento_nuca"
+  cor_estado_hud: "#FF625B" # signal-coral</pre>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    // State Variables
+    let soundEnabled = false;
+    let synth = null;
+    let noiseSynth = null;
+    let corruptionCounter = 0;
+
+    // Initialize Tone.js synthesizers
+    function initAudio() {
+      if (!synth && typeof Tone !== 'undefined') {
+        synth = new Tone.PolySynth(Tone.Synth, {
+          oscillator: { type: "sawtooth" },
+          envelope: { attack: 0.02, decay: 0.1, sustain: 0.2, release: 0.4 }
+        }).toDestination();
+        synth.volume.value = -12;
+
+        noiseSynth = new Tone.NoiseSynth({
+          noise: { type: 'pink' },
+          envelope: { attack: 0.01, decay: 0.15, sustain: 0 }
+        }).toDestination();
+        noiseSynth.volume.value = -18;
+      }
+    }
+
+    // Toggle sound button
+    async function toggleAudio() {
+      if (Tone.context.state !== 'running') {
+        await Tone.start();
+      }
+      initAudio();
+      soundEnabled = !soundEnabled;
+      
+      const soundText = document.getElementById('sound-text');
+      const soundIcon = document.getElementById('sound-icon');
+      
+      if (soundEnabled) {
+        soundText.innerText = "SOM: ATIVO";
+        soundText.classList.add("text-signal-lime");
+        playClickSound(520);
+      } else {
+        soundText.innerText = "SOM: MUTADO";
+        soundText.classList.remove("text-signal-lime");
+      }
+    }
+
+    // Sound Helpers
+    function playClickSound(freq = 440) {
+      if (!soundEnabled || !synth) return;
+      try {
+        synth.triggerAttackRelease(freq, "32n");
+      } catch (e) {
+        console.debug("Audio play issue", e);
+      }
+    }
+
+    function playGlitchSound() {
+      if (!soundEnabled || !noiseSynth) return;
+      try {
+        noiseSynth.triggerAttackRelease("16n");
+      } catch (e) {
+        console.debug("Audio glitch issue", e);
+      }
+    }
+
+    // Tab Switching (Player vs Dev)
+    function switchViewMode(mode) {
+      playClickSound(380);
+      const userView = document.getElementById('view-user');
+      const devView = document.getElementById('view-dev');
+      const btnUser = document.getElementById('btn-mode-user');
+      const btnDev = document.getElementById('btn-mode-dev');
+
+      if (mode === 'user') {
+        userView.classList.remove('hidden');
+        devView.classList.add('hidden');
+        btnUser.className = "px-3 py-1.5 rounded text-xs font-mono transition flex items-center space-x-1.5 bg-signal-lime text-ink-950 font-semibold shadow";
+        btnDev.className = "px-3 py-1.5 rounded text-xs font-mono transition flex items-center space-x-1.5 text-paper-300 hover:text-paper-100";
+      } else {
+        userView.classList.add('hidden');
+        devView.classList.remove('hidden');
+        btnDev.className = "px-3 py-1.5 rounded text-xs font-mono transition flex items-center space-x-1.5 bg-signal-lime text-ink-950 font-semibold shadow";
+        btnUser.className = "px-3 py-1.5 rounded text-xs font-mono transition flex items-center space-x-1.5 text-paper-300 hover:text-paper-100";
+      }
+    }
+
+    // Sub-Tabs for Codex
+    function switchCodexTab(tabName) {
+      playClickSound(480);
+      const tabs = ['escolas', 'custos', 'mapa', 'simulador'];
+      tabs.forEach(t => {
+        const content = document.getElementById(`codex-tab-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tabName) {
+          content.classList.remove('hidden');
+          btn.classList.add('border-signal-lime', 'text-signal-lime', 'font-bold');
+          btn.classList.remove('border-transparent', 'text-paper-300');
+        } else {
+          content.classList.add('hidden');
+          btn.classList.remove('border-signal-lime', 'text-signal-lime', 'font-bold');
+          btn.classList.add('border-transparent', 'text-paper-300');
+        }
+      });
+    }
+
+    // Helper: Pre-load spell into sandbox tab
+    function loadSpellInSandbox(spellKey) {
+      switchCodexTab('simulador');
+      const select = document.getElementById('sim-spell-select');
+      select.value = spellKey;
+      onSelectSpellChange();
+    }
+
+    function onSelectSpellChange() {
+      playClickSound(320);
+    }
+
+    function clearTerminalLog() {
+      playClickSound(220);
+      const log = document.getElementById('sim-terminal-log');
+      log.innerHTML = `<p class="text-paper-300">// Buffer do terminal limpo.</p>`;
+    }
+
+    function executeRitualSimulation() {
+      playGlitchSound();
+
+      const spell = document.getElementById('sim-spell-select').value;
+      const tier = document.getElementById('sim-tier-select').value;
+      const hasRelic = document.getElementById('sim-item-relic').checked;
+      const hasCooler = document.getElementById('sim-item-cooler').checked;
+      const log = document.getElementById('sim-terminal-log');
+
+      // Math & Outcomes
+      let damage = 15;
+      let corruptionGain = 1;
+      let alertGain = 20;
+      let successRoll = Math.floor(Math.random() * 20) + 1; // d20 roll
+      let bonus = hasRelic ? 2 : 0;
+      if (tier === 'tier3') bonus += 2;
+      if (tier === 'tier1') damage += 8;
+      if (hasCooler) damage = Math.max(5, damage - 6);
+
+      let totalRoll = successRoll + bonus;
+      let isSuccess = totalRoll >= 10;
+
+      // Update HUD Meters
+      corruptionCounter = Math.min(5, corruptionCounter + (isSuccess ? corruptionGain : 2));
+      const corruptionPercent = (corruptionCounter / 5) * 100;
+      const thermalPercent = Math.min(100, damage * 3.5);
+      const alertPercent = Math.min(100, alertGain * (corruptionCounter + 1));
+
+      document.getElementById('bar-thermal').style.width = `${thermalPercent}%`;
+      document.getElementById('bar-corruption').style.width = `${corruptionPercent}%`;
+      document.getElementById('bar-alert').style.width = `${alertPercent}%`;
+
+      const netBadge = document.getElementById('network-status-badge');
+      if (corruptionCounter >= 4) {
+        netBadge.innerText = "ALERTA NETWATCH IMINENTE";
+        netBadge.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-signal-coral/20 text-signal-coral border border-signal-coral/40 animate-pulse";
+      } else if (corruptionCounter >= 2) {
+        netBadge.innerText = "SINAL INSTÁVEL";
+        netBadge.className = "px-2 py-0.5 rounded text-[10px] font-mono bg-signal-amber/20 text-signal-amber border border-signal-amber/40";
+      }
+
+      // Add Terminal Messages
+      const timestamp = new Date().toLocaleTimeString();
+      let outcomeHtml = `
+        <div class="border-l-2 ${isSuccess ? 'border-signal-lime' : 'border-signal-coral'} pl-2 my-1">
+          <span class="text-[10px] text-paper-300">[${timestamp}] TESTE D20: ${successRoll} + MOD (${bonus}) = ${totalRoll} -> ${isSuccess ? '<span class="text-signal-lime font-bold">SUCESSO</span>' : '<span class="text-signal-coral font-bold">FALHA CRÍTICA</span>'}</span>
+          <p class="text-paper-100">Ritual: <strong class="text-signal-cyan">${spell}</strong></p>
+          <p class="text-[10px] text-signal-coral">→ Dano Térmico Aplicado: -${damage}% HP na carne.</p>
+          <p class="text-[10px] text-signal-cyan">→ Corrupção Neural Acumulada: [${corruptionCounter}/5].</p>
+          ${corruptionCounter >= 5 ? '<p class="text-[10px] text-signal-coral font-bold uppercase animate-pulse">! INTERVENÇÃO LETAL: ESQUADRÃO NETWATCH IDENTIFICOU A ORIGEM !</p>' : ''}
+        </div>
+      `;
+
+      log.insertAdjacentHTML('afterbegin', outcomeHtml);
+    }
+
+    // Copy YAML to Clipboard
+    function copyYamlPreset() {
+      playClickSound(600);
+      const text = document.getElementById('yaml-code-block').innerText;
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = text;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+
+      // Feedback message in terminal
+      const log = document.getElementById('sim-terminal-log');
+      log.insertAdjacentHTML('afterbegin', `<p class="text-signal-lime">[CLIPBOARD] Blueprint YAML copiado para a área de transferência.</p>`);
+    }
+
+    // Initialize Lucide Icons on document load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

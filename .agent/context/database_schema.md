@@ -21,37 +21,79 @@
 
 ## 2. Tabelas Principais (MariaDB 10.11+ / MySQL 8 - InnoDB)
 
-### `players`
+### `ls_players` (Fase 1 - Identidade & Perfil)
 ```sql
-CREATE TABLE IF NOT EXISTS `players` (
-    `id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `license` VARCHAR(64) NOT NULL UNIQUE,
-    `name` VARCHAR(64) NOT NULL,
-    `eurodollars` BIGINT NOT NULL DEFAULT 1000,
-    `bank_balance` BIGINT NOT NULL DEFAULT 5000,
-    `job` VARCHAR(32) NOT NULL DEFAULT 'unemployed',
-    `job_grade` INT NOT NULL DEFAULT 1,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT `chk_eurodollars_positive` CHECK (`eurodollars` >= 0),
-    CONSTRAINT `chk_bank_balance_positive` CHECK (`bank_balance` >= 0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS `ls_players` (
+    `license` CHAR(32) NOT NULL,
+    `user_id` VARCHAR(64) NOT NULL,
+    `display_name` VARCHAR(64) NOT NULL,
+    `data` JSON NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`license`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-### `characters_vitals`
+### `ls_vitals` (Fase 2 - Telemetria Biológica & Fisiologia)
 ```sql
-CREATE TABLE IF NOT EXISTS `characters_vitals` (
-    `license` VARCHAR(64) PRIMARY KEY,
-    `nutrition` DECIMAL(5,2) NOT NULL DEFAULT 100.00,
-    `hydration` DECIMAL(5,2) NOT NULL DEFAULT 100.00,
-    `energy` DECIMAL(5,2) NOT NULL DEFAULT 100.00,
-    `hygiene` DECIMAL(5,2) NOT NULL DEFAULT 100.00,
-    `neural_stability` DECIMAL(5,2) NOT NULL DEFAULT 100.00,
-    `stress_factor` DECIMAL(5,2) NOT NULL DEFAULT 0.00,
-    `implants_count` INT NOT NULL DEFAULT 0,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (`license`) REFERENCES `players`(`license`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE IF NOT EXISTS `ls_vitals` (
+    `license` CHAR(32) NOT NULL,
+    `data` JSON NOT NULL,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`license`),
+    CONSTRAINT `fk_ls_vitals_license` FOREIGN KEY (`license`) REFERENCES `ls_players`(`license`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+### `ls_cyberware` (Fase 3 - Implantes & Estabilidade Neural)
+```sql
+CREATE TABLE IF NOT EXISTS `ls_cyberware` (
+    `license` CHAR(32) NOT NULL,
+    `data` JSON NOT NULL,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`license`),
+    CONSTRAINT `fk_ls_cyberware_license` FOREIGN KEY (`license`) REFERENCES `ls_players`(`license`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+### `ls_ui_settings` (Fase 2 & 3 - Persistência Espacial da HUD Kiroshi)
+```sql
+CREATE TABLE IF NOT EXISTS `ls_ui_settings` (
+    `license` CHAR(32) NOT NULL,
+    `data` JSON NOT NULL,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`license`),
+    CONSTRAINT `fk_ls_ui_settings_license` FOREIGN KEY (`license`) REFERENCES `ls_players`(`license`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+### `ls_accounts` (Fase 4 - Contas Financeiras & Carteira)
+```sql
+CREATE TABLE IF NOT EXISTS `ls_accounts` (
+    `license`      CHAR(32)    NOT NULL,
+    `cash`         BIGINT      NOT NULL DEFAULT 500,
+    `bank`         BIGINT      NOT NULL DEFAULT 2500,
+    `updated_at`   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`license`),
+    CONSTRAINT `fk_ls_accounts_license` FOREIGN KEY (`license`) REFERENCES `ls_players`(`license`) ON DELETE CASCADE,
+    CONSTRAINT `chk_cash_positive` CHECK (`cash` >= 0),
+    CONSTRAINT `chk_bank_positive` CHECK (`bank` >= 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+### `ls_transactions` (Fase 4 - Livro Razão Imutável / Ledger de Auditoria)
+```sql
+CREATE TABLE IF NOT EXISTS `ls_transactions` (
+    `id`           BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `license`      CHAR(32)     NOT NULL,
+    `action`       VARCHAR(32)  NOT NULL,
+    `target`       VARCHAR(64)  NULL,
+    `amount`       BIGINT       NOT NULL,
+    `balance_after` BIGINT      NOT NULL,
+    `reason`       VARCHAR(128) NOT NULL,
+    `created_at`   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_ls_transactions_license` (`license`, `created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
 ### `inventories`

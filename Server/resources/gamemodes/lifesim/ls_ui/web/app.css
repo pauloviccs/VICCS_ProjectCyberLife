@@ -1,0 +1,1993 @@
+/* =============================================================================
+   LIFESIM RP - Native Cyberpunk 2077 HUD Design System (Kiroshi Biomonitor)
+   Path: ls_ui/web/app.css
+   Estética 100% REDengine 4 / Kiroshi Optics HUD / Trauma Team Interface
+   ============================================================================= */
+
+@import "./open77-ui.css";
+
+/* Reset & Container */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    font-family: var(--op77-font-body);
+    color: var(--op77-text);
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-rendering: geometricPrecision;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* =============================================================================
+   CUSTOM CYBERPUNK KIROSHI SCROLLBARS (Universal WebKit & Standard CSS)
+   Adeus barras cinzas padrão de browser - Neon Cyan & Night City Yellow
+   ============================================================================= */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(34, 216, 226, 0.6) rgba(8, 14, 25, 0.85);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.12);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(34, 216, 226, 0.5);
+    border: 1px solid rgba(34, 216, 226, 0.8);
+    box-shadow: 0 0 10px rgba(34, 216, 226, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #22D8E2;
+    box-shadow: 0 0 16px rgba(34, 216, 226, 0.9);
+}
+
+::-webkit-scrollbar-corner {
+    background: rgba(8, 14, 25, 0.9);
+}
+
+/* Scrollbar com acento amarelo temático para Máquina de Conveniência All-Foods */
+.vending-grid {
+    scrollbar-color: rgba(252, 238, 10, 0.6) rgba(8, 14, 25, 0.85);
+}
+
+.vending-grid::-webkit-scrollbar-thumb {
+    background: rgba(252, 238, 10, 0.55);
+    border: 1px solid rgba(252, 238, 10, 0.85);
+    box-shadow: 0 0 10px rgba(252, 238, 10, 0.5);
+}
+
+.vending-grid::-webkit-scrollbar-thumb:hover {
+    background: #FCEE0A;
+    box-shadow: 0 0 16px rgba(252, 238, 10, 0.9);
+}
+
+/* Base HUD Container - Viewport 2D de Alta Resolução */
+#hud-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* =============================================================================
+   KIROSHI BIOMONITOR WIDGET (Holograma Ocular de Alta Fidelidade / Ultra-Crisp)
+   ============================================================================= */
+
+.kiroshi-biomonitor {
+    position: absolute;
+    left: clamp(20px, 2.5vw, 48px);
+    bottom: clamp(20px, 2.5vw, 48px);
+    width: clamp(290px, 20vw, 360px);
+    background: linear-gradient(
+        135deg,
+        rgba(34, 216, 226, 0.08) 0%,
+        rgba(8, 16, 26, 0.88) 25%,
+        rgba(6, 11, 20, 0.95) 100%
+    );
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(34, 216, 226, 0.55);
+    box-shadow:
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.45),
+        inset 0 0 20px rgba(34, 216, 226, 0.1),
+        0 15px 35px rgba(0, 0, 0, 0.95),
+        0 0 25px rgba(34, 216, 226, 0.3);
+    padding: clamp(12px, 1vw, 16px) clamp(14px, 1.2vw, 18px);
+    clip-path: polygon(
+        0 0,
+        calc(100% - 14px) 0,
+        100% 14px,
+        100% 100%,
+        14px 100%,
+        0 calc(100% - 14px)
+    );
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+.kiroshi-biomonitor.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+/* Ocultação automática quando qualquer terminal/modal estiver aberto (Elimina Overlap) */
+.kiroshi-biomonitor.modal-active-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    transform: translateY(12px) !important;
+}
+
+/* Cantoneiras Táticas Kiroshi (Brackets) */
+.kiroshi-biomonitor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--op77-accent);
+}
+
+.kiroshi-biomonitor::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--op77-accent);
+}
+
+/* Efeito Scanline Sutil CRT */
+.scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    opacity: 0.4;
+    z-index: 10;
+}
+
+/* Cabeçalho do Biomonitor */
+.bio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(174, 211, 224, 0.15);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.bio-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.bio-eyebrow {
+    font-family: var(--op77-font-mono);
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    color: var(--op77-accent);
+    text-transform: uppercase;
+}
+
+.bio-title {
+    font-family: var(--op77-font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.bio-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 6px;
+    background: rgba(34, 216, 226, 0.08);
+    border: 1px solid rgba(34, 216, 226, 0.3);
+    font-family: var(--op77-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--op77-accent);
+}
+
+.bio-status-badge.alert {
+    background: rgba(255, 0, 60, 0.15);
+    border-color: rgba(255, 0, 60, 0.6);
+    color: var(--op77-signal);
+}
+
+.bio-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--op77-accent);
+    box-shadow: 0 0 8px var(--op77-accent);
+    animation: status-pulse 2s infinite ease-in-out;
+}
+
+.bio-status-badge.alert .bio-status-dot {
+    background: var(--op77-signal);
+    box-shadow: 0 0 8px var(--op77-signal);
+    animation: status-alert-pulse 0.7s infinite alternate ease-in-out;
+}
+
+@keyframes status-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes status-alert-pulse {
+    0% { opacity: 0.3; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1.15); }
+}
+
+/* =============================================================================
+   LINHAS DE VITAIS INDIVIDUAIS
+   ============================================================================= */
+
+.vitals-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vital-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.vital-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--op77-font-mono);
+}
+
+.vital-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--op77-text-dim);
+    text-transform: uppercase;
+}
+
+.vital-tag {
+    font-size: 8px;
+    color: var(--op77-accent);
+    background: rgba(34, 216, 226, 0.1);
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.vital-val {
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #ffffff;
+}
+
+/* Trilho da Barra de Progresso */
+.vital-track {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    background: rgba(16, 27, 43, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.12);
+    overflow: hidden;
+}
+
+.vital-fill {
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+/* Cores dos Vitais */
+.vital-row[data-vital="hunger"] .vital-fill {
+    background: #FCEE0A; /* Cyberpunk Yellow */
+}
+
+.vital-row[data-vital="thirst"] .vital-fill {
+    background: #22D8E2; /* Kiroshi Cyan */
+}
+
+.vital-row[data-vital="energy"] .vital-fill {
+    background: #4FE3A9; /* Vital Green */
+}
+
+.vital-row[data-vital="hygiene"] .vital-fill {
+    background: #70F3F5; /* Mint Cyan */
+}
+
+.vital-row[data-vital="stress"] .vital-fill {
+    background: #FF5964; /* Coral Red */
+}
+
+/* Estado Crítico */
+.vital-row.critical .vital-fill {
+    background: #FF003C !important;
+    animation: bar-glitch 1s infinite alternate steps(2);
+}
+
+.vital-row.critical .vital-val {
+    color: #FF003C !important;
+    animation: text-flicker 0.8s infinite alternate;
+}
+
+@keyframes bar-glitch {
+    0% { opacity: 0.8; transform: scaleX(var(--scale, 1)) skewX(0deg); }
+    50% { opacity: 1; transform: scaleX(var(--scale, 1)) skewX(-5deg); }
+    100% { opacity: 0.6; transform: scaleX(var(--scale, 1)) skewX(2deg); }
+}
+
+@keyframes text-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Rodapé do Biomonitor com Telemetria */
+.bio-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(174, 211, 224, 0.12);
+    font-family: var(--op77-font-mono);
+    font-size: 8px;
+    color: var(--op77-text-faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* =============================================================================
+   MODO DE REPOSICIONAMENTO (DRAGGABLE BIOMONITOR)
+   ============================================================================= */
+
+.kiroshi-biomonitor.repositioning {
+    cursor: grab !important;
+    pointer-events: auto !important;
+    border: 2px dashed #22D8E2 !important;
+    box-shadow: 0 0 30px rgba(34, 216, 226, 0.5), inset 0 0 20px rgba(34, 216, 226, 0.2) !important;
+    z-index: 1500 !important;
+    transition: none !important;
+}
+
+.kiroshi-biomonitor.repositioning:active {
+    cursor: grabbing !important;
+}
+
+.drag-handle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(34, 216, 226, 0.25);
+    color: #22D8E2;
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #22D8E2;
+    animation: handle-pulse 1.5s infinite alternate;
+}
+
+.kiroshi-biomonitor.repositioning .drag-handle {
+    display: flex;
+}
+
+@keyframes handle-pulse {
+    0% { background: rgba(34, 216, 226, 0.15); box-shadow: 0 0 8px rgba(34, 216, 226, 0.2); }
+    100% { background: rgba(34, 216, 226, 0.4); box-shadow: 0 0 16px rgba(34, 216, 226, 0.6); }
+}
+
+/* =============================================================================
+   TOOLBAR DE REPOSICIONAMENTO
+   ============================================================================= */
+
+.reposition-toolbar {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(8, 14, 25, 0.94);
+    border: 1px solid #FCEE0A;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(252, 238, 10, 0.2);
+    z-index: 2000;
+    pointer-events: auto;
+    clip-path: polygon(
+        0 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+    );
+}
+
+.reposition-toolbar.hidden {
+    display: none !important;
+}
+
+.toolbar-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.toolbar-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--op77-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: #FCEE0A;
+    text-transform: uppercase;
+}
+
+.toolbar-indicator {
+    width: 8px;
+    height: 8px;
+    background: #FCEE0A;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #FCEE0A;
+    animation: blink 0.8s infinite alternate;
+}
+
+.toolbar-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+/* =============================================================================
+   MODAL DE CONFIGURAÇÕES (/biomonitor)
+   ============================================================================= */
+
+.kiroshi-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1800;
+    pointer-events: auto;
+}
+
+.kiroshi-modal.hidden {
+    display: none !important;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(6, 11, 20, 0.65) 0%, rgba(3, 6, 12, 0.85) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Base Modal Card - Holograma Kiroshi Ultra-Crisp de Alta Resolução */
+.modal-card {
+    position: relative;
+    width: clamp(380px, 32vw, 480px);
+    max-width: 95vw;
+    background: linear-gradient(
+        135deg,
+        rgba(34, 216, 226, 0.08) 0%,
+        rgba(8, 16, 26, 0.88) 25%,
+        rgba(5, 10, 18, 0.95) 100%
+    );
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(34, 216, 226, 0.45);
+    box-shadow:
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.4),
+        inset 0 0 25px rgba(34, 216, 226, 0.08),
+        0 20px 50px rgba(0, 0, 0, 0.95),
+        0 0 30px rgba(34, 216, 226, 0.22);
+    padding: clamp(16px, 1.8vw, 26px);
+    z-index: 10;
+    clip-path: polygon(
+        0 0,
+        calc(100% - 16px) 0,
+        100% 16px,
+        100% 100%,
+        16px 100%,
+        0 calc(100% - 16px)
+    );
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* =============================================================================
+   HOLOGRAPHIC CORNER BRACKETS (L-BRACKETS REDENGINE / DIEGETIC HUD)
+   ============================================================================= */
+
+.hologram-bracket {
+    position: absolute;
+    width: clamp(12px, 1.2vw, 18px);
+    height: clamp(12px, 1.2vw, 18px);
+    pointer-events: none;
+    z-index: 20;
+    border-color: #22D8E2;
+    border-style: solid;
+    filter: drop-shadow(0 0 6px rgba(34, 216, 226, 0.85));
+    opacity: 0.9;
+}
+
+.hologram-bracket.tl {
+    top: 4px;
+    left: 4px;
+    border-width: 2px 0 0 2px;
+}
+
+.hologram-bracket.tr {
+    top: 4px;
+    right: 4px;
+    border-width: 2px 2px 0 0;
+}
+
+.hologram-bracket.bl {
+    bottom: 4px;
+    left: 4px;
+    border-width: 0 0 2px 2px;
+}
+
+.hologram-bracket.br {
+    bottom: 4px;
+    right: 4px;
+    border-width: 0 2px 2px 0;
+}
+
+/* Variação Amarela para Terminais de Vending (All-Foods) */
+.vending-card .hologram-bracket {
+    border-color: #FCEE0A;
+    filter: drop-shadow(0 0 6px rgba(252, 238, 10, 0.85));
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(174, 211, 224, 0.18);
+    padding-bottom: clamp(10px, 1vw, 14px);
+    margin-bottom: clamp(12px, 1.2vw, 18px);
+    gap: 12px;
+}
+
+.modal-header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Badge de Sincronização Telepática / Neural */
+.sync-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    background: rgba(34, 216, 226, 0.1);
+    border: 1px solid rgba(34, 216, 226, 0.35);
+    font-family: var(--op77-font-mono);
+    font-size: clamp(8px, 0.75vw, 10px);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #22D8E2;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    text-transform: uppercase;
+}
+
+.sync-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22D8E2;
+    box-shadow: 0 0 6px #22D8E2;
+    animation: sync-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes sync-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.75); }
+}
+
+.modal-eyebrow {
+    font-family: var(--op77-font-mono);
+    font-size: clamp(8.5px, 0.8vw, 10px);
+    letter-spacing: 0.22em;
+    color: #22D8E2;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.modal-title {
+    font-family: var(--op77-font-display);
+    font-size: clamp(14px, 1.3vw, 17px);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #FCEE0A;
+    text-transform: uppercase;
+}
+
+.btn-close-x {
+    background: transparent;
+    border: none;
+    color: var(--op77-text-faint);
+    font-size: clamp(18px, 1.5vw, 22px);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s, transform 0.15s ease;
+    font-family: var(--op77-font-mono);
+}
+
+.btn-close-x:hover {
+    color: #FF003C;
+    transform: scale(1.1);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.2vw, 18px);
+}
+
+.modal-desc {
+    font-size: clamp(11.5px, 1vw, 13px);
+    line-height: 1.5;
+    color: var(--op77-text-muted);
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-status-info {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--op77-font-mono);
+    font-size: clamp(8.5px, 0.8vw, 10px);
+    letter-spacing: 0.15em;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(174, 211, 224, 0.15);
+    color: var(--op77-text-faint);
+}
+
+.info-value {
+    color: #22D8E2;
+    font-weight: 700;
+}
+
+/* =============================================================================
+   HUD MODAL FOOTER & KEYCAPS / DIEGETIC BOTTOM BAR
+   ============================================================================= */
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: clamp(14px, 1.5vw, 22px);
+    padding-top: clamp(10px, 1vw, 14px);
+    border-top: 1px solid rgba(174, 211, 224, 0.15);
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hud-status-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--op77-font-mono);
+    font-size: clamp(8px, 0.75vw, 9.5px);
+    letter-spacing: 0.12em;
+    color: rgba(174, 211, 224, 0.7);
+    text-transform: uppercase;
+}
+
+.hud-status-line .status-indicator {
+    width: 6px;
+    height: 6px;
+    background: #22D8E2;
+    box-shadow: 0 0 6px #22D8E2;
+    border-radius: 1px;
+}
+
+.hud-keybinds {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hud-keybinds kbd,
+.key-group kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 20px;
+    padding: 0 5px;
+    font-family: var(--op77-font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #FCEE0A;
+    background: rgba(252, 238, 10, 0.12);
+    border: 1px solid rgba(252, 238, 10, 0.5);
+    box-shadow: 0 0 6px rgba(252, 238, 10, 0.3);
+    clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.hud-keybinds .key-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--op77-font-mono);
+    font-size: clamp(9px, 0.85vw, 11px);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.hud-keybinds .key-group:hover {
+    color: #22D8E2;
+    transform: translateY(-1px);
+}
+
+/* =============================================================================
+   BOTÕES TÁTICOS KIROSHI
+   ============================================================================= */
+
+.kiroshi-btn {
+    position: relative;
+    font-family: var(--op77-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--op77-text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.kiroshi-btn.primary {
+    background: rgba(34, 216, 226, 0.15);
+    border-color: #22D8E2;
+    color: #22D8E2;
+}
+
+.kiroshi-btn.primary:hover {
+    background: #22D8E2;
+    color: #080E19;
+    box-shadow: 0 0 16px rgba(34, 216, 226, 0.6);
+}
+
+.kiroshi-btn.secondary {
+    background: rgba(252, 238, 10, 0.1);
+    border-color: rgba(252, 238, 10, 0.4);
+    color: #FCEE0A;
+}
+
+.kiroshi-btn.secondary:hover {
+    background: #FCEE0A;
+    color: #080E19;
+    box-shadow: 0 0 16px rgba(252, 238, 10, 0.6);
+}
+
+.kiroshi-btn.confirm {
+    background: rgba(79, 227, 169, 0.2);
+    border-color: #4FE3A9;
+    color: #4FE3A9;
+}
+
+.kiroshi-btn.confirm:hover {
+    background: #4FE3A9;
+    color: #080E19;
+    box-shadow: 0 0 16px rgba(79, 227, 169, 0.6);
+}
+
+.kiroshi-btn.cancel {
+    background: rgba(255, 0, 60, 0.15);
+    border-color: #FF003C;
+    color: #FF003C;
+}
+
+.kiroshi-btn.cancel:hover {
+    background: #FF003C;
+    color: #fff;
+    box-shadow: 0 0 16px rgba(255, 0, 60, 0.6);
+}
+
+.kiroshi-btn.text {
+    color: var(--op77-text-muted);
+    border-color: transparent;
+}
+
+.kiroshi-btn.text:hover {
+    color: #fff;
+}
+
+.btn-bracket {
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+/* =============================================================================
+   EFEITO DE DANO ORGÂNICO (DESIDRATAÇÃO / INANIÇÃO)
+   ============================================================================= */
+
+.damage-vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    box-shadow: inset 0 0 100px rgba(255, 0, 60, 0.7), inset 0 0 200px rgba(255, 0, 60, 0.3);
+    z-index: 900;
+}
+
+.damage-vignette.active {
+    opacity: 1;
+    animation: blood-pulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes blood-pulse {
+    0% { opacity: 0.35; }
+    100% { opacity: 0.95; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+/* =============================================================================
+   TELEMETRIA FINANCEIRA KIROSHI (EURODÓLARES E$)
+   ============================================================================= */
+.economy-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0 10px 0;
+    padding: 6px 12px;
+    background: rgba(8, 14, 25, 0.75);
+    border: 1px solid rgba(34, 216, 226, 0.25);
+    clip-path: polygon(
+        0 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% 100%,
+        8px 100%,
+        0 calc(100% - 8px)
+    );
+    position: relative;
+    z-index: 2;
+}
+
+.economy-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.economy-stat.cash .economy-val {
+    color: #FCEE0A; /* Amarelo Cyberpunk icônico para dinheiro vivo */
+    text-shadow: 0 0 6px rgba(252, 238, 10, 0.4);
+}
+
+.economy-stat.bank .economy-val {
+    color: var(--op77-accent, #22D8E2); /* Ciano elétrico para saldo bancário */
+    text-shadow: 0 0 6px rgba(34, 216, 226, 0.4);
+}
+
+.economy-tag {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--op77-text-muted, #7A8B9E);
+}
+
+.economy-val {
+    font-family: var(--op77-font-mono, monospace);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.economy-sep {
+    width: 1px;
+    height: 22px;
+    background: rgba(34, 216, 226, 0.2);
+}
+
+/* =============================================================================
+   ATM TERMINAL KIOSK // NIGHT CITY FINANCIAL NETWORK
+   ============================================================================= */
+
+.atm-terminal .atm-card {
+    width: clamp(400px, 42vw, 540px);
+    max-width: 95vw;
+    border-color: rgba(34, 216, 226, 0.45);
+    box-shadow:
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.45),
+        inset 0 0 25px rgba(34, 216, 226, 0.1),
+        0 25px 60px rgba(0, 0, 0, 0.85),
+        0 0 35px rgba(34, 216, 226, 0.22);
+}
+
+.atm-eyebrow {
+    color: #22D8E2;
+}
+
+.atm-title {
+    color: #fff;
+    letter-spacing: 0.12em;
+}
+
+.atm-balance-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.atm-bal-box {
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.15);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.atm-bal-box.cash {
+    border-color: rgba(252, 238, 10, 0.3);
+}
+
+.atm-bal-box.bank {
+    border-color: rgba(34, 216, 226, 0.3);
+}
+
+.atm-bal-box .bal-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--op77-text-muted);
+}
+
+.atm-bal-box .bal-value {
+    font-family: var(--op77-font-mono);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.atm-bal-box.cash .bal-value {
+    color: #FCEE0A;
+    text-shadow: 0 0 8px rgba(252, 238, 10, 0.35);
+}
+
+.atm-bal-box.bank .bal-value {
+    color: #22D8E2;
+    text-shadow: 0 0 8px rgba(34, 216, 226, 0.35);
+}
+
+.atm-feedback {
+    padding: 8px 12px;
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.atm-feedback.success {
+    background: rgba(79, 227, 169, 0.12);
+    border-color: #4FE3A9;
+    color: #4FE3A9;
+}
+
+.atm-feedback.error {
+    background: rgba(255, 0, 60, 0.15);
+    border-color: #FF003C;
+    color: #FF003C;
+}
+
+.atm-section {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.atm-section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--op77-text-faint);
+}
+
+.atm-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.atm-btn {
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 8px 6px;
+    background: rgba(16, 26, 44, 0.6);
+    border: 1px solid rgba(174, 211, 224, 0.2);
+    color: var(--op77-text);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+}
+
+.atm-btn:hover {
+    background: rgba(34, 216, 226, 0.2);
+    border-color: #22D8E2;
+    color: #22D8E2;
+}
+
+.atm-btn.quick-withdraw:hover {
+    border-color: #FCEE0A;
+    color: #FCEE0A;
+    background: rgba(252, 238, 10, 0.15);
+}
+
+.atm-btn.quick-deposit.all {
+    background: rgba(252, 238, 10, 0.15);
+    border-color: rgba(252, 238, 10, 0.4);
+    color: #FCEE0A;
+}
+
+.atm-btn.quick-deposit.all:hover {
+    background: #FCEE0A;
+    color: #080E19;
+    box-shadow: 0 0 12px rgba(252, 238, 10, 0.6);
+}
+
+.atm-input-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.atm-input {
+    flex: 1 1 0%;
+    min-width: 0;
+    box-sizing: border-box;
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.25);
+    color: #fff;
+    font-family: var(--op77-font-mono);
+    font-size: 12px;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.atm-input:focus {
+    border-color: #22D8E2;
+    box-shadow: 0 0 8px rgba(34, 216, 226, 0.3);
+}
+
+.atm-input.target {
+    flex: 0 0 95px;
+    max-width: 110px;
+    min-width: 75px;
+}
+
+.atm-input.amount {
+    flex: 1 1 auto;
+    min-width: 80px;
+}
+
+.atm-btn.action {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.atm-btn.action.withdraw {
+    background: rgba(252, 238, 10, 0.15);
+    border-color: #FCEE0A;
+    color: #FCEE0A;
+}
+
+.atm-btn.action.withdraw:hover {
+    background: #FCEE0A;
+    color: #080E19;
+}
+
+.atm-btn.action.deposit {
+    background: rgba(34, 216, 226, 0.15);
+    border-color: #22D8E2;
+    color: #22D8E2;
+}
+
+.atm-btn.action.deposit:hover {
+    background: #22D8E2;
+    color: #080E19;
+}
+
+.atm-btn.action.transfer {
+    background: rgba(79, 227, 169, 0.18);
+    border-color: #4FE3A9;
+    color: #4FE3A9;
+}
+
+.atm-btn.action.transfer:hover {
+    background: #4FE3A9;
+    color: #080E19;
+}
+
+.atm-footer {
+    border-top: 1px dashed rgba(174, 211, 224, 0.15);
+    padding-top: 12px;
+    margin-top: 10px;
+}
+
+/* =============================================================================
+   MÁQUINA DE VENDAS & CONVENIÊNCIA 24/7 (ALL-FOODS)
+   ============================================================================= */
+
+.vending-terminal .vending-card {
+    width: clamp(560px, 58vw, 840px);
+    max-width: 95vw;
+    border-color: rgba(252, 238, 10, 0.45);
+    box-shadow:
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.45),
+        inset 0 0 25px rgba(252, 238, 10, 0.1),
+        0 25px 60px rgba(0, 0, 0, 0.85),
+        0 0 35px rgba(252, 238, 10, 0.2);
+    overflow: hidden;
+}
+
+.vending-user-bar {
+    display: flex;
+    gap: 16px;
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.15);
+    padding: 8px 14px;
+    margin-bottom: 12px;
+}
+
+.user-eco-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.user-eco-pill .pill-label {
+    color: var(--op77-text-muted);
+}
+
+.user-eco-pill .pill-val {
+    font-family: var(--op77-font-mono);
+    font-size: 13px;
+}
+
+.user-eco-pill .pill-val.cash {
+    color: #FCEE0A;
+}
+
+.user-eco-pill .pill-val.bank {
+    color: #22D8E2;
+}
+
+.vending-categories {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.vending-cat-btn {
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 6px 12px;
+    background: rgba(16, 26, 44, 0.7);
+    border: 1px solid rgba(174, 211, 224, 0.2);
+    color: var(--op77-text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.vending-cat-btn:hover {
+    color: #fff;
+    border-color: #22D8E2;
+}
+
+.vending-cat-btn.active {
+    background: rgba(252, 238, 10, 0.15);
+    border-color: #FCEE0A;
+    color: #FCEE0A;
+    box-shadow: 0 0 10px rgba(252, 238, 10, 0.3);
+}
+
+.vending-feedback {
+    padding: 8px 12px;
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    border: 1px solid transparent;
+}
+
+.vending-feedback.success {
+    background: rgba(79, 227, 169, 0.15);
+    border-color: #4FE3A9;
+    color: #4FE3A9;
+}
+
+.vending-feedback.error {
+    background: rgba(255, 0, 60, 0.15);
+    border-color: #FF003C;
+    color: #FF003C;
+}
+
+.vending-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-height: 420px;
+    overflow-y: auto;
+    overflow-x: hidden !important;
+    scrollbar-gutter: stable;
+    padding-right: 6px;
+    box-sizing: border-box;
+}
+
+.vending-item-card {
+    min-width: 0;
+    box-sizing: border-box;
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.15);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: all 0.2s ease;
+}
+
+.vending-item-card:hover {
+    border-color: rgba(252, 238, 10, 0.5);
+    background: rgba(16, 26, 44, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.vending-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.vending-item-name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.vending-item-price {
+    font-family: var(--op77-font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: #FCEE0A;
+    white-space: nowrap;
+}
+
+.vending-item-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.vending-stat-tag {
+    font-size: 8.5px;
+    font-family: var(--op77-font-mono);
+    font-weight: 700;
+    padding: 2px 5px;
+    background: rgba(34, 216, 226, 0.12);
+    border: 1px solid rgba(34, 216, 226, 0.3);
+    color: #22D8E2;
+}
+
+.vending-stat-tag.hunger {
+    background: rgba(252, 238, 10, 0.12);
+    border-color: rgba(252, 238, 10, 0.35);
+    color: #FCEE0A;
+}
+
+.vending-stat-tag.thirst {
+    background: rgba(34, 216, 226, 0.12);
+    border-color: rgba(34, 216, 226, 0.35);
+    color: #22D8E2;
+}
+
+.vending-stat-tag.energy {
+    background: rgba(79, 227, 169, 0.12);
+    border-color: rgba(79, 227, 169, 0.35);
+    color: #4FE3A9;
+}
+
+.vending-item-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.vending-buy-btn {
+    font-family: var(--op77-font-mono);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 6px 4px;
+    background: rgba(16, 26, 44, 0.8);
+    border: 1px solid rgba(174, 211, 224, 0.25);
+    color: var(--op77-text);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s ease;
+}
+
+.vending-buy-btn.cash:hover {
+    background: #FCEE0A;
+    color: #080E19;
+    border-color: #FCEE0A;
+}
+
+.vending-buy-btn.bank:hover {
+    background: #22D8E2;
+    color: #080E19;
+    border-color: #22D8E2;
+}
+
+.vending-footer {
+    border-top: 1px dashed rgba(174, 211, 224, 0.15);
+    padding-top: 12px;
+    margin-top: 12px;
+}
+
+/* =============================================================================
+   CLÍNICA RIPPERDOC & CIBERWARE LAB (VIKTOR VECTOR)
+   ============================================================================= */
+
+.ripperdoc-terminal .ripperdoc-card {
+    width: clamp(760px, 75vw, 1100px);
+    max-width: 95vw;
+    border-color: rgba(34, 216, 226, 0.55);
+    box-shadow:
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.45),
+        inset 0 0 30px rgba(34, 216, 226, 0.12),
+        0 25px 60px rgba(0, 0, 0, 0.85),
+        0 0 40px rgba(34, 216, 226, 0.25);
+    overflow: hidden;
+}
+
+.ripper-nav-tabs {
+    display: flex;
+    gap: 12px;
+    border-bottom: 1px solid rgba(174, 211, 224, 0.15);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+.ripper-tab-btn {
+    font-family: var(--op77-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 8px 16px;
+    background: rgba(16, 26, 44, 0.7);
+    border: 1px solid rgba(174, 211, 224, 0.2);
+    color: var(--op77-text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ripper-tab-btn:hover {
+    color: #fff;
+    border-color: #22D8E2;
+}
+
+.ripper-tab-btn.active {
+    background: rgba(34, 216, 226, 0.15);
+    border-color: #22D8E2;
+    color: #22D8E2;
+    box-shadow: 0 0 12px rgba(34, 216, 226, 0.3);
+}
+
+.ripper-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 16px;
+}
+
+/* PAINEL DE TELEMETRIA DO PACIENTE */
+.ripper-patient-stats {
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.15);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.section-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--op77-accent);
+}
+
+.diag-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.diag-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--op77-text-muted);
+}
+
+.diag-bar-track {
+    height: 8px;
+    background: rgba(16, 26, 44, 0.9);
+    border: 1px solid rgba(174, 211, 224, 0.2);
+    overflow: hidden;
+}
+
+.diag-bar-fill {
+    height: 100%;
+    background: #22D8E2;
+    box-shadow: 0 0 8px #22D8E2;
+    transition: width 0.3s ease;
+}
+
+.diag-bar-fill.heat {
+    background: #FCEE0A;
+    box-shadow: 0 0 8px #FCEE0A;
+}
+
+.diag-val {
+    font-family: var(--op77-font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    text-align: right;
+    color: #fff;
+}
+
+.diag-meta-box {
+    border-top: 1px dashed rgba(174, 211, 224, 0.15);
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--op77-text-muted);
+}
+
+.meta-status {
+    font-family: var(--op77-font-mono);
+    font-weight: 700;
+    color: #fff;
+}
+
+.meta-status.highlight {
+    color: #22D8E2;
+}
+
+/* ÁREA DE CONTEÚDO */
+.ripper-content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ripper-feedback {
+    padding: 8px 12px;
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    border: 1px solid transparent;
+}
+
+.ripper-feedback.success {
+    background: rgba(79, 227, 169, 0.15);
+    border-color: #4FE3A9;
+    color: #4FE3A9;
+}
+
+.ripper-feedback.error {
+    background: rgba(255, 0, 60, 0.15);
+    border-color: #FF003C;
+    color: #FF003C;
+}
+
+.ripper-slot-selector {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.slot-filter-btn {
+    font-family: var(--op77-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 5px 9px;
+    background: rgba(16, 26, 44, 0.7);
+    border: 1px solid rgba(174, 211, 224, 0.2);
+    color: var(--op77-text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.slot-filter-btn:hover {
+    color: #fff;
+    border-color: #22D8E2;
+}
+
+.slot-filter-btn.active {
+    background: rgba(34, 216, 226, 0.2);
+    border-color: #22D8E2;
+    color: #22D8E2;
+}
+
+.ripper-implants-grid,
+.pharma-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden !important;
+    scrollbar-gutter: stable;
+    padding-right: 6px;
+    box-sizing: border-box;
+}
+
+.implant-card {
+    min-width: 0;
+    box-sizing: border-box;
+    background: rgba(8, 14, 25, 0.85);
+    border: 1px solid rgba(174, 211, 224, 0.15);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: all 0.2s ease;
+}
+
+.implant-card:hover {
+    border-color: #22D8E2;
+    background: rgba(16, 26, 44, 0.9);
+}
+
+.implant-card.common { border-left: 3px solid #7A8B9E; }
+.implant-card.uncommon { border-left: 3px solid #4FE3A9; }
+.implant-card.rare { border-left: 3px solid #22D8E2; }
+.implant-card.epic { border-left: 3px solid #9D4EDD; }
+.implant-card.legendary { border-left: 3px solid #FCEE0A; }
+.implant-card.iconic { border-left: 3px solid #FF003C; }
+
+.implant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.implant-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.implant-price {
+    font-family: var(--op77-font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: #22D8E2;
+}
+
+.implant-desc {
+    font-size: 9.5px;
+    color: var(--op77-text-muted);
+    line-height: 1.35;
+}
+
+.implant-specs {
+    display: flex;
+    gap: 8px;
+    font-family: var(--op77-font-mono);
+    font-size: 9px;
+}
+
+.spec-pill {
+    padding: 2px 6px;
+    background: rgba(16, 26, 44, 0.8);
+    border: 1px solid rgba(174, 211, 224, 0.15);
+}
+
+.spec-pill.neural { color: #FF003C; border-color: rgba(255, 0, 60, 0.3); }
+.spec-pill.heat { color: #FCEE0A; border-color: rgba(252, 238, 10, 0.3); }
+
+.implant-btn {
+    font-family: var(--op77-font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 8px;
+    background: rgba(34, 216, 226, 0.15);
+    border: 1px solid #22D8E2;
+    color: #22D8E2;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.implant-btn:hover {
+    background: #22D8E2;
+    color: #080E19;
+}
+
+.implant-btn.installed {
+    background: rgba(79, 227, 169, 0.15);
+    border-color: #4FE3A9;
+    color: #4FE3A9;
+    cursor: default;
+}
+
+.ripperdoc-footer {
+    border-top: 1px dashed rgba(174, 211, 224, 0.15);
+    padding-top: 12px;
+    margin-top: 12px;
+}
+
+/* =============================================================================
+   RESPONSIVIDADE & LEGIBILIDADE OTIMIZADA PARA MONITORES HD (1360x768 / 720p)
+   Elimina texto miúdo ilegível, garante caimento perfeito e ajusta grids
+   ============================================================================= */
+
+@media screen and (max-width: 1440px), screen and (max-height: 850px) {
+    /* Base Modal Container */
+    .modal-card {
+        padding: 18px 22px;
+        max-height: 94vh;
+        overflow: hidden;
+    }
+
+    .modal-body {
+        max-height: calc(94vh - 110px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+    }
+
+    .modal-header {
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+    }
+
+    .modal-title {
+        font-size: 14px;
+    }
+
+    /* Biomonitor HUD em telas HD */
+    .kiroshi-biomonitor {
+        left: 20px;
+        bottom: 20px;
+        width: 300px;
+        padding: 12px 14px;
+    }
+
+    .vital-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #D6E4EE;
+    }
+
+    .vital-val {
+        font-size: 11.5px;
+        font-weight: 700;
+    }
+
+    /* 1. TERMINAL DE AUTOATENDIMENTO (ATM) */
+    .atm-terminal .atm-card {
+        max-width: 490px;
+        padding: 18px 20px;
+    }
+
+    .atm-balance-display {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .atm-bal-box {
+        padding: 8px 12px;
+    }
+
+    .atm-bal-box .bal-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: #B4C6D8;
+    }
+
+    .atm-bal-box .bal-value {
+        font-size: 16px;
+    }
+
+    .atm-section {
+        margin-bottom: 10px;
+        gap: 5px;
+    }
+
+    .atm-section-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: #8BE9FD;
+    }
+
+    .atm-quick-grid {
+        gap: 6px;
+    }
+
+    .atm-btn {
+        font-size: 10.5px;
+        font-weight: 700;
+        padding: 7px 4px;
+    }
+
+    .atm-input-row {
+        gap: 6px;
+    }
+
+    .atm-input {
+        font-size: 11.5px;
+        padding: 7px 10px;
+    }
+
+    .atm-input.target {
+        flex: 0 0 90px;
+        max-width: 95px;
+        min-width: 70px;
+    }
+
+    .atm-btn.action {
+        font-size: 10.5px;
+        padding: 7px 12px;
+    }
+
+    /* 2. MÁQUINA DE VENDAS (ALL-FOODS) */
+    .vending-terminal .vending-card {
+        max-width: 680px;
+        padding: 16px 20px;
+    }
+
+    .user-eco-pill {
+        font-size: 11px;
+    }
+
+    .user-eco-pill .pill-label {
+        color: #CFDBE8;
+    }
+
+    .vending-cat-btn {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    /* 2 Colunas no HD: impede achatamento de cards e elimina rolagem horizontal */
+    .vending-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        max-height: calc(92vh - 220px);
+        gap: 10px;
+    }
+
+    .vending-item-card {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .vending-item-name {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: #FFFFFF;
+    }
+
+    .vending-item-price {
+        font-size: 13px;
+        font-weight: 700;
+        color: #FCEE0A;
+    }
+
+    .vending-stat-tag {
+        font-size: 9.5px;
+        font-weight: 700;
+        padding: 3px 6px;
+    }
+
+    .vending-buy-btn {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+
+    /* 3. CLÍNICA RIPPERDOC (ESTAÇÃO CIRÚRGICA) */
+    .ripperdoc-terminal .ripperdoc-card {
+        max-width: 920px;
+        width: 95vw;
+        padding: 16px 20px;
+    }
+
+    .ripper-layout {
+        grid-template-columns: 230px 1fr !important;
+        gap: 12px;
+    }
+
+    .ripper-patient-stats {
+        padding: 10px 12px;
+        gap: 9px;
+    }
+
+    .section-tag {
+        font-size: 10.5px;
+        font-weight: 700;
+    }
+
+    .diag-label {
+        font-size: 10px;
+        font-weight: 700;
+        color: #CFDBE8;
+    }
+
+    .diag-val {
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .meta-row {
+        font-size: 10px;
+        font-weight: 600;
+        color: #B4C6D8;
+    }
+
+    .meta-status {
+        color: #FFFFFF;
+    }
+
+    .slot-filter-btn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .ripper-implants-grid,
+    .pharma-grid {
+        max-height: calc(92vh - 220px);
+        gap: 10px;
+    }
+
+    .implant-card {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .implant-title {
+        font-size: 12.5px;
+        font-weight: 700;
+        color: #FFFFFF;
+    }
+
+    .implant-price {
+        font-size: 13.5px;
+        font-weight: 700;
+    }
+
+    .implant-desc {
+        font-size: 10.5px;
+        line-height: 1.35;
+        color: #D6E4EE;
+    }
+
+    .implant-specs {
+        font-size: 9.5px;
+    }
+
+    .spec-pill {
+        font-size: 9.5px;
+        font-weight: 700;
+        padding: 2px 6px;
+    }
+
+    .implant-btn {
+        font-size: 10.5px;
+        padding: 7px;
+    }
+}
+
+
+
+

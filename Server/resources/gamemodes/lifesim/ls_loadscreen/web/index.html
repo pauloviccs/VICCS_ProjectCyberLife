@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Night City Life-Sim // Loading Arena</title>
+    <link rel="stylesheet" href="./open77-ui.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body data-mode="vanilla">
+    <!-- SCANLINES E EFEITO CRT DIEGÉTICO -->
+    <div class="screen-scanlines" aria-hidden="true"></div>
+    <div class="screen-vignette" aria-hidden="true"></div>
+
+    <!-- CAMADA 1: BOTÃO SUPERIOR ESQUERDO (RETORNAR AO HUB) -->
+    <header class="hud-topbar">
+        <button id="btn-return-hub" class="hub-return-btn" type="button" aria-label="Retornar ao Hub">
+            <span class="hub-bracket tl"></span>
+            <span class="hub-bracket tr"></span>
+            <span class="hub-bracket bl"></span>
+            <span class="hub-bracket br"></span>
+            <div class="hub-btn-inner">
+                <span class="hub-status-dot"></span>
+                <span class="hub-label">RETORNAR AO HUB</span>
+                <kbd class="hub-kbd">ESC</kbd>
+            </div>
+        </button>
+
+        <div class="server-status-pill">
+            <span class="server-badge">// OPEN//77 NET</span>
+            <span id="server-title" class="server-name">VICCS NIGHT CITY LIFE-SIM RP</span>
+        </div>
+    </header>
+
+    <!-- CAMADA 2: CENTRO DO CENÁRIO (MEDIA VIEWPORT COM TRANSIÇÕES) -->
+    <main id="media-viewport" class="media-viewport">
+        <!-- Sub-Camada A: Cut-scenes e Ambientes Vanilla de Cyberpunk 2077 -->
+        <div id="vanilla-layer" class="vanilla-layer active">
+            <!-- Canvas interativo de partículas e grid holográfico -->
+            <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+
+            <!-- Backdrop ativo para crossfade suave -->
+            <div id="scene-bg-a" class="scene-backdrop active"></div>
+            <div id="scene-bg-b" class="scene-backdrop"></div>
+
+            <!-- HUD de Telemetria Central da Cena -->
+            <div class="scene-telemetry">
+                <div class="telemetry-badge">
+                    <span class="pulse-indicator"></span>
+                    <span id="scene-district" class="district-name">WATSON DISTRICT // KABUKI</span>
+                </div>
+                <h1 id="scene-title" class="scene-title">WATSON DISTRICT // KABUKI ROUNDABOUT</h1>
+                <p id="scene-desc" class="scene-desc">ZONA INDUSTRIAL & MERCADOS NOTURNOS // SUB-DISTRITO D9</p>
+                <div class="telemetry-meta">
+                    <span id="scene-threat" class="threat-tag">// TAXA DE AMEAÇA: ELEVADA</span>
+                    <span id="scene-coords" class="coords-tag">X: -1420.44 | Y: 1289.12 | Z: 18.5</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub-Camada B: Vídeo MP4 Local (se configurado) -->
+        <div id="local-video-layer" class="media-video-layer">
+            <video id="local-video-player" playsinline loop muted preload="auto">
+                <source src="./media/intro.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Sub-Camada C: Stream / Vídeo YouTube (se configurado) -->
+        <div id="youtube-layer" class="media-youtube-layer">
+            <div id="yt-player-container"></div>
+        </div>
+    </main>
+
+    <!-- CAMADA 3: CANTO INFERIOR DIREITO (PLAYER HOLOGRÁFICO & BARRA DE PROGRESSO) -->
+    <aside class="player-dock" aria-label="Controle de Áudio e Telemetria de Carregamento">
+        <div class="player-card">
+            <span class="hologram-bracket tl"></span>
+            <span class="hologram-bracket tr"></span>
+            <span class="hologram-bracket bl"></span>
+            <span class="hologram-bracket br"></span>
+
+            <!-- Cabeçalho do Player -->
+            <header class="player-header">
+                <div class="player-brand">
+                    <span class="player-eyebrow">// KIROSHI ACOUSTICS</span>
+                    <h2 class="player-title">PLAYER</h2>
+                </div>
+                <div class="player-live-badge">
+                    <span class="live-dot"></span>
+                    <span class="live-text">STREAM LIVE</span>
+                </div>
+            </header>
+
+            <!-- Detalhes da Faixa Musical -->
+            <div class="player-track-info">
+                <div class="track-text-group">
+                    <span id="track-title" class="track-title">Night City Wire // Sub-bass Pulse</span>
+                    <span id="track-artist" class="track-artist">V.I.C.C.S Neural Synth Engine</span>
+                </div>
+                <!-- Mini Equalizador Gráfico -->
+                <div class="eq-visualizer" id="eq-visualizer" aria-hidden="true">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
+
+            <!-- Controles do Player (Play/Pause, Próxima Faixa, Volume) -->
+            <div class="player-controls">
+                <div class="btn-group">
+                    <button id="btn-play-pause" class="player-control-btn" type="button" aria-label="Pausar / Reproduzir">
+                        <span id="play-icon" class="btn-icon">❚❚</span>
+                    </button>
+                    <button id="btn-next-track" class="player-control-btn" type="button" aria-label="Próxima Faixa">
+                        <span class="btn-icon">⏭</span>
+                    </button>
+                    <button id="btn-mute-toggle" class="player-control-btn" type="button" aria-label="Silenciar">
+                        <span id="mute-icon" class="btn-icon">🔊</span>
+                    </button>
+                </div>
+
+                <div class="volume-container">
+                    <span class="volume-tag">VOL</span>
+                    <input type="range" id="volume-slider" class="volume-range" min="0" max="1" step="0.05" value="0.5" aria-label="Volume">
+                </div>
+            </div>
+
+            <!-- Barra de Progresso Real do Carregamento -->
+            <div class="player-progress-section">
+                <div class="progress-labels">
+                    <span id="load-phase-label" class="phase-label">CARREGANDO NIGHT CITY // ARENA</span>
+                    <span id="load-percent" class="percent-label">0%</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%;">
+                        <div class="progress-glow"></div>
+                    </div>
+                </div>
+                <div class="progress-footer">
+                    <span id="load-status-sub" class="status-sub">SINCRONIZANDO PACOTES DE REDE & GEOMETRIA</span>
+                    <span class="connection-secure">[ SECURE // REDENGINE4 ]</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- SCRIPTS -->
+    <script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "atUtc": "2026-10-02T01:24:51.4844777\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T01:24:51.4934505\u002B00:00",
+    "kind": "connect-request",
+    "detail": "147.185.221.213:5494"
+  },
+  {
+    "atUtc": "2026-10-02T01:25:20.822009\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "handshaking"
+  },
+  {
+    "atUtc": "2026-10-02T01:25:21.9646328\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "active"
+  },
+  {
+    "atUtc": "2026-10-02T01:25:37.1845185\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "offline"
+  },
+  {
+    "atUtc": "2026-10-02T01:26:37.7328485\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  }
+]

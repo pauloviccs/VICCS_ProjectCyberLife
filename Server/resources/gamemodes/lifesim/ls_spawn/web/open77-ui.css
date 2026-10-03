@@ -1,0 +1,106 @@
+/* =============================================================================
+   OPEN//77 - in-game UI design tokens (MIRRORED FILE)
+   Path: ls_spawn/web/open77-ui.css
+   ============================================================================= */
+
+:root {
+  --op77-void:       #060a12;
+  --op77-bg:         #080e19;
+  --op77-bg-elev:    #0d1624;
+  --op77-surface:    #101b2b;
+  --op77-surface-2:  #132032;
+
+  --op77-panel:        rgba(10, 18, 32, 0.94);
+  --op77-panel-raised: rgba(16, 27, 43, 0.96);
+  --op77-panel-quiet:  rgba(10, 18, 32, 0.78);
+  --op77-scrim:        rgba(3, 7, 13, 0.72);
+
+  --op77-line:        rgba(174, 211, 224, 0.10);
+  --op77-line-strong: rgba(174, 211, 224, 0.19);
+  --op77-line-hud:    rgba(174, 211, 224, 0.30);
+
+  --op77-text:       #f2f6f8;
+  --op77-text-dim:   #8d99a8;
+  --op77-text-faint: rgba(141, 153, 168, 0.72);
+  --op77-ink:        #071013;
+
+  --op77-accent:       #22d8e2;
+  --op77-accent-ice:   #70f3f5;
+  --op77-accent-deep:  #18c8d4;
+  --op77-accent-soft:  rgba(34, 216, 226, 0.12);
+  --op77-accent-line:  rgba(34, 216, 226, 0.45);
+  --op77-signal:       #ff5964;
+  --op77-danger:       #ff5c5c;
+
+  --op77-ok:   #4fe3a9;
+  --op77-warn: #f5c95c;
+
+  --op77-glow: 0 0 24px rgba(34, 216, 226, 0.25);
+
+  --op77-font-display: "Rajdhani", "Bahnschrift Condensed", "Bahnschrift SemiCondensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --op77-font-body:    "Saira", "Bahnschrift", "Segoe UI", system-ui, sans-serif;
+  --op77-font-mono:    "IBM Plex Mono", "Cascadia Mono", "Consolas", ui-monospace, monospace;
+
+  --op77-fs-micro:  9px;
+  --op77-fs-label:  10px;
+  --op77-fs-meta:   11px;
+  --op77-fs-body:   14px;
+  --op77-fs-lead:   16px;
+  --op77-fs-title:  18px;
+  --op77-fs-head:   26px;
+  --op77-fs-hero:   40px;
+
+  --op77-track-micro: 0.18em;
+  --op77-track-label: 0.12em;
+  --op77-track-head:  0.02em;
+
+  --op77-space-1: 4px;
+  --op77-space-2: 8px;
+  --op77-space-3: 12px;
+  --op77-space-4: 16px;
+  --op77-space-5: 24px;
+  --op77-space-6: 32px;
+  --op77-space-7: 48px;
+  --op77-space-8: 64px;
+
+  --op77-inset-x: 32px;
+  --op77-inset-y: 28px;
+
+  --op77-radius-sm: 2px;
+  --op77-radius-md: 6px;
+  --op77-notch: 12px;
+  --op77-notch-clip: polygon(0 0, calc(100% - var(--op77-notch)) 0, 100% var(--op77-notch), 100% 100%, 0 100%);
+  --op77-rule: 3px;
+
+  --op77-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+
+  --op77-ease: cubic-bezier(0.2, 0, 0, 1);
+  --op77-dur-fast: 90ms;
+  --op77-dur:      150ms;
+  --op77-dur-slow: 220ms;
+}
+
+.op77-eyebrow {
+  font: 700 var(--op77-fs-micro) / 1 var(--op77-font-mono);
+  letter-spacing: var(--op77-track-micro);
+  text-transform: uppercase;
+  color: var(--op77-text-dim);
+}
+.op77-eyebrow::before {
+  content: "//";
+  margin-right: 0.7em;
+  color: var(--op77-accent);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

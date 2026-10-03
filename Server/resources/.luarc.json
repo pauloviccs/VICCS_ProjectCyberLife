@@ -1,0 +1,11 @@
+{
+  "runtime.version": "Lua 5.4",
+  "workspace.library": [
+    "open77-client.d.lua",
+    "open77-server.d.lua"
+  ],
+  "diagnostics.globals": [
+    "exports",
+    "source"
+  ]
+}

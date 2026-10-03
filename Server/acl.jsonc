@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "roles": [
+    {
+      "name": "helper",
+      "permissions": [
+        "command.admin",
+        "command.admin.read.*",
+        "command.admin.self.*"
+      ]
+    },
+    {
+      "name": "moderator",
+      "permissions": [
+        "command.admin",
+        "command.adminfull",
+        "command.admin.read.*",
+        "command.admin.self.*",
+        "command.admin.player.*",
+        "command.admin.moderate.*",
+        "command.admin.veh.*",
+        "command.admin.weap.*",
+        "command.gun",
+        "command.admin.world.cleanup",
+        "command.admin.world.announce"
+      ]
+    },
+    {
+      "name": "operator",
+      "permissions": [
+        "command.admin",
+        "command.adminfull",
+        "command.admin.*",
+        "command.noclip",
+        "command.fly",
+        "command.god",
+        "command.heal",
+        "command.goto",
+        "command.bring",
+        "command.tp",
+        "command.car",
+        "command.dv",
+        "command.gun",
+        "command.weapons",
+        "command.prop",
+        "command.props",
+        "command.fx",
+        "command.announce",
+        "command.kick",
+        "command.ban",
+        "command.maptp",
+        "command.tpall",
+        "command.dvall",
+        "command.tv",
+        "command.media.*",
+        "command.fireworks",
+        "command.droneshow",
+        "command.weather.*",
+        "command.vehicle.*",
+        "command.npc.*",
+        "command.loot.*",
+        "command.elevator.*"
+      ]
+    }
+  ],
+  "principals": [
+    {
+      "name": "viccs (Owner)",
+      "userId": "c03e8ff9-22ce-4c15-ac39-5f435a07f5ba",
+      "role": "operator",
+      "permissions": [
+        "*"
+      ]
+    }
+  ]
+}

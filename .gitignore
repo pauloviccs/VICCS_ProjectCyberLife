@@ -6,7 +6,16 @@ node_modules/
 .env.*
 !.env.example
 
-# Server runtime logs & caches
+# Server runtime binaries and packages (.NET 8 host & libraries)
+# Baixados diretamente de https://open2077.net/host#download
+Server/*.exe
+Server/*.dll
+Server/*.pdb
+Server/*.zip
+Server/createdump.exe
+
+# Server runtime logs & caches & private identity
+Server/.open77/
 Server/cache/
 Server/logs/
 Server/crashdumps/

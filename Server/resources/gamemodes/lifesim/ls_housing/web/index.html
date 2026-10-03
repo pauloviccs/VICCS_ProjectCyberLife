@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiroshi Residential Terminal // ls_housing</title>
+  <link rel="stylesheet" href="open77-ui.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="housing-modal" class="housing-container hidden">
+    <div class="hologram-overlay"></div>
+    <div class="vignette-scrim"></div>
+
+    <div class="housing-panel">
+      <!-- Cantoneiras Kiroshi L-Brackets -->
+      <span class="hologram-bracket tl"></span>
+      <span class="hologram-bracket tr"></span>
+      <span class="hologram-bracket bl"></span>
+      <span class="hologram-bracket br"></span>
+
+      <!-- Header Holográfico -->
+      <header class="panel-header">
+        <div class="header-left">
+          <span class="op77-eyebrow">KIROSHI HABITAÇÃO VERTICAL</span>
+          <span class="header-sub" id="apt-building-sub">MEGABUILDING RESIDENTIAL GRID</span>
+        </div>
+        <div class="header-center">
+          <h1 class="panel-title" id="apt-name-title">Megabuilding H10 - Apto 0705</h1>
+        </div>
+        <div class="header-right">
+          <div class="sync-badge">
+            <span class="pulse-dot"></span>
+            <span class="sync-text" id="apt-status-badge">ROUTING BUCKET: OFFLINE</span>
+          </div>
+          <button id="btn-close-modal" class="btn-close-bracket">✕</button>
+        </div>
+      </header>
+
+      <!-- Navegação de Abas -->
+      <nav class="housing-nav">
+        <button class="nav-tab active" data-tab="tab-overview">CONTRATO & ACESSO</button>
+        <button class="nav-tab" data-tab="tab-catalog">CATÁLOGO DE MOBÍLIA</button>
+      </nav>
+
+      <!-- Feedback Dinâmico Kiroshi -->
+      <div id="housing-feedback" class="feedback-banner hidden"></div>
+
+      <!-- Conteúdo das Abas -->
+      <main class="panel-body">
+        <!-- Aba 1: Contrato & Acesso -->
+        <section id="tab-overview" class="tab-pane active">
+          <div class="overview-grid">
+            <!-- Coluna Esquerda: Dados do Imóvel -->
+            <div class="overview-details-card">
+              <h2 class="card-title">// DETALHES CADASTRAIS</h2>
+              <div class="info-row">
+                <span class="info-label">Distrito / Setor:</span>
+                <span class="info-val" id="apt-district-val">Watson // Little China</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Complexo:</span>
+                <span class="info-val" id="apt-building-val">Megabuilding H10</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Capacidade de Mobília:</span>
+                <span class="info-val" id="apt-capacity-val">0 / 60 peças</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Status da Fechadura:</span>
+                <span class="info-val secure" id="apt-lock-val">TRANCADO</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Vencimento do Aluguel:</span>
+                <span class="info-val" id="apt-rent-due-val">Sem contrato ativo</span>
+              </div>
+            </div>
+
+            <!-- Coluna Direita: Ações Comerciais e Acesso -->
+            <div class="overview-actions-card">
+              <h2 class="card-title">// OPERAÇÕES RESIDENCIAIS</h2>
+              <div class="actions-stack">
+                <button id="btn-enter-apartment" class="btn-action-primary">
+                  [ ENTRAR NO APARTAMENTO ]
+                </button>
+                <button id="btn-rent-apartment" class="btn-action-secondary">
+                  ALUGAR IMÓVEL (E$ <span id="apt-rent-price">350</span> / 3 dias)
+                </button>
+                <button id="btn-buy-apartment" class="btn-action-secondary">
+                  COMPRA DEFINITIVA (E$ <span id="apt-buy-price">18.000</span>)
+                </button>
+                <button id="btn-start-build" class="btn-action-accent">
+                  MODO DECORAÇÃO LIVRE (POLYZONE)
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Aba 2: Catálogo de Mobílias (Build Mode) -->
+        <section id="tab-catalog" class="tab-pane">
+          <div class="catalog-filter-bar">
+            <button class="cat-filter-btn active" data-cat="all">TODOS</button>
+            <button class="cat-filter-btn" data-cat="beds">CAMAS</button>
+            <button class="cat-filter-btn" data-cat="seating">ASSENTOS</button>
+            <button class="cat-filter-btn" data-cat="tables">MESAS</button>
+            <button class="cat-filter-btn" data-cat="sanitary">SANITÁRIO</button>
+            <button class="cat-filter-btn" data-cat="decor">DECORAÇÃO</button>
+          </div>
+
+          <div class="furniture-catalog-scroll" id="catalog-list">
+            <!-- Cards de mobília injetados dinamicamente via app.js -->
+          </div>
+        </section>
+      </main>
+
+      <!-- Rodapé Decorativo -->
+      <footer class="panel-footer">
+        <div class="footer-left">
+          <span>KIROSHI NEURAL HOUSING INTERFACE © 2077</span>
+        </div>
+        <div class="footer-right">
+          <span>Use <kbd>ESC</kbd> para fechar ou retornar</span>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

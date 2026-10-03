@@ -1,0 +1,32 @@
+[
+  {
+    "atUtc": "2026-10-01T16:03:24.3075909\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-01T16:03:24.3143126\u002B00:00",
+    "kind": "connect-request",
+    "detail": "147.185.221.213:5494"
+  },
+  {
+    "atUtc": "2026-10-01T16:05:02.1526128\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-01T16:05:02.1527268\u002B00:00",
+    "kind": "connect-request",
+    "detail": "127.0.0.1:11778"
+  },
+  {
+    "atUtc": "2026-10-01T16:05:04.2004022\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "handshaking"
+  },
+  {
+    "atUtc": "2026-10-01T16:05:05.2050966\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "rejected"
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "files.associations": {
+    "open77.lua": "plaintext",
+    "**/open77.lua": "plaintext"
+  },
+  "Lua.runtime.version": "Lua 5.4",
+  "Lua.workspace.library": [
+    "${workspaceFolder}/Server/open77-client.d.lua",
+    "${workspaceFolder}/Server/open77-server.d.lua",
+    "${workspaceFolder}/Server/open77-manifest.d.lua",
+    "~\\AppData\\Roaming\\Antigravity IDE\\User\\globalStorage\\slantingstds.cfxlua-openvsx\\library\\runtime",
+    "~\\AppData\\Roaming\\Antigravity IDE\\User\\globalStorage\\slantingstds.cfxlua-openvsx\\library\\natives\\CFX-NATIVE",
+    "~\\AppData\\Roaming\\Antigravity IDE\\User\\globalStorage\\slantingstds.cfxlua-openvsx\\library\\natives\\GTAV"
+  ],
+  "Lua.workspace.ignoreDir": [
+    "Server/resources/system",
+    "Server/resources/gamemodes/freeroam",
+    "**/open77.lua",
+    ".vscode",
+    ".git",
+    ".github",
+    "node_modules",
+    "\\[cfx\\]"
+  ],
+  "Lua.diagnostics.ignoredFiles": "Disable",
+  "Lua.diagnostics.globals": [
+    "Open77",
+    "LS",
+    "Core",
+    "CoreConfig",
+    "Database",
+    "Migrations",
+    "CacheService",
+    "Placement",
+    "DataReady",
+    "MySQL",
+    "json",
+    "exports",
+    "source",
+    "CreateThread",
+    "Wait",
+    "SetTimeout",
+    "GetGameTimer",
+    "TriggerEvent",
+    "TriggerLocalEvent",
+    "TriggerClientEvent",
+    "TriggerServerEvent",
+    "TriggerLatentClientEvent",
+    "RegisterNetEvent",
+    "AddEventHandler",
+    "RegisterCommand",
+    "GetCurrentResourceName",
+    "GetInvokingResource",
+    "GetInvokingResourceGeneration",
+    "RegisterKeyMapping",
+    "GetPlayerName",
+    "Player",
+    "WebUI",
+    "SetPlayerRoutingBucket",
+    "SetRoutingBucketPopulationEnabled",
+    "SetRoutingBucketEntityLockdownMode"
+  ],
+  "Lua.diagnostics.disable": [
+    "lowercase-global",
+    "duplicate-doc-field"
+  ]
+}

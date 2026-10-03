@@ -1,0 +1,169 @@
+{
+  "schema": "op77.incident/1",
+  "incidentId": "4671bf99-2690-4556-aaec-1ed56ef1442e",
+  "kind": "manual",
+  "occurredAtUtc": "2026-10-02T22:50:40.1904873\u002B00:00",
+  "collectedAtUtc": "2026-10-02T22:50:40.5532604\u002B00:00",
+  "processId": null,
+  "processStartedAtUtc": null,
+  "exitCode": null,
+  "lastPhase": null,
+  "server": {
+    "id": "38d7c275-be7a-4ece-b0d2-7c8ac12ac265",
+    "endpoint": "26.102.47.161:11778",
+    "version": "0.1.0",
+    "protocol": "1.44",
+    "gameBuild": 23100,
+    "requiredModsDigest": null,
+    "observedAtUtc": "2026-10-02T22:39:49.4256737\u002B00:00"
+  },
+  "description": "",
+  "fault": {
+    "exceptionCode": null,
+    "moduleOffset": null,
+    "fingerprint": "096a80684315f98c3e663ee4bb8995f35c8523f6aad87fc3701871d7367123ff",
+    "confidence": "coarse-do-not-assume-same-root-cause",
+    "evidencePath": null
+  },
+  "versions": {
+    "launcher": "2.31.21\u002Bop77.121",
+    "clientPackage": "2.31.21\u002Bop77.124",
+    "clientSha256": "8e3e4a672bc1fbf479face4a5c6af3cc33752a0454174de96118dd4af874d1b0",
+    "installedPackages": {
+      "cybercmd-compat": "0.0.0\u002Bcontent.497769dd7da4",
+      "open77-core": "2.31.21\u002Bop77.124",
+      "open77-webui": "2.31.21\u002Bop77.124",
+      "red4ext": "1.30.0\u002Bcontent.0d8ae532b623",
+      "redscript": "0.0.0\u002Bcontent.31f79822adfc"
+    },
+    "sourceCommit": null,
+    "observation": "Files hashed at collection time. Compare runtime.json compatibility artifacts for preconnection hashes; neither proves loaded module identity when joining an already-running game."
+  },
+  "system": {
+    "os": "Microsoft Windows 10.0.26200",
+    "architecture": "X64",
+    "runtime": ".NET 10.0.10",
+    "processors": 12
+  },
+  "privacy": {
+    "policy": "diagnostics-v1",
+    "sensitive": false,
+    "memoryDumpIncluded": false,
+    "redaction": "allowlisted collection plus best-effort text scrubbing; review before sharing",
+    "excludes": [
+      "account sessions",
+      "credentials",
+      "saves",
+      "screenshots",
+      "voice recordings",
+      "browser databases"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "report.txt",
+      "bytes": 129,
+      "sha256": "f4d12d99867ce09466410fc69092715b0efbbad27b3746215e051ae1c452e1fb",
+      "status": "collected"
+    },
+    {
+      "path": "launcher.log",
+      "bytes": 231335,
+      "sha256": "d75c664e2835969f5654c3d0753d82ccd2e6f31d852f1b114f20ef58c0805ebb",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/red4ext-2026-10-02-19-39-49.log",
+      "bytes": 2062,
+      "sha256": "2b85945a647051af6dd51a8ba0bd0d6ecd353b97537063240e8a8474a68ac91e",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/open77-2026-10-02-19-39-50.log",
+      "bytes": 524288,
+      "sha256": "890bcc49eb41411d9e69108e1673b675f5aa47fda7c8f91fe332c8f63c445fc6",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/red4ext-2026-10-02-19-09-09.log",
+      "bytes": 2062,
+      "sha256": "9efe8959652603e2fdc47bdf459b68f2fa94859bbfa45e4be06736971546e25c",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/open77-2026-10-02-19-09-10.log",
+      "bytes": 463577,
+      "sha256": "4bfd523b8c4656e70c218a980b941d4f3b8ac6b8449896fb8130f1c7214859f6",
+      "status": "collected"
+    },
+    {
+      "path": "red4ext-logs/open77-crash-probe.log",
+      "bytes": 10553,
+      "sha256": "f1ee3a4cd1fd75081d9fa515ef574e7e72dfa0db0d681da1bbf258a96e6f634b",
+      "status": "collected"
+    },
+    {
+      "path": "r6-logs/redscript_rCURRENT.log",
+      "bytes": 1887,
+      "sha256": "fa509470d9f44615bd378ef639a44661cc7d11692ee7ab7608f08ed7d913046b",
+      "status": "collected"
+    },
+    {
+      "path": "state/projection.json",
+      "bytes": 100977,
+      "sha256": "c30b7dced49230965417446c8b3658c2ceacc4c320090c834ca0c5ffa3ef2c3a",
+      "status": "collected"
+    },
+    {
+      "path": "state/red4ext-ignored.json",
+      "bytes": 168,
+      "sha256": "5241efede97dc6093b19e29c1367d1682e5cb30aa8f17d5d2eec9bbeec9270ee",
+      "status": "collected"
+    },
+    {
+      "path": "state/installed.json",
+      "bytes": 223,
+      "sha256": "cf2f6238f3f258ba15017eb66c2a02d9e52ceec2a4543be7d8767f7863f86ffd",
+      "status": "collected"
+    },
+    {
+      "path": "resources.json",
+      "bytes": 10658,
+      "sha256": "15a48e1432b9a3ccf11b0aa43ab80a8f14e301625b80d5e62de9a1dd57dc22f6",
+      "status": "collected"
+    },
+    {
+      "path": "timeline.json",
+      "bytes": 16741,
+      "sha256": "99c3634918657e2258159e2a75b1f8389fb68c432ed6137f6554240d2ea0e90b",
+      "status": "collected"
+    },
+    {
+      "path": "artifacts.json",
+      "bytes": 18999,
+      "sha256": "08da4b89d8eaf193806c89218ddf4ab37231d8d523949f6558e612d18e5b17d7",
+      "status": "collected"
+    },
+    {
+      "path": "symbols.json",
+      "bytes": 613,
+      "sha256": "856f33bd509a906a557cdc0613a2c9c40dc14c78569c6706d981ccf188a91fac",
+      "status": "collected"
+    },
+    {
+      "path": "runtime.json",
+      "bytes": 33637,
+      "sha256": "8723ff63abf3f4ff811604608b62991539f63d89886d2478a2c830d54070db3f",
+      "status": "collected"
+    }
+  ],
+  "missingEvidence": [
+    "No fresh crash probe for this incident; absence is not proof of a clean exit.",
+    "No matching REDengine crash report. First-chance exceptions and forced termination are not automatically fatal engine crashes."
+  ],
+  "diagnosis": {
+    "rootCause": null,
+    "status": "not-established",
+    "instruction": "Observations and fingerprints are not proof of causality."
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "atUtc": "2026-10-02T17:53:00.326326\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:00.3348941\u002B00:00",
+    "kind": "connect-request",
+    "detail": "26.102.47.161:11778"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:16.1338427\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "failed"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:34.6485979\u002B00:00",
+    "kind": "process-exit",
+    "detail": "0x00000000"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:41.1291073\u002B00:00",
+    "kind": "compatibility",
+    "detail": "known-checks-passed; native-handshake-required"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:41.1292096\u002B00:00",
+    "kind": "connect-request",
+    "detail": "26.102.47.161:11778"
+  },
+  {
+    "atUtc": "2026-10-02T17:53:56.8889832\u002B00:00",
+    "kind": "connection-phase",
+    "detail": "failed"
+  }
+]

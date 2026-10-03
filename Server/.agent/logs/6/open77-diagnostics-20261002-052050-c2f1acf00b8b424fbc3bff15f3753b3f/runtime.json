@@ -1,0 +1,3 @@
+{
+  "clock": "{\r\n  \u0022status\u0022: \u0022ok\u0022,\r\n  \u0022reason\u0022: \u0022measured\u0022,\r\n  \u0022checkedAtUtc\u0022: \u00222026-10-02T05:20:40.6358698\u002B00:00\u0022,\r\n  \u0022offsetSeconds\u0022: 1.4,\r\n  \u0022uncertaintySeconds\u0022: 1.2,\r\n  \u0022serverUtc\u0022: \u00222026-10-02T05:20:39\u002B00:00\u0022,\r\n  \u0022localUtc\u0022: \u00222026-10-02T05:20:40.447449\u002B00:00\u0022,\r\n  \u0022warning\u0022: false\r\n}"
+}

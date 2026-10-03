@@ -1,0 +1,23 @@
+New Client/Server
+Added native loading-screen detection, including screens triggered by long-distance teleports.
+Added Lua loading state queries and start/change/finish events, allowing custom WebUI overlays and HUD visibility management.
+Added replicated, animated vehicle seat switching.
+Added client/server Lua controls to request, inspect and cancel seat changes, and enable or disable automatic driver-seat takeover.
+Added seat reservations, transition timeouts and cancellation recovery to prevent conflicting seat changes.
+Improved remote steering-wheel rotation and driver hand placement to match the driver’s full steering range.
+Removed additional steering smoothing that delayed the rotation seen by other players.
+Added steering presentation recovery after combat, seat changes, driver handoffs and vehicle streaming.
+Added Lua Open77.vehicles.getSteeringInput() and Open77.vehicles.getSteeringWheelAngle().
+Fixed remote ability sounds playing as local audio. Double jump, dash, Overdrive and other covered cyberware cues now use spatial sounds for observers.
+Added distance filtering and cleanup for these sounds. Out-of-range or unstreamed players no longer trigger them, and missed sounds are not replayed later.
+Disabled vanilla ground pickups, corpse looting, loot highlights, shard/journal actions and quest-item inspection during multiplayer.
+Preserved server-managed loot and fixed a streaming race that could hide server drops.
+Fixed a reproduced vanilla loot-interaction crash and corrected related journal bindings.
+Fixed pending loot cleanup being skipped at the per-frame processing limit.
+Expanded crash diagnostics with additional CPU register information.
+Added documentation and example resources for custom loading screens, seat switching and steering APIs.
+
+Client and server now use protocol 1.44; update both.
+Version
+Build .124
+Open//77 · Changelog #17

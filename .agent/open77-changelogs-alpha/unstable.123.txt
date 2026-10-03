@@ -1,0 +1,7 @@
+Fixed a loot-interaction crash caused by incorrect reference ownership.
+Corrected journal wrapper signatures.
+Disabled vanilla pickups, corpse looting, loot highlights, shard/journal actions and quest-item inspection in multiplayer.
+Added an early native guard against vanilla loot interactions.
+Fixed server-managed loot being hidden during world streaming.
+Fixed pending loot cleanup entries being dropped.
+Expanded crash diagnostics with additional CPU registers.

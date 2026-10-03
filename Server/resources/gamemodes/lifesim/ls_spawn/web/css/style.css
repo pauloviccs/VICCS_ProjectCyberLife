@@ -1,0 +1,588 @@
+/* =============================================================================
+   LIFESIM RP - Kiroshi Holographic Spawn Selector Stylesheet
+   Path: ls_spawn/web/css/style.css
+   ============================================================================= */
+
+@import url('../open77-ui.css');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  background: transparent;
+  font-family: var(--op77-font-body);
+  color: var(--op77-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =============================================================================
+   CONTAINER E AMBIENTAÇÃO HOLOGRÁFICA
+   ============================================================================= */
+
+.spawn-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99990;
+  background: radial-gradient(circle at center, rgba(10, 18, 32, 0.65) 0%, rgba(4, 7, 13, 0.94) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: opacity var(--op77-dur-slow) var(--op77-ease);
+}
+
+.spawn-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.hologram-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    linear-gradient(rgba(34, 216, 226, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 216, 226, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.7;
+}
+
+.vignette-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.85);
+}
+
+/* =============================================================================
+   TERMINAL CENTRAL KIROSHI
+   ============================================================================= */
+
+.spawn-terminal {
+  position: relative;
+  width: clamp(920px, 86vw, 1380px);
+  height: clamp(580px, 84vh, 860px);
+  background: rgba(10, 18, 30, 0.92);
+  border: 1px solid var(--op77-accent-line);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 32px rgba(34, 216, 226, 0.12);
+  clip-path: polygon(
+    0 16px, 16px 0, 
+    calc(100% - 16px) 0, 100% 16px, 
+    100% calc(100% - 16px), calc(100% - 16px) 100%, 
+    16px 100%, 0 calc(100% - 16px)
+  );
+  display: flex;
+  flex-direction: column;
+  padding: clamp(16px, 2vw, 24px);
+  z-index: 10;
+}
+
+/* L-Brackets Kiroshi */
+.hologram-bracket {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  border: 2px solid var(--op77-accent);
+  filter: drop-shadow(0 0 6px var(--op77-accent));
+}
+
+.hologram-bracket.tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+.hologram-bracket.tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+.hologram-bracket.bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+.hologram-bracket.br { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
+/* =============================================================================
+   BARRA SUPERIOR (HEADER)
+   ============================================================================= */
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(174, 211, 224, 0.15);
+  margin-bottom: 16px;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-sub {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-micro);
+  letter-spacing: var(--op77-track-micro);
+  color: var(--op77-text-dim);
+}
+
+.terminal-title {
+  font-family: var(--op77-font-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(34, 216, 226, 0.4);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sync-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34, 216, 226, 0.1);
+  padding: 4px 10px;
+  border: 1px solid rgba(34, 216, 226, 0.3);
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  letter-spacing: 0.1em;
+  color: var(--op77-accent);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--op77-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--op77-accent);
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.timeout-timer {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  color: var(--op77-text-dim);
+}
+
+/* =============================================================================
+   CORPO PRINCIPAL (GRID DUPLO)
+   ============================================================================= */
+
+.terminal-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: clamp(340px, 36%, 440px) 1fr;
+  gap: clamp(14px, 1.6vw, 24px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Coluna Esquerda: Filtros e Lista */
+.spawn-selector-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid rgba(174, 211, 224, 0.12);
+  padding-right: 14px;
+}
+
+.selector-filter-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.filter-btn {
+  flex: 1;
+  background: rgba(16, 27, 43, 0.7);
+  border: 1px solid rgba(174, 211, 224, 0.18);
+  color: var(--op77-text-dim);
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 4px;
+  cursor: pointer;
+  transition: all var(--op77-dur-fast) var(--op77-ease);
+}
+
+.filter-btn:hover {
+  color: #fff;
+  border-color: var(--op77-accent);
+  background: rgba(34, 216, 226, 0.15);
+}
+
+.filter-btn.active {
+  background: var(--op77-accent);
+  color: var(--op77-ink);
+  border-color: var(--op77-accent);
+  font-weight: 900;
+  box-shadow: 0 0 12px rgba(34, 216, 226, 0.4);
+}
+
+.spawn-list-scroll {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 6px;
+}
+
+.spawn-list-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.spawn-list-scroll::-webkit-scrollbar-track {
+  background: rgba(6, 10, 18, 0.5);
+}
+.spawn-list-scroll::-webkit-scrollbar-thumb {
+  background: var(--op77-accent-line);
+}
+
+/* Card de Ponto de Spawn na Lista */
+.spawn-card {
+  position: relative;
+  background: rgba(16, 27, 43, 0.65);
+  border: 1px solid rgba(174, 211, 224, 0.14);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all var(--op77-dur) var(--op77-ease);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.spawn-card:hover {
+  background: rgba(22, 38, 60, 0.85);
+  border-color: rgba(34, 216, 226, 0.4);
+  transform: translateX(4px);
+}
+
+.spawn-card.selected {
+  background: rgba(18, 38, 58, 0.95);
+  border-color: var(--op77-accent);
+  border-left: 4px solid var(--op77-accent);
+  box-shadow: inset 0 0 16px rgba(34, 216, 226, 0.15), 0 4px 14px rgba(0, 0, 0, 0.4);
+  transform: translateX(6px);
+}
+
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.card-badge {
+  font-family: var(--op77-font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+  background: rgba(34, 216, 226, 0.12);
+  color: var(--op77-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-threat-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.threat-1 { background: #00ff9d; box-shadow: 0 0 6px #00ff9d; }
+.threat-2 { background: #fcee0a; box-shadow: 0 0 6px #fcee0a; }
+.threat-3 { background: #ff7700; box-shadow: 0 0 6px #ff7700; }
+.threat-4 { background: #ff003c; box-shadow: 0 0 6px #ff003c; }
+
+.card-name {
+  font-family: var(--op77-font-display);
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.card-district {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  color: var(--op77-text-dim);
+}
+
+.list-hint-bar {
+  margin-top: 8px;
+  font-family: var(--op77-font-mono);
+  font-size: 10px;
+  color: var(--op77-text-dim);
+  text-align: center;
+}
+
+/* =============================================================================
+   COLUNA DIREITA (PAINEL DE DETALHES)
+   ============================================================================= */
+
+.spawn-details-column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.details-card-wrapper {
+  position: relative;
+  flex: 1;
+  background: rgba(13, 22, 36, 0.85);
+  border: 1px solid rgba(174, 211, 224, 0.18);
+  padding: clamp(16px, 1.8vw, 24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+.card-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border: 1px solid var(--op77-accent);
+}
+.card-bracket.tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+.card-bracket.tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+.card-bracket.bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+.card-bracket.br { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
+.details-top {
+  margin-bottom: 12px;
+}
+
+.details-header-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.location-badge {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  letter-spacing: 0.16em;
+  background: rgba(34, 216, 226, 0.16);
+  color: var(--op77-accent);
+  padding: 3px 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.threat-badge {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.threat-badge.safe { background: rgba(0, 255, 157, 0.14); color: #00ff9d; border: 1px solid rgba(0, 255, 157, 0.3); }
+.threat-badge.medium { background: rgba(252, 238, 10, 0.14); color: #fcee0a; border: 1px solid rgba(252, 238, 10, 0.3); }
+.threat-badge.danger { background: rgba(255, 0, 60, 0.14); color: #ff003c; border: 1px solid rgba(255, 0, 60, 0.3); }
+
+.location-name {
+  font-family: var(--op77-font-display);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.location-breadcrumbs {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-meta);
+  letter-spacing: 0.1em;
+  color: var(--op77-text-dim);
+}
+
+/* Radar & Grid Telemetria Canvas */
+.radar-preview-container {
+  position: relative;
+  width: 100%;
+  height: clamp(140px, 18vh, 200px);
+  background: rgba(6, 10, 18, 0.9);
+  border: 1px solid rgba(34, 216, 226, 0.25);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+#radar-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.radar-hud-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radar-coords {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  color: var(--op77-accent);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 6px var(--op77-accent);
+}
+
+.radar-tag {
+  font-family: var(--op77-font-mono);
+  font-size: 8.5px;
+  color: var(--op77-text-dim);
+  letter-spacing: 0.18em;
+  align-self: flex-end;
+}
+
+/* Conteúdo Operacional */
+.details-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-label {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-micro);
+  letter-spacing: var(--op77-track-micro);
+  color: var(--op77-accent);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.description-text {
+  font-size: clamp(13px, 1vw, 14.5px);
+  line-height: 1.55;
+  color: #cfd8dc;
+}
+
+.transit-info-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 27, 43, 0.6);
+  border-left: 3px solid var(--op77-accent);
+  padding: 6px 10px;
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-meta);
+  color: var(--op77-text);
+}
+
+.transit-icon {
+  color: var(--op77-accent);
+  font-size: 14px;
+}
+
+/* Ações e Botão de Confirmação */
+.details-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-spawn-primary {
+  width: 100%;
+  background: var(--op77-accent);
+  color: var(--op77-ink);
+  border: none;
+  font-family: var(--op77-font-display);
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: clamp(12px, 1.2vw, 16px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  box-shadow: 0 0 24px rgba(34, 216, 226, 0.4);
+  transition: all var(--op77-dur-fast) var(--op77-ease);
+}
+
+.btn-spawn-primary:hover {
+  background: var(--op77-accent-ice);
+  box-shadow: 0 0 36px rgba(112, 243, 245, 0.7);
+  transform: translateY(-2px);
+}
+
+.btn-spawn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-bracket-left, .btn-bracket-right {
+  font-weight: 900;
+  opacity: 0.8;
+}
+
+.action-shortcut-hint {
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-label);
+  color: var(--op77-text-dim);
+  text-align: center;
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  background: rgba(16, 27, 43, 0.9);
+  border: 1px solid rgba(174, 211, 224, 0.3);
+  color: var(--op77-accent);
+  font-family: var(--op77-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* =============================================================================
+   RODAPÉ DO TERMINAL
+   ============================================================================= */
+
+.terminal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(174, 211, 224, 0.12);
+  font-family: var(--op77-font-mono);
+  font-size: var(--op77-fs-micro);
+  color: var(--op77-text-faint);
+  letter-spacing: var(--op77-track-micro);
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-indicator-green {
+  color: #00ff9d;
+  font-weight: 700;
+}

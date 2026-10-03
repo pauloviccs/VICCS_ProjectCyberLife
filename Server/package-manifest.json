@@ -1,0 +1,3677 @@
+{
+  "version": "2.31.21+op77.124",
+  "runtime": "win-x64",
+  "clientVersion": "2.31.21+op77.124",
+  "baseCommit": "eb3ae674e96200e57d398656a145fb409ce97afd",
+  "workingTreeSnapshot": false,
+  "defaultTemplate": "freeroam",
+  "resources": {
+    "polyzone": "polyzone",
+    "open77_contextmenu": "system/open77_contextmenu",
+    "open77_admin": "system/open77_admin",
+    "open77_shell": "system/open77_shell",
+    "open77_pause": "system/open77_pause",
+    "open77_watermark": "system/open77_watermark",
+    "open77_chat": "system/open77_chat",
+    "open77_voice": "system/open77_voice",
+    "open-voice": "system/open-voice",
+    "open77_weather": "system/open77_weather",
+    "open77_nameplates": "system/open77_nameplates",
+    "open77_blips": "system/open77_blips",
+    "open77_notifications": "system/open77_notifications",
+    "open77_death": "system/open77_death",
+    "open77_appearance": "system/open77_appearance",
+    "open77_cyberware": "system/open77_cyberware",
+    "open77_prediction": "system/open77_prediction",
+    "open77_dash": "system/open77_dash",
+    "open77_reflex": "system/open77_reflex",
+    "open77_cyberware_lab": "gamemodes/open77_cyberware_lab",
+    "open77_effects": "system/open77_effects",
+    "open77_equipment": "open77_equipment",
+    "open77_wardrobe": "open77_wardrobe",
+    "open77_wardrobe_ui": "system/open77_wardrobe_ui",
+    "open77_perspective": "system/open77_perspective",
+    "open77_animations": "system/open77_animations",
+    "open77_prevention": "system/open77_prevention",
+    "open77_player_interactions": "system/open77_player_interactions",
+    "open77_vehicles": "system/open77_vehicles",
+    "open77_elevators": "system/open77_elevators",
+    "open77_doors": "system/open77_doors",
+    "open77_weapons": "system/open77_weapons",
+    "open77_props": "system/open77_props",
+    "open77_media": "system/open77_media",
+    "open77_remote_camera": "system/open77_remote_camera",
+    "open77_interactions": "system/open77_interactions",
+    "open77_worldui": "system/open77_worldui",
+    "open77_zones": "system/open77_zones",
+    "freeroam": "gamemodes/freeroam",
+    "open77_freeroam": "gamemodes/open77_freeroam"
+  },
+  "files": [
+    {
+      "path": "GameNetworkingSockets.dll",
+      "size": 1643008,
+      "sha256": "1d60801e8692ae06c90262651327e74a845e5fad7a4fce78ff48940037913e14"
+    },
+    {
+      "path": "KeraLua.dll",
+      "size": 30720,
+      "sha256": "a0ec77ce05fb711208f32b50bf2fd0bf2cf6fbfc087a22df2534f243e3f03f7e"
+    },
+    {
+      "path": "LICENSE",
+      "size": 4705,
+      "sha256": "fb1cef6722132ff7b709a10aee1c95aa33569a0842e6e8de04f0ac07a3981727"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Antiforgery.dll",
+      "size": 120616,
+      "sha256": "96ecaf0438b711e1234fbf97288dd1fcba040d4cb0594e209bf62902f1367b46"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authentication.Abstractions.dll",
+      "size": 67408,
+      "sha256": "ab41b404913a0e72eafdb94eae7255a8ab6fb06e8b9a81241d0c6acb7442ecab"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authentication.BearerToken.dll",
+      "size": 71464,
+      "sha256": "c8fbb0095b6988b535c2bd566ae7a66d65f8f610588e617d53c1f4ab788aec89"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authentication.Cookies.dll",
+      "size": 116520,
+      "sha256": "0a504713145bcd416e9b84e3f2df0174a4dcff9bf0781bb656eb9b3647b72704"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authentication.Core.dll",
+      "size": 116520,
+      "sha256": "7890fd5ef0c06c979c1931784fbf5fb505992374cd6d7a8cdb4e1015ec664c2a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authentication.OAuth.dll",
+      "size": 100136,
+      "sha256": "e6a32b69d8711396eb0625c6edb0d24484fd3c01a0b04827c71b26d49916718b"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authentication.dll",
+      "size": 153384,
+      "sha256": "393ae81797a98b101cc7627d7098dd046f457f2ecf4311b943ea0ed8b49f4734"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authorization.Policy.dll",
+      "size": 75560,
+      "sha256": "03389cedfd1c0ed77821f7d0b6c3723c49c02a37f23532c548e78f8f3106f9e6"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Authorization.dll",
+      "size": 116520,
+      "sha256": "5493acfa6a7b0e876d4f28c61302192fd1225894f396404cc12cd8d3e7cf1807"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Components.Authorization.dll",
+      "size": 63272,
+      "sha256": "d75559884c105c6a1cce272059499ead6547aef371fb8ae0e9adadcd7c47b15d"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Components.Endpoints.dll",
+      "size": 706384,
+      "sha256": "1c06c558ed4368450c4469320d65521b45bbcccb3256cc81aaf0f5d876c66fe2"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Components.Forms.dll",
+      "size": 104232,
+      "sha256": "bee504e2c7eedbffa4b7b9d7a4652b70ea0c3c6d9ad1add6f30a220232ffbca7"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Components.Server.dll",
+      "size": 923432,
+      "sha256": "1addc6c91aa004b0c8dbe91d78b0f8bb1b841eac5450120a2b381f93d36864eb"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Components.Web.dll",
+      "size": 419624,
+      "sha256": "749ff5526348bf0d6183042e271c6a3da167e06394058b158afdcdb2ea249195"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Components.dll",
+      "size": 952144,
+      "sha256": "02737caa789d863ff1e2623b5a1fe69d1ff7bd93b1b4e4b6544eb037f378133c"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Connections.Abstractions.dll",
+      "size": 71464,
+      "sha256": "39f0696faf6ef2681d27e56634e9dd82764f4ca085b72136697f99467748941b"
+    },
+    {
+      "path": "Microsoft.AspNetCore.CookiePolicy.dll",
+      "size": 55080,
+      "sha256": "59cc04f2a28544823bc4afa184672e34e2bf87b595ddc39c8691557c27b952cf"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Cors.dll",
+      "size": 91944,
+      "sha256": "5c507f9e2ab681cf843c392c8311a6eb9239a1128fada0ecaa84f3d171ef3c49"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Cryptography.Internal.dll",
+      "size": 108328,
+      "sha256": "8cbcdce42e1a3f4a8a345d4311da094ed7d1b4f3b9031a8021596cba0160cf84"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
+      "size": 46928,
+      "sha256": "57b4736e856dae8c31a43e6f43ed0149f562477ac2ff5c1b993bcdbccd49feee"
+    },
+    {
+      "path": "Microsoft.AspNetCore.DataProtection.Abstractions.dll",
+      "size": 50984,
+      "sha256": "bf063bbf558d2c5fb08b0abb0588b5bfe4ab54e5bf6a60ee3580ef614553475f"
+    },
+    {
+      "path": "Microsoft.AspNetCore.DataProtection.Extensions.dll",
+      "size": 46928,
+      "sha256": "904b9f7090670c18635b7cf64c36beb581fd375903e2f0f9cc09dfa9490d20f8"
+    },
+    {
+      "path": "Microsoft.AspNetCore.DataProtection.dll",
+      "size": 456488,
+      "sha256": "2f0c31247336c188cbf6de6f53e1e0afe42b71c7c15b663aaf2f14a5d0e0b1ff"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Diagnostics.Abstractions.dll",
+      "size": 34600,
+      "sha256": "bf6ddcc367d87e9ad53b9f20beda78790f955e5b162b3c92ebb4d4393df78bdb"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Diagnostics.HealthChecks.dll",
+      "size": 50984,
+      "sha256": "0a81adf48697de978eacfb8eecab689bc06fa4d6c5786e6d57d8a6c74705f3aa"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Diagnostics.dll",
+      "size": 464680,
+      "sha256": "cb1b06b0ab1f43757d8651e7caa732f328f5326fb3274c199c959e58ee509ede"
+    },
+    {
+      "path": "Microsoft.AspNetCore.HostFiltering.dll",
+      "size": 50984,
+      "sha256": "c16a2ac59454b1830339c88935c1c4190e3bcd4659aa671f871d78295b2feb90"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Hosting.Abstractions.dll",
+      "size": 46888,
+      "sha256": "036f229211db847592bdfd4f115a9e327aa5166405d758c1bacf8b0245e154d1"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Hosting.Server.Abstractions.dll",
+      "size": 26408,
+      "sha256": "55d1641bb343c9443d14f05bf4ff02904abdfbb5fb84715b21f7d389029696c0"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Hosting.dll",
+      "size": 476968,
+      "sha256": "a3d17dabad13790920ac493d9d1d011a8a166cc151fb5c09a1fd90481bce141f"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Html.Abstractions.dll",
+      "size": 42792,
+      "sha256": "8f634327697b3eccd380beff7f73d4a68e984b673eea615d66e128e52d075d1e"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.Abstractions.dll",
+      "size": 325416,
+      "sha256": "713d53f0ed0e3d48c6bad7622335e839e3ac61d3737ffaaab2dd142b4ec7ee8a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.Connections.Common.dll",
+      "size": 55120,
+      "sha256": "3c4e2f48239992f71e9a3ccf362c91951333f34f63fdf2a74522aa04571d6aad"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.Connections.dll",
+      "size": 321360,
+      "sha256": "5739e8bf4d9e0d7f7a05de1274e7d41d08bf43a5e45af1ed8793ecb73a77497f"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.Extensions.dll",
+      "size": 739112,
+      "sha256": "178ae5a6b7d4ae47508770e8d3795417787773dece91dec45f89023778560510"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.Features.dll",
+      "size": 71504,
+      "sha256": "9a6a8dc0bd32bc06066c924e6eb2c4d4d87cd909b67f14d40106e40a37094376"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.Results.dll",
+      "size": 280360,
+      "sha256": "627081a250de90c4756a5c3780803cb1b0bdf9a27272320705b7eb4a4b14b6ff"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Http.dll",
+      "size": 300840,
+      "sha256": "482c909fe8de4be3a14e3c201444b6802f1854f1f7526f411fb1cd0460618630"
+    },
+    {
+      "path": "Microsoft.AspNetCore.HttpLogging.dll",
+      "size": 202536,
+      "sha256": "e648b2f0ed3ff55b1297092adbdc8d2c6e62c156c4cc69d174f93699fa102af5"
+    },
+    {
+      "path": "Microsoft.AspNetCore.HttpOverrides.dll",
+      "size": 87848,
+      "sha256": "f74efcbdbfae1cb5ed8c77b3a7c96c803a1ae8ec4734ee5fe578327da8ec3d66"
+    },
+    {
+      "path": "Microsoft.AspNetCore.HttpsPolicy.dll",
+      "size": 50984,
+      "sha256": "ab8067015047800d84a87d4749c5faecbbb3d7a54786ea3c82bb47af86c62ea6"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Identity.dll",
+      "size": 1001256,
+      "sha256": "1c41c0e4a6566e8ab8d7f2087b70fcc35a50d64bfbe543b6adb486b6bc0fbc99"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Localization.Routing.dll",
+      "size": 30544,
+      "sha256": "fc8f6908647917c8452ca7c554a619c4c50fbf3e4637ffbdb2a2b64bccbb43a5"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Localization.dll",
+      "size": 67408,
+      "sha256": "9b9db74b39f854995663a1732f76a7f43864581d63d21988f9d59c4dea6f2681"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Metadata.dll",
+      "size": 16168,
+      "sha256": "73ca0747e65d830df10ade86243f46d39a52f87cf601c90fb69054adb386ea9a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Abstractions.dll",
+      "size": 268112,
+      "sha256": "cfc735b80dc8cf83e412a11f1a1c542513303ef9e1fad096e8053f227a98511b"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.ApiExplorer.dll",
+      "size": 137000,
+      "sha256": "8670d48e4e5cef189e00ecc4ad59e8e27766b721e361efd09e175a1f2a413283"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Core.dll",
+      "size": 1931088,
+      "sha256": "4d0283f80b2ce893ef663bd09fba30024f48983915f98a905f3a92cb4f15e732"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Cors.dll",
+      "size": 51024,
+      "sha256": "faddf8584aaeeeb2c4ccb5c24b38b4e8fb294842373ed7c1785d02c0016cfae3"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.DataAnnotations.dll",
+      "size": 104232,
+      "sha256": "838f8dc92e052bbdb882f2d9ccc927de00f0b2fb934894629528c08d7e718cb4"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Formatters.Json.dll",
+      "size": 15696,
+      "sha256": "e9a958d92f2dba8e60bb011a16810a20e7595f2061bca254d7b94691ff83456f"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Formatters.Xml.dll",
+      "size": 116520,
+      "sha256": "8949a2c37607c34615b01e13d1cff5cf55fcb076bbd1f4539012db4b9ca2bcac"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Localization.dll",
+      "size": 50984,
+      "sha256": "47d14848989353c33e301c63c21f7671148bbe4f414c734df7b8519606701e0d"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.Razor.dll",
+      "size": 239400,
+      "sha256": "4af9f8d54f728d7eae0a6217b0cd5f0070521a040956711f3b943bbaa6c2a257"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.RazorPages.dll",
+      "size": 448336,
+      "sha256": "ebbaaa9ebaf572204a5f55b97b41bdb3f5e2a1897adb8bfff59b2afc05b55937"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.TagHelpers.dll",
+      "size": 284456,
+      "sha256": "ad2d8b5a9adb6d1f46c25ece8f8f8a4bd263c73f5a7754ee7112d0bc82376c8b"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.ViewFeatures.dll",
+      "size": 726864,
+      "sha256": "2f9a524d1de0ab46e6b6dc1d2c0258364a41c5d25acd3ae2f0e2ca32307cd9c0"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Mvc.dll",
+      "size": 42792,
+      "sha256": "7cf411c4fe98667741ef04e98d8ae1a87e49124380366362d4877241e472944d"
+    },
+    {
+      "path": "Microsoft.AspNetCore.OutputCaching.dll",
+      "size": 251728,
+      "sha256": "f64f7277ab8f71c2847053e4ce1d44d37e23f5b25eeaa961ec5b03168e98fbc2"
+    },
+    {
+      "path": "Microsoft.AspNetCore.RateLimiting.dll",
+      "size": 108368,
+      "sha256": "d39490236f1aa32f8981e81f749284f98b4bed4470655e3a3ec1afcb65c9081b"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Razor.Runtime.dll",
+      "size": 75600,
+      "sha256": "679f4a76d4e089bbc8adb6c3df80c4d0acb802b2cabcc5c1291f2e14db762784"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Razor.dll",
+      "size": 67368,
+      "sha256": "d92db379c5fc7e31c7125c859b4f007132940a0b6c1a7b485866245ab69b1683"
+    },
+    {
+      "path": "Microsoft.AspNetCore.RequestDecompression.dll",
+      "size": 50984,
+      "sha256": "bb479386b46edcdb280b85606fe52badd369b666307fecec2b7d9a8a2afac5c5"
+    },
+    {
+      "path": "Microsoft.AspNetCore.ResponseCaching.Abstractions.dll",
+      "size": 16168,
+      "sha256": "51dfafdc2fcaffd42d6d33474da860b7efe8735c723e181e2395a507642401fd"
+    },
+    {
+      "path": "Microsoft.AspNetCore.ResponseCaching.dll",
+      "size": 149288,
+      "sha256": "e23ed69c5efb5200a431c42bd7b27753ed743c796d59f087829ce6a42d579df3"
+    },
+    {
+      "path": "Microsoft.AspNetCore.ResponseCompression.dll",
+      "size": 79696,
+      "sha256": "1ce9abad5a98b9cb08cd28bb58dffad351106bd33250fbc09f6a2f315df2165f"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Rewrite.dll",
+      "size": 214824,
+      "sha256": "a3cb983d18c8dcbde8923ca0b813f29eb9e5d7de32bc7923dcb3d5b24a62b34a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Routing.Abstractions.dll",
+      "size": 59176,
+      "sha256": "0c1835b669d7af1e924e1c6f46203bb45e70b0d07e65b38ec5b9f5b3ac7def8a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Routing.dll",
+      "size": 861992,
+      "sha256": "d3cddd5b56c93f670a1decb05e454f7c71a616533bd446f5288228cd7e9e9eb9"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.HttpSys.dll",
+      "size": 816936,
+      "sha256": "3338a4bf98a83d4e950d478c258a7fe6f0d60ca3a5a46638bd3760f244d25e02"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.IIS.dll",
+      "size": 673576,
+      "sha256": "689d9ad5db873bdf5366cea7a271b95606997a5b98eb00b0ecc257df7f5b0ce7"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.IISIntegration.dll",
+      "size": 51024,
+      "sha256": "e0b59b966e2642194d08a3824f2a47393f756b2ca37370d21ce961eb7a08d63c"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.Kestrel.Core.dll",
+      "size": 2344784,
+      "sha256": "653edd556652eaceeae05069fcff0ef43d3c139ffca0e3136a4d8777cba7d56b"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll",
+      "size": 157480,
+      "sha256": "d0aba2fb4fd61bd8563f4ec4dce6b849d48d86c46b92560ff6a645198e69a3d3"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll",
+      "size": 247632,
+      "sha256": "2f3c8b5b783941e2df39df982b3086269dc92f711df0b9e29cca64afb56e4e91"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll",
+      "size": 137000,
+      "sha256": "80b5d8f44492207b134d5913e821179b1f91d0688c26a351b8caaaebd71b60a5"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Server.Kestrel.dll",
+      "size": 34600,
+      "sha256": "1c2784b7d16ecce1a4275a3ecd388c3ade16fbabd79be45cbfd6a75f5d03913d"
+    },
+    {
+      "path": "Microsoft.AspNetCore.Session.dll",
+      "size": 87848,
+      "sha256": "5af5d14d1461a82d9f58e1ec462df15e2893db0d7f7d9cf459408a1ca871e262"
+    },
+    {
+      "path": "Microsoft.AspNetCore.SignalR.Common.dll",
+      "size": 87848,
+      "sha256": "5e39a396f4395fa8abe1393cac874e49b8ea3a63c573d65ee1cf7475a00ab614"
+    },
+    {
+      "path": "Microsoft.AspNetCore.SignalR.Core.dll",
+      "size": 530256,
+      "sha256": "b180590bdaf426b701e4f6a81c2f850e5f5d0f2c3e5ddc8161d1b57f68c3bdb6"
+    },
+    {
+      "path": "Microsoft.AspNetCore.SignalR.Protocols.Json.dll",
+      "size": 83792,
+      "sha256": "bd152ed7e2d860de1eaa8465b746a5c92bd3ba360c994792f57708141ad321c3"
+    },
+    {
+      "path": "Microsoft.AspNetCore.SignalR.dll",
+      "size": 38736,
+      "sha256": "52977c911684b0ab9df7beaee1b8053d72e790691fbef1034defc407546a6d0a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.StaticAssets.dll",
+      "size": 194344,
+      "sha256": "68498f38e67403b69988bdb6bcd26b6e389ce1c1eb098b10f31b7afa61269450"
+    },
+    {
+      "path": "Microsoft.AspNetCore.StaticFiles.dll",
+      "size": 161576,
+      "sha256": "0ba1fb7b2fdaa8138ebfe897eb6b0a0280ea6533fd0bede153d7ac0ebd8bac49"
+    },
+    {
+      "path": "Microsoft.AspNetCore.WebSockets.dll",
+      "size": 79696,
+      "sha256": "bfd8880e6b1dc90a4525e31264e9309252311ea475d0b114331b3d31298b208a"
+    },
+    {
+      "path": "Microsoft.AspNetCore.WebUtilities.dll",
+      "size": 251688,
+      "sha256": "94241ef5646318fc303b70215ed0e4ca4e099ba6273da103b1c59a8e7f0f1c2c"
+    },
+    {
+      "path": "Microsoft.AspNetCore.dll",
+      "size": 116560,
+      "sha256": "52411581d5d00688ab625f2c02c503970b2098c1667ee4fb65f659e2a2d971b1"
+    },
+    {
+      "path": "Microsoft.CSharp.dll",
+      "size": 980816,
+      "sha256": "e140acec05bde933bf7075d501b6adb357b8e1c53c0519827731904fb2a3420f"
+    },
+    {
+      "path": "Microsoft.DiaSymReader.Native.amd64.dll",
+      "size": 2195504,
+      "sha256": "315a61c47c41b8d4c815f4274bb6584c1d24b4640c7eedc354ed5b03a9a1361e"
+    },
+    {
+      "path": "Microsoft.Extensions.Caching.Abstractions.dll",
+      "size": 75560,
+      "sha256": "ff42c0f3ee0d86a17f84f725c171f5f70f389cbeb0b6615c5cfd56ca39687e40"
+    },
+    {
+      "path": "Microsoft.Extensions.Caching.Memory.dll",
+      "size": 100136,
+      "sha256": "1e6b7b9ed7f8f99cd5c50fa77f208b8b90d544aef88ef88b9f3debd847a8c715"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.Abstractions.dll",
+      "size": 46888,
+      "sha256": "3a5512ec2ad3eec3e571e622e6e5b917c6d68c50ca0f864db4045979cf326b60"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.Binder.dll",
+      "size": 87888,
+      "sha256": "e827360fa870bfd2581bed7a6672c0bba3ba5c2481d2e5394e30e1cd19cb5867"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.CommandLine.dll",
+      "size": 46888,
+      "sha256": "2cbc0fce6e6cb124fb49c9adfd6d386cccfa3921f0c65c06cc84223b10586764"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.EnvironmentVariables.dll",
+      "size": 42832,
+      "sha256": "e2189502b931b0082705e3c08a7a8691f15150e2551971456363192fb8cc9abd"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.FileExtensions.dll",
+      "size": 50984,
+      "sha256": "4d051536fe6996ad6f14716075b9ccfcf9fa7139a6e1e2b8ad7330e508cba2c7"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.Ini.dll",
+      "size": 46928,
+      "sha256": "3627e5553db01ffe29b13616da468763e43d2e5f291cafbdbbe3f28dad438416"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.Json.dll",
+      "size": 50984,
+      "sha256": "1a16790eadbe8d3082d86dc592bc3cf7649304f74236330e967cbe5467835fc1"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.KeyPerFile.dll",
+      "size": 38696,
+      "sha256": "8900ee3defe70041103a547fa71e5f3c9309442686940fcd8b64ec6da0783d75"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.UserSecrets.dll",
+      "size": 46928,
+      "sha256": "6764e32463faaaf47b1ed103f38a4dd15a9c41bb1b57916dc225f2e0bd3d3082"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.Xml.dll",
+      "size": 63272,
+      "sha256": "c801e52ca0b286105782bb9dba8010d29bd6c727c78f4a5e0e5975ccbea1fb6d"
+    },
+    {
+      "path": "Microsoft.Extensions.Configuration.dll",
+      "size": 91984,
+      "sha256": "0f2ba15e1b24d845a1b13b291b5c276b8a62bb3662deab63c0b35fd8284b8d53"
+    },
+    {
+      "path": "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+      "size": 141136,
+      "sha256": "a572de8be49eaeb6433027222c3f825c8128d6f2e94bf722b84d0899c809a012"
+    },
+    {
+      "path": "Microsoft.Extensions.DependencyInjection.dll",
+      "size": 227112,
+      "sha256": "5ab16d6f50d785ef14f9322938a54f1555ed6760c5cd1abb5ad8eeeb7451f0be"
+    },
+    {
+      "path": "Microsoft.Extensions.Diagnostics.Abstractions.dll",
+      "size": 50984,
+      "sha256": "7cb90843079146baff4d0f3e371a7b76d861191a5d72ad2fc4583ded5988d2cf"
+    },
+    {
+      "path": "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll",
+      "size": 42792,
+      "sha256": "0b5fa9f6c48019a03c41b52ccd9b1236b42a73457732831d42088e54f3b32c65"
+    },
+    {
+      "path": "Microsoft.Extensions.Diagnostics.HealthChecks.dll",
+      "size": 108368,
+      "sha256": "624b5b148d82bcf30f0ed2a512aeb1b97eda721be3c876269a7a0b5197bbbcf9"
+    },
+    {
+      "path": "Microsoft.Extensions.Diagnostics.dll",
+      "size": 71464,
+      "sha256": "d2b38e934a18b2ee13c9ec7755b6463f22edf560bccae70060342e135cae1366"
+    },
+    {
+      "path": "Microsoft.Extensions.Features.dll",
+      "size": 46888,
+      "sha256": "a4d6ad0ef03c7dd458340eb5b0b1d03cb7e788318054b79c73c435ba69d7db43"
+    },
+    {
+      "path": "Microsoft.Extensions.FileProviders.Abstractions.dll",
+      "size": 38696,
+      "sha256": "5e1e29fd4cee2fac446eaeb83a357de83aead6474de83999f8ca02ce945b20d6"
+    },
+    {
+      "path": "Microsoft.Extensions.FileProviders.Composite.dll",
+      "size": 34600,
+      "sha256": "e6dbcaf950264a5e875f492eb9dd15de860b024a4756d4d7ad53bc02d8be64d7"
+    },
+    {
+      "path": "Microsoft.Extensions.FileProviders.Embedded.dll",
+      "size": 71504,
+      "sha256": "2476df687492fdea04c56e18b3812b0f2cdc8988845d26f0a4ed7b9c812b1b0d"
+    },
+    {
+      "path": "Microsoft.Extensions.FileProviders.Physical.dll",
+      "size": 91944,
+      "sha256": "21f7eb7134b88db62692b69cd7e8e1c7ac2668620178908e9b4b529765afc926"
+    },
+    {
+      "path": "Microsoft.Extensions.FileSystemGlobbing.dll",
+      "size": 100176,
+      "sha256": "3d1a1985a469715fc0d582946defd7029c93005950afe9d4357b1553cd90565b"
+    },
+    {
+      "path": "Microsoft.Extensions.Hosting.Abstractions.dll",
+      "size": 79656,
+      "sha256": "702cb671ae337106eadb0374611838930b323edc327ac95c77650a9678f3ee96"
+    },
+    {
+      "path": "Microsoft.Extensions.Hosting.dll",
+      "size": 149328,
+      "sha256": "b142b16d8e8c2550cc95941e8d7a90d7ff806fbd122779f0d187f6b9e5a6a8f5"
+    },
+    {
+      "path": "Microsoft.Extensions.Http.dll",
+      "size": 198440,
+      "sha256": "609c52651a392258876d420cef3a6770f382d8bdaa159b5b6ab52cac63212c95"
+    },
+    {
+      "path": "Microsoft.Extensions.Identity.Core.dll",
+      "size": 538448,
+      "sha256": "e3c2a382388aa88a9151d9e4f0354a7b0f096c0d53692ff96ff2293a9266fd21"
+    },
+    {
+      "path": "Microsoft.Extensions.Identity.Stores.dll",
+      "size": 87888,
+      "sha256": "d1bb83f6817cf2c3a5a97f8935a9a51e29987877124ee5eee372777a0ec36614"
+    },
+    {
+      "path": "Microsoft.Extensions.Localization.Abstractions.dll",
+      "size": 34600,
+      "sha256": "3bcf0c3769104fe144c51594c20109d522fe1440aa2448b5d409c76e341e1e07"
+    },
+    {
+      "path": "Microsoft.Extensions.Localization.dll",
+      "size": 59216,
+      "sha256": "fdd131159216093cba820da5d791e4f640ec0919dfd29e8487dd9c76fcdd86c1"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.Abstractions.dll",
+      "size": 153424,
+      "sha256": "0fc9b3594f126f1df4ba4e7d3d185e572d6bb9615ca3497094d681fbe60dc800"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.Configuration.dll",
+      "size": 46928,
+      "sha256": "630f191b56994826ab2f49c1cb9fb4dfc18503e89e74e760d74e99d9f73784bd"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.Console.dll",
+      "size": 165672,
+      "sha256": "71240934e51ac2e8c470dfae9818babb1795913e0f8e8420e28e5e0b2c0c32e4"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.Debug.dll",
+      "size": 34640,
+      "sha256": "01f5c895b721f2d1e9cf8b69cf444ebdff1e1e6a6385967c7d5cdd95736fdf92"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.EventLog.dll",
+      "size": 46888,
+      "sha256": "0cb7aaae9fffeed284331542b07428a67557ab8c2b27e31afa78681de9540a19"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.EventSource.dll",
+      "size": 63312,
+      "sha256": "fda308e6afade6ee5d5f69a8d00b0863bdd0fbe5bb5014f12ddcc2b647cdb295"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.TraceSource.dll",
+      "size": 38696,
+      "sha256": "ce3416e8bb0bc8f9ccdbd5f12aff487ed49f1ca8315a5a867d61f9b078cf837f"
+    },
+    {
+      "path": "Microsoft.Extensions.Logging.dll",
+      "size": 100136,
+      "sha256": "878b6ca90c4cb5ba610178cd1de2769f1758d03108a244fba070c098a7d10288"
+    },
+    {
+      "path": "Microsoft.Extensions.ObjectPool.dll",
+      "size": 42792,
+      "sha256": "796a4c88459fa7cb44df50e27e09bb0c348aad4b1b624d203bb0655d6ef80dd4"
+    },
+    {
+      "path": "Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+      "size": 38736,
+      "sha256": "0c9db74f16e2cb6443922bd80e16e11448a282511fe1f404a2349821828e6d7a"
+    },
+    {
+      "path": "Microsoft.Extensions.Options.DataAnnotations.dll",
+      "size": 38696,
+      "sha256": "5d927b4e2633cd59d7ed94def8bbaf87b490aa99a1e69ed3ca95dddedb379d4f"
+    },
+    {
+      "path": "Microsoft.Extensions.Options.dll",
+      "size": 141136,
+      "sha256": "bb1cf5a2753fb0a8674e77004f98bc210eabc53c09fadc6521bd6cec6e094770"
+    },
+    {
+      "path": "Microsoft.Extensions.Primitives.dll",
+      "size": 83752,
+      "sha256": "a5dc7ba841adeea9af83188de812016d256286339ebd6fa5a80a9c24f0e1725f"
+    },
+    {
+      "path": "Microsoft.Extensions.Validation.dll",
+      "size": 87848,
+      "sha256": "4b9f08a3c6fb46dfa2f4bcf2715ec81ba1e98502c197fae6a5e4b5ca0048347b"
+    },
+    {
+      "path": "Microsoft.Extensions.WebEncoders.dll",
+      "size": 38696,
+      "sha256": "56d873b80b02d26deb34b7fa29d026141d219c8a3caae5fb1dd56e226823a193"
+    },
+    {
+      "path": "Microsoft.JSInterop.dll",
+      "size": 169768,
+      "sha256": "e7b6743f2f160725bac99e400eb424de81be2f763f2489ad4a5345ce2d944b1c"
+    },
+    {
+      "path": "Microsoft.Net.Http.Headers.dll",
+      "size": 218920,
+      "sha256": "3ea64c07b739fac9bbe77c1d44af4c722303d11bb6d3a4d743a9b09a8382cf23"
+    },
+    {
+      "path": "Microsoft.VisualBasic.Core.dll",
+      "size": 1193768,
+      "sha256": "897f3d3938b03156202acf780bbe156227e034785bd17305b17657c911c62203"
+    },
+    {
+      "path": "Microsoft.VisualBasic.dll",
+      "size": 17192,
+      "sha256": "d58ecdaef545a533ecd96f4bf2d1e73f5f0fa7615f37e68859ee19a6ecdd1e31"
+    },
+    {
+      "path": "Microsoft.Win32.Primitives.dll",
+      "size": 15696,
+      "sha256": "1c6d1ee2a3d8a82a097d5e1eda84fbddca57fbe5fc426f0f39aa9d2b486bc3dc"
+    },
+    {
+      "path": "Microsoft.Win32.Registry.dll",
+      "size": 116520,
+      "sha256": "eb249fb10eb8687d3505fd9276480fb9a0c13dc975ce6bcc35e2e2e723e8d559"
+    },
+    {
+      "path": "MySqlConnector.dll",
+      "size": 857448,
+      "sha256": "731efadca1a81591ef16e3b07bfba679cd4536599da6f3137aa780e753ac1c67"
+    },
+    {
+      "path": "NSec.Cryptography.dll",
+      "size": 111104,
+      "sha256": "e13a3f375f153c48a8220c29dd83827462a80099537c9e43b10d9aaad2176d6b"
+    },
+    {
+      "path": "Open77.Directory.Contracts.dll",
+      "size": 47104,
+      "sha256": "44aede30a6ef321c4dda3f1c13015e13c58fc99b02acf0d6cfbbd4e9efb1d24a"
+    },
+    {
+      "path": "Open77.Directory.Contracts.pdb",
+      "size": 18628,
+      "sha256": "7d72d2826da758928b311911e5695bca73a424c80da015a95e06567c5b31fd90"
+    },
+    {
+      "path": "Open77.Platform.dll",
+      "size": 1918464,
+      "sha256": "23c1105edb4ab091898c4947ae3e23e3ef8fc3132457c799e0b6e435f9d8da02"
+    },
+    {
+      "path": "Open77.Protocol.dll",
+      "size": 343040,
+      "sha256": "fd5b8dcaf586a5a6f5d11832ef4efa414910e411fc5fa482f1295d8d99dbea82"
+    },
+    {
+      "path": "Open77.Protocol.pdb",
+      "size": 81608,
+      "sha256": "cdf7756a4a69f133a2b23cf5f064713fce1687aa91dcb0a9c6f1c798aeff90b4"
+    },
+    {
+      "path": "Open77.Resources.dll",
+      "size": 119296,
+      "sha256": "f80be78d506ec8f94ad31c3f8ab243813696155f62aef032fc5c18548a79f8b4"
+    },
+    {
+      "path": "Open77.Resources.pdb",
+      "size": 53092,
+      "sha256": "c6fd5b7225ae0d35a11235f61eacb4a984e67b14de023dfab9b2aa9fc1dd3c5b"
+    },
+    {
+      "path": "Open77.Server.Core.dll",
+      "size": 2624000,
+      "sha256": "387e272e8ff66d59a51b732c12c7df989d5f96eb9e7cf3fc725d56c4772a2804"
+    },
+    {
+      "path": "Open77.Server.Core.pdb",
+      "size": 400080,
+      "sha256": "7f97f3f997fbeb50da60a04e82fdcd7c43e57edc249b602dcd920a1aeb246be1"
+    },
+    {
+      "path": "Open77.Server.Scripting.dll",
+      "size": 2431488,
+      "sha256": "664762a5644e655082c0278f8fe771f5b1eb3407766ad042038560024af2fb9c"
+    },
+    {
+      "path": "Open77.Server.Scripting.pdb",
+      "size": 214620,
+      "sha256": "36fa091fefa937e495d60934ab4de30a786d2858bd853c2a2a808c3cc7c4c799"
+    },
+    {
+      "path": "Open77.Server.Transport.Gns.dll",
+      "size": 102400,
+      "sha256": "543f7c971eda8e3f817867c50ec33c489fcd40fc0b36f376b2ca4003f9dfc63f"
+    },
+    {
+      "path": "Open77.Server.Transport.Gns.pdb",
+      "size": 34992,
+      "sha256": "15f5e368897b930052034a105a1979877cc692d53db3525aebe2dfc5be3ff35a"
+    },
+    {
+      "path": "Open77.Server.deps.json",
+      "size": 57222,
+      "sha256": "db9e90facf7ec47d8f45a47bc04333d217a2da910e350b29cc87f36fd3709fe4"
+    },
+    {
+      "path": "Open77.Server.dll",
+      "size": 2595840,
+      "sha256": "9d8d18c8b91de794f13a55ee8e8cfd4e0d6077f9d8afe83ac7ed47fe68a262ae"
+    },
+    {
+      "path": "Open77.Server.exe",
+      "size": 162304,
+      "sha256": "e4f8bc412dd74620ce849698dbb4c200e20d37e7fe0a786b8aae70500a65f570"
+    },
+    {
+      "path": "Open77.Server.pdb",
+      "size": 361316,
+      "sha256": "87869ae26909c07d74e32b02451bc02312d792f859ffa8d82f00677dbec64599"
+    },
+    {
+      "path": "Open77.Server.runtimeconfig.json",
+      "size": 580,
+      "sha256": "d21cca327ca1f04d73c0e1ce54af248cd89ef2cd97bd3716aba09a9757070ef5"
+    },
+    {
+      "path": "README.txt",
+      "size": 5827,
+      "sha256": "9171fb6ea31e09689f36650c973b201527db686d4f272436f4f32cb559f6ee72"
+    },
+    {
+      "path": "SharpCompress.dll",
+      "size": 1533440,
+      "sha256": "994fe027e4ed80474c5be3988e395403c2ac56055bb53629b610ea4fe0b75b4e"
+    },
+    {
+      "path": "Start.cmd",
+      "size": 67,
+      "sha256": "34e88af8dfa4940662fe5f066c1b28ae7f590cadd65c67bc270362f7a3b5b8da"
+    },
+    {
+      "path": "System.AppContext.dll",
+      "size": 15144,
+      "sha256": "1776b3c8d8e40ce4baee66904870272305546233cab9c84bccf95cbe685b7887"
+    },
+    {
+      "path": "System.Buffers.dll",
+      "size": 15144,
+      "sha256": "4a5e9e4b8d439bfede0435440e252000a5f2e4a5d4b915f243e909ca61bc528b"
+    },
+    {
+      "path": "System.Collections.Concurrent.dll",
+      "size": 231208,
+      "sha256": "5a4b728246443eb3b4c0a16d9b3d04bc0bce60b7a1998fa4a75716358cc572ff"
+    },
+    {
+      "path": "System.Collections.Immutable.dll",
+      "size": 976680,
+      "sha256": "c1537a4f73a7d9fa028b127a5dd7d4f0e839c75c22c8e895722283a8aadf6028"
+    },
+    {
+      "path": "System.Collections.NonGeneric.dll",
+      "size": 104232,
+      "sha256": "b64b8f2acaf773bc08e20e3a43d562a15a98d9a8c19f3e5db292dfe4fe21cf38"
+    },
+    {
+      "path": "System.Collections.Specialized.dll",
+      "size": 104232,
+      "sha256": "8a1cf61a6cd079444ae790123ffc90bcd8d369ec5aed0f2f95d159a6479690b3"
+    },
+    {
+      "path": "System.Collections.dll",
+      "size": 296784,
+      "sha256": "fc52be0abceac360478ffffce876c99997b4af56fc36fbf07cfc38ac5b7fdd7f"
+    },
+    {
+      "path": "System.ComponentModel.Annotations.dll",
+      "size": 198480,
+      "sha256": "fe7b216e9ac726cbcc31dcdaaf99f74918ad3c255100e3571f635e46f3fe5a36"
+    },
+    {
+      "path": "System.ComponentModel.DataAnnotations.dll",
+      "size": 16720,
+      "sha256": "ca01349cd2181d50d15bc476d542d23e62a2771d4bf9d467ad8d4f61563f5754"
+    },
+    {
+      "path": "System.ComponentModel.EventBasedAsync.dll",
+      "size": 46888,
+      "sha256": "d0e3554dc311c75014a9c7e9cf8137d5881d6f7a8c3b739fd9e85fec2be13164"
+    },
+    {
+      "path": "System.ComponentModel.Primitives.dll",
+      "size": 79656,
+      "sha256": "52e0988e01955d09170339429cede1d578690418b8851e19ddbba7d22a6490f7"
+    },
+    {
+      "path": "System.ComponentModel.TypeConverter.dll",
+      "size": 767784,
+      "sha256": "f41fb0c7373b94e082d41a49a02f95ac6da92114aa712dcd8eddcfd27fbfd592"
+    },
+    {
+      "path": "System.ComponentModel.dll",
+      "size": 30504,
+      "sha256": "23c6a24f67244c647a614af3249181dc68ad02acc3ebd3cdedf62b2df8da503a"
+    },
+    {
+      "path": "System.Configuration.dll",
+      "size": 19280,
+      "sha256": "24d363fccb6cef1b612ff6c3d9e2524c766713aaa3b5762aed169cc41c5caf30"
+    },
+    {
+      "path": "System.Console.dll",
+      "size": 169768,
+      "sha256": "d6c46a682587937775464bb1a3850a9d3e11408440731fefb07d298cd6d7a99c"
+    },
+    {
+      "path": "System.Core.dll",
+      "size": 23336,
+      "sha256": "f8732fb6c15b84e7c10026d7d01ac6c7772b8e8fecebe6b0a6b6c4776b3d763d"
+    },
+    {
+      "path": "System.Data.Common.dll",
+      "size": 2770728,
+      "sha256": "ea52008bc561c36fb8b78aa42ab760fe4d00d8f05ed2f953a2f2432fa5712bdb"
+    },
+    {
+      "path": "System.Data.DataSetExtensions.dll",
+      "size": 15696,
+      "sha256": "ec6614f5a6ebd42061848ad3475adb2e1717815309a7c5c4e87b5590108c2f98"
+    },
+    {
+      "path": "System.Data.dll",
+      "size": 25424,
+      "sha256": "36fabeaaf88affe70bd3cfffc82ed936d4c94e1b43cae48b6dbe6e98c72af119"
+    },
+    {
+      "path": "System.Diagnostics.Contracts.dll",
+      "size": 16168,
+      "sha256": "3ef6f93deeca5b85edb693194e5b4529220420a0c6ca0f3a9d1a2ac0826ac0a0"
+    },
+    {
+      "path": "System.Diagnostics.Debug.dll",
+      "size": 15656,
+      "sha256": "df925984086638f1046e1c5bd695107c7a3397e43767c01248a36360e4d6fa9b"
+    },
+    {
+      "path": "System.Diagnostics.DiagnosticSource.dll",
+      "size": 501544,
+      "sha256": "aa6ed09aa5b7588d8cdcf9d88c9c5317be654c06cdb08d161b61c607dc09c14f"
+    },
+    {
+      "path": "System.Diagnostics.EventLog.Messages.dll",
+      "size": 800552,
+      "sha256": "d61a4474c6002ff132b4e7dccf7d92fee24928722c77c2d258b5f4464dd7392a"
+    },
+    {
+      "path": "System.Diagnostics.EventLog.dll",
+      "size": 366416,
+      "sha256": "296007f06dece4429e704e86424fcf13e506fd941705b270db00eaacea0e738a"
+    },
+    {
+      "path": "System.Diagnostics.FileVersionInfo.dll",
+      "size": 46888,
+      "sha256": "ff481f04e205c815ddbb48e622515b426e6614c9ad968ed4f3db42a63420a3bb"
+    },
+    {
+      "path": "System.Diagnostics.Process.dll",
+      "size": 329512,
+      "sha256": "f2ad68f64541926edb0ea5f040775a49991ac0f24baf98b2de62ab038b69c895"
+    },
+    {
+      "path": "System.Diagnostics.StackTrace.dll",
+      "size": 46888,
+      "sha256": "2436e12f3c710100f38b9404fb3893c3da3ee295641f5b4be442a4aa0deea8fa"
+    },
+    {
+      "path": "System.Diagnostics.TextWriterTraceListener.dll",
+      "size": 67368,
+      "sha256": "b5d9e94d097856e49a5c61a87b442d42f2f70d76d7ce7b7e897f594b5194558f"
+    },
+    {
+      "path": "System.Diagnostics.Tools.dll",
+      "size": 15184,
+      "sha256": "d0712e1303d134cb75f4425a2f764390d965dec6b41195600bfae18f97b0e0f5"
+    },
+    {
+      "path": "System.Diagnostics.TraceSource.dll",
+      "size": 141096,
+      "sha256": "08c9b12b71be630bd29fbca96af28e790962efc8f2006363788ac592b1b97886"
+    },
+    {
+      "path": "System.Diagnostics.Tracing.dll",
+      "size": 16168,
+      "sha256": "1e531d4462aa8134d81405ea745153395e068504704f84f447d50b4586dcc213"
+    },
+    {
+      "path": "System.Drawing.Primitives.dll",
+      "size": 132904,
+      "sha256": "d55e07078df7e78a52992e8123f27ad01e632d6ed0ae12c08f099af33b36dbdb"
+    },
+    {
+      "path": "System.Drawing.dll",
+      "size": 20304,
+      "sha256": "2d6706f2b1b885e31fdce57eef38ed308cdd1563877d51bcfecc19a9268125b4"
+    },
+    {
+      "path": "System.Dynamic.Runtime.dll",
+      "size": 16208,
+      "sha256": "eaa819f663bef9cb04890c9797aa7b0110bca064e62ea47aa221548707baae5b"
+    },
+    {
+      "path": "System.Formats.Asn1.dll",
+      "size": 239400,
+      "sha256": "36d5622b54e87a3444af5e26e5b69e8cb048f41cceb66583689e555232defed3"
+    },
+    {
+      "path": "System.Formats.Cbor.dll",
+      "size": 173864,
+      "sha256": "1ffe225016097d65528ef8cfa3d3457a117236471b7429fe99f50dc87d72b88f"
+    },
+    {
+      "path": "System.Formats.Tar.dll",
+      "size": 272168,
+      "sha256": "37916824b9f130f7e924be01b1bb1a479636972c3b27af307b26592597fad2b3"
+    },
+    {
+      "path": "System.Globalization.Calendars.dll",
+      "size": 15656,
+      "sha256": "17934d74ca8ae2adf890be3bbfdffd02c4d74d090010d808b4403e721f33a67b"
+    },
+    {
+      "path": "System.Globalization.Extensions.dll",
+      "size": 15144,
+      "sha256": "aeb5d04073661df29bd5ec68f5a5786df4ca620ba168a9aa58b91ab6ad316fe1"
+    },
+    {
+      "path": "System.Globalization.dll",
+      "size": 15656,
+      "sha256": "3ae6f3c344796033247f710612f2944688def8c79ba80b4846b8b14c984f844f"
+    },
+    {
+      "path": "System.IO.Compression.Brotli.dll",
+      "size": 83752,
+      "sha256": "3b770188543233b988f44f5fe48e92ffb2c81c63978b89ff8da574edaf43e60c"
+    },
+    {
+      "path": "System.IO.Compression.FileSystem.dll",
+      "size": 15184,
+      "sha256": "aaea6b18581abe925d9ee38749773363d73c8c033c63b284af3faa228430ade9"
+    },
+    {
+      "path": "System.IO.Compression.Native.dll",
+      "size": 937808,
+      "sha256": "a61a917b3df5d74af1f997a82c0137076fe0fd3c3e0038423e3690924fb10c67"
+    },
+    {
+      "path": "System.IO.Compression.ZipFile.dll",
+      "size": 100136,
+      "sha256": "7634d9c46f688033a8a7cc6bee22770b032e2e611da5cc1d57f3d63984774ff0"
+    },
+    {
+      "path": "System.IO.Compression.dll",
+      "size": 419664,
+      "sha256": "fcc979a99b747680a81f5eaf71add66f3876588e59c90edf826c37e525d4f0b2"
+    },
+    {
+      "path": "System.IO.FileSystem.AccessControl.dll",
+      "size": 104272,
+      "sha256": "1e8dca7e8cec6bfa9c1baf966550ef4b2482bae6439d6d2ae55dadc265ff11a0"
+    },
+    {
+      "path": "System.IO.FileSystem.DriveInfo.dll",
+      "size": 55120,
+      "sha256": "375e715d0b7af1b756fcd06c7912791bf714be03832ecf0d9c4d7f885c98cc3a"
+    },
+    {
+      "path": "System.IO.FileSystem.Primitives.dll",
+      "size": 15184,
+      "sha256": "6d025a5ee98a81ac276250eea1a2677ea0792c75f9d1a9807c8a775e75b100ce"
+    },
+    {
+      "path": "System.IO.FileSystem.Watcher.dll",
+      "size": 87888,
+      "sha256": "791ffd9ad477481c3ca2d255b325a991d03aec46b6c51241e96247379efc37dd"
+    },
+    {
+      "path": "System.IO.FileSystem.dll",
+      "size": 15656,
+      "sha256": "ff3fe903e942724ebb71f363d973cb4225b4f14d0e05ebf73d0b30e0f46c1486"
+    },
+    {
+      "path": "System.IO.IsolatedStorage.dll",
+      "size": 87848,
+      "sha256": "b2150acfade522755ed15027112541bb4655107bb85122507c03d9e879e682a1"
+    },
+    {
+      "path": "System.IO.MemoryMappedFiles.dll",
+      "size": 83752,
+      "sha256": "de6de29fd36c52173c9a82c059c430cc6ca3ffb4a61aabf896c8ff56e6eed3d4"
+    },
+    {
+      "path": "System.IO.Pipelines.dll",
+      "size": 190248,
+      "sha256": "427b8641bbcce1e355c8b72415bd8ef10c91eb4171c77fae001674df495cb5f8"
+    },
+    {
+      "path": "System.IO.Pipes.AccessControl.dll",
+      "size": 15656,
+      "sha256": "dac370e76771c3843c8238fe91562f09d8f28e318a6da1b05f76afbf40eff8cf"
+    },
+    {
+      "path": "System.IO.Pipes.dll",
+      "size": 165672,
+      "sha256": "ea4e651e0c0e18ecc380013769d1864f9777b2d28964d8dab24c37ff6ed59206"
+    },
+    {
+      "path": "System.IO.UnmanagedMemoryStream.dll",
+      "size": 15656,
+      "sha256": "67eb115d743c83cade373af3fdf7d6d4e4fdd6e26105b21e8968727821f707e0"
+    },
+    {
+      "path": "System.IO.dll",
+      "size": 15656,
+      "sha256": "7b40c8b70bf1b61924b4fade11d4325151debc2f5733f32fbe3409621914c802"
+    },
+    {
+      "path": "System.Linq.AsyncEnumerable.dll",
+      "size": 1292072,
+      "sha256": "f62a69be4b87aefd74ca7080f4d1fac332a8b81640ec40e1c61ed3b2133aa1bc"
+    },
+    {
+      "path": "System.Linq.Expressions.dll",
+      "size": 3639120,
+      "sha256": "75efc145c24374e41b3523b4bbf06e5fa415cb63c6bc4da717aa58440871c0c3"
+    },
+    {
+      "path": "System.Linq.Parallel.dll",
+      "size": 775976,
+      "sha256": "ce2d359ab186c59558967d3442e705558e0d13f814ec39f40c16b9076385652f"
+    },
+    {
+      "path": "System.Linq.Queryable.dll",
+      "size": 182096,
+      "sha256": "d7d0418293d01388701c4cc557223daa2e88e1afede9b67445f9058acaebe675"
+    },
+    {
+      "path": "System.Linq.dll",
+      "size": 698192,
+      "sha256": "4a5d41332ed37f7e195503ebd3f478da2ad0008cb8a9f85739b53d2df7d33d46"
+    },
+    {
+      "path": "System.Memory.dll",
+      "size": 161616,
+      "sha256": "03c2fe17dbd4e1cd709f6da1ff221eafaf3f076d23f8fc62ddff5302c152e97d"
+    },
+    {
+      "path": "System.Net.Http.Json.dll",
+      "size": 128848,
+      "sha256": "93d66d4f208cd3f36c0c52814f62c3a06e28e909f551e6f6f01ce66db4282148"
+    },
+    {
+      "path": "System.Net.Http.dll",
+      "size": 1746768,
+      "sha256": "277ee31df794738d802c9dca109565ee1f549e733741af03b17f907208d13538"
+    },
+    {
+      "path": "System.Net.HttpListener.dll",
+      "size": 534312,
+      "sha256": "53d55125f448882ec2d002cce5726b5825a22847642f8c659cba0ae1bd2b97d1"
+    },
+    {
+      "path": "System.Net.Mail.dll",
+      "size": 481104,
+      "sha256": "01d3bb4d99659b85e6af59ca33f78fd7c4f5b5bc540be69b384f086687b04d3d"
+    },
+    {
+      "path": "System.Net.NameResolution.dll",
+      "size": 124752,
+      "sha256": "ea47fa390901b0afe369711065f79d86f1cf01a307746a82c4dfd3bb94e156a0"
+    },
+    {
+      "path": "System.Net.NetworkInformation.dll",
+      "size": 157520,
+      "sha256": "7a520cbc73fab570bc069717d0b73efc03cc100196ff42137dba24066eeedb83"
+    },
+    {
+      "path": "System.Net.Ping.dll",
+      "size": 91944,
+      "sha256": "927c63c02f6ac45d190c8994a1890c1e45d1144474d48d436fa101eba46e3ddc"
+    },
+    {
+      "path": "System.Net.Primitives.dll",
+      "size": 210768,
+      "sha256": "e0be3d784a346ffa419a5b4f6aba91d20a909a122b01ce331c4ac1560bf93c3c"
+    },
+    {
+      "path": "System.Net.Quic.dll",
+      "size": 358224,
+      "sha256": "16f6b9232becca3460e98f84d007b59f0d3db52372f7daae91ab315d95071241"
+    },
+    {
+      "path": "System.Net.Requests.dll",
+      "size": 374568,
+      "sha256": "7942b966861e88d53fcf6b9e2225ae9339211ecea137d642a770d2a7a6cd422f"
+    },
+    {
+      "path": "System.Net.Security.dll",
+      "size": 665384,
+      "sha256": "f799f93fbad3c47ea98133afc31011b68dd808813b4fb73208c6dda7bdd657b4"
+    },
+    {
+      "path": "System.Net.ServerSentEvents.dll",
+      "size": 83752,
+      "sha256": "6cc0f5145098168824cb6ccec1227e7f30ceb8f9756bfcb93f9faa89a97f5016"
+    },
+    {
+      "path": "System.Net.ServicePoint.dll",
+      "size": 15144,
+      "sha256": "61ea5c4619572e1cce028e75e4184901ecf2bd7aaf2f93e498b448a7fa3750ac"
+    },
+    {
+      "path": "System.Net.Sockets.dll",
+      "size": 530216,
+      "sha256": "53811a06f50f436db22d1279e5a209220ff363154e7c8981c8248d38f4c7798b"
+    },
+    {
+      "path": "System.Net.WebClient.dll",
+      "size": 165712,
+      "sha256": "7f4a639cf94a0856bc1496dea2e2a998d5784e505a197fcac1b5d07e140b26ad"
+    },
+    {
+      "path": "System.Net.WebHeaderCollection.dll",
+      "size": 63272,
+      "sha256": "36a83ef10e19143a421839d2ae9634b22982e94feb7d0e0a6a602d057de093e6"
+    },
+    {
+      "path": "System.Net.WebProxy.dll",
+      "size": 42792,
+      "sha256": "1cd3e7330632c77de0eb0a30ced6a99b97bfe36418cafddcd0de525010a65219"
+    },
+    {
+      "path": "System.Net.WebSockets.Client.dll",
+      "size": 104232,
+      "sha256": "2ddca43e2f4f81c06afdf1fd0556a7533499d5c440310341bbc287060d3bacf3"
+    },
+    {
+      "path": "System.Net.WebSockets.dll",
+      "size": 243496,
+      "sha256": "2794e1d55e990713018d520a3f2c3cdc764db44816abcd7272f0f3a110b6d5d1"
+    },
+    {
+      "path": "System.Net.dll",
+      "size": 17232,
+      "sha256": "115811026128a2bdc84ead6c4f6a7b35b296d092420fa5794d3c07402ab9e9d4"
+    },
+    {
+      "path": "System.Numerics.Vectors.dll",
+      "size": 15656,
+      "sha256": "444d4cf2eb56a1e61ea5413813c9aab0d6a47749e620526907b4caa7db95edc6"
+    },
+    {
+      "path": "System.Numerics.dll",
+      "size": 15144,
+      "sha256": "2cce5d7469a5e13bb7b8380da457c75e406ae260faceb7d5fcfc7efbddd02e2f"
+    },
+    {
+      "path": "System.ObjectModel.dll",
+      "size": 79696,
+      "sha256": "12cb278af864552e15af8c2ad2b0a29f2d4c571431b4d90a0c2e8ed9e57d90be"
+    },
+    {
+      "path": "System.Private.CoreLib.dll",
+      "size": 16033576,
+      "sha256": "76a49f17e83f613bc8a5b55fc98830b764e7838265aacbdbcc8f46707f80a3c9"
+    },
+    {
+      "path": "System.Private.DataContractSerialization.dll",
+      "size": 2062160,
+      "sha256": "61c1bae125a218e45e0bf517dc6633263280408c96c6d367d1839ee6a8bae936"
+    },
+    {
+      "path": "System.Private.Uri.dll",
+      "size": 255784,
+      "sha256": "27b93d6e754d7d2e538333e3c1d520c64d7eb012dde1705e776177b273662b7d"
+    },
+    {
+      "path": "System.Private.Xml.Linq.dll",
+      "size": 390952,
+      "sha256": "05462aa6f954c3c3c52c668416efcad04b4b2ebe37df247fe20ed5caa47e7a6e"
+    },
+    {
+      "path": "System.Private.Xml.dll",
+      "size": 7788328,
+      "sha256": "d62389b5b3617ec44e31232440a525a2618d5056b4b9ed86abf51250edf7bca0"
+    },
+    {
+      "path": "System.Reflection.DispatchProxy.dll",
+      "size": 75560,
+      "sha256": "85c4c9d47aded01fd0c01780b8152aadf1cc20ac97853764756734b872a0eda0"
+    },
+    {
+      "path": "System.Reflection.Emit.ILGeneration.dll",
+      "size": 15656,
+      "sha256": "ab4bbc69ccddc720351b4293890d4461740203e54df614b5605fd69d2c4c8148"
+    },
+    {
+      "path": "System.Reflection.Emit.Lightweight.dll",
+      "size": 15656,
+      "sha256": "99cd08aec7ed10f906dd9560f194a1c6ef843b60c1e34cab0bd6815e13725c19"
+    },
+    {
+      "path": "System.Reflection.Emit.dll",
+      "size": 309032,
+      "sha256": "d995259a96cba4d1e13d8e65da0cc835af1961d9cf46340531d7d8ba3adbc6a3"
+    },
+    {
+      "path": "System.Reflection.Extensions.dll",
+      "size": 15144,
+      "sha256": "dd4cf0a2f78784a58a0d9b937cd00c8d030940b79b9110c3420d388078b5869f"
+    },
+    {
+      "path": "System.Reflection.Metadata.dll",
+      "size": 1156904,
+      "sha256": "5e745d60bc682671b9a0813f515eca84b61710e1f84136b69fc09ec8821f92b2"
+    },
+    {
+      "path": "System.Reflection.Primitives.dll",
+      "size": 15696,
+      "sha256": "d25735120c998ff3fbd5cd9a0fee8033bf6736e88dc4efe59c7789f44a905e6a"
+    },
+    {
+      "path": "System.Reflection.TypeExtensions.dll",
+      "size": 42792,
+      "sha256": "3438380d510ed09241b34428690f752a1e08fbe392aefdb3c76ec3819af12156"
+    },
+    {
+      "path": "System.Reflection.dll",
+      "size": 16208,
+      "sha256": "5e915aa614291026130ba1b619294868a8d9b4d9dfff1aa5cb8b745bcc451756"
+    },
+    {
+      "path": "System.Resources.Reader.dll",
+      "size": 15184,
+      "sha256": "21e2a6135134183ef040aed2ff94de50efa63c1d2124aa0337ee49139d6c8299"
+    },
+    {
+      "path": "System.Resources.ResourceManager.dll",
+      "size": 15656,
+      "sha256": "dcda318334fbc517495c7fe6ec335cfe856a634112119c63b35a9e4ce9b9f667"
+    },
+    {
+      "path": "System.Resources.Writer.dll",
+      "size": 50984,
+      "sha256": "d3d5485df887aab86de76c4d22d19641b6cbbd79754ca89c6805a6ce45baf60a"
+    },
+    {
+      "path": "System.Runtime.CompilerServices.Unsafe.dll",
+      "size": 15144,
+      "sha256": "50b76c3723b529d6d6fde67b297409f875e20c7f7d45b8497be379c24207a322"
+    },
+    {
+      "path": "System.Runtime.CompilerServices.VisualC.dll",
+      "size": 30504,
+      "sha256": "95f383b9cc7811be9b9aec45591fd2e0dbf6cd09406a29a3b3d8ed980f7d02b4"
+    },
+    {
+      "path": "System.Runtime.Extensions.dll",
+      "size": 17744,
+      "sha256": "a474fd258722ffb4af11ecd6e5765a27713307faa11dbf804414814a2099bb5a"
+    },
+    {
+      "path": "System.Runtime.Handles.dll",
+      "size": 15656,
+      "sha256": "1f6aaa3ca188434c80ff6fad600915e0d2f3ada0746ff5d0f0ecf13ab398ac41"
+    },
+    {
+      "path": "System.Runtime.InteropServices.JavaScript.dll",
+      "size": 51024,
+      "sha256": "03dfff8c7082a64866feae2d0822da69708900d7635bb48b5b73881c8292cad0"
+    },
+    {
+      "path": "System.Runtime.InteropServices.RuntimeInformation.dll",
+      "size": 15696,
+      "sha256": "cc959b69928f28420d31360ee8bf793c6f3e4d5809752cf1d386efe01dc49aaa"
+    },
+    {
+      "path": "System.Runtime.InteropServices.dll",
+      "size": 112424,
+      "sha256": "627a86a918f6669f94cf8db6ce064a4b2207b852ba6a4fecaccad7bb07859b4f"
+    },
+    {
+      "path": "System.Runtime.Intrinsics.dll",
+      "size": 17192,
+      "sha256": "a24e7018598b352d1ade1bc452b2c65a31902b56ce1fc1fccd8b26e2677943c8"
+    },
+    {
+      "path": "System.Runtime.Loader.dll",
+      "size": 15656,
+      "sha256": "404791be0d21a5ee0119ec08416a5ae18f3bbfbbc9f4d6a6ad7c3a9c667aaa25"
+    },
+    {
+      "path": "System.Runtime.Numerics.dll",
+      "size": 354088,
+      "sha256": "8c715e55c80a4ab31d086b5e51261d691b52b867b1c1f5d99c344ea4faa27f4b"
+    },
+    {
+      "path": "System.Runtime.Serialization.Formatters.dll",
+      "size": 124712,
+      "sha256": "a971cba21d6064c58b38c10cb04092dd4b8ab2919a9f5544e94082154f5604ce"
+    },
+    {
+      "path": "System.Runtime.Serialization.Json.dll",
+      "size": 15696,
+      "sha256": "473344505e44874494bd6a2964da9860c224dfab884a10e43992df868b44093f"
+    },
+    {
+      "path": "System.Runtime.Serialization.Primitives.dll",
+      "size": 38696,
+      "sha256": "6e19e864162258ea14a5d15a0e5b6b08368aabd087d0696032338dc6bd48d71b"
+    },
+    {
+      "path": "System.Runtime.Serialization.Xml.dll",
+      "size": 16720,
+      "sha256": "a3d3d53a385bbe636dff506c09d008fe0d7c53d9e1a2ad431a2b6ddd5e0200ae"
+    },
+    {
+      "path": "System.Runtime.Serialization.dll",
+      "size": 17192,
+      "sha256": "1f4c9a42ec5b5d4da23a82fc1952e01cf395e99cfabc8a7d0f5a4b304e24915a"
+    },
+    {
+      "path": "System.Runtime.dll",
+      "size": 44880,
+      "sha256": "60d0795848d15c0ee9c37d6b97dfef12eb48292ffda3e9054204b2c3a6a89b19"
+    },
+    {
+      "path": "System.Security.AccessControl.dll",
+      "size": 227112,
+      "sha256": "0ce0621ed9cf8fde8aa78be726f7e4ba7b9e321c86ff1faa282a8e8ca1a62e86"
+    },
+    {
+      "path": "System.Security.Claims.dll",
+      "size": 100136,
+      "sha256": "29f395b2a9bd6de2a80c38c02354b74a7cca434da5125feb4a649787981b8fc6"
+    },
+    {
+      "path": "System.Security.Cryptography.Algorithms.dll",
+      "size": 17192,
+      "sha256": "06a50cccb59d64852893af1794c71f6008b4fb83d7ab980df4459c202f42d726"
+    },
+    {
+      "path": "System.Security.Cryptography.Cng.dll",
+      "size": 16168,
+      "sha256": "f09ca990c590839dd572d52daf96eb10472ace1c6a18c9c1b56bf88c5a78953b"
+    },
+    {
+      "path": "System.Security.Cryptography.Csp.dll",
+      "size": 16168,
+      "sha256": "8f69002eb9a370c998d243f7c1427f40d40d7665c71d30f9767919b26088ef4e"
+    },
+    {
+      "path": "System.Security.Cryptography.Encoding.dll",
+      "size": 15656,
+      "sha256": "82529d4194905c197049fb657402e50566e5566a6c62b68cfbce1b5409f99d63"
+    },
+    {
+      "path": "System.Security.Cryptography.OpenSsl.dll",
+      "size": 15656,
+      "sha256": "cfb536a8f944cf0dea22a0f19ed618fe610ce56ad440fde85d606e5a148683ca"
+    },
+    {
+      "path": "System.Security.Cryptography.Pkcs.dll",
+      "size": 771880,
+      "sha256": "b19e9cb7093c0e57d9263957ac7c7f8f433506a18161452b93e13ba1d30d2701"
+    },
+    {
+      "path": "System.Security.Cryptography.Primitives.dll",
+      "size": 15696,
+      "sha256": "a371b402dadb1f19468862d1deba44b5d08e0fa633904742ec5c8c1922ed6081"
+    },
+    {
+      "path": "System.Security.Cryptography.X509Certificates.dll",
+      "size": 16680,
+      "sha256": "5e0e0595a937695c7cfd3099245816177e7c2b1233742274f28c93ff8d3c7bcd"
+    },
+    {
+      "path": "System.Security.Cryptography.Xml.dll",
+      "size": 452392,
+      "sha256": "1536141b3a405cd2edcc41f0fa9fdb147e0ef3efb661258728595e2f5ff17488"
+    },
+    {
+      "path": "System.Security.Cryptography.dll",
+      "size": 2549544,
+      "sha256": "637104ff4a89fa341aad178fa4c6c85f247889d8d544f62411cc3febed9679b0"
+    },
+    {
+      "path": "System.Security.Principal.Windows.dll",
+      "size": 177960,
+      "sha256": "b04ee5bd519137cc929b355221af2d9649f149aca7808768a0cb99e423ff8668"
+    },
+    {
+      "path": "System.Security.Principal.dll",
+      "size": 15144,
+      "sha256": "45a74a4b6175b9d228969592a3175a8811aba9a74c94676aa7e46c0cdc125313"
+    },
+    {
+      "path": "System.Security.SecureString.dll",
+      "size": 15696,
+      "sha256": "3d548514379830c108543f276751874cb1a6d930f9b54f80953e72e90dca70a4"
+    },
+    {
+      "path": "System.Security.dll",
+      "size": 18216,
+      "sha256": "0a9e88553523ebefa42525def2a92577c9cc5c87b20bc6c3bcc386948388ba87"
+    },
+    {
+      "path": "System.ServiceModel.Web.dll",
+      "size": 16680,
+      "sha256": "2c57d8b0f8d2a91088d1a074fb40ca8c1479a9d47071e5f99de5c11638d2edf7"
+    },
+    {
+      "path": "System.ServiceProcess.dll",
+      "size": 15656,
+      "sha256": "5cdd7ad9adb627d475931fe9f93d557fcd826ef393254b8a11a8c3c04b643453"
+    },
+    {
+      "path": "System.Text.Encoding.CodePages.dll",
+      "size": 861992,
+      "sha256": "e1ef93444fa374ef5267d2a49751d60e6ee832da88988d129977adfa881f462e"
+    },
+    {
+      "path": "System.Text.Encoding.Extensions.dll",
+      "size": 15696,
+      "sha256": "81229e9c66c02dbd1cc4de1cd58f6e6069a652e55e4375c8b18d987145479a04"
+    },
+    {
+      "path": "System.Text.Encoding.dll",
+      "size": 15656,
+      "sha256": "96a719292c97522390027535db13529173e5a3c728209c9d90dbd1b50fa71cb3"
+    },
+    {
+      "path": "System.Text.Encodings.Web.dll",
+      "size": 124712,
+      "sha256": "775eab42196bf9466a69e9fc86e47b8da620b7652aa4b8a62245449131ce885d"
+    },
+    {
+      "path": "System.Text.Json.dll",
+      "size": 1890088,
+      "sha256": "6945c5fc52f811e32b13597b0d2a14d365227245e21bf7daebc6986f729b25fa"
+    },
+    {
+      "path": "System.Text.RegularExpressions.dll",
+      "size": 1034064,
+      "sha256": "b1f6aec1ed431cf5956d8bc870fb0d47c43455438c5c0110433fd125183f190d"
+    },
+    {
+      "path": "System.Threading.AccessControl.dll",
+      "size": 75560,
+      "sha256": "14e0ec8285100d4a3259a899d9ffa5269797e8ae2e3c9e119783ece06ebc62c1"
+    },
+    {
+      "path": "System.Threading.Channels.dll",
+      "size": 157520,
+      "sha256": "37349d0028f2dde5da668cf7e8bfb56fa7ab583997a44e41e4da0b0fd00f8516"
+    },
+    {
+      "path": "System.Threading.Overlapped.dll",
+      "size": 15696,
+      "sha256": "d5e2b62198f2a9e1845a8bdd874f3f2e232eeec7a178ad1ca2313a5d9f183ab2"
+    },
+    {
+      "path": "System.Threading.RateLimiting.dll",
+      "size": 165672,
+      "sha256": "261a8b914569fe6904c8feda77c10b1b826a3744f8375838a6e1931ce57afae8"
+    },
+    {
+      "path": "System.Threading.Tasks.Dataflow.dll",
+      "size": 472912,
+      "sha256": "cfcff09f4aee061e3eca6792908051f272c1b8b9d3d81fe1858ae047648c4ebc"
+    },
+    {
+      "path": "System.Threading.Tasks.Extensions.dll",
+      "size": 15656,
+      "sha256": "5f042ed8fcd4fcfbab2572e5f54b0b74f959d1f52404365450f763ef5400180b"
+    },
+    {
+      "path": "System.Threading.Tasks.Parallel.dll",
+      "size": 132944,
+      "sha256": "ec95052ee31ac8bc4a08241939c3d3177ac671470caf898b8218245523ce4b21"
+    },
+    {
+      "path": "System.Threading.Tasks.dll",
+      "size": 16680,
+      "sha256": "2830ac695731137a529b7620482499eae9dc88730aa78b2dbbbe35e9ea6655d9"
+    },
+    {
+      "path": "System.Threading.Thread.dll",
+      "size": 15656,
+      "sha256": "40cd4539f24de04085f5b1f6c12680e0703368a13d2ef96fe8c20c7602cce2c2"
+    },
+    {
+      "path": "System.Threading.ThreadPool.dll",
+      "size": 15656,
+      "sha256": "8d12767f122b5da33597ac423d19c693fe6d8615d7e1aeaba9e49e2a6bcf16c5"
+    },
+    {
+      "path": "System.Threading.Timer.dll",
+      "size": 15144,
+      "sha256": "37eb792b476add157a6c9837ccb81d4b7ff1d2cbcecf055ec8610b57053206c6"
+    },
+    {
+      "path": "System.Threading.dll",
+      "size": 83752,
+      "sha256": "96ef32e315217f24b6b701fc182cac464966cad1da94dd25a3609fe2d9f5a6ca"
+    },
+    {
+      "path": "System.Transactions.Local.dll",
+      "size": 640808,
+      "sha256": "f6fca23ae3902c9e8f3b1951d26ea5d831bdf80b217d2e5a9f56deb5b1d90229"
+    },
+    {
+      "path": "System.Transactions.dll",
+      "size": 16680,
+      "sha256": "a330fd4b6173de21caf33c0ac79d329097791e688ab58926d2dc68341e853d17"
+    },
+    {
+      "path": "System.ValueTuple.dll",
+      "size": 15656,
+      "sha256": "069f72a5d77ef21ff8d60c5b63c7e894999ebece4c8cfafc697aaa3bdc5605ae"
+    },
+    {
+      "path": "System.Web.HttpUtility.dll",
+      "size": 63272,
+      "sha256": "1f8bf172cd56387c0c348bc65cf6a31548324da7ff7347d5190d84e9ff82a475"
+    },
+    {
+      "path": "System.Web.dll",
+      "size": 15184,
+      "sha256": "934c6ef3f2bc8959aba62ced6d1cef069d565210e65bf59b5980e7e39571528e"
+    },
+    {
+      "path": "System.Windows.dll",
+      "size": 15696,
+      "sha256": "ffd590ee80328cf902b4d66a8db1b2d34b7ad5ba8fdb93db51c4dc0c5829439a"
+    },
+    {
+      "path": "System.Xml.Linq.dll",
+      "size": 15696,
+      "sha256": "519999617d619d88f5489021ba690277a2648bc6b344e1649be679f0e51e6ccb"
+    },
+    {
+      "path": "System.Xml.ReaderWriter.dll",
+      "size": 21840,
+      "sha256": "cdd1a8424361a33498e2a69051a7330ed356927f675b917422861138c99f6406"
+    },
+    {
+      "path": "System.Xml.Serialization.dll",
+      "size": 16208,
+      "sha256": "b2cf0f39e9e2d0867a899a7fd4a889ee6ad3cc6ed48a7079b28502d7c808a73e"
+    },
+    {
+      "path": "System.Xml.XDocument.dll",
+      "size": 15656,
+      "sha256": "bc290c6ecf7ff713a492b48f9d507cbfe85a50ccd00e187e68f422d75804efec"
+    },
+    {
+      "path": "System.Xml.XPath.XDocument.dll",
+      "size": 30504,
+      "sha256": "dd5ee3b63637b62a7808f4e8b8e6299258c0b043d8d103ff1f0b7d31230b7dcb"
+    },
+    {
+      "path": "System.Xml.XPath.dll",
+      "size": 15656,
+      "sha256": "2f25f882a1816e7a6bb0445562a4b7cc1653b25c0697b184ab6808b22daa49bb"
+    },
+    {
+      "path": "System.Xml.XmlDocument.dll",
+      "size": 15696,
+      "sha256": "4d07558fb3573e4a0d91b928361060d1fe7162b9017e17e759ad77c8fb6986ca"
+    },
+    {
+      "path": "System.Xml.XmlSerializer.dll",
+      "size": 17704,
+      "sha256": "2c7cfc2a8ec748d920753b7328c681f56a65608d029f36698b0af79945c0c253"
+    },
+    {
+      "path": "System.Xml.dll",
+      "size": 23336,
+      "sha256": "60eebcb2939feb3c23686c067a9f49a93020488c2594357670aac4e568d380b0"
+    },
+    {
+      "path": "System.dll",
+      "size": 50512,
+      "sha256": "f2bdfd2096aeadf69ea2c9e747f0ca2842127cde1770d1643bf13bfc70649361"
+    },
+    {
+      "path": "WindowsBase.dll",
+      "size": 16168,
+      "sha256": "40919153c0d41db63182208f07ceb2cdd7a5eaa1231bfae318f64fad929d6646"
+    },
+    {
+      "path": "aspnetcorev2_inprocess.dll",
+      "size": 392528,
+      "sha256": "f6ae514b4dbb6ea176ac4aad0951d513a72bd1f25994a4378322734c7f1919ca"
+    },
+    {
+      "path": "clretwrc.dll",
+      "size": 317736,
+      "sha256": "2dba4804094fb9080ad7954d6664c168f85c244691198046faf9d33e12e70107"
+    },
+    {
+      "path": "clrgc.dll",
+      "size": 673104,
+      "sha256": "ca2d50a39e14bbe2666d53789317e87daf65af8b2870ab400b352bb2734aec33"
+    },
+    {
+      "path": "clrgcexp.dll",
+      "size": 710952,
+      "sha256": "e683eb9c26c7cf77ae7f27369472d107e7426d6421a5e6aba24e58a35630f9e4"
+    },
+    {
+      "path": "clrjit.dll",
+      "size": 2092328,
+      "sha256": "9a74076395f6e7bcbb932c8b6eb412d1fbbff43b954c49f9d5015e467d8402e9"
+    },
+    {
+      "path": "config/server.schema.json",
+      "size": 26732,
+      "sha256": "84e897de6549e696003dc09528d9aa071b18416e593dabb54be16393817d5273"
+    },
+    {
+      "path": "coreclr.dll",
+      "size": 4614952,
+      "sha256": "58859f85a30cc71313b281898e7cfbdbb9eccb95ae2a3f865329efd47ebf31bb"
+    },
+    {
+      "path": "createdump.exe",
+      "size": 71512,
+      "sha256": "b6b5611f41d6a3f03ab9c37ee5fdfdb6837d72910779be23d125f3212fafeae8"
+    },
+    {
+      "path": "docs/metrics.md",
+      "size": 15243,
+      "sha256": "e5c75534018d2c0190e15b0038813c6efe7277be22340d555f57fd8d7fb9ccc2"
+    },
+    {
+      "path": "docs/rcon.md",
+      "size": 21158,
+      "sha256": "c0926a3bf84e5a9a4854ab006bd73fa1c351f1f6a8190abcbe214e814fa91f7d"
+    },
+    {
+      "path": "docs/server-configuration.md",
+      "size": 25179,
+      "sha256": "1ccddbc7bd7c598b45552c9ec6aa702919171e8b632ddbc576e04ac236e4e366"
+    },
+    {
+      "path": "hostfxr.dll",
+      "size": 379688,
+      "sha256": "d1012d5b8ff1329d5baa6d58aa02c4277acbe58cfd1dc5f10d7e6bb8e9a0d94a"
+    },
+    {
+      "path": "hostpolicy.dll",
+      "size": 378664,
+      "sha256": "e9c723bf674ef7f6e6c1cc5d4ee694715b864f480c56baaf354b8cf7c9b40b87"
+    },
+    {
+      "path": "libsodium.dll",
+      "size": 462848,
+      "sha256": "64a1f143868309069f0a0a3c8141c0853c4f17243ddf734e92b11c5411739771"
+    },
+    {
+      "path": "licenses/GameNetworkingSockets.LICENSE",
+      "size": 1515,
+      "sha256": "6dd96e4552e5ba087a7701427321d659440882c7b872f2dd0aeb1d16327cda82"
+    },
+    {
+      "path": "licenses/protobuf.LICENSE",
+      "size": 1763,
+      "sha256": "e987d9ed1ffec82a50b7f049ba5ff43280e3c3e40885698248fb83584f8d931c"
+    },
+    {
+      "path": "lua54.dll",
+      "size": 521728,
+      "sha256": "a563b9210be2868728092e82d88d75edcd9c8d95ed0eb399942b16bd4c88b87a"
+    },
+    {
+      "path": "mscordaccore.dll",
+      "size": 1356632,
+      "sha256": "01625b0382d7ccab664ddb0997de2bb66e059fc547061f3d830914d6229a07f6"
+    },
+    {
+      "path": "mscordaccore_amd64_amd64_10.0.1026.32716.dll",
+      "size": 1356632,
+      "sha256": "01625b0382d7ccab664ddb0997de2bb66e059fc547061f3d830914d6229a07f6"
+    },
+    {
+      "path": "mscordbi.dll",
+      "size": 1237888,
+      "sha256": "35aa0553836e034308189a97ed55b6722636960cb201e252c20bd49f8ac65ead"
+    },
+    {
+      "path": "mscorlib.dll",
+      "size": 59688,
+      "sha256": "ec2fdd1e7113428e9c2e0aa8bea39d54f4dafc2102434aa0a13c31f7ed1a4fb2"
+    },
+    {
+      "path": "mscorrc.dll",
+      "size": 133928,
+      "sha256": "331ce4f5bd1cfd59a4e1537ca62d5cc5693675b8c82a42125ab24e8d5104d1a0"
+    },
+    {
+      "path": "msquic.dll",
+      "size": 524320,
+      "sha256": "99daf179ee2dfb5c36493543647b64fc58a24aba0b16d5e9232b06003fbc9054"
+    },
+    {
+      "path": "netstandard.dll",
+      "size": 100648,
+      "sha256": "f9078068add6f69455772c526a69a134ae520199eb1c5513f7d80a871fc09851"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/README.md",
+      "size": 21700,
+      "sha256": "02bfd2c06179b869b71c5e7a5fa208e90ea4145b53c09c8626d883ea9f732c90"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/client/animations.lua",
+      "size": 7895,
+      "sha256": "f68580564eaa6bdabdbb8a6e09f07f5d7b41054f094ee3fcef792d5845163003"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/client/camera.lua",
+      "size": 2823,
+      "sha256": "b7e6b31639bf7d64c863d13c5617917d343d5a77499d953f795cb03dfe01b720"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/client/context.lua",
+      "size": 3057,
+      "sha256": "bbc57287b6c8270ca4f80210978ec711ffb133c94ece2e1d3cc1b211013b0e16"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/client/killfeed.lua",
+      "size": 2420,
+      "sha256": "e543ce1849fa6b9094dbad797a42d66bda9a669cfa4ff2bb7cffc905ac3179b2"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/client/main.lua",
+      "size": 29910,
+      "sha256": "1370c485f7dc6f9c86c10deb08163bd5541c324c79fbab90bc528bcbf9a898b4"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/client/prediction.lua",
+      "size": 1156,
+      "sha256": "41123fa5f65d730776b38e024979607fd140fef42ff537d1cd672ef374de7c5d"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/open77.lua",
+      "size": 3055,
+      "sha256": "bc432c5cea85a9a390b4b649b7d2db91ba9fc060555fa04ac4503db9f30bff75"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/README.md",
+      "size": 5516,
+      "sha256": "efffa2bd65c68958f656d62902f8270b5f88e648f27359ed945653a5e7ae5b9e"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/client/bounds.lua",
+      "size": 15443,
+      "sha256": "dbc799aed6a987b9ed8c6bc1db94f6bb68bea16308ba0b5563c3d3eb351f760e"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/client/main.lua",
+      "size": 6661,
+      "sha256": "52601c97afe3e1852da5ee4730469a5353e8796755efe50b898ae576a3540f4b"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/arena.lua",
+      "size": 103912,
+      "sha256": "322f56e0b9572b3202da4a5ad2db12aee44428990cced4964bfb82e385b12e39"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/bots.lua",
+      "size": 223821,
+      "sha256": "fbdc13fabecd19b3dbc6581282ea89bb5050181199a15bd065ebf5d70d7359ee"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/bounds.lua",
+      "size": 35170,
+      "sha256": "8b0e7aced1301213d129b16fc3913c01284daa2813590e6b9072c855cf65e7b4"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/freeroam.lua",
+      "size": 10167,
+      "sha256": "5d3259b36262c8c2cc45e61f12a9156d9f0b233250af97a0ef850b181c3cbdd3"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/instances.lua",
+      "size": 50880,
+      "sha256": "51fb09cbc2cef64f3d3c01f18cc242fcb62f2cefb7d11e0b423a946ddedef2a8"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/loadout.lua",
+      "size": 79981,
+      "sha256": "101d2a5065bf8de70e686eef062703fb42e9f1aafcca73200e6eb746c0e6f179"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/main.lua",
+      "size": 57935,
+      "sha256": "a69db521da98f040f598dee6cb54033d00bdd294f2b84bb41c0757b85d4223c9"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/mapstore.lua",
+      "size": 90123,
+      "sha256": "42d69f6a4d1e801abcee8b6993ac2768f69d7de5250582edb1d5450c6678e6b6"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/ranked.lua",
+      "size": 84335,
+      "sha256": "27305db3b74f01e4240ae8239daa7d3e5803247f879054c6a83a699a844e06b8"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/rating.lua",
+      "size": 24170,
+      "sha256": "b2c69a0bbb516a86a036e6e8fd70f7395eab4f57e33d8af350919492823c8a96"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/round.lua",
+      "size": 61725,
+      "sha256": "9329e443b8467a16e3892d876a79e00c94b6422f3d6319bbbbb6bb6287d0dfee"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/scoring.lua",
+      "size": 49975,
+      "sha256": "df51613cb7fa3304357ae58128f24305d36b28b7e95314efa955f71000740527"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/server/survey.lua",
+      "size": 44885,
+      "sha256": "e95d78f0e5145a44b95b6297fe8d46306b2488e440366631771cc65b0e10c321"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/shared/config.lua",
+      "size": 116551,
+      "sha256": "95a88785aa176c3d0e9fe42aa361c571a24135ca49198477a78ac133c8c96853"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/shared/freeroam.lua",
+      "size": 5773,
+      "sha256": "958d092bacfa945de01ae174dec9e62a5eaad406405d0a8e7928b1c1b711cc73"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/shared/kabuki.lua",
+      "size": 33710,
+      "sha256": "4f1aaed0006addc5f49975e6a1a03495ce19325501303580f1881cdb49a80157"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/pvp/shared/wire.lua",
+      "size": 1833,
+      "sha256": "9a4ad530e09d3f2c9cfa1080ce1050c99a4033da3e16c8c3a3a95ccefca5502e"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/README.md",
+      "size": 19906,
+      "sha256": "cf2a9f0dbdad0d8409e65975428fece9d024d0ab7d68d4fde74906650b6523f0"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/client/checkpoints.lua",
+      "size": 4506,
+      "sha256": "650aea156562a8c2a0feb17cb6c24ed956f425d8c0118ce4ea9779c4f8f70796"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/client/foot_markers.lua",
+      "size": 867,
+      "sha256": "7f6e45253fe89ca0672f3b000812a5c464c1319e3f81eb53a8980e27482c4e9d"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/client/main.lua",
+      "size": 42800,
+      "sha256": "1ed73973b7c8c8f25a7cf723e41304dfb6d0ed6b79e4fe6696f09cfef5a0d823"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/server/courses.lua",
+      "size": 20511,
+      "sha256": "07dc82525256a4516de759ebcf2ef38c4d1fb52de5d6327bc16cebcedb6bcefe"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/server/main.lua",
+      "size": 108921,
+      "sha256": "e56284fcdf47f5e228e8c4cee9600d9a2d877533dd71c8e0ea30bf2b1757749c"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/server/state_delivery.lua",
+      "size": 3146,
+      "sha256": "543bf4a40d05baf87a591d190dc18ef9d27af8ceb29f090d565248345377038d"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/shared/checkpoints.lua",
+      "size": 1729,
+      "sha256": "9e104f24547263b168d5f13fae89209022da48e1af587af56520db0b664f75c9"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/shared/config.lua",
+      "size": 8928,
+      "sha256": "78d2632d893918cdf8bd3d68e84d9da0ad3ad879d0e73afef8e60eeb514366b7"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/race/shared/grid.lua",
+      "size": 618,
+      "sha256": "ca0335673af23e73932cf44795cc71260b467eb539f61d76557b716a83ad2db9"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/server/activities.lua",
+      "size": 378,
+      "sha256": "680a4b966f547a38a3bf602bed72267e5c30e8a2a519e90baed219dfe59e9354"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/server/combat.lua",
+      "size": 7912,
+      "sha256": "9c88164b0cc39a324a85381001ae20bd36bb3a0a03c36c8eaf40c5d8132f1d21"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/server/context.lua",
+      "size": 2278,
+      "sha256": "920172c222144fda0fa3aba06900d95862dbb94c7b868b2ab293839def7cc514"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/server/main.lua",
+      "size": 54751,
+      "sha256": "7a4001d398773c07746d140783e5154ee480ede7fac2d6dbde0b49b154ae4df8"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/server/playtest.lua",
+      "size": 6173,
+      "sha256": "712626ee7434ca13652d661aca856ad8028baec75649fe81d119dc884ce968bf"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/shared/config.lua",
+      "size": 17754,
+      "sha256": "7177495b9f9040a95a08cd1c6caddcede507ddebccf806d99c6d3723440ed112"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/shared/roster.lua",
+      "size": 141,
+      "sha256": "b8f635d989e1e0ac68bf3a6383ef43e57c9b0f5d1f468061958b5af5c645e531"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/animations/app.js",
+      "size": 15128,
+      "sha256": "ce996af5d2d97832a5f02fc0379219cba2ff6b9cf771093517141e9cbda99348"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/animations/catalog.js",
+      "size": 6226,
+      "sha256": "2857e0027d067d7b7bbf4269487332ca7d9a17661b0ae8563c7efd4ce04eb019"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/animations/theme.css",
+      "size": 9366,
+      "sha256": "6c6e434d80ea1fcfd2dd39659324aa5b1fd6a3b3f7fd884d6a9579592514339f"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/app.css",
+      "size": 18438,
+      "sha256": "12d1fad6d46af4025f2990ca65a61d99c581288f984ab8f4f5c90a45cfb07827"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/app.js",
+      "size": 34048,
+      "sha256": "d8b03853c8d49d3a79225139eb8beefacaa14e9ef41fe0301d78a5130c931de2"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/design-system.css",
+      "size": 7800,
+      "sha256": "bc0bb60bbfc8b4992918b3b3cd1e6252bca63baed0f7f519b2b05b170710b6ab"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/hud.css",
+      "size": 11117,
+      "sha256": "5a14eb5bc428ee17bc214cbe4d9e8c3774b1a1b65ac5f69ed993b484e72692bf"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/hud.html",
+      "size": 4526,
+      "sha256": "c354551ad1645296e7d461d8a7bf6525131bacde8bd8b5b6d12b32f0d77fb72c"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/hud.js",
+      "size": 6342,
+      "sha256": "2d82df9d896fa7034f02bb270c21526d74a20d6afda9be3a648ae18befc84d09"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/index.html",
+      "size": 38611,
+      "sha256": "3f4a83a1707df983c68d70b0cd2c566fc8436d972f4645deaac5de15a55dc65b"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/killfeed.css",
+      "size": 2913,
+      "sha256": "21fd71d50ba480a8c268692d7bccfe6358f50da2cbeef92168133081adccf948"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/killfeed.html",
+      "size": 672,
+      "sha256": "40dd33f3c99d6259f5dc746856a5cf2154edf6c777b8e3c39c70146441463022"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/killfeed.js",
+      "size": 2795,
+      "sha256": "91799ea10f9cda8850cc9c259fe597c378bcc11c374431a81aa8499eaa36df47"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/pvp/app.js",
+      "size": 12415,
+      "sha256": "e1d836c2a5dfcf284319e97ff41894ce6bbc84ba3b5d316620a75aaec65aaf83"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/pvp/theme.css",
+      "size": 11140,
+      "sha256": "37e11bed31b82e15b6d51af886d05350274501d7c5227a98acadb6ac8ff76766"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/race/app.js",
+      "size": 53004,
+      "sha256": "303888087c37899f9cfbe0bf06759b0764cf792bfed8b878671e6565157d7d30"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/race/theme.css",
+      "size": 33268,
+      "sha256": "4dea18e33d088200142f2a0cf026504613583b13073419c25846b618fcfb0eae"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/scoreboard.css",
+      "size": 4054,
+      "sha256": "ce928c3bd6e02a121f0bc06df299c1cc7336b6b546d61cdc9af015fb8cdaf01f"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/scoreboard.html",
+      "size": 1046,
+      "sha256": "29eb080ffbef0f0d8b9c55de028059d8e503431ebc776c3e7288ddd37054aa28"
+    },
+    {
+      "path": "resources/gamemodes/freeroam/web/scoreboard.js",
+      "size": 6843,
+      "sha256": "d55daa27e094d17a651aa01a9c09854dcca9482478924c9d75652aa701f8d0ce"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/README.md",
+      "size": 21398,
+      "sha256": "52d87dcda26bc451940c9644681c09f9e8f2f00c3b68a4fbdf9a07a002c81187"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/client/main.lua",
+      "size": 11697,
+      "sha256": "f03bc5e5a5bd282926103058bba11836371c054007cccce1ee99968681666da8"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/client/panel.lua",
+      "size": 7889,
+      "sha256": "691a73fccac09571b63c50c8688d1c15395c889631a8dcffc9fa2154f14d9e0e"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/open77.lua",
+      "size": 1384,
+      "sha256": "f29effb0e7f79c14d81c8c2e5ab1c0b5392981812b5d076b26f0dc87077ab245"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/config.lua",
+      "size": 2691,
+      "sha256": "a141796ec8127cab88faee0ac29c0e37e697bb14d2e1210c40e522a86ca6ab00"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/dash.lua",
+      "size": 7078,
+      "sha256": "e4c6ca6e03cec6bb34c7d812cf53fe00339c95431633cf2a36dcdc6d336a1a3f"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/freeroam.lua",
+      "size": 3271,
+      "sha256": "86878dbf2148449d6712092f3ccc59cbea8ab098f84546d64d42263126d8eff8"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/ground-slam.lua",
+      "size": 10344,
+      "sha256": "029d9a41fdf4875e7171f5fdbef577229a92465da9d4a5a11c154b5d6f8687c1"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/jackets.lua",
+      "size": 4673,
+      "sha256": "4ccd27a7ddc5073a33bed7cf23a9bb9a6f3a58f15f204976e6a085bfad9fa050"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/load.lua",
+      "size": 4019,
+      "sha256": "0fa1f6044b7dbec2e516c5f1acb852f84f8d2d23993f15edf75449d32dc7399e"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/main.lua",
+      "size": 19009,
+      "sha256": "18688562c74af55bdd3125294ae94a5a118c7e7b9e14056b1c4e39d3d0a01c99"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/panel.lua",
+      "size": 8236,
+      "sha256": "0e51ed22fa18e375a0217ac1fec9c7775eac66c87641af39cffb23771e8de412"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/server/reflex.lua",
+      "size": 9461,
+      "sha256": "a7cc3add6b1b1cd6024b61e9cf6dc8f9b8985b5188fa132011d1b2a61016f64e"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/web/app.css",
+      "size": 9686,
+      "sha256": "4d6573b628fbf649066aa1294b58a308a5be75597f8e489d082be559223db920"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/web/app.js",
+      "size": 27530,
+      "sha256": "aa1aef2d69796cdcd0f1f9124cd6a350afaf607e8527937935f8dd839ca0de6b"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/web/design-system.css",
+      "size": 7800,
+      "sha256": "bc0bb60bbfc8b4992918b3b3cd1e6252bca63baed0f7f519b2b05b170710b6ab"
+    },
+    {
+      "path": "resources/gamemodes/open77_cyberware_lab/web/index.html",
+      "size": 2411,
+      "sha256": "f86a45c1d2bac79f654aa9d3df215bc24362e46bd679c4cb4fb5bb83f644d8a8"
+    },
+    {
+      "path": "resources/gamemodes/open77_freeroam/README.md",
+      "size": 1722,
+      "sha256": "ba29f0d8e551a02104a275ae20a833d37edd7cedd2fe8ba833a5ee5fb2d8bbc8"
+    },
+    {
+      "path": "resources/gamemodes/open77_freeroam/open77.lua",
+      "size": 294,
+      "sha256": "bee091697d3516a5903a82fc111fb4f22b56fc88e81dcc8455aee2fc03e237ca"
+    },
+    {
+      "path": "resources/gamemodes/open77_freeroam/server/persistence.lua",
+      "size": 11450,
+      "sha256": "261ecd97131d1555b993c0ee605cdff2303dbd0bf486059a9b1120cd7db960ac"
+    },
+    {
+      "path": "resources/open77_equipment/README.md",
+      "size": 361,
+      "sha256": "234acdc8a5bd673da88a71cf91568baa28e83c4620abf68d900348ab67ab344c"
+    },
+    {
+      "path": "resources/open77_equipment/client/main.lua",
+      "size": 10463,
+      "sha256": "75a01f6e140ee472f212436d3349fc7f96b8695fe07cb95a94aa47f24de77fc7"
+    },
+    {
+      "path": "resources/open77_equipment/open77.lua",
+      "size": 313,
+      "sha256": "c4fb444a91e433f8ebdb74eb20ed927f40aa96f2087affdfa116919de0aa544d"
+    },
+    {
+      "path": "resources/open77_wardrobe/client/main.lua",
+      "size": 9125,
+      "sha256": "cd16d307d74a1a7acd42a54c26aad45a066632477ff338ece2b8ffad68a356ea"
+    },
+    {
+      "path": "resources/open77_wardrobe/open77.lua",
+      "size": 312,
+      "sha256": "a2114ec3d673ba4543e474243642d0626d7265e3a98543b79d5b679351904c9f"
+    },
+    {
+      "path": "resources/polyzone/BoxZone.lua",
+      "size": 62,
+      "sha256": "bc743fd900853442e4db5558003a63548271194824bf70ebcbbf9476b94ff111"
+    },
+    {
+      "path": "resources/polyzone/CircleZone.lua",
+      "size": 65,
+      "sha256": "de5d8825d97b4213f415950b415478a3e943f508944cae60898d406eb38731f8"
+    },
+    {
+      "path": "resources/polyzone/ComboZone.lua",
+      "size": 64,
+      "sha256": "3c3cdb9be603356deb29361a32200888f90ae1f52620703117b47fb918e7af9d"
+    },
+    {
+      "path": "resources/polyzone/EntityZone.lua",
+      "size": 65,
+      "sha256": "3eabe00d8eb7ce97387c1ba40540a7dcdffec7bcbf6fcdcf992cf847ac106f6a"
+    },
+    {
+      "path": "resources/polyzone/LICENSE",
+      "size": 1096,
+      "sha256": "09b7627c7d4610de3180212f7f0d3e15100dbddf5fa52bcc2db0efca39d5717a"
+    },
+    {
+      "path": "resources/polyzone/README.md",
+      "size": 2855,
+      "sha256": "93ac39e2a751f6361fbd6c9aae2b1f88f2383db2e60bf4c81a137f56012446c0"
+    },
+    {
+      "path": "resources/polyzone/client.lua",
+      "size": 63,
+      "sha256": "29fcf806ce6e6e191be0796ac93a079f331c831463b380216e8b8ed82d77e9b4"
+    },
+    {
+      "path": "resources/polyzone/client/main.lua",
+      "size": 8605,
+      "sha256": "99ec8573feba34ca7266b9b42f37f1525ce1a9b6d3a3043875f729ebeb79dd68"
+    },
+    {
+      "path": "resources/polyzone/debug.lua",
+      "size": 2874,
+      "sha256": "53a0dd74f98a6ebd46ddf04cec2a904015e6a1a102772523ff821d65fed03d49"
+    },
+    {
+      "path": "resources/polyzone/geometry.lua",
+      "size": 3838,
+      "sha256": "21253dc17857c1fef57fe820fa5993dce2c4a13bea80bc0a0d08d2ed6860fef2"
+    },
+    {
+      "path": "resources/polyzone/init.lua",
+      "size": 28263,
+      "sha256": "125fc7a5e26c5e1e04c15e073bf4f807c42379c50c701a5ce6e9f69fc1e6c6d1"
+    },
+    {
+      "path": "resources/polyzone/open77.lua",
+      "size": 709,
+      "sha256": "bbcb9f87a7053509a20b8e2ed63e25d239f1b5c73d14cfda9b29d7a739f5fd20"
+    },
+    {
+      "path": "resources/polyzone/serialize.lua",
+      "size": 1802,
+      "sha256": "735a6894ea6a54df620f88aec62e2cf7077b03683f98ee65758b5414fc7d0793"
+    },
+    {
+      "path": "resources/polyzone/server/main.lua",
+      "size": 2160,
+      "sha256": "eeac8664f43525fa132751629a30e63522e621aa1a3c86807065b19d61161e9f"
+    },
+    {
+      "path": "resources/polyzone/web/editor.css",
+      "size": 2481,
+      "sha256": "cd7f840206ed5868f77ba36ced9af20ccf982106332d269e5922f1b57e7aa1a7"
+    },
+    {
+      "path": "resources/polyzone/web/editor.js",
+      "size": 1927,
+      "sha256": "0ae365f571c2cd9d7e144af2c4e36a7cdfa2e114c556ec50629aaeb775c7cc83"
+    },
+    {
+      "path": "resources/polyzone/web/index.html",
+      "size": 2290,
+      "sha256": "6ed9e80a09377014c76ea4610c6475d561a52ba9e5190b3f0606a63ab581fa88"
+    },
+    {
+      "path": "resources/system/open-voice/README.md",
+      "size": 2479,
+      "sha256": "70b4f292b929824072ad77a06fe43049cfda7dac05743f9dd19b2772b34f5f29"
+    },
+    {
+      "path": "resources/system/open-voice/client/main.lua",
+      "size": 9176,
+      "sha256": "7bb3e8da2b91302ccd610090aa3111bc754757aa60b3e9ef70c9ce468542e500"
+    },
+    {
+      "path": "resources/system/open-voice/open77.lua",
+      "size": 572,
+      "sha256": "b4ee8ad181c3f3f8cb20ae6d0d6ed43f1c326c6d7fa0e0e2a71f49366f26dcf6"
+    },
+    {
+      "path": "resources/system/open-voice/server/config.lua",
+      "size": 398,
+      "sha256": "4def50532ba7832bc5bd19696472a573ff50e0be47cdd6ac4da43172b8b36217"
+    },
+    {
+      "path": "resources/system/open-voice/server/main.lua",
+      "size": 6646,
+      "sha256": "dd0520089e6c14723bd70b9d7cb8a34dd046982a4f8df97c8a878e8c709eccf6"
+    },
+    {
+      "path": "resources/system/open-voice/web/app.css",
+      "size": 5987,
+      "sha256": "ea06049c89a40688ac486c33addb3ebb3de4906783820b1bc27ce37018121310"
+    },
+    {
+      "path": "resources/system/open-voice/web/app.js",
+      "size": 5137,
+      "sha256": "ce1c164214abd1f21abcca65ed2f76f0e4a0d779515f61e6d63589df2d6a2dc3"
+    },
+    {
+      "path": "resources/system/open-voice/web/index.html",
+      "size": 1673,
+      "sha256": "f758fa7a376fdc809219c648ba945e672a957241b43116cb73e4330937209b12"
+    },
+    {
+      "path": "resources/system/open77_admin/README.md",
+      "size": 54975,
+      "sha256": "63cae69460754f6683be09907a10b546c9d8c560aa8e3c507b05fa32dc160078"
+    },
+    {
+      "path": "resources/system/open77_admin/acl-roles.example.jsonc",
+      "size": 7669,
+      "sha256": "3712bb169486b0cc1d7b162a94e8fcc710ca6297e7f97076dd49671647e62020"
+    },
+    {
+      "path": "resources/system/open77_admin/client/context.lua",
+      "size": 5092,
+      "sha256": "b4ae7802a015ad2f2dafbdd91fe846b5e338a65acc86c871ae44016270ad6a1d"
+    },
+    {
+      "path": "resources/system/open77_admin/client/coordinates.lua",
+      "size": 1487,
+      "sha256": "4a8d133bc2c4d74a2c735117a774a9ee8b013acacf5ec07822505d5a2962d959"
+    },
+    {
+      "path": "resources/system/open77_admin/client/doors.lua",
+      "size": 6569,
+      "sha256": "fa0d3671ef85515dccaf50172f5aa22789dfb2b0eb9291da306e04526a1607ae"
+    },
+    {
+      "path": "resources/system/open77_admin/client/main.lua",
+      "size": 49830,
+      "sha256": "af0a7d5033754ceb390f35862f5e1ce4574c8f9d7a9212145d2466c1b93196cc"
+    },
+    {
+      "path": "resources/system/open77_admin/client/menu.lua",
+      "size": 88647,
+      "sha256": "307f8f5f31df2ef186936ab8d842efb1d0204d26d5d54eb86da2fc5e0088b0c8"
+    },
+    {
+      "path": "resources/system/open77_admin/open77.lua",
+      "size": 7772,
+      "sha256": "e9641b0747ebbabc583da7c0925012723fe10ff0cd569971ad4a38b484c0a533"
+    },
+    {
+      "path": "resources/system/open77_admin/server/bulk.lua",
+      "size": 10465,
+      "sha256": "a7fa38163784b30d152546d79bda864ae74f6c34a429f9fa83e7f4339005b580"
+    },
+    {
+      "path": "resources/system/open77_admin/server/developer.lua",
+      "size": 2843,
+      "sha256": "204c3ad62f7e1a115f98e1eb0a90f22da3abf89b2c63921e07b2b82956d72237"
+    },
+    {
+      "path": "resources/system/open77_admin/server/main.lua",
+      "size": 30093,
+      "sha256": "d34e8bc7f7f40b004ee5995d00a4af97a6d9a6fe139ce31aefaa34e2bfd3a6af"
+    },
+    {
+      "path": "resources/system/open77_admin/server/models-data.lua",
+      "size": 458804,
+      "sha256": "17092a4e324af9ee01ce03f00d4603f3707a9d5aa49126613801944f7443d616"
+    },
+    {
+      "path": "resources/system/open77_admin/server/models.lua",
+      "size": 6122,
+      "sha256": "f2048bed3a910ecf056f76435d0477d82d9a88c03198af05407f6a1a2a0fc7e0"
+    },
+    {
+      "path": "resources/system/open77_admin/server/players.lua",
+      "size": 34021,
+      "sha256": "f3bdd2c94b74385a4d022b6bebf704a1453b23402fc12eaeedb70b479c17b916"
+    },
+    {
+      "path": "resources/system/open77_admin/server/props.lua",
+      "size": 68786,
+      "sha256": "6015ee23fec83c5959d7060b119323025bd66cdc72099efb7d1e101686e18290"
+    },
+    {
+      "path": "resources/system/open77_admin/server/public.lua",
+      "size": 1244,
+      "sha256": "4a59eed769c93177eb1f1ad030ce5e9f83745358b8b5c7bf4ea91bde3c8d2a7f"
+    },
+    {
+      "path": "resources/system/open77_admin/server/vehicles.lua",
+      "size": 40790,
+      "sha256": "97dfe7bb3d6618dba0450bd1046595217b540ec2fd51ec770357aafb08cdb206"
+    },
+    {
+      "path": "resources/system/open77_admin/server/weapons.lua",
+      "size": 40873,
+      "sha256": "ab873e59c5536a2b53a1ef71da1e475be43e0daf17a7d891cb70f6dfdbed8e47"
+    },
+    {
+      "path": "resources/system/open77_admin/server/world.lua",
+      "size": 14612,
+      "sha256": "1d23a3c62e9741a9a94897b57e95529b4b8e13ef702080026a9c61111c22a974"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog-attributes.lua",
+      "size": 12332,
+      "sha256": "e79f545d82764213fc90b3758af7b8d59e4febc25accd44f503e8dc83feccbd5"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog-index-1.lua",
+      "size": 621,
+      "sha256": "d2d02aad098b4390b9a86f88afb082cfd6c82d184c17988a9d2518056f84617a"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog-index-2.lua",
+      "size": 1164,
+      "sha256": "4f2a085729fb6d67b7ed76bbce709b7a72b30615fc768cd311b779455861b3c5"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog-names.lua",
+      "size": 42787,
+      "sha256": "0d05c2366f7bc01f7f3ecbf433b87a8657ccc0ab13c241a78a2416a82048379a"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog-records.lua",
+      "size": 60489,
+      "sha256": "456a61c481e5cec64b408658eb2f29e51d57e4f5a9d492d1f0f5529372205bc6"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog-taxonomy.lua",
+      "size": 20989,
+      "sha256": "14b23b9de681ca163414847e6d3a708e7e422aa233cc1736068ae3fad557c3c2"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/catalog.lua",
+      "size": 14186,
+      "sha256": "764853e2366e4479d41d0b32a287ad940eb9826664a54030961a2707e9c27c39"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/config.lua",
+      "size": 53361,
+      "sha256": "b728a9c539875ebdf428ab3bb009b0f9cd35fac93cb1836bfafb60740baf4ee5"
+    },
+    {
+      "path": "resources/system/open77_admin/shared/weapons.lua",
+      "size": 14880,
+      "sha256": "7ead5f8860045bb87aba1dd9d20052ab558ade259849af40287395d739aa9677"
+    },
+    {
+      "path": "resources/system/open77_admin/web/app.css",
+      "size": 22144,
+      "sha256": "a44025bd7ddbcbbb81765aad5033f191a75301f2a101106a777f0f1c373a5e51"
+    },
+    {
+      "path": "resources/system/open77_admin/web/app.js",
+      "size": 77120,
+      "sha256": "52d2fd79581b1563b873c690995787c34fe32792b11a76828113a470894e43e4"
+    },
+    {
+      "path": "resources/system/open77_admin/web/index.html",
+      "size": 19837,
+      "sha256": "65e44be6dfb21889db6a510905b9cafd990e434bbc61940ebaeebf6f63bd719d"
+    },
+    {
+      "path": "resources/system/open77_admin/web/logo.png",
+      "size": 48464,
+      "sha256": "ce1a65f46e88b0f2e4595f40358863cb957b2dc974e3414ddd73ad29d2a3bff7"
+    },
+    {
+      "path": "resources/system/open77_admin/web/menu.css",
+      "size": 7690,
+      "sha256": "354cb61fa8a711af82ae76800e411292d3bac530a296fbc50b22b0c24e14d361"
+    },
+    {
+      "path": "resources/system/open77_admin/web/menu.html",
+      "size": 2784,
+      "sha256": "62bcd72e3c0f9625d2bdbd30e02b627b6efa3dc58ce67bf4608b3b158c28a695"
+    },
+    {
+      "path": "resources/system/open77_admin/web/menu.js",
+      "size": 10840,
+      "sha256": "78d6682a9273100c3cff808994d7c5c23f882181910babf35c0a56689b62d40f"
+    },
+    {
+      "path": "resources/system/open77_admin/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_animations/client/controller.lua",
+      "size": 22917,
+      "sha256": "e8e76127767791a56bd391cf8d09886794b3ee2c3065becc908502d37747da21"
+    },
+    {
+      "path": "resources/system/open77_animations/client/main.lua",
+      "size": 4348,
+      "sha256": "10f698533639e84ef095cfd1fb2be92f1ec4e8efcec575014d8833502b0219c1"
+    },
+    {
+      "path": "resources/system/open77_animations/open77.lua",
+      "size": 324,
+      "sha256": "ae3cd25578968ec2d4f7d2349656baa82ace35d70c9e24678e3f6d01c73bc250"
+    },
+    {
+      "path": "resources/system/open77_animations/server/main.lua",
+      "size": 4313,
+      "sha256": "44e30aec3a6be41e92e915be641e5e6642bf72dbb4e3b59f1752c994bb0a7296"
+    },
+    {
+      "path": "resources/system/open77_animations/shared/catalog.lua",
+      "size": 156050,
+      "sha256": "9b224830b6ee8fa9b94a623b7a44b4d72cccbbf318096835195f554bd6ec5a69"
+    },
+    {
+      "path": "resources/system/open77_appearance/README.md",
+      "size": 3668,
+      "sha256": "d68d1524dab6df661b7732ec8cc9e486906be1d9ec682b355b116aacc301fc71"
+    },
+    {
+      "path": "resources/system/open77_appearance/client/main.lua",
+      "size": 38881,
+      "sha256": "33335c392d87ec96e5d65654a019cfe85dbb2c9254fb8575c5047ce872866e6c"
+    },
+    {
+      "path": "resources/system/open77_appearance/open77.lua",
+      "size": 475,
+      "sha256": "1594f7d8ff03dd5d86e98c8a2fd551ac3e1f6143da63f5eb2571f40570129b6f"
+    },
+    {
+      "path": "resources/system/open77_appearance/server/catalog.lua",
+      "size": 138338,
+      "sha256": "ca2932e3ae37107824210be01b31f6c569dda98def25af3c50996adb21166f87"
+    },
+    {
+      "path": "resources/system/open77_appearance/server/main.lua",
+      "size": 47741,
+      "sha256": "8db6526e9bca269159c0396bc538b913147b729592e43bd7c3e8c6e8ec4c3508"
+    },
+    {
+      "path": "resources/system/open77_appearance/server/presentation.lua",
+      "size": 23943,
+      "sha256": "14f014f6e127b0f690d0ebc2a01aaa7e559bad26421ad2360b55fd89c23a8957"
+    },
+    {
+      "path": "resources/system/open77_appearance/sql/001_appearance.sql",
+      "size": 1713,
+      "sha256": "3f39be2710ec42cf1aeb6a488ebaf1f2650f3bb33b7fe61606489c013376129e"
+    },
+    {
+      "path": "resources/system/open77_appearance/sql/002_presentation.sql",
+      "size": 664,
+      "sha256": "362f337bcdec3a9549d173db44875d7820c008251fe95583e7f6db7e59bae831"
+    },
+    {
+      "path": "resources/system/open77_blips/client/main.lua",
+      "size": 744,
+      "sha256": "5f8b723e9874b3540d510017f51dd44574fd61317b3351e41c829b11eb3080ee"
+    },
+    {
+      "path": "resources/system/open77_blips/open77.lua",
+      "size": 255,
+      "sha256": "49fba1e53395a09e80300b751ffa5a0dd69ac1440dd88e37bd77a4d84791bdd9"
+    },
+    {
+      "path": "resources/system/open77_blips/web/index.html",
+      "size": 2605,
+      "sha256": "78df4cd51b47b6863ee6f84788e6b4b1cfe52c6c8aa080f7655804b8842f657d"
+    },
+    {
+      "path": "resources/system/open77_chat/README.md",
+      "size": 4439,
+      "sha256": "93d99655aa3483a6b46abe8064f3c982408b661f8cf2989043f09aa4e803597a"
+    },
+    {
+      "path": "resources/system/open77_chat/client/main.lua",
+      "size": 12911,
+      "sha256": "066bd65a7812bf1b3023e1608127e31b182eb44b260af0c9b1781747285769aa"
+    },
+    {
+      "path": "resources/system/open77_chat/open77.lua",
+      "size": 328,
+      "sha256": "6856c6dbd5c4e20d941df9f3ac23420b1f0bc54346405ce64923cdcd38ae20e0"
+    },
+    {
+      "path": "resources/system/open77_chat/server/main.lua",
+      "size": 4756,
+      "sha256": "ddc590f9262d091b840bad7a0a8745a700647769c2349a78170d6e8cc9ec4f44"
+    },
+    {
+      "path": "resources/system/open77_chat/web/app.css",
+      "size": 21453,
+      "sha256": "2fb485fccfd31b845cada5e7fdacf0492c017a93f932d5eface80bf3e6fadf4f"
+    },
+    {
+      "path": "resources/system/open77_chat/web/app.js",
+      "size": 19087,
+      "sha256": "d8b518076f00ea49a8af1c90e0c229af3cf92379d956f7485a227dae9674d28e"
+    },
+    {
+      "path": "resources/system/open77_chat/web/index.html",
+      "size": 2889,
+      "sha256": "2ca8eb4aab4f689c34ea13ad57949bc14da410f57b0e4b960e6c2fe0ea82de6a"
+    },
+    {
+      "path": "resources/system/open77_chat/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/README.md",
+      "size": 3857,
+      "sha256": "41f53b6156841f3006342c62cbc072eefa66d2999bf6ba39c9bc793a2aea6ffb"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/client/main.lua",
+      "size": 14500,
+      "sha256": "bf06b18f75ada6095be3f17f55b0770407783c5b1464a502c15349e177fecdf8"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/client/registry.lua",
+      "size": 13229,
+      "sha256": "ba9bd40cabeb8d79a2f38290553c0529f9c7c9d4e8d068be813fa364faa5436d"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/open77.lua",
+      "size": 364,
+      "sha256": "d2e2454927979f1d069ca756843b29af9aded95751b86338a98672b7247ea509"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/shared/config.lua",
+      "size": 691,
+      "sha256": "732d72d302181ae8f832ae9548cad381bc373dded0ef8d7cd27359759cbe13ba"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/web/app.css",
+      "size": 4231,
+      "sha256": "652059f15cee74f3dd2745b8073ca3988b73c01272c2a57e1f3ed7c0546219e3"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/web/app.js",
+      "size": 8677,
+      "sha256": "98ce62b11590ddde2c4798506d4061bba0f6d7f354134f4f32dacba958bc10de"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/web/index.html",
+      "size": 887,
+      "sha256": "c60b9c51bb2f706f20dae45a8273e7f9e5639446199d0a3d22c56baaccbb98ff"
+    },
+    {
+      "path": "resources/system/open77_contextmenu/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_cyberware/README.md",
+      "size": 8556,
+      "sha256": "258f8564aed6346fd6bd3dd97512eae53dfe5b7b4a2025e4ba084075114d44f0"
+    },
+    {
+      "path": "resources/system/open77_cyberware/client/ground-slam-presentation.lua",
+      "size": 11195,
+      "sha256": "6a99a56335b8b956fd4f91d32073af5f59b360b96f745811162440a0cce921d1"
+    },
+    {
+      "path": "resources/system/open77_cyberware/client/ground-slam.lua",
+      "size": 24602,
+      "sha256": "789a6699d6e9fbff0e48f937cd2f6ebfdc769650ad9fff413cfdb3295e55b7d7"
+    },
+    {
+      "path": "resources/system/open77_cyberware/client/main.lua",
+      "size": 43157,
+      "sha256": "e9f818ff7753097dcb118cc9a1bcdd4552691e50169709ec7bb4b1109637e1a7"
+    },
+    {
+      "path": "resources/system/open77_cyberware/client/melee-prediction.lua",
+      "size": 4249,
+      "sha256": "4e13b7cfee58e187e0437d5768e4e487d38860170a6094914436944ac8eac987"
+    },
+    {
+      "path": "resources/system/open77_cyberware/client/prediction.lua",
+      "size": 15217,
+      "sha256": "b05a255bbd6ba0ec879e92fccbef333d31b9ea2e620628aa1ef55634681a58b8"
+    },
+    {
+      "path": "resources/system/open77_cyberware/open77.lua",
+      "size": 752,
+      "sha256": "32222691af9738d042b210f1f19886d71c519f8868fa0bd6cd3573dc37a6886a"
+    },
+    {
+      "path": "resources/system/open77_cyberware/server/capabilities.lua",
+      "size": 1460,
+      "sha256": "32358a655ec315fdbfd1bb2a1212079ebb64b362d31f8fc63b5d4df41282a236"
+    },
+    {
+      "path": "resources/system/open77_cyberware/server/ground-slam-presentation.lua",
+      "size": 1792,
+      "sha256": "65c09c0b39408ef96828f5e7a1eb58fcd6fe9f2eb86c7e82812869d451e8b078"
+    },
+    {
+      "path": "resources/system/open77_cyberware/server/presentation-config.lua",
+      "size": 2299,
+      "sha256": "d092db1c32e843a6f265b145b3f8155258d7f4a7b1e3365684183b45cf850b0c"
+    },
+    {
+      "path": "resources/system/open77_cyberware/server/presentation.lua",
+      "size": 11224,
+      "sha256": "d066c4f39a7a59e423111a16d27830fc7f1a807c2a3386a2d7984f450950d764"
+    },
+    {
+      "path": "resources/system/open77_dash/client/main.lua",
+      "size": 20475,
+      "sha256": "c314ce1490ddff3465a23db8fd64b500371e0fbb875e24b7650910bf4e44233f"
+    },
+    {
+      "path": "resources/system/open77_dash/open77.lua",
+      "size": 285,
+      "sha256": "961f24fe149face373d655d7379f2c2ba4d32feebf8b9dff47cc62f23c47da7b"
+    },
+    {
+      "path": "resources/system/open77_death/client/main.lua",
+      "size": 1332,
+      "sha256": "1be447bdfe81c3ef1e6ffd50a26de3732aa7c7f8b12734440a8d5924f7fa2c9b"
+    },
+    {
+      "path": "resources/system/open77_death/open77.lua",
+      "size": 182,
+      "sha256": "5f87a0316e7d6e7217d4b2b9b1cba85a9888191551728f5d5c954d4dfe6a0224"
+    },
+    {
+      "path": "resources/system/open77_doors/client/main.lua",
+      "size": 11093,
+      "sha256": "d20aac5ba315b3bf49e5de0e34f52b5f669048731ba809487e4c127c592db6f0"
+    },
+    {
+      "path": "resources/system/open77_doors/open77.lua",
+      "size": 520,
+      "sha256": "783e733eb2464284bd7e0afbe801d8df6d39d7c8192794b6cbd75e567d409e7a"
+    },
+    {
+      "path": "resources/system/open77_doors/server/authority.lua",
+      "size": 39122,
+      "sha256": "467465c450b67b2c6c4fb31c43fb7c3933985a3264b368bb39df80adc24eef13"
+    },
+    {
+      "path": "resources/system/open77_doors/server/main.lua",
+      "size": 8624,
+      "sha256": "a1a39c44e665a715c3e4114618e7a600995b3efb6da220d8a1f4e920daac856f"
+    },
+    {
+      "path": "resources/system/open77_effects/client/main.lua",
+      "size": 24818,
+      "sha256": "710321091ae1e8364aa0611b8c327fa2a9fe2315566f142fd55b47aba97db9f5"
+    },
+    {
+      "path": "resources/system/open77_effects/open77.lua",
+      "size": 231,
+      "sha256": "d923e8345ac05ce7fe7b688a91f816b9a94a57df8776fd2a92bf62aab0c36362"
+    },
+    {
+      "path": "resources/system/open77_effects/server/main.lua",
+      "size": 7931,
+      "sha256": "92233888f1dcc58a15d951ecaeb068390953db40414a7089a82be255f52da1e9"
+    },
+    {
+      "path": "resources/system/open77_elevators/client/main.lua",
+      "size": 4907,
+      "sha256": "b4d0dafb1e6c2787091ebbf25991eb1e804776d71a370a558ac307d708efdecd"
+    },
+    {
+      "path": "resources/system/open77_elevators/open77.lua",
+      "size": 295,
+      "sha256": "e23f021abd2255fe72b754662dc0c7db884e226df9e9b6a5eed1f541d5e75ed4"
+    },
+    {
+      "path": "resources/system/open77_elevators/server/main.lua",
+      "size": 11640,
+      "sha256": "3e332ad34fac062680db2afd4a86107dd24e21cd5f4793a6eeca3fe42ad83f28"
+    },
+    {
+      "path": "resources/system/open77_interactions/README.md",
+      "size": 6560,
+      "sha256": "a15e101822e97123813c4cba4a75c70e54d8b4e2b454b8c0a8b50e7337be1d0f"
+    },
+    {
+      "path": "resources/system/open77_interactions/client/main.lua",
+      "size": 146690,
+      "sha256": "1c38a1d01de287f8ad64259358d94286cec741e460babc27f0b8a84a2209649f"
+    },
+    {
+      "path": "resources/system/open77_interactions/open77.lua",
+      "size": 1142,
+      "sha256": "db738111394ec60488f4111e8936cdaceeb3990d4625db2a4c8ba6d0347d8dc2"
+    },
+    {
+      "path": "resources/system/open77_interactions/server/main.lua",
+      "size": 6758,
+      "sha256": "7453e2016c27eb025113b746c22c26cc57fa83ef34e1dea2f1e3bbfece8c943b"
+    },
+    {
+      "path": "resources/system/open77_interactions/web/app.css",
+      "size": 9168,
+      "sha256": "ea3b8005dc54a1c2fe6be8acd538047591bcf55b51e21359620a31527bddefdb"
+    },
+    {
+      "path": "resources/system/open77_interactions/web/app.js",
+      "size": 6479,
+      "sha256": "2ce31fecc7df1acf6410cad33b636fb977f6064b5bcfa17e6b3d2d3ae4deff40"
+    },
+    {
+      "path": "resources/system/open77_interactions/web/index.html",
+      "size": 390,
+      "sha256": "09f167bae13cfa2d68efad6723bc8a800da1b75031863ba3a746213ce0abc677"
+    },
+    {
+      "path": "resources/system/open77_interactions/web/marker-arrow.svg",
+      "size": 294,
+      "sha256": "35b83a338b723c3fd3383d3f8410618d3653c0f78a7758e79910ec17a6034c81"
+    },
+    {
+      "path": "resources/system/open77_interactions/web/marker-vehicle.svg",
+      "size": 1497,
+      "sha256": "5f11da50cd0d2b4327f4ad5cfc80fc96f54216bbaad0acb1d86dd7ea063ff0a2"
+    },
+    {
+      "path": "resources/system/open77_interactions/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_media/client/main.lua",
+      "size": 43791,
+      "sha256": "d0e7eb1e8653d3e711ea51ef5964da9e2174152fffff050a09313e8bc64de92d"
+    },
+    {
+      "path": "resources/system/open77_media/open77.lua",
+      "size": 4327,
+      "sha256": "134a2bcffecfea528f9fc4a453afccae1014ff8e2dc29408d7fa9a4d2ad47d4f"
+    },
+    {
+      "path": "resources/system/open77_media/server/adblock.lua",
+      "size": 17634,
+      "sha256": "03ce54bd203c3dcebc4d3069c397782bdd81983da42bcf18bcc1b397832d4f28"
+    },
+    {
+      "path": "resources/system/open77_media/server/config.lua",
+      "size": 4379,
+      "sha256": "ad85c79ec3d4d33b3d74938eb26bad3b91f59eb25b2b645f0fbfb836c250bb1e"
+    },
+    {
+      "path": "resources/system/open77_media/server/main.lua",
+      "size": 64450,
+      "sha256": "3e37e36602a526cae84e917dd087046f3a78718b0c4325338fe29ed87b564c00"
+    },
+    {
+      "path": "resources/system/open77_media/shared/placement.lua",
+      "size": 17430,
+      "sha256": "cad2e2b005d739b6fd8cdab4c0225c7a9c30c9169840acd493474f5653b14bf4"
+    },
+    {
+      "path": "resources/system/open77_media/shared/records.lua",
+      "size": 46667,
+      "sha256": "e7f2acf3bb547bf6cf80f1a05db90cb3f21637b1e6c576374689d3b071a8e27e"
+    },
+    {
+      "path": "resources/system/open77_media/tests/adblock_test.lua",
+      "size": 13205,
+      "sha256": "20419704829d9ac54de3a4f482aa83ee34d27d59387f8085417688bae07efd10"
+    },
+    {
+      "path": "resources/system/open77_media/tests/client_test.lua",
+      "size": 29739,
+      "sha256": "b3e4e36e7d419573c6ae876a118aa924f601900b4e0260640170de783fd7a9ea"
+    },
+    {
+      "path": "resources/system/open77_media/tests/placement_test.lua",
+      "size": 22327,
+      "sha256": "94ab7e5df036f43092185fca0733d8b4047ecc31621cf895b61e88cf2ac5abee"
+    },
+    {
+      "path": "resources/system/open77_media/tests/records_test.lua",
+      "size": 34556,
+      "sha256": "5ca2c81bfad76a631fb2f986e47776c428de94b80e33a981dc23ec22ffdbd0b4"
+    },
+    {
+      "path": "resources/system/open77_media/web/tv.css",
+      "size": 13048,
+      "sha256": "2748daa0800cc14700e908de862ad45aead449f589edae8e28c1c7265768858a"
+    },
+    {
+      "path": "resources/system/open77_media/web/tv.html",
+      "size": 7958,
+      "sha256": "e1f354b787affc28edcbf01508383b24453e1b8543ac00f749af09b23585e7e7"
+    },
+    {
+      "path": "resources/system/open77_media/web/tv.js",
+      "size": 64511,
+      "sha256": "c4a0b8c28c1b114573625a317b7fb8d7e428eef022161deb27889e3ba7319e08"
+    },
+    {
+      "path": "resources/system/open77_nameplates/client/main.lua",
+      "size": 5472,
+      "sha256": "dcae324e70d05d041881e57fa3e95451beb5277fc8f5fe2a543b1cf7a66480a8"
+    },
+    {
+      "path": "resources/system/open77_nameplates/client/policy.lua",
+      "size": 29739,
+      "sha256": "4088ee721152094ddda5ba1d6a2b9d59e11059319a47fe56aa154b1a47cbb986"
+    },
+    {
+      "path": "resources/system/open77_nameplates/open77.lua",
+      "size": 2216,
+      "sha256": "552cd1cda2746d940c2ff5f8d08b36e383eeafcc1853f561c00a752022e92385"
+    },
+    {
+      "path": "resources/system/open77_nameplates/server/main.lua",
+      "size": 7296,
+      "sha256": "ca32c9fb970744608943ef338862a68a9fa92ad2d73f81e1a68131ec42cdd419"
+    },
+    {
+      "path": "resources/system/open77_nameplates/web/app.css",
+      "size": 3042,
+      "sha256": "78242726fcc86ebf780bd745d3c2cd1a9a61bb5844cf488bad55284f02b7f57c"
+    },
+    {
+      "path": "resources/system/open77_nameplates/web/app.js",
+      "size": 1875,
+      "sha256": "9463b07cbd51c42ae51791813c849f6e794a5b48a7bef154a5e319f3f1ecc296"
+    },
+    {
+      "path": "resources/system/open77_nameplates/web/index.html",
+      "size": 387,
+      "sha256": "e123e89ac200ea2f7e41da311d691b88d084b588e602cfb6e15b264817911aa4"
+    },
+    {
+      "path": "resources/system/open77_nameplates/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_notifications/README.md",
+      "size": 682,
+      "sha256": "ec86dc4ffab5c9b956a2dedb2a74ef260a8d54550e1d8220bac8d6711c6f83d6"
+    },
+    {
+      "path": "resources/system/open77_notifications/client/main.lua",
+      "size": 13924,
+      "sha256": "4ae34b864717881b36120ca1099fa81588b6e46dbd768afc151273a076ec240b"
+    },
+    {
+      "path": "resources/system/open77_notifications/open77.lua",
+      "size": 442,
+      "sha256": "37347e16f47855b3ec447dbd52272867fd3959e78e537ab29843b462e143e3e1"
+    },
+    {
+      "path": "resources/system/open77_notifications/server/main.lua",
+      "size": 1213,
+      "sha256": "8fbdf17da804268a243f06ea30e13799e58262c6ab97ad0af3dd8bf408aeee14"
+    },
+    {
+      "path": "resources/system/open77_notifications/web/app.css",
+      "size": 6035,
+      "sha256": "222f224974a9ada06531ba29d87c1acfd5a3d4639f3f7fe29a66a89a40a2a61c"
+    },
+    {
+      "path": "resources/system/open77_notifications/web/app.js",
+      "size": 3576,
+      "sha256": "99af80a0983c2e53734f12ab7e8cc759232ce6fd0eafc016ac041283afa3ef23"
+    },
+    {
+      "path": "resources/system/open77_notifications/web/index.html",
+      "size": 393,
+      "sha256": "68674e51ed05ef70175d1a7b999ce154ffb3444abebfff6ba71e6a25903e9a8e"
+    },
+    {
+      "path": "resources/system/open77_notifications/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_pause/client/main.lua",
+      "size": 49294,
+      "sha256": "3db185bacdc51cde7c2830caff8668496bee617be03d12c800a19aa459e82a52"
+    },
+    {
+      "path": "resources/system/open77_pause/open77.lua",
+      "size": 815,
+      "sha256": "5f411267d972e413b1e588c2ab9ca0e90550631520c96296d917c74211ee7571"
+    },
+    {
+      "path": "resources/system/open77_pause/shared/strings.lua",
+      "size": 8967,
+      "sha256": "464d74b985132a5c1ccf7f030ef53406af84e49d3d21ee47682f35dcab66af31"
+    },
+    {
+      "path": "resources/system/open77_pause/web/address-privacy.css",
+      "size": 851,
+      "sha256": "f96cdc8b67ce835e250304fa0f79274afcebe066305f458e3e8b95b17b28950d"
+    },
+    {
+      "path": "resources/system/open77_pause/web/address-privacy.js",
+      "size": 5634,
+      "sha256": "3a6c1feb224d574a809f19258b6c3a540d8b76845e211d72c1a77a33a27a46b9"
+    },
+    {
+      "path": "resources/system/open77_pause/web/app.css",
+      "size": 28985,
+      "sha256": "b267020edb32c86f64fa2adb5d485e82a412522ab55318f568e2a6d3bf99f5d7"
+    },
+    {
+      "path": "resources/system/open77_pause/web/branding.js",
+      "size": 1978,
+      "sha256": "e95007b48c5fe21e31caf1d46b18198b71619aae24d184d360f2cc179162bd1d"
+    },
+    {
+      "path": "resources/system/open77_pause/web/design-system.css",
+      "size": 7800,
+      "sha256": "bc0bb60bbfc8b4992918b3b3cd1e6252bca63baed0f7f519b2b05b170710b6ab"
+    },
+    {
+      "path": "resources/system/open77_pause/web/i18n.js",
+      "size": 3155,
+      "sha256": "ed08435b2dd8295ac7170f6ab5d883626ee93277ae65736476dc491c0282756a"
+    },
+    {
+      "path": "resources/system/open77_pause/web/index.html",
+      "size": 54746,
+      "sha256": "ff9dc7d525701f5c1c4e93bc7791c8cec5811955a647ae619d8ff233b5b3273c"
+    },
+    {
+      "path": "resources/system/open77_pause/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_pause/web/open77.png",
+      "size": 371157,
+      "sha256": "bb1416ea7f1ddebf3ffccee87b1d47ed7f386a7c7db03d044cef829d0668a1ab"
+    },
+    {
+      "path": "resources/system/open77_perspective/client/main.lua",
+      "size": 10674,
+      "sha256": "7efee67ee57b376299324c1e56141036c5b2fbeed8d43171e753bfe7ecf796a2"
+    },
+    {
+      "path": "resources/system/open77_perspective/open77.lua",
+      "size": 734,
+      "sha256": "e4b43868f009a580c6e3dc16ad7adbd619d39278176e738ff23289caa4b70c5d"
+    },
+    {
+      "path": "resources/system/open77_perspective/server/main.lua",
+      "size": 2930,
+      "sha256": "c14b9f900ff04bd3a2b723f2a96d8a87e867ce913256f0144bc6faad15f523d9"
+    },
+    {
+      "path": "resources/system/open77_player_interactions/client/controller.lua",
+      "size": 9429,
+      "sha256": "627fde40910657f54b82d4f05ae71951e72039b1b66a4268f440afc73dcf7b05"
+    },
+    {
+      "path": "resources/system/open77_player_interactions/client/main.lua",
+      "size": 4248,
+      "sha256": "72e2dee2bbb20f809ac12232fb1cabfbc872a2bbb4720b92318f9eb6c154c57b"
+    },
+    {
+      "path": "resources/system/open77_player_interactions/open77.lua",
+      "size": 348,
+      "sha256": "0e260beef23bef6073cad9d69ade998aa8757ec16ea469e433480eabac28e043"
+    },
+    {
+      "path": "resources/system/open77_player_interactions/server/main.lua",
+      "size": 785,
+      "sha256": "e03cb9e9dc26fef84255c41a3d8e630683c37019aa8a5e5962359c1ec14d500a"
+    },
+    {
+      "path": "resources/system/open77_prediction/client/main.lua",
+      "size": 6811,
+      "sha256": "a6d46c4646d7566aa578760b113e42559136ae56be9b87906c4ca36ac44c4f47"
+    },
+    {
+      "path": "resources/system/open77_prediction/open77.lua",
+      "size": 2282,
+      "sha256": "a515b682603152c0dfc71fd55b52cb7419be89fd1a9fdc39a5003197bc35cd8d"
+    },
+    {
+      "path": "resources/system/open77_prediction/server/main.lua",
+      "size": 20599,
+      "sha256": "f6be2011a80d1941c960f98bf83de2681046b1e3e534f6759e86e4beefbd528e"
+    },
+    {
+      "path": "resources/system/open77_prediction/shared/policy.lua",
+      "size": 4904,
+      "sha256": "d912002243d3946cccc3bff8a8d2285a314ad205cbcaf92d62d3bffa9ab2bb1d"
+    },
+    {
+      "path": "resources/system/open77_prevention/client/main.lua",
+      "size": 2613,
+      "sha256": "aef7eea946ec5104e5fe518dd8156cf8bdfb03b107de9f2366b254948e4cb562"
+    },
+    {
+      "path": "resources/system/open77_prevention/open77.lua",
+      "size": 204,
+      "sha256": "a39e340be0b953328a100277291ca4fddc127d1df45159f5473ffd46977177fc"
+    },
+    {
+      "path": "resources/system/open77_props/client/main.lua",
+      "size": 8678,
+      "sha256": "05215dcbde2362d4d2ad8bd5b364d0e02b899f8d35322c9b463fbd7e481eceb5"
+    },
+    {
+      "path": "resources/system/open77_props/open77.lua",
+      "size": 795,
+      "sha256": "a4c3400f68c8f73f7fe54e08c22c5de7faa00146f6b2765658dd6e5fce9fa34b"
+    },
+    {
+      "path": "resources/system/open77_props/server/main.lua",
+      "size": 24064,
+      "sha256": "4c4172e3e20253719a43528c32bb0b9dbbbe5ebf8148b45be5f2f245850d9e2c"
+    },
+    {
+      "path": "resources/system/open77_props/server/persistence.lua",
+      "size": 13865,
+      "sha256": "35249ea366fe4d9bc7783fabc7a879fe92627f09bafe2c95410224a7c889c9f9"
+    },
+    {
+      "path": "resources/system/open77_reflex/client/main.lua",
+      "size": 17710,
+      "sha256": "2aafecd3c61a9d36a92a65fb0b7acebe8649e9f2322464f61b235fed8b6abedc"
+    },
+    {
+      "path": "resources/system/open77_reflex/open77.lua",
+      "size": 371,
+      "sha256": "adadb6722f9dcf2b07b132b9eab7a031a9795f75e058ccdc09f4a3d05590ad26"
+    },
+    {
+      "path": "resources/system/open77_reflex/server/presentation.lua",
+      "size": 14166,
+      "sha256": "fa5e8c54017611988ae196d3011a6934bf5900ced0133c9d3feb446b4e39ad6c"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/client/editor.lua",
+      "size": 94395,
+      "sha256": "7546bef78ef5147ad3de15f09c39019b944f8a66c94ee7bd7518faa41ca51bf3"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/client/main.lua",
+      "size": 20395,
+      "sha256": "d9f627029e5a88737cbe49d9143a36e0f5175d08abf33a9a2aacafe013f65ce7"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/open77.lua",
+      "size": 1861,
+      "sha256": "33cf3a4e033167950fa8baeaa9bf1b93595f4c609dbfe7cd6fc0444ea103c7d7"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/server/authority.lua",
+      "size": 87440,
+      "sha256": "dbc5b45d32f280830b81b340cd08bd4c7ab071a57942beb7660144f72010ec9e"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/server/editor.lua",
+      "size": 56331,
+      "sha256": "de514c9e1791bd082610a9502e0b854670dd01135fc3642945d384c82b3b60ae"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/server/main.lua",
+      "size": 22289,
+      "sha256": "401ff869f0f18fc2ddf7d53e67e8393daf8a787f51bad98025d507142d5a970a"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/server/watch.lua",
+      "size": 15610,
+      "sha256": "ed94049854bb6208f002b4e0d5dc0cc62377adeaed893bb304fb7007711415b8"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/web/editor.css",
+      "size": 9873,
+      "sha256": "de1cb9eade444cda114fc657c126e9640d06939d47f3bc666084e495cd116d8b"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/web/editor.html",
+      "size": 9285,
+      "sha256": "a545d6a8cf19803f69101dc9b11c890580118b2bb09e9c3dbdfc9d4c60f8afc2"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/web/editor.js",
+      "size": 36743,
+      "sha256": "5abe7115edadb5ac33cdda076004ed9de2235cc2850bacd6ba100f1cb0477db6"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_remote_camera/web/view.html",
+      "size": 568,
+      "sha256": "f60d72b18927e2ecbd5b358da3385c4b60a7b4cfa3e019d0cae798f4c89948ba"
+    },
+    {
+      "path": "resources/system/open77_shell/README.md",
+      "size": 1350,
+      "sha256": "3bfe5b45f7fad371156b70e38031f4b2daf1726fd7869c8820d6e7e8091d6877"
+    },
+    {
+      "path": "resources/system/open77_shell/client/main.lua",
+      "size": 52703,
+      "sha256": "cb165a2ecf6b0bb9f11c9466d2401a79d5ca45505a8a23d53109926602eac2e0"
+    },
+    {
+      "path": "resources/system/open77_shell/open77.lua",
+      "size": 273,
+      "sha256": "2fa43f7d1234612154b366d850e0e9edce423b09e015d9e162c5667f1c7073ad"
+    },
+    {
+      "path": "resources/system/open77_shell/web/address-privacy.css",
+      "size": 851,
+      "sha256": "f96cdc8b67ce835e250304fa0f79274afcebe066305f458e3e8b95b17b28950d"
+    },
+    {
+      "path": "resources/system/open77_shell/web/address-privacy.js",
+      "size": 5634,
+      "sha256": "3a6c1feb224d574a809f19258b6c3a540d8b76845e211d72c1a77a33a27a46b9"
+    },
+    {
+      "path": "resources/system/open77_shell/web/app.css",
+      "size": 9109,
+      "sha256": "32673ac08e811c0122d7316e17faedfb2ff4191741594be51dd1f9db63848538"
+    },
+    {
+      "path": "resources/system/open77_shell/web/app.js",
+      "size": 12030,
+      "sha256": "27ba818d6e248500f45a31705ee41f92198bc097698459186732250a27d0a627"
+    },
+    {
+      "path": "resources/system/open77_shell/web/audio/lobby.mp3",
+      "size": 4921030,
+      "sha256": "8497331546ccd174ce958109a82a0e64e386b2a2b79c753ff790981acbfddd1f"
+    },
+    {
+      "path": "resources/system/open77_shell/web/connection-errors.js",
+      "size": 7119,
+      "sha256": "c30309aeff8b8564787594daff97a50413975bfaf5b2ad5b2d6a27fc5473357d"
+    },
+    {
+      "path": "resources/system/open77_shell/web/design-system.css",
+      "size": 7800,
+      "sha256": "bc0bb60bbfc8b4992918b3b3cd1e6252bca63baed0f7f519b2b05b170710b6ab"
+    },
+    {
+      "path": "resources/system/open77_shell/web/index.html",
+      "size": 5460,
+      "sha256": "896ccf1664fdfdb012963db56792e3356e40a4d432f80c8850bee072e9231c76"
+    },
+    {
+      "path": "resources/system/open77_shell/web/logo.png",
+      "size": 27970,
+      "sha256": "b921036f5f7256105b59fc4d0e3d901f1ccba97916d7f1a452d02d010e115a54"
+    },
+    {
+      "path": "resources/system/open77_shell/web/music.js",
+      "size": 3204,
+      "sha256": "b1c56a7a281f2668b3a33ae38ac8d0a338af5648a4d0eea6f8b3c6ece3a3f582"
+    },
+    {
+      "path": "resources/system/open77_shell/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_shell/web/open77.png",
+      "size": 371157,
+      "sha256": "bb1416ea7f1ddebf3ffccee87b1d47ed7f386a7c7db03d044cef829d0668a1ab"
+    },
+    {
+      "path": "resources/system/open77_shell/web/resource-errors.js",
+      "size": 6412,
+      "sha256": "e7b9158d7b387c94c10487e3014e4a623eeb409fe2fbc8e5cdc9acc1290025ea"
+    },
+    {
+      "path": "resources/system/open77_vehicles/README.md",
+      "size": 4692,
+      "sha256": "f495caeed4c7cddb8ed7dc6787b3f2e02e42b48e6bda8c45ad6d324d90b78eb1"
+    },
+    {
+      "path": "resources/system/open77_vehicles/client/main.lua",
+      "size": 5045,
+      "sha256": "b76c18bb9bf141d6e4507fb4403164f940f4aea8339aac784df5b15a1f9d8cc9"
+    },
+    {
+      "path": "resources/system/open77_vehicles/open77.lua",
+      "size": 250,
+      "sha256": "400ed8a33985d54f9c8089ae761ac65bc0d6c1edda89c71e068faf7a956b101f"
+    },
+    {
+      "path": "resources/system/open77_vehicles/server/main.lua",
+      "size": 17971,
+      "sha256": "5c44c19a92a87439cdf9ded9a4a3110f08607e243101f288dae4db05bb400fa0"
+    },
+    {
+      "path": "resources/system/open77_voice/README.md",
+      "size": 1304,
+      "sha256": "20d41f50644153f2c04c4207fff515adae9fd9f4358aa2c1c2037632ed80893d"
+    },
+    {
+      "path": "resources/system/open77_voice/client/main.lua",
+      "size": 13465,
+      "sha256": "173a28008c22504f483d4ed6131f0b745038a4bd1011c4ece3fd3c3a670bf8d5"
+    },
+    {
+      "path": "resources/system/open77_voice/open77.lua",
+      "size": 587,
+      "sha256": "98de61ec68f5e483c11f4770884d9083bedfda875d6672ba6af142f01e07c0d3"
+    },
+    {
+      "path": "resources/system/open77_voice/server/main.lua",
+      "size": 3004,
+      "sha256": "c1fb1cc9afd7a9c25377ad9337aae3f8ab8f7215609431d2c2b810bbf1c13a85"
+    },
+    {
+      "path": "resources/system/open77_voice/shared/config.lua",
+      "size": 1548,
+      "sha256": "672c6f9fec8494f914e355e4bb8fedaa289508768c3e4b59b5930a02012d53d8"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/README.md",
+      "size": 9399,
+      "sha256": "bfc4e41a2011f2d2093ca67593eac5bef363ff952d0a6d00fbd2149f5c81ac97"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/client/favorites.lua",
+      "size": 3083,
+      "sha256": "f8083a9f49334e123fc1d56273c50c728add2531baaba010afa231eac60d82de"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/client/main.lua",
+      "size": 15564,
+      "sha256": "da80ffc870c8894a447d4f96b37696992df465c02fa030f4b05b9b3c5892e169"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/open77.lua",
+      "size": 544,
+      "sha256": "a55fdbd35045a3677f721467e6c9cee724703828ea6eadb7dbf1a295b67f3cf6"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/web/app.css",
+      "size": 10623,
+      "sha256": "67e870d143e290e23286ebfb55d7c123255e6f0567842bafaf7e0399a346a533"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/web/app.js",
+      "size": 14862,
+      "sha256": "ba0cfb91b9e02150cfb065478a6b322aef182c3e7c1f6ee7621dec73ca62a719"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/web/design-system.css",
+      "size": 7800,
+      "sha256": "bc0bb60bbfc8b4992918b3b3cd1e6252bca63baed0f7f519b2b05b170710b6ab"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/web/freeroam-controls.css",
+      "size": 2565,
+      "sha256": "e90f8c24db3045e0ff03d17e4a46d88cd7fac4340fddd06ab15c93a9f386df7f"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/web/index.html",
+      "size": 4075,
+      "sha256": "19e00dda8862c8aa131734463998709f026022c7d4df22f6ebd7adbe1eb14679"
+    },
+    {
+      "path": "resources/system/open77_wardrobe_ui/web/model.js",
+      "size": 2610,
+      "sha256": "a14cd950fb571ae92241a9e9d2891ba326ebcb0d32ff009450ce068e26a0bf54"
+    },
+    {
+      "path": "resources/system/open77_watermark/README.md",
+      "size": 2013,
+      "sha256": "58e05215630da3b8635a2dba7254140080eb816f50e0e3289d8f0349e037e0f2"
+    },
+    {
+      "path": "resources/system/open77_watermark/client/main.lua",
+      "size": 2846,
+      "sha256": "35add206cec1a33e1abaea2ef6757869f8685f7a2182c7b8b23783836084ae66"
+    },
+    {
+      "path": "resources/system/open77_watermark/open77.lua",
+      "size": 325,
+      "sha256": "130542a9370810a7f59301a75ceb0a7e60f0b9ba2f01122c5b764d9ab63d1d0e"
+    },
+    {
+      "path": "resources/system/open77_watermark/server/main.lua",
+      "size": 721,
+      "sha256": "dcd46bf3fd77b43491d583fd2b471dc68be35d8e5eaac6e56dc3d8a06c85bc59"
+    },
+    {
+      "path": "resources/system/open77_watermark/web/app.css",
+      "size": 3875,
+      "sha256": "1a05e566f31b56e89797b95ae83572209865babe02c059d7e5071ef215f8a2ed"
+    },
+    {
+      "path": "resources/system/open77_watermark/web/app.js",
+      "size": 1392,
+      "sha256": "873b36aafada3f7fc1240ab4133756c54006d230a843d0704e239567e1c06a6d"
+    },
+    {
+      "path": "resources/system/open77_watermark/web/index.html",
+      "size": 1023,
+      "sha256": "7a955945c25425d5b64388b43148f8f2904d119eb0514ff243013e5ef6a32ae7"
+    },
+    {
+      "path": "resources/system/open77_watermark/web/logo.png",
+      "size": 27970,
+      "sha256": "b921036f5f7256105b59fc4d0e3d901f1ccba97916d7f1a452d02d010e115a54"
+    },
+    {
+      "path": "resources/system/open77_watermark/web/open77-ui.css",
+      "size": 9742,
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5"
+    },
+    {
+      "path": "resources/system/open77_watermark/web/open77.png",
+      "size": 371157,
+      "sha256": "bb1416ea7f1ddebf3ffccee87b1d47ed7f386a7c7db03d044cef829d0668a1ab"
+    },
+    {
+      "path": "resources/system/open77_weapons/README.md",
+      "size": 3534,
+      "sha256": "a4fbbebc5831b83533f202b084b4964bb5b8c3c38a33541e6469d921ea444844"
+    },
+    {
+      "path": "resources/system/open77_weapons/client/blasts.lua",
+      "size": 1495,
+      "sha256": "92b39f5bdca6737ed5116b31ccf561194400632a19ec1e8907bb0b73ea733fdc"
+    },
+    {
+      "path": "resources/system/open77_weapons/client/main.lua",
+      "size": 26719,
+      "sha256": "32107cd698c9a8cd1d7f08da7c106b59bd04481a9b7d675fce507b642920456d"
+    },
+    {
+      "path": "resources/system/open77_weapons/open77.lua",
+      "size": 647,
+      "sha256": "2b2463192a4be8d96d233c41997643e60796aed36cf93fe2a48136b6914c0ba0"
+    },
+    {
+      "path": "resources/system/open77_weapons/server/blasts.lua",
+      "size": 46124,
+      "sha256": "0f0b455d882481d446d8581a31c2d870ac2569b3d2313cba935760b4154d14e3"
+    },
+    {
+      "path": "resources/system/open77_weapons/server/main.lua",
+      "size": 13012,
+      "sha256": "09d6b00d119889b7d4dc4c5c8b640c20c6b5a5c085fcd592fbc2a3e2995830a2"
+    },
+    {
+      "path": "resources/system/open77_weather/README.md",
+      "size": 5995,
+      "sha256": "6a8ea957a851f1487c44111fc77df6aae8dc35ba54ad1b30536a52a2e6279e91"
+    },
+    {
+      "path": "resources/system/open77_weather/client/main.lua",
+      "size": 17647,
+      "sha256": "77ce0000341e56a555d587d2cc97a20b494f257f9170de3d7dea73edaaee9825"
+    },
+    {
+      "path": "resources/system/open77_weather/open77.lua",
+      "size": 467,
+      "sha256": "6b5470c45ce9e248a2f819f4e7f03c52700f88e9a40b1a97970e8007f7f7bc55"
+    },
+    {
+      "path": "resources/system/open77_weather/server/main.lua",
+      "size": 37078,
+      "sha256": "e945f9121be26f1e3fdde6508ebedef053fc8bc88268f7f698824d425b39d033"
+    },
+    {
+      "path": "resources/system/open77_weather/shared/clock.lua",
+      "size": 1920,
+      "sha256": "17228dee82b5017a35611f11d99e879af3ccd715a756885be426b88d8e2b468e"
+    },
+    {
+      "path": "resources/system/open77_weather/shared/config.lua",
+      "size": 4182,
+      "sha256": "ef3d7d2346b9306c1e5921252c5ef0dee1d1098bcfa19298cb57183e10ea5cc7"
+    },
+    {
+      "path": "resources/system/open77_worldui/README.md",
+      "size": 782,
+      "sha256": "4d28f717a20b87f29e40d836fb60f4f114b6ae05b0efc99d32dd7e60fbd8aa99"
+    },
+    {
+      "path": "resources/system/open77_worldui/client/main.lua",
+      "size": 13493,
+      "sha256": "e97216b19a413d16978bcea10a0587b86091896a3929da68ca5fb1041ea0d64b"
+    },
+    {
+      "path": "resources/system/open77_worldui/open77.lua",
+      "size": 230,
+      "sha256": "03f984728b623491b6092702eaaa8d92cfe2d1a411af278e2403afa1cf9cad05"
+    },
+    {
+      "path": "resources/system/open77_zones/README.md",
+      "size": 3117,
+      "sha256": "1cac1af9df4e62e4de3d2d080275955b0dbb567c6cfd902412b5cc2bae169914"
+    },
+    {
+      "path": "resources/system/open77_zones/client/main.lua",
+      "size": 14565,
+      "sha256": "e297e9b0167b6efb1ec53d1b6e010d4ad1fea7edbd25ad90e3e80b55b8cc0d2e"
+    },
+    {
+      "path": "resources/system/open77_zones/open77.lua",
+      "size": 1092,
+      "sha256": "3d83864ec72dde1052db576d19b1e771800dbc54c9869c96fff6f26f6fe86952"
+    },
+    {
+      "path": "templates/freeroam/template.json",
+      "size": 1520,
+      "sha256": "0da43d46723b8ba79af57191218ab5b57e11659429f0aee98152dffaf8a3670d"
+    },
+    {
+      "path": "tools/rcon/README.md",
+      "size": 3672,
+      "sha256": "1b2835453ad5863bcf30132e790f9d3cd2c6fa375bef1501788a7e3952a62ad6"
+    },
+    {
+      "path": "tools/rcon/cli.mjs",
+      "size": 2209,
+      "sha256": "7c3411e81369365eb80e12efe3528427d8a7eb3b0d09a3bdcbcae7a01fcbf6ab"
+    },
+    {
+      "path": "tools/rcon/client.mjs",
+      "size": 12026,
+      "sha256": "407a7e1cbbb50786c4a36a7e05eee654d3183de91090ff51eddc5c0f266c68d6"
+    }
+  ]
+}
