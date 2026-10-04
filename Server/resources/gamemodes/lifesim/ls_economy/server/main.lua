@@ -134,6 +134,43 @@ local function syncPlayerBalance(playerId, account)
     TriggerEvent("ls:economy:updated", playerId, payload)
 end
 
+local DB = {
+    query = function(sql, params)
+        params = params or {}
+        local ok, res = pcall(function()
+            if exports["ls_data"] and exports["ls_data"].query then
+                return exports["ls_data"]:query(sql, params)
+            elseif MySQL and MySQL.query and MySQL.query.await then
+                return MySQL.query.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.query then
+                return Open77.database.query(sql, params)
+            end
+            return nil
+        end)
+        if ok and type(res) == "table" then return res end
+        return nil
+    end,
+    update = function(sql, params)
+        params = params or {}
+        local ok, res = pcall(function()
+            if exports["ls_data"] and exports["ls_data"].update then
+                return exports["ls_data"]:update(sql, params)
+            elseif exports["ls_data"] and exports["ls_data"].execute then
+                return exports["ls_data"]:execute(sql, params)
+            elseif MySQL and MySQL.update and MySQL.update.await then
+                return MySQL.update.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.update then
+                return Open77.database.update(sql, params)
+            elseif Open77 and Open77.database and Open77.database.rawExecute then
+                return Open77.database.rawExecute(sql, params)
+            end
+            return nil
+        end)
+        if ok and res ~= nil then return res end
+        return true
+    end
+}
+
 ---Carrega a conta financeira do jogador ou cria uma nova com saldos de fábrica
 ---@param playerId integer
 ---@param license string
@@ -141,21 +178,8 @@ local function loadPlayerAccount(playerId, license)
     if not LS.isPlayerId(playerId) or not license then return end
 
     CreateThread(function()
-        -- Query resiliente no MariaDB via ls_data ou MySQL.query.await
-        local rows = nil
-        local ok, res = pcall(function()
-            if exports["ls_data"] and exports["ls_data"].query then
-                return exports["ls_data"]:query("SELECT cash, bank FROM ls_accounts WHERE license = ? LIMIT 1", { license })
-            elseif MySQL and MySQL.query and MySQL.query.await then
-                return MySQL.query.await("SELECT cash, bank FROM ls_accounts WHERE license = ? LIMIT 1", { license })
-            elseif Open77 and Open77.database and Open77.database.query then
-                return Open77.database.query("SELECT cash, bank FROM ls_accounts WHERE license = ? LIMIT 1", { license })
-            end
-            return nil
-        end)
-        if ok and type(res) == "table" then
-            rows = res
-        end
+        -- Query resiliente no MariaDB via DB helper
+        local rows = DB.query("SELECT cash, bank FROM ls_accounts WHERE license = ? LIMIT 1", { license })
 
         local account
 
@@ -172,27 +196,14 @@ local function loadPlayerAccount(playerId, license)
                 cash = EconomyConfig.DefaultBalances.Cash,
                 bank = EconomyConfig.DefaultBalances.Bank
             }
-            pcall(function()
-                if exports["ls_data"] and exports["ls_data"].execute then
-                    exports["ls_data"]:execute(
-                        "INSERT INTO ls_accounts (license, cash, bank) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE cash = VALUES(cash), bank = VALUES(bank)",
-                        { license, account.cash, account.bank }
-                    )
-                    exports["ls_data"]:execute(
-                        "INSERT INTO ls_transactions (license, action, target, amount, balance_after, reason) VALUES (?, 'starter_grant', 'system', ?, ?, 'Night City Starting Funds')",
-                        { license, account.cash + account.bank, account.bank }
-                    )
-                elseif Open77 and Open77.database and Open77.database.execute then
-                    Open77.database.execute(
-                        "INSERT INTO ls_accounts (license, cash, bank) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE cash = VALUES(cash), bank = VALUES(bank)",
-                        { license, account.cash, account.bank }
-                    )
-                    Open77.database.execute(
-                        "INSERT INTO ls_transactions (license, action, target, amount, balance_after, reason) VALUES (?, 'starter_grant', 'system', ?, ?, 'Night City Starting Funds')",
-                        { license, account.cash + account.bank, account.bank }
-                    )
-                end
-            end)
+            DB.update(
+                "INSERT INTO ls_accounts (license, cash, bank) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE cash = VALUES(cash), bank = VALUES(bank)",
+                { license, account.cash, account.bank }
+            )
+            DB.update(
+                "INSERT INTO ls_transactions (license, action, target, amount, balance_after, reason) VALUES (?, 'starter_grant', 'system', ?, ?, 'Night City Starting Funds')",
+                { license, account.cash + account.bank, account.bank }
+            )
             Open77.log.info(("[ls_economy] Nova conta bancária criada para [%d] (%s): E$ %d Cash, E$ %d Bank"):format(
                 playerId, license, account.cash, account.bank
             ))
@@ -271,14 +282,14 @@ local function addMoney(playerId, currencyType, amount, reason, targetRef)
 
     -- Operação Atômica no Banco de Dados
     local sql = ("UPDATE ls_accounts SET %s = %s + ? WHERE license = ?"):format(currencyType, currencyType)
-    local ok = Open77.database.execute(sql, { amount, license })
+    local ok = DB.update(sql, { amount, license })
     if not ok then return false, "database_error" end
 
     p[currencyType] = p[currencyType] + amount
     local newBalance = p[currencyType]
 
     -- Registra transação no livro razão imutável (Audit Trail)
-    Open77.database.execute(
+    DB.update(
         "INSERT INTO ls_transactions (license, action, target, amount, balance_after, reason) VALUES (?, ?, ?, ?, ?, ?)",
         { license, "credit_" .. currencyType, tostring(targetRef or "system"), amount, newBalance, reason }
     )
@@ -325,14 +336,14 @@ local function removeMoney(playerId, currencyType, amount, reason, targetRef)
     local sql = ("UPDATE ls_accounts SET %s = %s - ? WHERE license = ? AND %s >= ?"):format(
         currencyType, currencyType, currencyType
     )
-    local ok = Open77.database.execute(sql, { amount, license, amount })
+    local ok = DB.update(sql, { amount, license, amount })
     if not ok then return false, "database_concurrency_fail" end
 
     p[currencyType] = p[currencyType] - amount
     local newBalance = p[currencyType]
 
     -- Auditoria imutável no ledger
-    Open77.database.execute(
+    DB.update(
         "INSERT INTO ls_transactions (license, action, target, amount, balance_after, reason) VALUES (?, ?, ?, ?, ?, ?)",
         { license, "debit_" .. currencyType, tostring(targetRef or "system"), -amount, newBalance, reason }
     )
@@ -362,13 +373,13 @@ local function setMoney(playerId, currencyType, amount, reason)
 
     local license = p.license
     local sql = ("UPDATE ls_accounts SET %s = ? WHERE license = ?"):format(currencyType)
-    local ok = Open77.database.execute(sql, { amount, license })
+    local ok = DB.update(sql, { amount, license })
     if not ok then return false, "database_error" end
 
     local delta = amount - p[currencyType]
     p[currencyType] = amount
 
-    Open77.database.execute(
+    DB.update(
         "INSERT INTO ls_transactions (license, action, target, amount, balance_after, reason) VALUES (?, ?, 'admin', ?, ?, ?)",
         { license, "set_" .. currencyType, delta, amount, tostring(reason or "admin_override") }
     )
@@ -743,11 +754,24 @@ end, false)
 ---@return boolean
 local function isMoneyAdmin(source)
     if source == 0 then return true end
-    if Open77.acl and Open77.acl.hasPermission then
-        return Open77.acl.hasPermission(source, "command.money")
-            or Open77.acl.hasPermission(source, "command.admin")
-            or Open77.acl.hasPermission(source, "role.operator")
-            or Open77.acl.hasPermission(source, "*")
+    if Open77 and Open77.acl then
+        if Open77.acl.isAllowed then
+            local ok, allowed = pcall(Open77.acl.isAllowed, source, "command.money")
+            if ok and allowed == true then return true end
+            ok, allowed = pcall(Open77.acl.isAllowed, source, "command.admin")
+            if ok and allowed == true then return true end
+        end
+        if Open77.acl.roles then
+            local ok, roles = pcall(Open77.acl.roles, source)
+            if ok and type(roles) == "table" then
+                for _, r in ipairs(roles) do
+                    local roleName = tostring(r):lower()
+                    if roleName == "operator" or roleName == "admin" or roleName == "moderator" or roleName == "support" or roleName == "owner" or roleName == "helper" then
+                        return true
+                    end
+                end
+            end
+        end
     end
     return false
 end
@@ -884,6 +908,22 @@ end)
 
 exports("removeMoney", function(playerId, currencyType, amount, reason, targetRef)
     return removeMoney(playerId, currencyType, amount, reason, targetRef)
+end)
+
+exports("removeBank", function(playerId, amount, reason, targetRef)
+    return removeMoney(playerId, "bank", amount, reason, targetRef)
+end)
+
+exports("addBank", function(playerId, amount, reason, targetRef)
+    return addMoney(playerId, "bank", amount, reason, targetRef)
+end)
+
+exports("removeCash", function(playerId, amount, reason, targetRef)
+    return removeMoney(playerId, "cash", amount, reason, targetRef)
+end)
+
+exports("addCash", function(playerId, amount, reason, targetRef)
+    return addMoney(playerId, "cash", amount, reason, targetRef)
 end)
 
 exports("setMoney", function(playerId, currencyType, amount, reason)

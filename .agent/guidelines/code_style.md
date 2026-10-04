@@ -6,14 +6,17 @@
 
 ## 1. Regras Fundamentais da Plataforma
 
-1. **Autoridade Estrita do Servidor (Server-Authoritative):**
+1. **REGRA PRIMORDIAL: Documentação Oficial OPEN//77 como Fonte da Verdade:**
+   - Toda implementação, arquitetura, script Lua e interface NUI DEVE ter como fonte primária e absoluta a documentação oficial: **https://open2077.net/docs** e os stubs do Devkit (`open77-client.d.lua`, `open77-server.d.lua`).
+   - É terminantemente proibido utilizar ou alucinar APIs do FiveM/GTA V (`PlayerPedId`, `GetEntityCoords`, `SetEntityCoords`, `IsControlJustPressed(0, 38)`, `RegisterNUICallback`, `SendNUIMessage`, `ox_target:addSphereZone`, etc.).
+
+2. **Autoridade Estrita do Servidor (Server-Authoritative):**
    - O cliente é considerado ambiente não confiável. Nunca aceite valores de inventário, dinheiro, vida, coordenadas ou decaimento calculados no cliente.
    - O cliente emite apenas *intenções* (`events` sanitizados). O servidor valida permissões, estados, inventário e saldo antes de efetuar a mutação.
 
-2. **Nativas Autorizadas e Validação MCP:**
-   - Nunca presuma a existência de uma nativa REDengine ou FiveM.
-   - Sempre consulte o Devkit MCP (`open77_search` / `open77_api`) ou os stubs de tipagem (`open77-server.d.lua`, `open77-client.d.lua`).
-   - Declare explicitamente as permissões no manifesto `open77.lua` via bloco `permissions { ... }`.
+3. **Nativas Autorizadas e Validação de Permissões:**
+   - Nunca presuma a existência de uma nativa. Sempre consulte a documentação oficial ou os stubs de tipagem.
+   - Declare explicitamente todas as permissões exigidas no manifesto `open77.lua` via bloco `permissions { ... }` (ex: `world.markers`, `ui.vanilla.map`, `input.actions`, `player.travel`).
 
 3. **Isolamento de Ambientes:**
    - Proibido chamar nativas de cliente em arquivos do servidor ou nativas de servidor em arquivos de cliente.

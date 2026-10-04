@@ -1,11 +1,17 @@
 --[[
-    LIFESIM RP - Housing & Vertical Living Configuration
-    Path: ls_housing/shared/config.lua
-    
-    ARQUIVO DE CONFIGURAÇÃO DE FÁCIL ACESSO:
-    Permite cadastrar e alterar complexos residenciais (Megabuildings, Lofts, Studios),
-    coordenadas de entrada/interior, polígonos PolyZone de paredes, preços de aluguel/venda
-    e o catálogo completo de mobílias com dimensões físicas para cálculo de colisão OBB.
+    =============================================================================
+    LIFESIM RP - CENTRAL DE CONFIGURAÇÃO RESIDENCIAL (HOUSING)
+    Arquivo: ls_housing/shared/config.lua
+    =============================================================================
+
+    GUIA RÁPIDO DE MANUTENÇÃO (COMO AJUSTAR OU CRIAR APARTAMENTOS COM O /coords):
+    -----------------------------------------------------------------------------
+    1. Vá até a porta externa do apartamento no jogo e execute: /coords
+    2. Clique em "COPIAR" no formato "Table" e cole em 'doorCoords = { ... }'.
+    3. Vá até o interior do apartamento no ponto de spawn e execute: /coords
+    4. Clique em "COPIAR" e cole em 'interiorCoords = { ... }'.
+    5. Para recarregar no servidor em tempo real: 'op77 restart ls_housing'
+    =============================================================================
 ]]
 
 Config = Config or {}
@@ -13,48 +19,92 @@ Config = Config or {}
 -- =============================================================================
 -- 1. CATÁLOGO DE APARTAMENTOS E INTERIORES POLIGONAIS (POLYZONE)
 -- =============================================================================
+--
+-- FORMATO DE doorCoords:
+--   doorCoords pode ser um OBJETO (porta única) ou um ARRAY de objetos (múltiplas portas).
+--   Cada porta em array pode ter campos opcionais:
+--     - label:    Texto curto para diferenciar no mapa (ex: "Entrada Principal")
+--     - blipColor: Cor hex do blip individual (fallback: cor do apartamento)
+--
+--   Exemplo porta única  (retrocompatível):
+--     doorCoords = { x = -1403.50, y = 1273.50, z = 111.10, heading = 270.00, radius = 2.50 }
+--
+--   Exemplo múltiplas portas:
+--     doorCoords = {
+--         { x = -1403.50, y = 1273.50, z = 111.10, heading = 270.00, radius = 2.50, label = "Corredor 07" },
+--         { x = -1410.00, y = 1280.00, z = 111.10, heading = 180.00, radius = 2.00, label = "Escadaria B" },
+--     }
+--
+-- =============================================================================
 Config.Apartments = {
     {
         id = "h10_apt_v",
-        name = "Megabuilding H10 - Apto 0705",
+        name = "Megabuilding H10 - Apto 0705 (V)",
         district = "Watson",
         subdistrict = "Little China",
         building = "Megabuilding H10",
         tier = "Starter",
         badge = "RESIDENCIAL H10",
-        rentPrice = 350,       -- E$ por ciclo de pagamento
-        buyPrice = 18000,      -- E$ para compra definitiva
-        rentPeriodHours = 72,  -- 3 dias reais por ciclo de aluguel
-        maxFurniture = 60,     -- Limite de peças por interior
-        
-        -- Porta de Entrada Externa (Corredor Residencial do Megabuilding H10)
+        rentPrice = 350,      -- E$ por ciclo de pagamento
+        buyPrice = 18000,     -- E$ para compra definitiva
+        rentPeriodHours = 72, -- 3 dias reais por ciclo de aluguel
+        maxFurniture = 60,    -- Limite de peças por interior
+
+        -- Múltiplas Portas de Entrada (Megabuilding H10)
         doorCoords = {
-            x = -1386.4,
-            y = 1272.2,
-            z = 111.4,
-            heading = 180.0,
-            radius = 2.0
+            {
+                x = -1397.31,
+                y = 1278.07,
+                z = 123.08,
+                heading = 81.40,
+                radius = 2.50,
+                label = "Porta Principal (8º Andar - Apto 0705)"
+            },
+            {
+                x = -1395.45,
+                y = 1296.19,
+                z = 119.08,
+                heading = 83.77,
+                radius = 2.50,
+                label = "Corredor Residencial (7º Andar)"
+            },
+            {
+                x = -1396.31,
+                y = 1286.25,
+                z = 123.08,
+                heading = 81.40,
+                radius = 2.50,
+                label = "Corredor Residencial (8º Andar)"
+            }
         },
 
-        -- Ponto de Surgimento no Interior Instanciado
+        -- Ponto de Surgimento Canônico no Interior do Apartamento do V (Piso sólido do Living Room)
         interiorCoords = {
-            x = -1386.4,
-            y = 1275.5,
-            z = 111.4,
-            heading = 0.0
+            x = -1380.58,
+            y = 1271.44,
+            z = 123.06,
+            heading = 270.00
         },
 
-        -- Delimitação Tridimensional do Volume Habitável via PolyZone
+        -- Ponto da Porta de Saída no Interior (Foyer / Hall interno da porta)
+        interiorExitCoords = {
+            x = -1394.80,
+            y = 1277.50,
+            z = 123.08,
+            heading = 85.00
+        },
+
+        -- Delimitação Tridimensional do Volume Habitável via PolyZone (Apartamento do V)
         -- As 4 quinas dos móveis PRECISAM estar 100% contidas neste polígono!
         polyzone = {
             points = {
-                { x = -1393.5, y = 1269.8 },
-                { x = -1393.5, y = 1282.4 },
-                { x = -1379.2, y = 1282.4 },
-                { x = -1379.2, y = 1269.8 }
+                { x = -1398.0, y = 1264.0 },
+                { x = -1398.0, y = 1284.0 },
+                { x = -1374.0, y = 1284.0 },
+                { x = -1374.0, y = 1264.0 }
             },
-            minZ = 110.2, -- Altura exata do piso acabado
-            maxZ = 115.0  -- Altura do teto com luminárias
+            minZ = 122.5, -- Altura do piso acabado do apartamento do V
+            maxZ = 126.5  -- Altura do teto com luminárias
         }
     },
     {
@@ -180,7 +230,8 @@ Config.FurnitureCatalog = {
         name = "Futon Night City Básico",
         category = "beds",
         price = 600,
-        description = "Colchão ergonômico reforçado sobre base metálica modular. Conforto básico para edgerunners iniciantes.",
+        description =
+        "Colchão ergonômico reforçado sobre base metálica modular. Conforto básico para edgerunners iniciantes.",
         dimensions = { width = 1.3, length = 2.0, height = 0.55 },
         isSurface = false,
         allowStack = false,
@@ -196,7 +247,8 @@ Config.FurnitureCatalog = {
         name = "Cama Ortopédica Arasaka Medi-Rest",
         category = "beds",
         price = 3200,
-        description = "Leito com sensores biomonitores e indução de sono REM por microcorrentes neurais. Recuperação biológica ultrarrápida.",
+        description =
+        "Leito com sensores biomonitores e indução de sono REM por microcorrentes neurais. Recuperação biológica ultrarrápida.",
         dimensions = { width = 1.9, length = 2.2, height = 0.8 },
         isSurface = false,
         allowStack = false,
@@ -270,7 +322,8 @@ Config.FurnitureCatalog = {
         name = "Cabine de Banho Sônica Kiroshi",
         category = "sanitary",
         price = 2400,
-        description = "Sistema de higienização por ondas ultrassônicas e vapor desinfetante antibacteriano. Restauração higiênica total.",
+        description =
+        "Sistema de higienização por ondas ultrassônicas e vapor desinfetante antibacteriano. Restauração higiênica total.",
         dimensions = { width = 1.15, length = 1.15, height = 2.25 },
         isSurface = false,
         allowStack = false,
@@ -286,7 +339,8 @@ Config.FurnitureCatalog = {
         name = "Sintetizador Culinário All-Foods Chef",
         category = "sanitary",
         price = 1900,
-        description = "Estação de cozinha compacta capaz de reidratar e aquecer rações sintéticas e preparar cafés quentes.",
+        description =
+        "Estação de cozinha compacta capaz de reidratar e aquecer rações sintéticas e preparar cafés quentes.",
         dimensions = { width = 1.5, length = 0.75, height = 0.9 },
         isSurface = true,
         allowStack = false,
@@ -303,7 +357,8 @@ Config.FurnitureCatalog = {
         name = "Cofre Balístico Residencial (Stash)",
         category = "storage",
         price = 1750,
-        description = "Baú blindado com fechadura biométrica para guardar armas, drogas, ciberimplantes e itens valiosos.",
+        description =
+        "Baú blindado com fechadura biométrica para guardar armas, drogas, ciberimplantes e itens valiosos.",
         dimensions = { width = 1.0, length = 0.6, height = 0.7 },
         isSurface = true,
         allowStack = false,
@@ -336,7 +391,8 @@ Config.FurnitureCatalog = {
         name = "Projetor Holográfico Peixe Koi",
         category = "decor",
         price = 900,
-        description = "Projeta carpas digitais nadando suavemente no ar do apartamento. Efeito calmante que reduz estresse contínuo.",
+        description =
+        "Projeta carpas digitais nadando suavemente no ar do apartamento. Efeito calmante que reduz estresse contínuo.",
         dimensions = { width = 0.4, length = 0.4, height = 0.3 },
         isSurface = false,
         allowStack = true,
@@ -351,11 +407,11 @@ Config.FurnitureCatalog = {
 -- 3. PARÂMETROS DO MODO DECORAÇÃO LIVRE (BUILD MODE)
 -- =============================================================================
 Config.BuildMode = {
-    maxRaycastDistance = 16.0,  -- Alcance máximo em metros do cursor
-    rotationStepDeg = 5.0,      -- Passo suave de rotação yaw contínua
-    discreteSnapDeg = 15.0,     -- Ângulo de travamento rápido ao segurar [Ctrl]
-    elevationStepZ = 0.05,      -- Passo de elevação vertical do eixo Z [Shift + Scroll]
-    previewAlpha = 0.7,         -- Transparência do prop holográfico fantasma
-    validColor = "#00ff9d",     -- Verde/Ciano Neon quando a posição é válida
-    invalidColor = "#ff003c"    -- Vermelho Neon quando colide com parede ou móvel
+    maxRaycastDistance = 16.0, -- Alcance máximo em metros do cursor
+    rotationStepDeg = 5.0,     -- Passo suave de rotação yaw contínua
+    discreteSnapDeg = 15.0,    -- Ângulo de travamento rápido ao segurar [Ctrl]
+    elevationStepZ = 0.05,     -- Passo de elevação vertical do eixo Z [Shift + Scroll]
+    previewAlpha = 0.7,        -- Transparência do prop holográfico fantasma
+    validColor = "#00ff9d",    -- Verde/Ciano Neon quando a posição é válida
+    invalidColor = "#ff003c"   -- Vermelho Neon quando colide com parede ou móvel
 }

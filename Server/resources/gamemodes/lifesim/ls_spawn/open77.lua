@@ -25,5 +25,7 @@ permissions {
     "players.life.freeze",
     "player.travel",
     "players.screen",
-    "world.query"
+    "world.query",
+    "world.markers",
+    "ui.vanilla.map"
 }

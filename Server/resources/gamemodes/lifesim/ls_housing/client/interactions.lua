@@ -33,20 +33,64 @@ RegisterNetEvent("ls:housing:furnitureRemoved", function(furnitureId)
     end
 end)
 
+local function getPlayerCoords()
+    if Open77.character and Open77.character.position then
+        local r1, r2, r3 = Open77.character.position()
+        if type(r1) == "table" then
+            return tonumber(r1.x), tonumber(r1.y), tonumber(r1.z)
+        elseif type(r1) == "number" and r2 and r3 then
+            return r1, tonumber(r2), tonumber(r3)
+        end
+    end
+    local state = (Open77.character and Open77.character.state) and Open77.character.state() or nil
+    if state and state.position then
+        return tonumber(state.position.x), tonumber(state.position.y), tonumber(state.position.z)
+    end
+    if GetEntityCoords and PlayerPedId then
+        local p = GetEntityCoords(PlayerPedId())
+        if p then return p.x, p.y, p.z end
+    end
+    return nil, nil, nil
+end
+
+local function isInteractActionPressed()
+    if not Open77.input or not Open77.input.isCaptured or not Open77.input.isCaptured() then
+        if Open77.input and Open77.input.isDown then
+            if Open77.input.isDown("e") == true or Open77.input.isDown("E") == true then
+                return true
+            end
+        end
+        if Open77.input and Open77.input.isActionJustPressed then
+            if Open77.input.isActionJustPressed("ChoiceApply") or
+               Open77.input.isActionJustPressed("Choice1") or
+               Open77.input.isActionJustPressed("Use") or
+               Open77.input.isActionJustPressed("UI_Apply") then
+                return true
+            end
+        end
+    end
+    if IsControlJustPressed and (IsControlJustPressed(0, 38) or IsControlJustPressed(0, 51)) then
+        return true
+    end
+    return false
+end
+
 -- Procura mobília interativa mais próxima
 CreateThread(function()
     while true do
         Wait(350)
-        local ped = PlayerPedId and PlayerPedId() or -1
-        local pPos = GetEntityCoords and GetEntityCoords(ped) or nil
+        local px, py, pz = getPlayerCoords()
 
-        if pPos and exports["ls_housing"]:isInsideApartment() then
+        if px and exports["ls_housing"]:isInsideApartment() then
             nearbyInteractiveItem = nil
             for _, item in ipairs(activeFurniture) do
                 local template = item.data
                 if template and template.interaction then
-                    local dist = #(vector3(pPos.x, pPos.y, pPos.z) - vector3(item.x, item.y, item.z))
-                    if dist <= 2.0 then
+                    local dx = px - item.x
+                    local dy = py - item.y
+                    local dz = pz - item.z
+                    local dist = math.sqrt(dx * dx + dy * dy + dz * dz)
+                    if dist <= 2.2 then
                         nearbyInteractiveItem = item
                         break
                     end
@@ -61,9 +105,9 @@ end)
 -- Loop de interação com tecla [E]
 CreateThread(function()
     while true do
-        Wait(5)
+        Wait(10)
         if nearbyInteractiveItem then
-            if IsControlJustPressed and (IsControlJustPressed(0, 38) or IsControlJustPressed(0, 51)) then
+            if isInteractActionPressed() then
                 local it = nearbyInteractiveItem
                 local inter = it.data and it.data.interaction
                 if inter then

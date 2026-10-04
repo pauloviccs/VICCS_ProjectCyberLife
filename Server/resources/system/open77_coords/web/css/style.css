@@ -1,0 +1,448 @@
+/*
+  KIROSHI OPTICS // SPATIAL POSITIONING SCANNER HUD
+  Path: open77_coords/web/css/style.css
+*/
+
+:root {
+  --neon-cyan: #00f0ff;
+  --neon-cyan-dim: rgba(0, 240, 255, 0.25);
+  --neon-cyan-glow: rgba(0, 240, 255, 0.6);
+  --neon-yellow: #fcee0a;
+  --neon-red: #ff003c;
+  --bg-dark: rgba(7, 12, 18, 0.96);
+  --bg-card: rgba(14, 22, 33, 0.85);
+  --border-card: rgba(0, 240, 255, 0.2);
+  --text-main: #e6f9ff;
+  --text-dim: #7da5b3;
+  --font-mono: 'Consolas', 'Courier New', monospace;
+  --font-hud: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+  font-family: var(--font-hud);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.cyber-window {
+  width: 820px;
+  max-width: 95vw;
+  background: var(--bg-dark);
+  border: 1px solid var(--neon-cyan);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.35), inset 0 0 15px rgba(0, 240, 255, 0.1);
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  animation: cyberOpen 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cyberOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Header */
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(0, 240, 255, 0.08);
+  border-bottom: 1px solid var(--neon-cyan);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kiroshi-logo-icon {
+  width: 16px;
+  height: 16px;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--neon-yellow);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.main-title {
+  font-size: 17px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status-pill {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 240, 255, 0.1);
+  padding: 4px 10px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #00ff9d;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff9d;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.cyber-btn-close {
+  background: transparent;
+  border: none;
+  color: var(--neon-red);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 2px 6px;
+  transition: all 0.15s ease;
+}
+
+.cyber-btn-close:hover {
+  color: #fff;
+  background: var(--neon-red);
+  box-shadow: 0 0 10px var(--neon-red);
+}
+
+/* Content Area */
+.window-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Telemetry Grid */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.sensor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 10px 12px;
+  border-left: 3px solid var(--neon-cyan);
+}
+
+.sensor-card.highlight {
+  border-left-color: var(--neon-yellow);
+}
+
+.sensor-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.sensor-value {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+}
+
+.sensor-card.highlight .sensor-value {
+  color: var(--neon-yellow);
+  text-shadow: 0 0 5px rgba(252, 238, 10, 0.4);
+}
+
+/* Head Orientation */
+.head-sensor-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  padding: 10px 14px;
+}
+
+.head-subcard {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.subcard-title {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+
+.subcard-coords {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #c9e8f2;
+}
+
+/* Section Title & Precision */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.precision-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.precision-toggle label {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.prec-btn {
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  cursor: pointer;
+}
+
+.prec-btn.active {
+  background: var(--neon-cyan);
+  color: #000;
+  font-weight: bold;
+}
+
+/* Format Chips */
+.format-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.chip-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.chip-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: var(--neon-cyan);
+}
+
+.chip-btn.active {
+  background: rgba(0, 240, 255, 0.22);
+  border-color: var(--neon-cyan);
+  border-left: 3px solid var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.chip-badge {
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: var(--neon-yellow);
+}
+
+.chip-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* Code Preview Area */
+.code-preview-wrapper {
+  background: #04070a;
+  border: 1px solid var(--border-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: rgba(0, 240, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+}
+
+.ready-badge {
+  color: #00ff9d;
+  font-size: 9px;
+}
+
+#output-code {
+  width: 100%;
+  height: 90px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #38ef7d;
+  user-select: text;
+}
+
+/* Action Footer */
+.window-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.cyber-btn {
+  border: none;
+  font-family: var(--font-hud);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 12px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.cyber-btn.primary {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  flex: 1;
+  justify-content: center;
+}
+
+.cyber-btn.primary:hover {
+  background: #fff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.cyber-btn.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.cyber-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+/* Toast */
+.cyber-toast {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 255, 157, 0.95);
+  color: #000;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.8);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.cyber-toast.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(10px);
+}

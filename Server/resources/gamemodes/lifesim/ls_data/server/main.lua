@@ -120,6 +120,31 @@ exports("registerMigrations", function(moduleName, migrationsList)
     return Migrations.apply(moduleName, migrationsList)
 end)
 
+-- Operações de Banco de Dados Diretas
+local function sanitizeSqlArgs(arg1, arg2, arg3)
+    if type(arg1) == "table" and type(arg2) == "string" then
+        -- Chamado com sintaxe de dois pontos (ex: exports["ls_data"]:query(sql, params))
+        return arg2, arg3
+    end
+    return arg1, arg2
+end
+
+exports("query", function(a, b, c)
+    local sql, params = sanitizeSqlArgs(a, b, c)
+    return Database.query(sql, params)
+end)
+
+exports("update", function(a, b, c)
+    local sql, params = sanitizeSqlArgs(a, b, c)
+    return Database.update(sql, params)
+end)
+
+exports("execute", function(a, b, c)
+    local sql, params = sanitizeSqlArgs(a, b, c)
+    return Database.update(sql, params)
+end)
+
+
 -- =============================================================================
 -- CICLO DE VIDA (LIFECYCLE)
 -- =============================================================================

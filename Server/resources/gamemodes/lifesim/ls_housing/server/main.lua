@@ -14,34 +14,44 @@ Housing.playerLocations = {} -- [playerId] = { aptId = string, ownerLicense = st
 
 Database = {
     query = function(sql, params)
+        params = params or {}
         local ok, rows = pcall(function()
-            if exports["ls_data"] and exports["ls_data"].query then
-                return exports["ls_data"]:query(sql, params)
-            elseif MySQL and MySQL.query and MySQL.query.await then
-                return MySQL.query.await(sql, params or {})
+            if MySQL and MySQL.query and MySQL.query.await then
+                return MySQL.query.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.query and Open77.database.query.await then
+                return Open77.database.query.await(sql, params)
             elseif Open77 and Open77.database and Open77.database.query then
-                return Open77.database.query(sql, params or {})
+                local p = Open77.database.query(sql, params)
+                return (p and p.await) and p:await() or p
             end
             return nil
         end)
         if ok and type(rows) == "table" then
             return rows
         end
+        if not ok then
+            Open77.log.error(("[ls_housing:Database] Erro ao executar query SQL: %s | Query: %s"):format(tostring(rows), tostring(sql)))
+        end
         return {}
     end,
     update = function(sql, params)
+        params = params or {}
         local ok, res, err = pcall(function()
-            if exports["ls_data"] and exports["ls_data"].execute then
-                return exports["ls_data"]:execute(sql, params)
-            elseif MySQL and MySQL.update and MySQL.update.await then
-                return MySQL.update.await(sql, params or {})
-            elseif Open77 and Open77.database and Open77.database.execute then
-                return Open77.database.execute(sql, params or {})
+            if MySQL and MySQL.update and MySQL.update.await then
+                return MySQL.update.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.update and Open77.database.update.await then
+                return Open77.database.update.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.update then
+                local p = Open77.database.update(sql, params)
+                return (p and p.await) and p:await() or p
             end
             return nil
         end)
-        if ok then
+        if ok and res ~= nil then
             return res, err
+        end
+        if not ok then
+            Open77.log.error(("[ls_housing:Database] Erro ao executar update SQL: %s | Query: %s"):format(tostring(res), tostring(sql)))
         end
         return nil, tostring(res)
     end,
@@ -59,6 +69,7 @@ CreateThread(function()
     local migrations = {
         {
             version = 1,
+            checksum = "housing_schema_v1",
             description = "Criação das tabelas ls_player_apartments e ls_apartment_furniture",
             sql = [[
                 CREATE TABLE IF NOT EXISTS ls_player_apartments (
@@ -153,3 +164,18 @@ AddEventHandler("ls:core:playerUnloading", function(playerId, license, reason)
         Housing.playerLocations[playerId] = nil
     end
 end)
+
+-- =============================================================================
+-- EXPORTS PÚBLICOS
+-- =============================================================================
+
+exports("isPlayerInApartment", function(playerId)
+    playerId = tonumber(playerId)
+    return playerId ~= nil and Housing.playerLocations[playerId] ~= nil
+end)
+
+exports("getPlayerApartment", function(playerId)
+    playerId = tonumber(playerId)
+    return playerId and Housing.playerLocations[playerId] or nil
+end)
+

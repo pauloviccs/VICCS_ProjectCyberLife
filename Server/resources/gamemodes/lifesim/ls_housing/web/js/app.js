@@ -200,29 +200,87 @@
     aptRentPriceEl.textContent = (currentApt.rentPrice || 0).toLocaleString("pt-BR");
     aptBuyPriceEl.textContent = (currentApt.buyPrice || 0).toLocaleString("pt-BR");
 
-    if (data.hasLease) {
-      aptStatusBadgeEl.textContent = `CONTRATO: ${data.leaseType === "owned" ? "PROPRIETÁRIO" : "LOCATÁRIO"}`;
-      btnRent.style.display = data.leaseType === "owned" ? "none" : "block";
-      btnBuy.style.display = data.leaseType === "owned" ? "none" : "block";
-      btnEnter.style.display = "block";
-      btnStartBuild.style.display = "block";
-      aptLockValEl.textContent = data.isLocked ? "TRANCADO" : "DESTRANCADO";
-      aptLockValEl.className = data.isLocked ? "info-val secure" : "info-val";
+    const badgeParent = aptStatusBadgeEl ? aptStatusBadgeEl.parentElement : null;
 
+    if (data.hasLease) {
       if (data.leaseType === "owned") {
-        aptRentDueValEl.textContent = "ESCRITURA DEFINITIVA";
-      } else if (data.rentDueUnix > 0) {
-        const d = new Date(data.rentDueUnix * 1000);
-        aptRentDueValEl.textContent = d.toLocaleDateString("pt-BR") + " " + d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+        aptStatusBadgeEl.textContent = "● PROPRIETÁRIO // QUITADO";
+        if (badgeParent) badgeParent.className = "sync-badge owned";
+
+        btnRent.style.display = "none";
+        btnBuy.style.display = "none";
+        btnEnter.style.display = "block";
+        btnStartBuild.style.display = "block";
+
+        aptLockValEl.textContent = data.isLocked ? "TRANCADO (CHAVE ATIVA)" : "DESTRANCADO";
+        aptLockValEl.className = data.isLocked ? "info-val secure" : "info-val";
+        aptRentDueValEl.textContent = "ESCRITURA DEFINITIVA (VITALÍCIO)";
+        aptRentDueValEl.className = "info-val text-success";
+      } else {
+        // Aluguel
+        const nowSec = (data.serverTime || Math.floor(Date.now() / 1000));
+        const isExpired = data.rentDueUnix > 0 && data.rentDueUnix < nowSec;
+        const d = data.rentDueUnix > 0 ? new Date(data.rentDueUnix * 1000) : null;
+        const dateStr = d ? `${d.toLocaleDateString("pt-BR")} ${d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}` : "Não definido";
+
+        if (data.inGracePeriod) {
+          aptStatusBadgeEl.textContent = `▲ CARÊNCIA (${data.graceHoursLeft || 24}H)`;
+          if (badgeParent) badgeParent.className = "sync-badge grace";
+
+          aptRentDueValEl.textContent = `VENCIDO (Carência: ${data.graceHoursLeft || 24}h restantes)`;
+          aptRentDueValEl.className = "info-val text-warning";
+          aptLockValEl.textContent = "ACESSO EM CARÊNCIA (REGULARIZE)";
+          aptLockValEl.className = "info-val text-warning";
+
+          btnEnter.style.display = "block";
+          btnStartBuild.style.display = "block";
+          btnRent.style.display = "block";
+          btnRent.textContent = `REGULARIZAR ALUGUEL (E$ ${(currentApt.rentPrice || 0).toLocaleString("pt-BR")})`;
+          btnBuy.style.display = "block";
+        } else if (isExpired) {
+          aptStatusBadgeEl.textContent = "▲ ALUGUEL VENCIDO";
+          if (badgeParent) badgeParent.className = "sync-badge expired";
+
+          aptRentDueValEl.textContent = `VENCIDO EM: ${dateStr}`;
+          aptRentDueValEl.className = "info-val text-danger";
+          aptLockValEl.textContent = "BLOQUEADO POR INADIMPLÊNCIA";
+          aptLockValEl.className = "info-val text-danger";
+
+          btnEnter.style.display = "none";
+          btnStartBuild.style.display = "none";
+          btnRent.style.display = "block";
+          btnRent.textContent = `REGULARIZAR ALUGUEL (E$ ${(currentApt.rentPrice || 0).toLocaleString("pt-BR")})`;
+          btnBuy.style.display = "block";
+        } else {
+          aptStatusBadgeEl.textContent = "● LOCAÇÃO EM DIA";
+          if (badgeParent) badgeParent.className = "sync-badge active";
+
+          aptRentDueValEl.textContent = `EM DIA (Vence: ${dateStr})`;
+          aptRentDueValEl.className = "info-val text-success";
+          aptLockValEl.textContent = data.isLocked ? "TRANCADO (CHAVE ATIVA)" : "DESTRANCADO";
+          aptLockValEl.className = data.isLocked ? "info-val secure" : "info-val";
+
+          btnEnter.style.display = "block";
+          btnStartBuild.style.display = "block";
+          btnRent.style.display = "block";
+          btnRent.textContent = `RENOVAR ALUGUEL (+3 DIAS - E$ ${(currentApt.rentPrice || 0).toLocaleString("pt-BR")})`;
+          btnBuy.style.display = "block";
+        }
       }
     } else {
       aptStatusBadgeEl.textContent = "DISPONÍVEL PARA CONTRATO";
+      if (badgeParent) badgeParent.className = "sync-badge";
+
       btnEnter.style.display = "none";
       btnStartBuild.style.display = "none";
       btnRent.style.display = "block";
+      btnRent.textContent = `ALUGAR IMÓVEL (E$ ${(currentApt.rentPrice || 0).toLocaleString("pt-BR")} / 3 DIAS)`;
       btnBuy.style.display = "block";
+      btnBuy.textContent = `COMPRA DEFINITIVA (E$ ${(currentApt.buyPrice || 0).toLocaleString("pt-BR")})`;
       aptLockValEl.textContent = "TRANCADO (SEM CONTRATO)";
+      aptLockValEl.className = "info-val";
       aptRentDueValEl.textContent = "Disponível para ocupação imediata";
+      aptRentDueValEl.className = "info-val";
     }
 
     renderCatalog();
@@ -283,6 +341,11 @@
       modalEl.classList.add("hidden");
       if (window.Open77) {
         window.Open77.emit("housing:close");
+      }
+    } else if (e.key === "Enter" && !modalEl.classList.contains("hidden")) {
+      if (btnEnter && btnEnter.style.display !== "none") {
+        playBeep(1100, 0.08);
+        btnEnter.click();
       }
     }
   });

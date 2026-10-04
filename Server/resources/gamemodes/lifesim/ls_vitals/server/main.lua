@@ -307,17 +307,37 @@ CreateThread(function()
                 local totalMult = baseMult * globalMult
 
                 local v = p.vitals
+
+                -- BÔNUS DE SANTUÁRIO RESIDENCIAL (HOUSING SANCTUARY)
+                local inApartment = false
+                pcall(function()
+                    if exports["ls_housing"] and exports["ls_housing"].isPlayerInApartment then
+                        inApartment = exports["ls_housing"].isPlayerInApartment(playerId)
+                    end
+                end)
+
                 local hungerDelta  = (VitalsConfig.Decay.HungerPerMin  / 60.0) * dtSec * totalMult
                 local thirstDelta  = (VitalsConfig.Decay.ThirstPerMin  / 60.0) * dtSec * (totalMult * 1.15)
                 local energyDelta  = (VitalsConfig.Decay.EnergyPerMin  / 60.0) * dtSec * totalMult
                 local hygieneDelta = (VitalsConfig.Decay.HygienePerMin / 60.0) * dtSec * (totalMult >= 2.0 and 1.6 or 1.0)
                 
+                -- Se estiver no interior de um apartamento:
+                -- 1. Fome e sede consomem 50% mais devagar
+                -- 2. Stamina/energia regenera passivamente no ambiente seguro
+                -- 3. Stress dissipa 2x mais rápido
+                if inApartment then
+                    hungerDelta = hungerDelta * 0.50
+                    thirstDelta = thirstDelta * 0.50
+                    energyDelta = - (VitalsConfig.Decay.EnergyPerMin / 60.0) * dtSec * 1.5
+                end
+
                 -- Stress sobe em combate/sprint contínuo ou diminui em repouso
                 local stressDelta = 0.0
                 if effectiveAct == "combat" or effectiveAct == "sprinting" then
                     stressDelta = 0.15 * dtSec * globalMult
                 else
-                    stressDelta = - (VitalsConfig.Decay.StressRecoveryPerMin / 60.0) * dtSec
+                    local stressRecMult = inApartment and 2.0 or 1.0
+                    stressDelta = - (VitalsConfig.Decay.StressRecoveryPerMin / 60.0) * dtSec * stressRecMult
                 end
 
                 -- Aplicação dos deltas

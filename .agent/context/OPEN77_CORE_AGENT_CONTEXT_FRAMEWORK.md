@@ -10,10 +10,14 @@
 
 Leia este arquivo, as instruções locais do repositório, o plano vigente e a documentação do resource afetado antes de planejar mudanças.
 
-Este arquivo descreve a intenção do projeto; **não é documentação oficial da plataforma e não autoriza inventar APIs**. Resolva conflitos nesta ordem:
+### REGRA PRIMORDIAL GLOBAL
+> **A documentação oficial do OPEN//77 (https://open2077.net/docs) é a fonte de verdade absoluta e inegociável.**
+> NUNCA use nem alucine APIs de FiveM, RedM ou GTA V. Toda API deve ser confirmada em https://open2077.net/docs e nos stubs de tipagem `open77-client.d.lua` e `open77-server.d.lua`.
 
-1. Solicitação direta mais recente do usuário para a tarefa.
-2. Documentação oficial OPEN//77 e contratos retornados pelo Devkit MCP para o build instalado.
+Resolva conflitos nesta ordem:
+
+1. **Documentação oficial OPEN//77 (https://open2077.net/docs) e stubs de tipagem da plataforma.**
+2. Solicitação direta mais recente do usuário para a tarefa.
 3. Instruções do repositório e decisões de arquitetura aprovadas.
 4. Este contexto.
 5. Sugestões e pressupostos em GDDs, anexos ou código legado.

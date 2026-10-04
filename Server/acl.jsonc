@@ -6,7 +6,8 @@
       "permissions": [
         "command.admin",
         "command.admin.read.*",
-        "command.admin.self.*"
+        "command.admin.self.*",
+        "command.coords"
       ]
     },
     {
@@ -22,12 +23,14 @@
         "command.admin.weap.*",
         "command.gun",
         "command.admin.world.cleanup",
-        "command.admin.world.announce"
+        "command.admin.world.announce",
+        "command.coords"
       ]
     },
     {
       "name": "operator",
       "permissions": [
+        "command.coords",
         "command.admin",
         "command.adminfull",
         "command.admin.*",

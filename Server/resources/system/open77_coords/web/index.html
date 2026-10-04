@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiroshi Spatial Scanner // OPEN77 Coords</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="coords-overlay" class="overlay">
+    <div class="cyber-window">
+      <!-- Top Cyberpunk Bar -->
+      <div class="window-header">
+        <div class="header-left">
+          <div class="kiroshi-logo-icon"></div>
+          <div class="header-titles">
+            <span class="brand-sub">// KIROSHI OPTICS • MILITECH SPEC-V4</span>
+            <h1 class="main-title">SPATIAL SCANNER & COORD INSPECTOR</h1>
+          </div>
+        </div>
+        <div class="header-right">
+          <span class="status-pill"><span class="pulse-dot"></span> REDengine 4 • GPS LOCK</span>
+          <button id="btn-close" class="cyber-btn-close" title="Fechar (ESC)">[✕]</button>
+        </div>
+      </div>
+
+      <div class="window-content">
+        <!-- Live Sensors Telemetry Strip -->
+        <div class="telemetry-grid">
+          <div class="sensor-card">
+            <div class="sensor-label">EIXO X (LESTE/OESTE)</div>
+            <div class="sensor-value" id="val-x">0.00</div>
+          </div>
+          <div class="sensor-card">
+            <div class="sensor-label">EIXO Y (NORTE/SUL)</div>
+            <div class="sensor-value" id="val-y">0.00</div>
+          </div>
+          <div class="sensor-card">
+            <div class="sensor-label">EIXO Z (ALTITUDE/PISO)</div>
+            <div class="sensor-value" id="val-z">0.00</div>
+          </div>
+          <div class="sensor-card highlight">
+            <div class="sensor-label">HEADING (ÂNGULO / BÚSSOLA)</div>
+            <div class="sensor-value" id="val-heading">0.0°</div>
+          </div>
+        </div>
+
+        <!-- Head & Look Orientation Row -->
+        <div class="head-sensor-strip">
+          <div class="head-subcard">
+            <span class="subcard-title">DIREÇÃO DO OLHAR (HEAD FORWARD VECTOR):</span>
+            <span class="subcard-coords" id="val-head-forward">fx: 0.000, fy: 0.000, fz: 0.000 (Pitch: 0.0°)</span>
+          </div>
+          <div class="head-subcard">
+            <span class="subcard-title">POSIÇÃO DO OSSO DA CABEÇA (HEAD BONE):</span>
+            <span class="subcard-coords" id="val-head-bone">hx: 0.000, hy: 0.000, hz: 0.000</span>
+          </div>
+        </div>
+
+        <!-- Format Selector Options -->
+        <div class="section-title">
+          <span>// SELECIONE O FORMATO DE EXPORTAÇÃO PARA CÓDIGO</span>
+          <div class="precision-toggle">
+            <label>Precisão:</label>
+            <button class="prec-btn active" data-decimals="2">2 DEC</button>
+            <button class="prec-btn" data-decimals="4">4 DEC</button>
+            <button class="prec-btn" data-decimals="6">6 DEC</button>
+          </div>
+        </div>
+
+        <div class="format-chips-grid">
+          <button class="chip-btn active" data-format="lua-table">
+            <span class="chip-badge">LUA CONFIG</span>
+            <span class="chip-name">Tabela Config (ls_housing/shop)</span>
+          </button>
+          <button class="chip-btn" data-format="vec4">
+            <span class="chip-badge">LUA</span>
+            <span class="chip-name">Vector4 (x, y, z, heading)</span>
+          </button>
+          <button class="chip-btn" data-format="vec3">
+            <span class="chip-badge">LUA</span>
+            <span class="chip-name">Vector3 (x, y, z)</span>
+          </button>
+          <button class="chip-btn" data-format="polyzone">
+            <span class="chip-badge">POLYZONE</span>
+            <span class="chip-name">Ponto 2D ({ x = ..., y = ... })</span>
+          </button>
+          <button class="chip-btn" data-format="open77-marker">
+            <span class="chip-badge">OPEN77</span>
+            <span class="chip-name">Marcador de Chão 3D</span>
+          </button>
+          <button class="chip-btn" data-format="spawner-npc">
+            <span class="chip-badge">OPEN77</span>
+            <span class="chip-name">NPC / Ped Spawner + Olhar</span>
+          </button>
+          <button class="chip-btn" data-format="json">
+            <span class="chip-badge">DATA</span>
+            <span class="chip-name">Objeto JSON Completo</span>
+          </button>
+          <button class="chip-btn" data-format="raw-csv">
+            <span class="chip-badge">TEXT</span>
+            <span class="chip-name">CSV Bruto (X, Y, Z, Heading)</span>
+          </button>
+        </div>
+
+        <!-- Code Snippet Output Area -->
+        <div class="code-preview-wrapper">
+          <div class="code-header">
+            <span id="format-display-tag">FORMATO SELECIONADO: LUA CONFIG TABLE</span>
+            <span class="ready-badge">PRONTO PARA ÁREA DE TRANSFERÊNCIA</span>
+          </div>
+          <textarea id="output-code" readonly spellcheck="false"></textarea>
+        </div>
+
+        <!-- Action Buttons Footer -->
+        <div class="window-footer">
+          <button id="btn-refresh" class="cyber-btn secondary">
+            <span class="btn-icon">🔄</span> RECAPTURAR POSIÇÃO
+          </button>
+          <button id="btn-copy" class="cyber-btn primary">
+            <span class="btn-icon">📋</span> COPIAR COORDENADA SELECIONADA
+          </button>
+        </div>
+      </div>
+
+      <!-- Cyberpunk Toast Feedback -->
+      <div id="copy-toast" class="cyber-toast hidden">
+        <span class="toast-icon">✓</span>
+        <span class="toast-text">COORDENADA COPIADA PARA A ÁREA DE TRANSFERÊNCIA!</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

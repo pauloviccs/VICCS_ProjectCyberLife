@@ -171,9 +171,96 @@ RegisterNetEvent("ls:spawn:firstSpawnWelcome", function(data)
     ))
 end)
 
+-- =============================================================================
+-- GERENCIAMENTO DE BLIPS E MARCADORES 3D NO MUNDO
+-- =============================================================================
+
+local createdSpawnBlips = {}
+local createdSpawnMarkers = {}
+
+local function clearSpawnWorldElements()
+    for _, blipId in ipairs(createdSpawnBlips) do
+        pcall(function()
+            if Open77.blips and Open77.blips.remove then
+                Open77.blips.remove(blipId)
+            end
+        end)
+    end
+    createdSpawnBlips = {}
+
+    for _, markerId in ipairs(createdSpawnMarkers) do
+        pcall(function()
+            if Open77.markers and Open77.markers.remove then
+                Open77.markers.remove(markerId)
+            end
+        end)
+    end
+    createdSpawnMarkers = {}
+end
+
+local function initSpawnWorldElements()
+    clearSpawnWorldElements()
+
+    local blipsGlobal = Config.WorldBlips and Config.WorldBlips.enabled
+    local markersGlobal = Config.WorldMarkers and Config.WorldMarkers.enabled
+
+    for _, sp in ipairs(Config.PublicSpawns or {}) do
+        local c = sp.coords
+        if c and c.x and c.y and c.z then
+            -- 1. Criação de Blips no Mapa Vanilla
+            local blipCfg = sp.blip
+            local shouldCreateBlip = (blipsGlobal and (not blipCfg or blipCfg.enabled ~= false)) or (blipCfg and blipCfg.enabled == true)
+
+            if shouldCreateBlip then
+                pcall(function()
+                    if Open77.blips and Open77.blips.create then
+                        local blipId = Open77.blips.create({
+                            position = { x = c.x + 0.0, y = c.y + 0.0, z = c.z + 0.0 },
+                            label = (blipCfg and blipCfg.label) or sp.name,
+                            color = (blipCfg and blipCfg.color) or (Config.WorldBlips and Config.WorldBlips.defaultColor) or "#22D8E2",
+                            icon = (blipCfg and blipCfg.icon) or (Config.WorldBlips and Config.WorldBlips.defaultIcon) or "CustomPositionVariant"
+                        })
+                        if blipId then
+                            table.insert(createdSpawnBlips, blipId)
+                        end
+                    end
+                end)
+            end
+
+            -- 2. Criação de Marcadores 3D no chão
+            local markerCfg = sp.marker
+            local shouldCreateMarker = (markersGlobal and (not markerCfg or markerCfg.enabled ~= false)) or (markerCfg and markerCfg.enabled == true)
+
+            if shouldCreateMarker then
+                pcall(function()
+                    if Open77.markers and Open77.markers.create then
+                        local mId = Open77.markers.create({
+                            position = { x = c.x + 0.0, y = c.y + 0.0, z = c.z + 0.05 },
+                            shape = (markerCfg and markerCfg.shape) or (Config.WorldMarkers and Config.WorldMarkers.defaultShape) or "ring",
+                            style = "spawn",
+                            radius = (markerCfg and markerCfg.radius) or (Config.WorldMarkers and Config.WorldMarkers.defaultRadius) or 2.0,
+                            color = (markerCfg and markerCfg.color) or (Config.WorldMarkers and Config.WorldMarkers.defaultColor) or { 34, 216, 226, 180 },
+                            maxDistance = 50.0
+                        })
+                        if mId then
+                            table.insert(createdSpawnMarkers, mId)
+                        end
+                    end
+                end)
+            end
+        end
+    end
+end
+
+AddEventHandler("onClientResourceStart", function(name)
+    if name ~= GetCurrentResourceName() then return end
+    initSpawnWorldElements()
+end)
+
 -- Limpeza ao parar o recurso
 AddEventHandler("onClientResourceStop", function(name)
     if name ~= GetCurrentResourceName() then return end
+    clearSpawnWorldElements()
     setPlayerFrozen(false)
     if page then
         page:setFocus(false, false)

@@ -1,0 +1,19 @@
+{
+  "schema": "op77.modstack.quarantine/1",
+  "mods": [
+    {
+      "key": "r6/scripts/Open77BlipFix",
+      "name": "Open77BlipFix",
+      "fingerprint": "a5ec8b2b2dbad56e",
+      "quarantinedAtMs": 1791034057342,
+      "files": [
+        {
+          "path": "r6/scripts/Open77BlipFix/Open77BlipFix.reds",
+          "sha256": "a2b7d52f55f51248bad50f21d4f6beb20d77cfe5006bd8168b10a70327232b95",
+          "size": 2269,
+          "lastWriteUtcTicks": 639265701802835638
+        }
+      ]
+    }
+  ]
+}

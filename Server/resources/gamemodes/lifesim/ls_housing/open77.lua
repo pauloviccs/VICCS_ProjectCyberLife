@@ -7,6 +7,8 @@ reload_policy "reconnect"
 dependency "ls_core >=0.1.0"
 dependency "ls_data >=0.1.0"
 dependency "polyzone >=1.0.0"
+dependency "open77_worldui >=0.1.0"
+dependency "open77_interactions >=0.1.0"
 
 shared_script "shared/config.lua"
 
@@ -30,8 +32,11 @@ permissions {
     "network.events",
     "local.events",
     "players.controls",
+    "player.travel",
     "world.query",
+    "world.markers",
     "map.read",
     "map.control",
-    "ui.vanilla.map"
+    "ui.vanilla.map",
+    "database.access"
 }
