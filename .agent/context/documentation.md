@@ -1,248 +1,401 @@
-# DOCUMENTAÇÃO OFICIAL & GUIA TÉCNICO: OPEN//77 (Cyberpunk 2077 Multiplayer)
+# DOCUMENTAÇÃO OFICIAL & GUIA TÉCNICO CANÔNICO: OPEN//77 (Cyberpunk 2077 Multiplayer)
 
 > **Versão Alvo:** Cyberpunk 2077 v2.31 + Phantom Liberty DLC  
-> **Open77 Build:** 2.31.13+op77.78 (ou mais recente)  
-> **Runtime:** Lua 5.4 isolado por recurso (Client & Server)  
-> **Fonte Oficial:** [open2077.net](https://open2077.net/) | [open2077.net/docs](https://open2077.net/docs)
+> **Open77 Build Oficial:** 2.31.21+op77.124 (Protocolo 1.44)  
+> **Runtime Host:** .NET 8 Dedicated Server (Linux x64 / Windows x64)  
+> **Linguagem de Scripting:** Lua 5.4 isolado por recurso (Client & Server VMs)  
+> **Fonte Oficial Canônica:** [open2077.net](https://open2077.net/) | [open2077.net/docs](https://open2077.net/docs) | [open2077.net/docs.md](https://open2077.net/docs.md)
 
 ---
 
-## 1. Visão Geral da Plataforma
+## 1. Visão Geral da Plataforma & Princípios Canônicos
 
-O **OPEN//77** é a camada multiplayer dedicada para *Cyberpunk 2077*. O servidor é totalmente autoritativo (*server-authoritative*), operando em Linux x64 (.NET 8 Runtime) ou Windows, e executa recursos empacotados em Lua 5.4 com sincronização em rede de alta performance.
+O **OPEN//77** é a plataforma multiplayer dedicada e autoritativa para o *Cyberpunk 2077* (REDengine 4). O servidor dedicado gerencia o estado da simulação, roteia instâncias virtuais por Routing Buckets, conecta-se a bancos relacionais MariaDB/MySQL via bridge nativa e distribui os recursos assinados aos clientes conectados.
 
-### Princípios Fundamentais
+### Princípios Inegociáveis
 
-1. **Server-Authoritative:** O cliente NUNCA decide dinheiro, integridade física, criação de itens, inventário, dano canônico, tempo, clima ou rotas. O cliente apenas renderiza o estado aprovado e submete intenções com parâmetros validados.
-2. **IDs Opassos da REDengine:** Identificadores da REDengine são inteiros de 64 bits. Devem ser tratados como valores opacos: nunca convertidos com `tonumber()`, mas comparados e transmitidos intactos.
-3. **Falhas como Valores:** As APIs do Open77 retornam `val` em sucesso ou `nil, reason` (string estável em snake_case) em falha. Isso dispensa o uso excessivo de `pcall`.
-4. **Permissões Explícitas:** Todo acesso a APIs protegidas requer declaração no manifesto `open77.lua` via `permissions { ... }`.
-5. **Isolamento de Runtimes:** O código de `server_script` nunca trafega para o cliente. Apenas `client_script`, `shared_script` e arquivos declarados em `files` ou `web_files` são empacotados, assinados e transmitidos aos jogadores.
+1. **Server-Authoritative Estrito:**
+   O cliente nunca decide inventário, dinheiro, vida, dano canônico, tempo de jogo, clima, autoridade de veículos ou roteamento dimensional. O cliente apenas renderiza a projeção autorizada e submete intenções com parâmetros validados ao servidor.
+2. **Identificadores REDengine são Valores Opacos:**
+   Identificadores da REDengine (entidades, transações, hashes TweakDB) são inteiros de 64 bits. Devem ser tratados como valores opacos: **nunca passe por `tonumber()`**, pois a perda de precisão float corrompe o ponteiro/ID. Devem ser transmitidos, comparados e armazenados intactos como strings ou inteiros 64-bit nativos.
+3. **Falhas como Valores (Sem `pcall` Excessivo):**
+   A convenção universal de retornos da API OPEN//77 é:
+   - Funções que retornam valores: `value` em sucesso, ou `nil, reason` (string estável em `snake_case`) em falha.
+   - Predicados/Ações booleanas: `true` em sucesso, ou `false, reason` em recusa.
+4. **Permissões Explícitas no Manifesto:**
+   APIs protegidas e com impacto no sistema exigem declaração prévia na tabela `permissions { ... }` do manifesto `open77.lua`. Chamadas sem permissão falham imediatamente com `permission_denied:<permissão>`.
+5. **Isolamento Absoluto de Runtimes (Client vs Server):**
+   - O código em `server_script` **nunca** é enviado aos clientes.
+   - O pacote baixado pelo jogador contém apenas `open77.lua`, `client_script`, `shared_script` e os arquivos declarados em `files` ou `web_files`.
+   - Segredos, regras de integridade e transações financeiras pertencem exclusivamente ao servidor.
 
 ---
 
 ## 2. Estrutura de Diretórios de Recursos (Resources)
 
-A pasta raiz de recursos do servidor organiza-se em categorias:
+A árvore de recursos do servidor organiza-se hierarquicamente sob `resources/`:
 
 ```text
 resources/
-├── system/             # Recursos base da plataforma (open77_shell, open77_chat, open-voice, etc.)
-├── gamemodes/          # Modos de jogo e regras de RP (freeroam, life-sim, race, deathmatch, cordon)
-├── dev/                # Ambientes de teste, testes de banco de dados
+├── system/             # Recursos oficiais da plataforma (open77_shell, open77_chat, open77_props, open-voice, open77_coords, ...)
+├── gamemodes/          # Modos de jogo e regras de RP (freeroam, lifesim, cordon, deathmatch, ...)
+├── dev/                # Ambientes de teste e diagnóstico (open77_example, open77_dbtest)
+├── polyzone/           # Biblioteca geométrica de zonas tridimensionais
 └── assets/
     ├── loaders/        # ArchiveXL, TweakXL (redistribuídos pela plataforma)
-    ├── maps/           # Pacotes de mapas mundiais (.archive)
-    ├── vehicles/       # Pacotes de veículos customizados
-    └── mods/           # Outros mods terceiros (gerenciados pelo servidor)
+    ├── maps/           # Pacotes de mapas mundiais (.archive - ignorados por git)
+    ├── vehicles/       # Pacotes de veículos customizados (.archive)
+    └── mods/           # Pacotes de mods de terceiros gerenciados pelo servidor
 ```
+
+> **Regras de Carga:** O servidor resolve regras de carga (`resources.load` em `server.jsonc`) recursivamente até 2 níveis de categorias (ex: `"system/*"`, `"gamemodes/lifesim/*"`).
 
 ---
 
-## 3. Estrutura e Manifesto do Recurso (`open77.lua`)
+## 3. Manifesto do Recurso (`open77.lua`)
 
-Todo recurso requer um arquivo `open77.lua` na sua raiz:
+Todo recurso requer um manifesto `open77.lua` na sua raiz:
 
 ```lua
 resource "meu_recurso"
 version "1.0.0"
-author "Equipe do Servidor"
-description "Sistema de Economia e Inventário"
+open77_version ">=0.0.1"
 auto_start true
+reload_policy "reconnect"   -- ou "restart"
 
 -- Scripts Compartilhados, Servidor e Cliente
 shared_script "shared/config.lua"
 
 server_scripts {
-    "server/services/*.lua",
-    "server/controllers/*.lua",
+    "server/database.lua",
     "server/main.lua"
 }
 
 client_scripts {
-    "client/camera.lua",
-    "client/nui.lua",
+    "client/blips.lua",
     "client/main.lua"
 }
 
--- Interface Web (WebView2)
-web_ui_page "web/dist/index.html"
-web_files {
-    "web/dist/index.html",
-    "web/dist/assets/**"
-}
+-- Interface Web CEF (Chromium Embedded Framework)
+web_ui_page "web/index.html"
+web_ui_auto_create false
+web_files { "web/**" }
 
--- Arquivos estáticos consumidos pelo cliente Lua (áudio, texturas, blips)
+-- Arquivos estáticos consumidos pelo cliente Lua (áudio, texturas, ícones)
 files {
+    "web/**",
     "assets/blips/*.png",
     "assets/audio/*.wav"
 }
 
+-- Dependências formais de outros recursos
+dependency "ls_core >=0.1.0"
+dependency "polyzone >=1.0.0"
+
 -- Permissões explícitas requisitadas
 permissions {
     "network.events",
-    "world.loot",
-    "database.query"
+    "local.events",
+    "input.actions",
+    "webui.system",
+    "database.access"
 }
 
--- Exportações Declarativas (opcional, exporta funções globais do nome correspondente)
-exports { "GetClosestDoor", "IsDoorOpen" }
-server_exports { "GetBalance", "AddMoney" }
+-- Exportações Declarativas (vinculadas automaticamente a funções globais homônimas)
+exports { "GetClosestDoor", "IsDoorOpen" }          -- Client exports
+server_exports { "GetBalance", "AddMoney" }         -- Server exports
 ```
 
-### Regras do Manifesto
+### Regras Estritas do Manifesto
 
-- **`shared_script` / `shared_scripts`**: Carregado em ambos os runtimes.
-- **`preload_mod` / `preload_mods`**: Declara pacotes de assets pré-boot (.zip/.7z contendo .archive/XBM). Baixados pelo launcher antes de iniciar o Cyberpunk.
-- **Inclusões cruzadas proibidas:** `@outro_recurso/arquivo.lua` é **proibido** e rejeitado pelo parser do manifesto. O compartilhamento entre recursos é feito via `exports` ou `require('@recurso/modulo')`.
-- **Compatibilidade com FiveM:** Chaves como `fx_version`, `game`, `lua54` são toleradas e ignoradas com um aviso informativo (`manifest_ignored_keys`).
+1. **Includes Cruzados são Terminantemente Proibidos:**
+   - A sintaxe `@outro_recurso/arquivo.lua` em `client_scripts` ou `server_scripts` é **recusada por nome** (`cross_resource_include_refused:@recurso/arquivo.lua`) no parser do manifesto. Cada recurso roda em sua própria VM isolada.
+   - O compartilhamento de código deve ser feito via `dependency` + `require('@recurso/modulo')` no cliente, ou via `exports` em ambos os lados.
+2. **Exportações Declarativas (`exports` e `server_exports`):**
+   - Registram automaticamente a função global correspondente antes do recurso atingir o estado `Running`.
+   - Se uma função declarada no manifesto não existir no escopo global, o recurso recusa inicialização com `manifest_export_missing:<nome>`.
+3. **Chaves FiveM Toleradas:**
+   - Chaves legadas como `fx_version`, `game`, `games`, `lua54`, `author`, `description`, `escrow` são aceitas e ignoradas com aviso informativo no console (`INF|meu_recurso|manifest_ignored_keys=fx_version,lua54`).
+4. **Preload de Assets REDengine (`preload_mod` / `preload_mods`):**
+   - Declara arquivos `.zip` ou `.7z` contendo pacotes `.archive` (texturas XBM, meshes, etc.) que a REDengine precisa carregar antes da inicialização do Lua. O launcher faz o download antes de abrir o jogo.
 
 ---
 
-## 4. Comunicação em Rede & Eventos
+## 4. Runtimes Lua 5.4 & Sandboxing
 
-### 4.1. Eventos Tradicionais
+### Sandbox do Servidor (Server VM)
+O script do servidor roda em Lua 5.4 estritamente seguro:
+- **Bibliotecas Disponíveis:** `math`, `string`, `table`, `utf8`, `coroutine`, `json`, `print` e a API global `Open77.*`.
+- **Bibliotecas Ausentes (`nil`):** **NÃO EXISTEM** `os`, `io`, `debug`, `package`, `require`, `load`, `loadfile`, `dofile`, `collectgarbage`.
+  - Chamar `os.time()` gera `attempt to index a nil value`.
+  - Chamar `require` no servidor gera `attempt to call a nil value`.
+- **Controle de Tempo no Servidor:**
+  - Relógio de parede: `Open77.time.unix()` ou `GetUnixTime()` (segundos fracionários desde 1970 UTC); `Open77.time.utc()` ou `GetUtcTimestamp()` (string ISO 8601).
+  - Tempo decorrido: `GetGameTimer()` ou `Open77.time.monotonic()` (milissegundos monotônicos).
+- **Divisão de Arquivos:** Divida scripts do servidor listando múltiplos arquivos em `server_scripts { ... }` no manifesto, **nunca via `require`**.
 
+### Sandbox do Cliente (Client VM)
+- Possui o runtime REDengine 4 integrado via C++.
+- Suporta `require('@recurso/modulo')` para carregar bibliotecas declaradas em dependências (como `polyzone`).
+- Acesso à API espacial, CEF, markers, worldui, áudio e HUD.
+
+---
+
+## 5. Scheduler, Threads & Gestão de Ticks
+
+| Função | Assinatura | Descrição e Comportamento |
+|---|---|---|
+| `CreateThread` / `Citizen.CreateThread` | `(fn)` | Agenda uma corrotina gerenciada no escalonador do recurso. |
+| `Wait` / `Citizen.Wait` | `(ms)` | Suspende a corrotina atual (aceita de 0 a 86.400.000 ms). **Requer corrotina gerenciada**. |
+| `SetTimeout` / `ClearTimeout` | `(ms, fn)` / `(id)` | Agenda ou cancela um timer de disparo único. |
+| `SetTick` / `ClearTick` | `(fn)` / `(id)` | Executa a função a cada frame/tick com `Wait(0)` implícito. |
+| `GetGameTimer()` | `()` | Retorna milissegundos monotônicos da sessão. |
+
+> **Proteção Contra Erros em Ticks (`SetTick`):** Se uma função de tick disparar erros por **5 execuções consecutivas**, o engine cancela automaticamente o tick (`tick cancelled after 5 consecutive failures`) para proteger os frames da CPU.
+
+---
+
+## 6. Sistema de Eventos & Event Bus Host-Wide
+
+### 6.1. Barramento Local vs Barramento Host-Wide
+- `TriggerLocalEvent(event, ...)` / `Open77.events.emitLocal`: Dispara o evento **apenas** dentro da própria VM do recurso atual. Sem serialização, sem filtros.
+- `TriggerEvent(event, ...)` / `Open77.events.emit`: Dispara o evento no **barramento global do servidor**. Alcança todos os recursos ativos que registraram manipulador para esse evento.
+  - A entrega é **enfileirada e não-reentrante** (processada nas bordas de tick).
+  - Argumentos passam por valor (limite de 32 valores, profundidade 16, envelope de até 48 KiB).
+  - `source` **não** é propagado pelo bus local. Se o emissor quiser identificar o jogador, deve passar o ID explicitamente como argumento.
+
+### 6.2. Nomes de Eventos Reservados da Plataforma
+A plataforma bloqueia a publicação de eventos internos do motor via `TriggerEvent` (retorna `false, "reserved_event"`):
+- Reservados exatos: `onResourceStart`, `onResourceStop`, `onResourceStarting`, `onResourceListRefresh`, `onPlayerConnecting`, `onPlayerConnected`, `onPlayerDisconnected`, `playerDropped`, `playerJoining`, `onPlayerReady`, `onPlayerBucketChange`, `onPlayerLifeStateChanged`, etc.
+- Prefixos reservados: `__open77`, `onVehicle`, `onNpc`, `onElevator`, `onCyberware`, `onAbility`, `open77:resource:`, `open77:player`, `open77:admin:`.
+
+### 6.3. Eventos Canceláveis (`TriggerCancellableEvent`)
+- Permite que um recurso vete uma ação antes de sua consolidação:
+  ```lua
+  local verdict = TriggerCancellableEvent("chatMessage", source, name, text)
+  if verdict ~= nil and verdict:await() then
+      return -- Evento foi cancelado por outro recurso
+  end
+  ```
+- Dentro do handler: `CancelEvent()` para vetar; `WasEventCanceled()` para consultar se já foi cancelado.
+
+---
+
+## 7. Comunicação em Rede: NetEvents, Callbacks & Latent Events
+
+### 7.1. Eventos de Rede Autenticados
+- Exige permissão `"network.events"` no manifesto.
 - **Servidor -> Cliente:**
-
   ```lua
-  -- No Servidor:
-  TriggerClientEvent("open77:vitals:update", targetPlayerId, payload)
-  TriggerClientEvent("open77:vitals:broadcast", -1, payload) -- broadcast para todos
+  TriggerClientEvent("ls:vitals:sync", playerId, data)  -- Para um cliente específico
+  TriggerClientEvent("ls:vitals:sync", -1, data)        -- Broadcast para todos
   ```
-
 - **Cliente -> Servidor:**
-
   ```lua
-  -- No Cliente:
-  TriggerServerEvent("open77:vitals:requestSync", itemId)
+  TriggerServerEvent("ls:vitals:consume", itemId)
   ```
-
-- **Manipulador de Evento:**
-
+- **Recepção no Servidor:**
   ```lua
-  RegisterNetEvent("open77:vitals:consumeItem", function(source, itemId)
-      -- 'source' no servidor é sempre o ID confiável da sessão
+  RegisterNetEvent("ls:vitals:consume", function(itemId)
+      local playerId = source  -- 'source' é atribuído pelo engine a partir da conexão autenticada
   end)
   ```
 
-### 4.2. State Bags Replicados (State Replication)
-
-Permite armazenar e sincronizar estados contínuos sem disparar eventos manuais repetitivos:
-
-```lua
--- No Servidor:
-Entity(ped).state:set("nutrition", 85, true) -- true replica para clientes
-
--- No Cliente (leitura reativa):
-local nutrition = Entity(ped).state.nutrition
-AddStateBagChangeHandler("nutrition", nil, function(bagName, key, value, _reserved, replicated)
-    print("Nutrição atualizada para: " .. tostring(value))
-end)
-```
-
-### 4.3. Callbacks de Rede (`Open77.net`)
-
-Permite chamadas no estilo Request/Response assíncronas:
-
-```lua
--- Servidor define o handler:
-Open77.net.handle("vitals:getHealth", function(source, args)
-    return { current = 100, max = 100 }
-end)
-
--- Cliente invoca e aguarda:
-local res, err = Open77.net.call("vitals:getHealth", {})
-```
-
-### 4.4. Eventos Latentes Fragmentados (`TriggerLatentClientEvent` / `Open77.net.emitLatent`)
-
-Para transferências volumosas de dados (até 4 MiB) sem saturar a banda, divididos em pacotes de 40 KiB com taxa definida.
-
----
-
-## 5. Camada de Compatibilidade FiveM: Equivalências & Armadilhas
-
-| Recurso FiveM | Suporte no Open77 | Equivalente / Detalhe no Open77 |
-| :--- | :--- | :--- |
-| `Citizen.CreateThread` / `Wait` | Sim | É idêntico ao `CreateThread` e `Wait` globais. |
-| `SetTick(fn)` / `ClearTick(id)` | Sim | Executa a cada tick/frame. Cancela após 5 falhas consecutivas para proteger performance. |
-| `promise.new()` | Sim | Mesma tipagem do `Open77.Promise`. `Citizen.Await(p)` ou `p:await()`. |
-| `IsDuplicityVersion()` | Sim | Retorna `true` no servidor e `false` no cliente. |
-| `LoadResourceFile(res, path)` | Sim | Restrito ao próprio recurso. Rejeita acesso cruzado (`cross_resource_read_denied`). |
-| `SaveResourceFile(res, path, data)` | Servidor | Restrito ao servidor com permissão `filesystem.write`. Grava na pasta `data/`. |
-| `GetHashKey(str)` / `joaat(str)` | Sim | **Atenção:** Gera o **TweakDBID** (CRC-32 + len), **NÃO** o hash Jenkins do GTA! |
-| `RequestModel` / `HasModelLoaded` | **Não existe** | **Desnecessário**. A REDengine gerencia o streaming de modelos internamente. |
-| `@outro_recurso/include.lua` | **Rejeitado** | Substituído por `exports` ou `require('@outro/modulo')`. |
-| `SetPedToRagdoll` | Servidor | `Open77.players.ragdoll(id, { durationMs = 3000 })`. |
-| `FreezeEntityPosition` | Ambos | `Open77.vehicles.setFrozen` / `Open77.players.setFrozen`. |
-
----
-
-## 6. Interface Gráfica & NUI (Chromium WebView2)
-
-- **Renderização Fora de Processo:** A interface roda em WebView2 no Edge Chromium out-of-process. O jogo não sofre quedas de framerate por repaints de UI.
-- **Framework Recomendado:** Svelte 5 (Runes `$state`, `$derived`) ou Vanilla HTML/JS. Evitar React/VDOM pesado para minimizar coletas de lixo (GC pauses).
-- **Padrão de Comunicação Bidirecional:**
-  - **Cliente Lua -> WebUI:**
-
-    ```lua
-    SendNUIMessage({
-        action = "UPDATE_HUD",
-        data = { health = 100, money = 5000 }
-    })
-    ```
-
-  - **WebUI -> Cliente Lua:**
-
-    ```javascript
-    fetch("https://open77-webui/meu_endpoint", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "close" })
-    });
-    ```
-
-  - **Captura no Cliente Lua:**
-
-    ```lua
-    RegisterNUICallback("meu_endpoint", function(data, cb)
-        SetNuiFocus(false, false)
-        cb({ ok = true })
-    end)
-    ```
-
----
-
-## 7. Dados do Jogo (Catalogues & Identificadores)
-
-- **Registros TweakDB:** Todos os veículos, itens, armas e roupas seguem a convenção de strings do TweakDB:
-  - Veículos: `"Vehicle.v_standard2_thorton_galena_player"`, `"Vehicle.v_sport2_quadra_turbo_r"`
-  - Armas: `"Items.Preset_Lexington_Default"`, `"Items.Preset_Katana_Default"`
-  - Vestuário: `"Items.Coat_01_basic_01"`, etc.
-  - NPCs: Mais de 6.582 registros sob `"Character.*"`.
-- **Pesquisa via APIs:**
-  - `Open77.data.vehicle(record)`
-  - `Open77.data.weapon(record)`
-  - `Open77.data.npc(record)`
-  - `Open77.data.localize(key)` (Textos e legendas em múltiplos idiomas)
-
----
-
-## 8. Ferramentas de Desenvolvimento e MCP (@open2077/mcp)
-
-O pacote `@open2077/mcp` fornece 27 ferramentas MCP para o ecossistema de desenvolvimento:
-
-- **`open77_search`**: Busca lexical em nativas, guias, eventos e permissões.
-- **`open77_api`**: Retorna assinatura completa, permissões exigidas e razões de retorno.
-- **`open77_validate`**: Análise estática do recurso e manifesto.
-- **`open77_data`**: Procura nomes spawnáveis de veículos, armas, NPCs e props.
-- **`open77_fivem_equivalent`**: Conversor e guia de equivalência FiveM -> Open77.
-- **`open77_new_resource`**: Cria scaffolding de recurso correto por construção.
-- **Tipagens para VS Code / Cursor:**
-
-  ```bash
-  npx -y @open2077/mcp types
+### 7.2. Network Callbacks Bidirecionais (`Open77.net`)
+Permite chamadas síncronas/assíncronas no padrão Request/Response com Promise nativa:
+- **Servidor Responde:**
+  ```lua
+  Open77.net.register("economy:getBalance", function(source, accountType)
+      return getPlayerBalance(source, accountType)
+  end)
+  ```
+- **Cliente Pergunta:**
+  ```lua
+  local balance, reason = Open77.net.call("economy:getBalance", "bank"):await()
+  ```
+- **Servidor Pergunta ao Cliente:**
+  ```lua
+  local answer, reason = Open77.net.callClient(playerId, "client:confirmAction", payload):await()
   ```
 
-  Gera `open77-client.d.lua`, `open77-server.d.lua` e `.luarc.json` para intellisense e autocompletion no Lua Language Server.
+### 7.3. Eventos Latentes Fragmentados (`Open77.net.emitLatent` / `TriggerLatentClientEvent`)
+Para transmissão de grandes payloads (até 4 MiB) sem congelar a rede, fragmentados em pacotes de 40 KiB com taxa controlada em bytes por segundo.
+
+---
+
+## 8. State Bags Replicados (`Open77.state`)
+
+Os State Bags fornecem sincronização de estado chave-valor sem a necessidade de despachar eventos de rede manuais repetitivos.
+
+### Seletor de Bags
+- `Open77.state.global`: Estado global do servidor.
+- `Open77.state.player(playerId)`: Estado vinculado à sessão de um jogador.
+- `Open77.state.entity("vehicle"|"npc"|"prop", entityId)`: Estado vinculado a uma entidade do mundo.
+- `Open77.state.localPlayer()`: (Apenas cliente) Estado do próprio jogador local.
+
+### Operações de Leitura & Escrita
+```lua
+-- Servidor grava (Requer permissão "state.write" no manifesto):
+local bag = Open77.state.player(playerId)
+bag:set("vitals", { hunger = 90, thirst = 80 })
+bag:set("cuffed", true)
+
+-- Cliente ou Servidor lê:
+local vitals = bag:get("vitals")
+local cuffed = bag.cuffed -- Syntax sugar
+
+-- Escuta Reativa de Mudanças:
+Open77.state.onChange("vitals", nil, function(bagName, key, value, _reserved, replicated)
+    print("Vitals alterado no bag " .. bagName)
+end)
+```
+
+> **Atenção:** Cinco nomes de métodos têm precedência e não devem ser usados como chaves diretas sem `:get()`: `get`, `set`, `all`, `clear`, `revision`.
+
+---
+
+## 9. Ponte de Banco de Dados SQL (MariaDB / MySQL InnoDB)
+
+A ponte de banco de dados SQL do OPEN//77 é assíncrona, de altíssimo desempenho e opera diretamente no processo do servidor dedicado através do `MySqlConnector`.
+
+### Configuração no `server.jsonc`
+```jsonc
+{
+  "database": {
+    "enabled": true,
+    "connectionString": "Server=127.0.0.1;Port=3306;Database=open77_lifesim;User ID=root;Password=;",
+    "maxRows": 10000
+  }
+}
+```
+
+### Regras Canônicas de Uso
+1. **Permissão Exigida:** Somente scripts de servidor (`server_scripts`) com a permissão `"database.access"` podem usar o banco.
+2. **APIs Oficiais:** `MySQL.*` e `Open77.database.*` expõem exatamente a mesma API nativa.
+3. **Readiness Gate (`MySQL.ready`):**
+   ```lua
+   MySQL.ready(function()
+       print("Banco de dados pronto e verificado.")
+   end)
+   ```
+4. **Operações Assíncronas com `.await`:**
+   Devem ser executadas dentro de corrotinas gerenciadas (`CreateThread`, event handlers, etc.):
+   - `MySQL.query.await(sql, params)`: Retorna array de linhas como tabelas Lua.
+   - `MySQL.scalar.await(sql, params)`: Retorna uma única coluna/valor escalar.
+   - `MySQL.update.await(sql, params)`: Retorna o número de linhas afetadas.
+   - `MySQL.insert.await(sql, params)`: Retorna o ID gerado (`insertId`).
+   - `MySQL.transaction.await(queries, params)`: Executa lote em transação atômica ACID.
+5. **Segurança Contra Injeção SQL:**
+   Sempre utilize parâmetros preparados com `?` ou `@parametro`. Nunca concatene strings de entrada do usuário.
+
+---
+
+## 10. Telemetria Espacial, Viagem & Teleporte (`Open77.travel` & `Open77.players`)
+
+### No Cliente: `Open77.travel` (Requer permissão `"player.travel"`)
+- `Open77.travel.teleport(x, y, z, heading)`: Disparo imediato (fire-and-forget). Não verifica se o chão já foi carregado pelo motor de streaming.
+- `Open77.travel.teleportAndSettle({ x = x, y = y, z = z }, heading)`:
+  - Retorna uma Promise.
+  - Assertiva tripla por 3 frames consecutivos: **no ponto** (raio de 4m horizontal / 6m vertical), **aterrado** (`grounded == true`) e **sem queda** (`fallState == None`).
+  - Se o jogador estiver caindo em chão não renderizado, re-emite o teleporte a cada 250ms por até 7s, prevenindo a morte no vazio antes que o motor carregue os blocos.
+- `Open77.travel.setNoclip(enabled)` e `Open77.travel.isNoclip()`: Voo livre relativo à câmera com controles integrados.
+
+### No Servidor: `Open77.players.teleport`
+- Quando a decisão de teleporte parte do servidor:
+  ```lua
+  Open77.players.teleport(playerId, x, y, z, heading)
+  ```
+
+---
+
+## 11. Interface Nativa WebUI (Chromium Embedded Framework - CEF)
+
+O OPEN//77 utiliza CEF/Ultralight integrado para renderizar interfaces em alta taxa de quadros fora da thread de renderização principal do REDengine 4.
+
+### 11.1. Comunicação Bidirecional Canônica (Zero FiveM NUI)
+> **PROIBIÇÃO ABSOLUTA:** `SendNUIMessage`, `RegisterNUICallback`, `SetNuiFocus` **NÃO EXISTEM** no OPEN//77 e causam crash fatal.
+
+- **Criação da Página no Cliente Lua:**
+  ```lua
+  local page, reason = Open77.webui.create({
+      entry = "web/index.html",
+      layer = "modal",          -- "hud" (fundo), "modal" (sobreposto), "cursor"
+      zIndex = 100,
+      visible = false,
+      transparent = true,
+      fps = 30
+  })
+  
+  -- Exibir e dar foco de mouse/teclado:
+  page:show()
+  page:setFocus(true, true)    -- (keyboardFocus, mouseFocus)
+  
+  -- Enviar dados para o JavaScript:
+  page:send("hud:update", { health = 100, eurodollars = 25000 })
+  
+  -- Receber dados enviados pelo JavaScript:
+  page:on("ui:action", function(payload)
+      print("Ação recebida da UI: " .. tostring(payload.action))
+  end)
+  ```
+
+- **Lado JavaScript (`web/js/app.js`):**
+  ```javascript
+  // Escutar eventos vindos do cliente Lua:
+  Open77.on("hud:update", (data) => {
+      document.querySelector("#health").textContent = data.health;
+      document.querySelector("#money").textContent = data.eurodollars;
+  });
+  
+  // Enviar ações para o cliente Lua:
+  function fecharInterface() {
+      Open77.emit("ui:action", { action: "close" });
+  }
+  
+  // Notificar que a UI carregou o DOM e está pronta:
+  Open77.ready();
+  ```
+
+### 11.2. Observação do Ciclo de Loading Screen Nativo
+O cliente Lua pode monitorar o estado real de carregamento do REDengine 4 para exibir loading screens customizadas e esconder o HUD durante viagens rápidas:
+- Funções: `Open77.screen.isLoading()`, `Open77.screen.loadingState()`
+- Eventos locais: `open77:loadingScreen:started`, `open77:loadingScreen:changed`, `open77:loadingScreen:finished`
+
+---
+
+## 12. Geometria Tridimensional & PolyZone
+
+- **No Cliente:**
+  - Importação via módulo Lua oficial:
+    ```lua
+    local PZ = assert(require('@polyzone'))
+    local PolyZone, BoxZone, CircleZone, ComboZone = PZ.PolyZone, PZ.BoxZone, PZ.CircleZone, PZ.ComboZone
+    ```
+  - Requer declaração `dependency "polyzone >=1.0.0"` no manifesto.
+  - Permite testes de ponto em polígono, volumes OBB orientados por heading e callbacks de entrada/saída (`onPlayerInOut`, `onPointInOut`).
+- **No Servidor:**
+  - Como a função `require` **não existe** no runtime do servidor, validações de polígonos no servidor devem utilizar algoritmos matemáticos puros em Lua (como Raycasting / Winding Number - `isPointInPolygon`) para garantir autoridade e isolamento sem quebras no boot.
+
+---
+
+## 13. Vetores e Quaternions Nativos
+
+Tanto o cliente quanto o servidor oferecem suporte nativo de primeira classe a tipos vetoriais:
+- Tipos disponíveis: `vector2`, `vector3`, `vector4`, `vec` e `quat`.
+- Operações aritméticas suportadas: adição (`a + b`), subtração (`a - b`), magnitude/distância (`#(a - b)`), produto escalar e interpolação `lerp`.
+- **Garantia de Interoperabilidade:** Toda API que recebe vetores aceita tabelas puras `{ x = ..., y = ..., z = ... }`. Vetores transmitidos pela rede são desserializados como tabelas seguras.
+
+---
+
+## 14. Equivalências & Armadilhas ao Migrar de FiveM
+
+| Funcionalidade FiveM | Equivalente no OPEN//77 | Detalhe Crítico / Armadilha Evitada |
+|---|---|---|
+| `GetHashKey(str)` / `joaat(str)` | `GetHashKey(str)` / `joaat(str)` | **Calcula o TweakDBID da REDengine (CRC-32 + len)**, NÃO o hash Jenkins do GTA! Modelos GTA não existem; use registros TweakDB reais (ex: `"Vehicle.v_sport2_quadra_turbo_r"`). |
+| `RequestModel` / `HasModelLoaded` | **Não existe** | Desnecessário. O engine e o servidor gerenciam streaming de entidades. Use `Open77.vehicles.whenStreamed(id):await()` ou `Open77.npcs.whenReady(id):await()`. |
+| `DrawText` / `DrawText3D` em ticks | `open77_uikit:textUI` / `drawText3D` | Zero loops por tick. Chamadas aceitam descritores persistentes gerenciados pelo host. |
+| `DoesEntityExist(id)` | `DoesEntityExist(kind, id)` | O primeiro parâmetro do tipo de entidade é **obrigatório** (`"vehicle"`, `"npc"`, `"prop"`, `"elevator"`, `"player"`, `"loot"`). |
+| `SetEntityInvincible(id, bool)` | `Open77.players.setGodMode(id, bool)` | Válido apenas para `"player"`. Recusado para veículos e NPCs (que possuem políticas próprias de integridade). |
+| `ExecuteCommand(line)` | `ExecuteCommand(line)` | No cliente: resolve apenas comandos locais daquele cliente (não envia ao servidor). No servidor: enfileirado e restrito por permissões ACL (`runtime.commands` / `resources.control`). |
+| `SendNUIMessage` / `RegisterNUICallback` | `page:send` / `page:on` (Lua) + `Open77.on` / `Open77.emit` (JS) | NUI do FiveM não existe. Toda comunicação WebUI ocorre via instâncias CEF de `Open77.webui`. |
+| `PlayerId()` / `PlayerPedId()` | `Open77.session.playerId()` | IDs FiveM não existem. Sessões são mapeadas por IDs inteiros autenticados da conexão. |

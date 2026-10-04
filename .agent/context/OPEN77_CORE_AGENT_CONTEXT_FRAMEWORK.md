@@ -41,7 +41,7 @@ Princípios:
 
 ## 3. Contratos OPEN//77 verificados
 
-A documentação consultada descreve OPEN//77 como plataforma multiplayer de Cyberpunk 2077 em **Alpha**, com runtime Lua 5.4. APIs e builds podem mudar. Descubra o build do ambiente e valide no momento da implementação; não fixe a versão de um documento antigo.
+A documentação consultada em https://open2077.net/docs descreve o OPEN//77 na **Build Oficial 2.31.21+op77.124** (Protocolo 1.44), com runtime host em .NET 8 e runtimes Lua 5.4 isolados. Todas as assinaturas, namespaces e permissões devem ser validadas contra esta documentação oficial e os stubs `open77-client.d.lua` e `open77-server.d.lua`.
 
 ### Resources e runtimes
 
@@ -99,9 +99,9 @@ O material Life-Sim enviado pelo usuário sugere a direção abaixo. São propos
   - **Identidade Visual Coesa:** Uso estrito do design system da CD Projekt Red: geometria angular com cortes chanfrados (`clip-path: polygon(...)`), linhas holográficas de wireframe, micro-ruídos ópticos/scanlines Kiroshi, paleta de cores autêntica (Amarelo Cyberpunk `#FCEE0A`, Ciano Kiroshi `#22D8E2`/`#00F0FF`, Vermelho Trauma/MaxTac `#FF003C`, Superfície `#080E19` a 85-95% com desfoque de fundo) e feedback sonoro diegético idêntico aos bips do implante ocular Kiroshi.
   - **Tipografia Nativa sem CDNs:** Fontes idênticas às do HUD original (*Rajdhani*, *Chakra Petch*, *Saira*, *IBM Plex Mono*), sempre embutidas localmente nos `web_files` para execução offline e sem latência.
   - **Anti-Padrão Proibido:** É vetado o uso de layouts genéricos de "Web moderna", Bootstrap, Material Design ou temas FiveM convencionais que quebrem a imersão distópica de Night City.
-- Svelte 5 (Runes), Tailwind CSS (estendido com tokens do REDengine) e TypeScript são as escolhas de UI. A documentação oferece WebUI e UI kit (`open77_uikit`), devendo-se priorizar os componentes padronizados da plataforma para diálogos e alertas compartilhados.
-- Taxas de decaimento, fórmula neural, limiar de ciberpsicose e balanço econômico são tunables do produto, não regras OPEN//77. Aprove e centralize antes de usar.
-- CacheService, Redis, agendadores, transações específicas, buckets, voz, migrations e ferramentas de scaffold mencionadas em notas/GDDs não são garantias da plataforma. Confirme existência e API no build real.
+- **Tecnologias de Front-end / WebUI:** A documentação oficial suporta Chromium Embedded Framework (CEF/Ultralight). Nossas interfaces adotam o Design System Kiroshi em HTML5 semântico, Vanilla CSS3 (com tokens de variáveis, `clip-path: polygon`, glassmorphism translúcido `blur(16px)` e fórmulas `clamp()` multi-resolução para 1080p, 1440p, 4K e Ultrawide) e JavaScript ES6+ modular com Web Audio API para síntese sonora diegética em tempo real. Não dependem de VDOM ou frameworks pesados para garantir zero stuttering e carregamento instantâneo pela bridge nativa `Open77.webui`.
+- Taxas de decaimento, fórmula neural, limiar de ciberpsicose e balanço econômico são tunables do produto, não regras OPEN//77. Centralizados em `ls_core` e módulos especializados.
+- CacheService in-memory opera com persistência Write-Behind no MariaDB InnoDB (`ls_data`). O isolamento dimensional residencial é assegurado por Routing Buckets nativos (`Open77.routingBuckets.setPlayer`).
 
 ## 5. Fronteiras propostas para o core
 

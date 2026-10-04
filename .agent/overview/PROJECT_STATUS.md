@@ -1,14 +1,14 @@
 # Project Overview
 
 ## Project Name
-OPEN//77: Night City Life-Sim RP (VICCS Cyberpunk Server) - Release v0.0.2
+OPEN//77: Night City Life-Sim RP (VICCS Cyberpunk Server) - Release v0.0.3
 
 ## Description
-Servidor dedicado multijogador para Cyberpunk 2077 (v2.31 / Phantom Liberty, Build 2.31.21+op77.121) focado em simulação social e biológica profunda (*Life-Sim RP*), inspirado em dinâmicas de The Sims transpostas para o cenário distópico de Night City. O ecossistema opera sobre arquitetura modular com separação estrita de responsabilidades, governança centralizada no Core, persistência direta e resiliente no MariaDB (InnoDB com foreign keys e colunas JSON), decaimento metabólico monotônico com histerese em State Bags, penalidades orgânicas severas a 0% de hidratação/nutrição, suite administrativa de vitais com resolução inteligente de alvos, telemetria de ciberimplantes com motor térmico e estabilidade neural (Fase 3 - 100%), economia dinâmica com Eurodólares (Cash/Bank), terminais de autoatendimento ATM, máquinas de conveniência All-Foods 24/7 e clínica Ripperdoc Viktor Vector totalmente operacionais (Fase 4 - 100%), sistema de habitação vertical instanciada por Routing Buckets com suporte a múltiplas portas de acesso, blips dinâmicos no minimapa, interior canônico de V calibrado contra clipping de paredes, mecânica diegética de saída com anel holográfico e WorldUI, Build Mode livre em 360° e detecção de colisões OBB via PolyZone 3D (Fase 5 - 100%), seletor de despertar neural diegético Kiroshi (`ls_spawn`) com primeiro spawn obrigatório no Megabuilding H10 e radar holográfico geodésico, ferramenta de inspeção e telemetria espacial autoritativa (`open77_coords`) com captura em tempo real de vetores REDengine 4 e exportação para múltiplos formatos Lua/JSON, interface NUI diegética em WebUI nativa com pivô holográfico Kiroshi de alta fidelidade (L-brackets táticos, badges de sincronização neural, rodapé diegético com keycaps `<kbd>`, glassmorphism translúcido `blur(16px)` e responsividade fluida via `clamp()` para 1080p, 1440p, 4K e Ultrawide 21:9/32:9), tela de carregamento nativa modular (`ls_loadscreen`) em estrita conformidade com o wireframe oficial de design, self-hosting via VPN de baixa latência (Radmin VPN), ferramentas de administração remota (RCON CLI), 35 recursos de sistema oficiais OPEN//77 integrados e controle de acesso criptográfico (ACL com papéis administrativos `operator`, `admin`, `moderator`, `support`).
+Servidor dedicado multijogador para Cyberpunk 2077 (v2.31 / Phantom Liberty, Build oficial 2.31.21+op77.124, Protocolo 1.44) focado em simulação social e biológica profunda (*Life-Sim RP*), inspirado em dinâmicas de The Sims transpostas para o cenário distópico de Night City. O ecossistema opera sobre arquitetura modular com separação estrita de responsabilidades, governança centralizada no Core, persistência direta e resiliente no MariaDB (InnoDB com foreign keys e colunas JSON), decaimento metabólico monotônico com histerese em State Bags, penalidades orgânicas severas a 0% de hidratação/nutrição, suite administrativa de vitais com resolução inteligente de alvos, telemetria de ciberimplantes com motor térmico e estabilidade neural (Fase 3 - 100%), economia dinâmica com Eurodólares (Cash/Bank), transações ACID no MariaDB (`SELECT ... FOR UPDATE`), terminais de autoatendimento ATM, máquinas de conveniência All-Foods 24/7 e clínica Ripperdoc Viktor Vector totalmente operacionais (Fase 4 - 100%), sistema de habitação vertical instanciada por Routing Buckets com suporte a múltiplas portas de acesso, blips dinâmicos no minimapa, interior canônico de V calibrado contra clipping de paredes e quedas no vazio, mecânica diegética de saída com anel holográfico e WorldUI, Build Mode livre em 360° e detecção de colisões OBB via PolyZone 3D (Fase 5 - 100%), seletor de despertar neural diegético Kiroshi (`ls_spawn`) com primeiro spawn obrigatório no Megabuilding H10 e radar holográfico geodésico, ferramenta de inspeção e telemetria espacial autoritativa (`open77_coords`) com captura em tempo real de vetores REDengine 4 e exportação em 1-clique para múltiplos formatos Lua/JSON, interface NUI diegética em WebUI nativa com pivô holográfico Kiroshi de alta fidelidade (L-brackets táticos, badges de sincronização neural, rodapé diegético com keycaps `<kbd>`, glassmorphism translúcido `blur(16px)` e responsividade fluida via `clamp()` para 1080p, 1440p, 4K e Ultrawide 21:9/32:9), tela de carregamento nativa modular (`ls_loadscreen`) em estrita conformidade com o wireframe oficial de design, self-hosting via VPN de baixa latência (Radmin VPN), ferramentas de administração remota (RCON CLI), 35 recursos de sistema oficiais OPEN//77 integrados, 9 módulos customizados Life-Sim e controle de acesso criptográfico (ACL com papéis administrativos `operator`, `admin`, `moderator`, `support`, `helper`).
 
 ## Tech Stack
 - Languages: Lua 5.4 (Server & Client Resources em VMs isoladas), JavaScript ES6+ / TypeScript, HTML5 / CSS3 (CSS Variables, Clip-Path Polygons, Web Audio API), SQL (MariaDB 10.4+ / MySQL 8 com InnoDB, JSON e transações ACID)
-- Frameworks: OPEN//77 Dedicated Server Host (.NET 8 Runtime, Build 2.31.21+op77.121), WebUI CEF / Ultralight HUD Engine
+- Frameworks: OPEN//77 Dedicated Server Host (.NET 8 Runtime, Build 2.31.21+op77.124, Protocolo 1.44), WebUI CEF / Ultralight HUD Engine
 - Tools: `@open2077/mcp` (OPEN//77 Devkit MCP Server com 27 ferramentas), Node.js v22+, Lua Language Server (`.luarc.json` + `.vscode/settings.json`), HeidiSQL / XAMPP MariaDB CLI, PowerShell 7+, RCON CLI Tool (`Server/tools/rcon/`)
 - Services: OPEN//77 Dedicated Host (.NET 8 UDP 11778, HTTP 11779, Warden 11780), MariaDB Database Server (`open77_lifesim`), Open77 Master Server Licensing, `CacheService` Lua (Write-Behind in-memory com flush a cada 5m/disconnect/stop), Radmin VPN Mesh Network (`26.102.47.161`)
 
@@ -16,33 +16,67 @@ Servidor dedicado multijogador para Cyberpunk 2077 (v2.31 / Phantom Liberty, Bui
 - ```text
 c:/Games/VICCS_CyberpunkServer/
 ├── .agent/                             # Cérebro de Contexto & Memória do Agente (Master Cortex)
+│   ├── artifacts/                      # Especificações técnicas, relatórios e diagnósticos forenses
+│   │   ├── alt_target_and_world_blips_integration_report.md
+│   │   ├── appearance_restore_mismatch_fix.md
+│   │   ├── character_connection_stall_investigation_and_fix.md
+│   │   ├── coords_tool_and_currency_fix_spec.md
+│   │   ├── cyberpunk_native_ui_design_spec.md
+│   │   ├── database_setup_report.md
+│   │   ├── diagnostic_log21_coords_and_housing_fix.md
+│   │   ├── housing_markers_log19_diagnostic_spec.md
+│   │   ├── housing_overlap_and_coords_architecture_spec.md
+│   │   ├── incident_diagnosis_report.md
+│   │   ├── lifesim_master_implementation_plan.md
+│   │   ├── lifesim_phase2_report.md
+│   │   ├── lifesim_phase4_economy_delivery_report.md
+│   │   ├── lifesim_phase4_economy_spec_and_plan.md
+│   │   ├── project_sync_report.md
+│   │   ├── self_hosting_options_guide.md
+│   │   ├── server_installation_report.md
+│   │   ├── server_testing_guide.md
+│   │   ├── third_party_connection_failure_report.md
+│   │   ├── vitals_freeze_investigation_and_fix.md
+│   │   └── world_map_blips_and_gps_fix_report.md
 │   ├── assets/                         # Referências visuais e wireframes de design
 │   │   └── references/png/
 │   │       ├── interface-hud/          # 8 referências canônicas do HUD diegético Kiroshi
 │   │       └── loading-screen/         # Wireframe oficial da Loading Screen
-│   ├── context/
+│   ├── context/                        # Documentação profunda de arquitetura, banco e regras
 │   │   ├── LIFESIM_CORE_CONTEXT_FRAMEWORK.md   # Marco arquitetural absoluto do Life-Sim RP
 │   │   ├── OPEN77_CORE_AGENT_CONTEXT_FRAMEWORK.md # Princípios de governança do Open77
 │   │   ├── architecture.md             # Arquitetura, princípios e mapa de resources
+│   │   ├── contexto_de_desenvolvimento_resource_open_77.md # Diretrizes de development workflow
 │   │   ├── database_schema.md          # Esquemas MariaDB InnoDB e CacheService Lua
 │   │   ├── documentation.md            # Documentação técnica oficial OPEN//77 compilada
+│   │   ├── documento_de_design_magia_e_bruxaria_em_cyberpunk_2077_open77_rp.md # GDD complementar
 │   │   ├── lifesim_master_implementation_plan.md # Plano mestre de implementação (Fases 1 a 9)
 │   │   ├── ls_housing_free_decoration_polyzone_spec.md # Especificação técnica do Housing OBB
 │   │   ├── mcp_install.md              # Documentação de setup do devkit MCP
 │   │   └── stack.md                    # Detalhamento de stack e dependências reais
-│   ├── guidelines/
+│   ├── guidelines/                     # Design systems e guias de codificação
 │   │   ├── CYBERPUNK_NATIVE_UI_DESIGN_SPEC.md  # Especificação técnica do Design System Kiroshi
 │   │   ├── code_style.md               # Diretrizes de estilo de código Lua 5.4 e NUI
+│   │   ├── guia-direcao-arte-uiux-contexto.md  # Guia master de direção de arte e UX
 │   │   └── ui_ux.md                    # Tokens visuais Kiroshi e regras de UX nativa
-│   ├── memory/
+│   ├── indexes/                        # Guias e índices de desenvolvedor
+│   │   └── open77_tecno_ocultismo_codex_developer_guide.html
+│   ├── memory/                         # Cortex de memória operacional
 │   │   ├── active_task.md              # Estado da tarefa atual em execução
-│   │   ├── changelog.md                # Histórico de entregas e versões (v0.0.1, v0.0.2)
+│   │   ├── changelog.md                # Histórico de entregas e versões (v0.0.1 a v0.0.3)
 │   │   └── todos.md                    # Backlog priorizado de tarefas (9 Fases)
-│   ├── overview/
+│   ├── notebook-lm/                    # Mídia e material de suporte do projeto
+│   │   └── OPEN_77_Life-Sim.mp4
+│   ├── open77-changelogs-alpha/        # Changelogs oficiais do motor OPEN//77
+│   │   ├── build.124.txt               # Changelog oficial Build .124 (Protocolo 1.44)
+│   │   └── unstable.123.txt            # Changelog Build .123
+│   ├── overview/                       # Sincronização executiva do estado do projeto
 │   │   └── PROJECT_STATUS.md           # Visão geral de status sincronizada (este arquivo)
 │   └── workflows/
 │       └── open2077_dev_skill.md       # SOP de desenvolvimento de recursos Open77
 ├── .agents/                            # Customizações locais do workspace (Antigravity)
+│   ├── rules/
+│   │   └── open2077_docs_primordial_rule.md # Regra de ouro da documentação oficial Open77
 │   └── skills/
 │       └── open2077-dev/
 │           └── SKILL.md                # Skill nativa do workspace para OPEN//77
@@ -51,21 +85,25 @@ c:/Games/VICCS_CyberpunkServer/
 ├── .luarc.json                         # Configuração mestre raiz do Lua Language Server
 ├── AGENTS.md                           # Regras Primordiais do Projeto (Documentação Oficial https://open2077.net/docs)
 ├── GDD_Website/                        # Website do Game Design Document (GDD)
+│   ├── .agent/                         # Cortex isolado do portal GDD
 │   └── project_cp2077_lifesim.html     # Dashboard executivo interativo do GDD (Tailwind + Chart.js)
 ├── Main_Website/                       # Portal e Website oficial do servidor
+│   ├── .agent/                         # Cortex isolado do portal principal
 │   └── README.md                       # Documentação do portal
-└── Server/                             # Servidor Dedicado OPEN//77 (Build 2.31.21+op77.121)
+└── Server/                             # Servidor Dedicado OPEN//77 (Build 2.31.21+op77.124)
     ├── .agent/                         # Espelho local do cortex e diagnósticos forenses
     │   ├── logs/                       # Bundles de diagnóstico e incidentes (Logs 0 a 24)
     │   ├── overview/
     │   │   └── PROJECT_STATUS.md       # Cópia espelhada da visão geral
     │   └── server-commands/
-    │       └── Comandos.txt            # Documentação in-game dos comandos administrativos /vitals e /coords
+    │       └── Comandos.txt            # Documentação in-game dos comandos administrativos /vitals, /money e /coords
     ├── .luarc.json                     # Configuração espelhada de diagnósticos Lua
-    ├── acl.jsonc                       # Controle de acesso e permissões administrativas (Owner viccs, roles admin/mod/support)
+    ├── acl.jsonc                       # Controle de acesso e permissões (Owner viccs, roles operator, admin, moderator, helper)
     ├── open77-client.d.lua             # Tipagens nativas do runtime do cliente (varargs e exports)
     ├── open77-manifest.d.lua           # Stubs de declaração para manifestos OPEN//77
     ├── open77-server.d.lua             # Tipagens nativas do runtime do servidor (varargs e exports)
+    ├── open77-server-2.31.21+op77.124-win-x64.zip # Pacote oficial dos binários do host
+    ├── package-manifest.json           # Manifesto oficial da build 2.31.21+op77.124
     ├── resources/                      # Catálogo de recursos do servidor (47 resources ativos)
     │   ├── gamemodes/
     │   │   ├── freeroam/               # Gamemode freeroam nativo de demonstração
@@ -131,7 +169,12 @@ c:/Games/VICCS_CyberpunkServer/
 - **Regra Primordial Canônica Global do Projeto:**
   - Imposição da documentação oficial do OPEN//77 (`https://open2077.net/docs`) como fonte primária e inegociável da verdade.
   - Banimento terminante de alucinações de APIs FiveM/RedM/GTA V (`PlayerPedId`, `GetEntityCoords`, `RegisterNUICallback`, `IsControlJustPressed(0, 38)`, etc.).
-  - Registro da regra em `AGENTS.md`, `.agent/guidelines/code_style.md` e `.agents/rules/`.
+  - Registro formal da regra em `AGENTS.md`, `.agent/guidelines/code_style.md` e `.agents/rules/open2077_docs_primordial_rule.md`.
+- **Servidor Dedicado OPEN//77 Totalmente Operacional (Release v0.0.3):**
+  - Build oficial `2.31.21+op77.124` configurado e validado no .NET 8 Runtime (Protocolo 1.44).
+  - Licença Master válida (`op77_live_...`) com Run lease concedido pelo Master Server.
+  - Conectividade de rede híbrida validada via Radmin VPN (`26.102.47.161:11778` UDP e `http://26.102.47.161:11779/` HTTP de download de recursos).
+  - Homologado com sucesso com conexões de jogadores remotos simultâneos.
 - **Ferramenta de Telemetria e Coordenadas Espaciais `open77_coords` (Comando `/coords`):**
   - **Interface Holográfica Kiroshi Spatial Scanner:** Modal CEF em alta definição com glassmorphism, cantoneiras cibernéticas, feedback sonoro sintético via Web Audio API e atalho `ESC`.
   - **Captura Multidimensional REDengine 4:** Extração precisa de coordenadas espaciais ($X, Y, Z$), orientação da cabeça/câmera ($ForwardX, ForwardY, ForwardZ, Pitch$), posição do osso Head ($BoneX, BoneY, BoneZ$) e Yaw/Heading normalizados ($0^\circ..360^\circ$).
@@ -144,12 +187,7 @@ c:/Games/VICCS_CyberpunkServer/
     - Spawner de NPC / Ped com vetor de visão da cabeça.
     - JSON Data Object.
   - **Alternador de Precisão Decimal:** Ajuste dinâmico entre 2, 4 ou 6 casas decimais.
-  - **Segurança Autoritativa ACL:** Restrição estrita no servidor para papéis administrativos (`admin`, `moderator`, `support`) configurados no `Server/acl.jsonc`.
-- **Servidor Dedicado OPEN//77 Totalmente Operacional (Release v0.0.2):**
-  - Build `2.31.21+op77.121` configurado e validado no .NET 8 Runtime.
-  - Licença Master válida (`op77_live_...`) com Run lease concedido pelo Master Server.
-  - Conectividade de rede híbrida validada via Radmin VPN (`26.102.47.161:11778` UDP e `http://26.102.47.161:11779/` HTTP de download de recursos).
-  - Testado e homologado com sucesso com conexões de jogadores remotos simultâneos.
+  - **Segurança Autoritativa ACL:** Restrição estrita no servidor para papéis administrativos (`operator`, `admin`, `moderator`, `support`, `helper`) configurados no `Server/acl.jsonc`.
 - **Controle de Acesso Administrativo (ACL & In-Game Super Admin):**
   - Papel `operator` configurado no `Server/acl.jsonc` com comandos completos e atalhos rápidos (`/noclip`, `/fly`, `/god`, `/heal`, `/car`, `/dv`, `/goto`, `/bring`, `/tp`, `/weapons`, `/gun`, `/announce`, `/kick`, `/ban`).
   - Principal vinculado diretamente à identidade criptográfica Master do criador (`userId: c03e8ff9-22ce-4c15-ac39-5f435a07f5ba`, usuário `viccs`) com permissões irrestritas (`*`).
@@ -157,7 +195,7 @@ c:/Games/VICCS_CyberpunkServer/
   - Ferramenta de linha de comando remota RCON (`Server/tools/rcon/cli.mjs`) para comandos sem necessidade de cliente conectado.
 - **Banco de Dados MariaDB Integrado:**
   - Esquema `open77_lifesim` operando no XAMPP MariaDB (porta 3306).
-  - Tabela de rastreamento de migrações `ls_schema_migrations` e tabelas de domínio ativas:
+  - Tabela de rastreamento de migrações `ls_schema_migrations` e 9 tabelas de domínio ativas:
     - `ls_players` (v1) - Registro de jogadores e dados JSON persistentes.
     - `ls_vitals` (v1) - Atributos fisiológicos e carimbos de decaimento.
     - `ls_cyberware` (v1) - Implantes instalados e estado neural.
@@ -169,6 +207,7 @@ c:/Games/VICCS_CyberpunkServer/
     - `ls_player_spawns` (v1) - Registro do último local de spawn e coordenadas geodésicas.
 - **Módulo `ls_data` (Fase 1 - 100% Concluída):**
   - Gerenciador de migrações SQL declarativo com validação de checksum e isolamento por módulo.
+  - Exportações formais de banco registradas (`query`, `update`, `execute`, `transaction`).
   - `CacheService` síncrono em memória com flush assíncrono em thread contínua (5 min) e persistência garantida na desconexão do jogador e interrupção de recurso.
   - Registro de perfis de cidadão indexados pela chave de persistência durável `license`.
 - **Módulo `ls_core` (Fase 1 - 100% Concluída & Estabilizada):**
@@ -191,6 +230,7 @@ c:/Games/VICCS_CyberpunkServer/
   - Padrão **Dual Sync** nativo Open77 (`ls:cyberware:sync` e `Open77.state.onChange`), eliminando dependências legadas FiveM.
 - **Módulo `ls_economy` (Fase 4 - 100% Concluída & Operacional):**
   - **Transações Bancárias ACID:** Operações de saque, depósito, transferência e pagamentos com travamento pessimista `SELECT ... FOR UPDATE` no MariaDB, garantindo integridade contra race conditions e dupes.
+  - **Exports Autoritativos:** `removeBank`, `addBank`, `removeCash`, `addCash`, `getBalance` com suporte a fallback de cobrança em dinheiro vivo (`Cash`).
   - **Duplo Saldo Financeiro:** Carteira física em dinheiro vivo (`cash`) e conta bancária digital (`bank`), persistidas em `ls_accounts` com log de auditoria em `ls_transactions`.
   - **Terminal de Autoatendimento ATM Kiosk:** Interface CEF completa com saques e depósitos rápidos (E$ 100, E$ 500, E$ 1.000, Depositar Tudo) e inserção de valores manuais.
   - **Máquinas de Vendas 24/7 (All-Foods Convenience):** Catálogo de conveniência com compra em dinheiro vivo ou débito em conta, aplicando recuperação instantânea aos vitais correspondentes (ex: Nicola Blue restaura sede/energia, Burrito XXL restaura fome).
@@ -207,14 +247,14 @@ c:/Games/VICCS_CyberpunkServer/
     - Delimitação tridimensional via `polyzone` calibrada para o piso acabado e teto (`minZ = 122.5, maxZ = 126.5`).
   - **Mecânica Diegética de Saída do Apartamento:**
     - Registro automático de anel holográfico de chão 3D (`Open77.markers.create`) e card WorldUI (`[E] Porta de Saída`) ao entrar no interior.
-    - Fallback de proximidade física direta (< 2.5m) acionado com tecla `[E]`.
+    - Detecção da tecla física `[E]` nativa via `Open77.input.isDown("e")` com edge-triggering.
     - Restituição autoritativa no mundo público (Routing Bucket 0) na porta externa original.
   - **Persistência MariaDB Direta e Resiliente:**
     - Inclusão da permissão `"database.access"` no manifesto `open77.lua`.
     - Operações assíncronas do MariaDB gerenciadas diretamente pelo driver nativo com corrotinas `CreateThread`, eliminando stalls de `export_yielded`.
     - Sincronização de Unix Epoch real na inicialização contra bugs de data de 1970 (`rent_due_unix`).
   - **Anti-Overlap de Interface NUI:**
-    - Ocultação dos marcadores 3D e cards WorldUI enquanto o terminal residencial CEF estiver aberto, restaurando a visão limpa.
+    - Limpeza atômica dos marcadores 3D e cards WorldUI via `clearDoorInteractions()` quando o terminal residencial CEF estiver aberto, restaurando a visão limpa.
   - **Build Mode com Movimentação Livre & PolyZone OBB:**
     - Fim da grade rígida: substituição por raycast tridimensional contínuo no piso e rotação Yaw $360^\circ$ livre (`Scroll` ou `Q/E`).
     - Validação de 4 vértices do Oriented Bounding Box (OBB) do móvel contra o `PolyZone` 3D do apartamento em tempo real.
@@ -291,7 +331,7 @@ c:/Games/VICCS_CyberpunkServer/
 - **Fase 6: Módulo `ls_jobs` & `ls_factions` (Carreiras, Reputação Urbana & Fixers):**
   - Scaffolding de `ls_jobs`: contratos de Fixers dinâmicos, entregas/freelancer, turnos e progressão salarial.
   - Scaffolding de `ls_factions`: progressão de reputação de gangues (Moxes, Maelstrom, Tyger Claws, Valentinos) e canais de rádio corporativos/policiais.
-  - Sistema de ponto e serviço com cálculo de produtividade e drenos econômicos.
+  - Sistema de ponto e serviço com cálculo de produtividade e drenos econômicos integrados ao `ls_economy`.
 
 ## Known TODOs or Missing Parts
 - Implementar `ls_jobs` e `ls_factions` (Fase 6).

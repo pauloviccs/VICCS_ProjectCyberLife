@@ -113,15 +113,16 @@ flowchart TD
   * Evento `ls:vitals:consume` para restaurar atributos após validação no servidor.
 
 #### Módulo `ls_ui`:
-* **Setup do Frontend Svelte 5:**
-  * Projeto compilado via Vite para `web/dist`.
-  * Estilização com Tailwind CSS seguindo paleta Kiroshi:
+* **Setup do Frontend CEF WebUI (Kiroshi HUD):**
+  * Vanilla HTML5, CSS3 Glassmorphism (`backdrop-filter: blur(12px)`), e ES6+ modular em `web/`.
+  * Carregamento nativo via `Open77.webui.create{ url = "nui://ls_ui/web/index.html", visible = true }`.
+  * Estilização seguindo paleta Kiroshi Optics:
     * Fundo: `#080E19` com opacidade 85% e `backdrop-blur-md`.
     * Destaques: Ciano Elétrico (`#22D8E2`) e Branco Puro (`#F2F6F8`).
     * Alertas: Vermelho Neon (`#FF5964`).
-    * Tipografia: `JetBrains Mono` e `Chakra Petch`.
-* **HUD Reativo:**
-  * Barras de status (Fome, Sede, Sono, Higiene, Stress) alimentadas por NUI Messages (`SendNUIMessage`).
+    * Tipografia: `JetBrains Mono` e `Rajdhani` / `Chakra Petch`.
+* **HUD Reativo & IPC:**
+  * Barras de status (Fome, Sede, Sono, Higiene, Stress) alimentadas por IPC nativo `page:send("ls_ui:updateNeeds", payload)` e consumidas no browser via `Open77.on("ls_ui:updateNeeds", handler)`.
 * **Testes de Aceitação da Fase 2:**
   * Jogador vê barras decaindo suavemente; consome comida -> barra sobe e salva no banco após o ciclo de flush.
 

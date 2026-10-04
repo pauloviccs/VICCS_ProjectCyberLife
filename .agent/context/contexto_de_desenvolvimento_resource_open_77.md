@@ -32,7 +32,7 @@ O resource deve ser empacotado no diretório `resources/open77_arcanum/` seguind
 
 ```text
 resources/open77_arcanum/
-├── resource.json               # Manifesto do resource (metadados, scripts, dependências, webui)
+├── open77.lua                  # Manifesto do resource (metadados, scripts, dependências, webui)
 ├── config/
 │   ├── schools.lua             # Configuração estática das 4 escolas e presets
 │   ├── rituals.lua             # Banco de dados de rituais/feitiços, custos e CD
@@ -68,47 +68,52 @@ resources/open77_arcanum/
 
 ## 3. ESPECIFICAÇÃO DE DADOS & SCHEMAS
 
-### 3.1 Manifesto do Resource (`resource.json`)
-```json
-{
-  "name": "open77_arcanum",
-  "version": "1.0.0",
-  "author": "Open77 Roleplay Core Team",
-  "description": "Sistema de Tecno-Ocultismo, Bruxaria Integrada e Resposta NetWatch",
-  "runtimes": ["lua54"],
-  "scripts": {
-    "shared": [
-      "shared/types.lua",
-      "shared/utils.lua",
-      "config/balance.lua",
-      "config/schools.lua",
-      "config/rituals.lua"
-    ],
-    "server": [
-      "server/db.lua",
-      "server/state.lua",
-      "server/netwatch_director.lua",
-      "server/rituals_manager.lua",
-      "server/exports.lua",
-      "server/main.lua"
-    ],
-    "client": [
-      "client/bridge_nui.lua",
-      "client/visual_fx.lua",
-      "client/audio_fx.lua",
-      "client/sync.lua",
-      "client/main.lua"
-    ]
-  },
-  "webui": {
-    "entry": "webui/index.html",
-    "cursor": true,
-    "input": true
-  },
-  "dependencies": [
-    "open77_inventory",
-    "open77_notifications"
-  ]
+### 3.1 Manifesto do Resource (`open77.lua`)
+```lua
+resource "open77_arcanum"
+version "1.0.0"
+open77_version ">=0.0.1"
+auto_start true
+reload_policy "reconnect"
+
+shared_scripts {
+    "shared/types.lua",
+    "shared/utils.lua",
+    "config/balance.lua",
+    "config/schools.lua",
+    "config/rituals.lua"
+}
+
+server_scripts {
+    "server/db.lua",
+    "server/state.lua",
+    "server/netwatch_director.lua",
+    "server/rituals_manager.lua",
+    "server/exports.lua",
+    "server/main.lua"
+}
+
+client_scripts {
+    "client/bridge_nui.lua",
+    "client/visual_fx.lua",
+    "client/audio_fx.lua",
+    "client/sync.lua",
+    "client/main.lua"
+}
+
+web_ui_page "webui/index.html"
+web_ui_auto_create false
+web_files { "webui/**" }
+files { "webui/**" }
+
+dependency "open77_inventory >=0.1.0"
+dependency "open77_notifications >=0.1.0"
+
+permissions {
+    "webui.system",
+    "network.events",
+    "local.events",
+    "database.access"
 }
 ```
 
