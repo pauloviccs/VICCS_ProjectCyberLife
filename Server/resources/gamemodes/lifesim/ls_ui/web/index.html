@@ -466,12 +466,350 @@
             </div>
         </div>
 
+        <!-- MODAL INVENTÁRIO & LOADOUT TÁTICO KIROSHI -->
+        <div id="inventory-modal" class="kiroshi-modal inventory-terminal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-card inventory-card">
+                <div class="hologram-bracket tl"></div>
+                <div class="hologram-bracket tr"></div>
+                <div class="hologram-bracket bl"></div>
+                <div class="hologram-bracket br"></div>
+                <div class="scanlines"></div>
 
+                <header class="modal-header inv-header">
+                    <div class="modal-title-group">
+                        <span class="modal-eyebrow">BT//INVENTORY - POSSESSIONS</span>
+                        <h2 class="modal-title">INVENTÁRIO & LOADOUT TÁTICO</h2>
+                    </div>
+
+                    <div class="inv-header-center">
+                        <div class="inv-search-bar">
+                            <span class="search-icon">⌕</span>
+                            <input id="inv-search-input" type="text" placeholder="PESQUISAR ITENS NA MOCHILA..." autocomplete="off">
+                            <button id="inv-search-clear" class="btn-clear-search hidden" type="button" aria-label="Limpar busca">✕</button>
+                        </div>
+                        <div class="inv-filters">
+                            <button class="inv-filter-btn active" data-filter="all">[ TUDO ]</button>
+                            <button class="inv-filter-btn" data-filter="weapon">ARMAS</button>
+                            <button class="inv-filter-btn" data-filter="consumable">COMIDA</button>
+                            <button class="inv-filter-btn" data-filter="medical">FARMÁCIA</button>
+                            <button class="inv-filter-btn" data-filter="clothing">VESTUÁRIO</button>
+                            <button class="inv-filter-btn" data-filter="cyberware">CROMO</button>
+                            <button class="inv-filter-btn" data-filter="crafting_material">RECURSOS</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-header-meta">
+                        <span class="sync-badge"><span class="sync-dot"></span>SYNCHRONIZED</span>
+                        <button id="btn-close-inv-x" class="btn-close-x" type="button" aria-label="Fechar">[ESC]</button>
+                    </div>
+                </header>
+
+                <div class="modal-body inv-body">
+                    <!-- COLUNA ESQUERDA: MOCHILA PESSOAL (POSSESSIONS - ~62% LARGURA) -->
+                    <section class="inv-column player-bag-col">
+                        <div class="column-header">
+                            <div class="column-title-wrap">
+                                <div class="col-title-group">
+                                    <span class="col-title">// MOCHILA PESSOAL</span>
+                                    <span class="col-badge" id="bag-slot-count">0 / 40 SLOTS</span>
+                                </div>
+                                <div class="inv-sort-controls">
+                                    <span class="sort-label">ORDEM:</span>
+                                    <button id="sort-rarity-btn" class="inv-sort-btn active" data-sort="rarity">RARIDADE</button>
+                                    <button id="sort-weight-btn" class="inv-sort-btn" data-sort="weight">PESO</button>
+                                    <button id="sort-name-btn" class="inv-sort-btn" data-sort="name">NOME</button>
+                                </div>
+                            </div>
+
+                            <!-- BARRA DE CARGA / PESO -->
+                            <div class="weight-bar-wrap">
+                                <div class="weight-labels">
+                                    <span>CARGA CORPORAL (CAPACIDADE MÁXIMA)</span>
+                                    <span id="bag-weight-text">0.0 / 35.0 kg</span>
+                                </div>
+                                <div class="weight-track">
+                                    <div id="bag-weight-fill" class="weight-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GRID AMPLO DE 40 SLOTS (8 COLUNAS x 5 LINHAS COM CARDS RETANGULARES) -->
+                        <div class="inventory-grid" id="player-inventory-grid">
+                            <!-- Renderizado via app.js -->
+                        </div>
+                    </section>
+
+                    <!-- COLUNA DIREITA: LOADOUT DE COMBATE & BANCADA DE CRAFTING (~38% LARGURA) -->
+                    <section class="inv-column side-panel-col">
+                        <div class="side-nav-tabs">
+                            <button id="tab-btn-loadout" class="side-tab-btn active" type="button">[ LOADOUT & EQUIPAMENTO ]</button>
+                            <button id="tab-btn-crafting" class="side-tab-btn" type="button">[ BANCADA DE CRAFTING ]</button>
+                            <button id="tab-btn-secondary" class="side-tab-btn hidden" type="button">[ CONTAINER / BAÚ ]</button>
+                        </div>
+
+                        <!-- PAINEL 1: LOADOUT & EQUIPAMENTO (DEFAULT) -->
+                        <div id="side-panel-loadout" class="side-panel active">
+                            <!-- ARMAS EQUIPADAS EM COLDRE (ESTILO CYBERPUNK 2077) -->
+                            <div class="combat-weapons-panel">
+                                <div class="panel-sub-header">
+                                    <span class="panel-sub-title">// ARMAS DE PRONTO EMPREGO (COMBAT LOADOUT)</span>
+                                    <span class="panel-sub-tag">3 SLOTS DISPONÍVEIS</span>
+                                </div>
+                                <div class="combat-weapons-grid">
+                                    <!-- WEAPON SLOT 1 -->
+                                    <div class="weapon-loadout-card empty" id="weapon-slot-1" data-weap-slot="1">
+                                        <div class="weap-card-badge">SLOT 01 // PRINCIPAL</div>
+                                        <div class="weap-card-img-wrap">
+                                            <img src="./images/weapon_unity.png" alt="Arma 1" class="weap-card-img">
+                                        </div>
+                                        <div class="weap-card-info">
+                                            <span class="weap-card-name">VAZIO</span>
+                                            <span class="weap-card-type">COLDRE PRIMÁRIO</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- WEAPON SLOT 2 -->
+                                    <div class="weapon-loadout-card empty" id="weapon-slot-2" data-weap-slot="2">
+                                        <div class="weap-card-badge">SLOT 02 // SECUNDÁRIA</div>
+                                        <div class="weap-card-img-wrap">
+                                            <img src="./images/weapon_copperhead.png" alt="Arma 2" class="weap-card-img">
+                                        </div>
+                                        <div class="weap-card-info">
+                                            <span class="weap-card-name">VAZIO</span>
+                                            <span class="weap-card-type">BANDOLEIRA / FUZIL</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- WEAPON SLOT 3 -->
+                                    <div class="weapon-loadout-card empty" id="weapon-slot-3" data-weap-slot="3">
+                                        <div class="weap-card-badge">SLOT 03 // COLDRE OCULTO / MELEE</div>
+                                        <div class="weap-card-img-wrap">
+                                            <img src="./images/weapon_katana.png" alt="Arma 3" class="weap-card-img">
+                                        </div>
+                                        <div class="weap-card-info">
+                                            <span class="weap-card-name">VAZIO</span>
+                                            <span class="weap-card-type">ARMA BRANCA / CURTA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ATALHOS RÁPIDOS // RADIAL LOADOUT [1] A [8] -->
+                            <div class="radial-loadout-panel">
+                                <div class="loadout-header">
+                                    <div class="loadout-header-titles">
+                                        <span class="loadout-title">// ATALHOS RÁPIDOS [1] A [8] (MENU RADIAL)</span>
+                                        <span class="loadout-hint">CLIQUE DIREITO NO ITEM OU ARRASTE PARA EQUIPAR / DESEQUIPAR</span>
+                                    </div>
+                                </div>
+                                <div class="radial-loadout-grid" id="radial-loadout-slots">
+                                    <!-- 8 slots direcionais renderizados via app.js -->
+                                </div>
+                            </div>
+
+                            <!-- MINI-PAINEL DE BIOMETRIA & BLINDAGEM -->
+                            <div class="loadout-vitals-panel">
+                                <div class="loadout-vital-card">
+                                    <span class="vcard-tag">ARMOR</span>
+                                    <span class="vcard-val" id="loadout-stat-armor">120 PTS</span>
+                                </div>
+                                <div class="loadout-vital-card">
+                                    <span class="vcard-tag">SAÚDE BIO</span>
+                                    <span class="vcard-val" id="loadout-stat-health">100%</span>
+                                </div>
+                                <div class="loadout-vital-card">
+                                    <span class="vcard-tag">CARGA NEURAL</span>
+                                    <span class="vcard-val" id="loadout-stat-neural">ESTÁVEL</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PAINEL 2: BANCADA DE CRAFTING -->
+                        <div id="side-panel-crafting" class="side-panel hidden">
+                            <div class="crafting-categories">
+                                <button class="craft-cat-btn active" data-cat="all">[ TODAS ]</button>
+                                <button class="craft-cat-btn" data-cat="weapons">ARMAS</button>
+                                <button class="craft-cat-btn" data-cat="ammo">MUNIÇÕES</button>
+                                <button class="craft-cat-btn" data-cat="medical">FARMÁCIA</button>
+                                <button class="craft-cat-btn" data-cat="components">UPGRADES</button>
+                            </div>
+
+                            <div class="crafting-layout">
+                                <!-- LISTA DE RECEITAS -->
+                                <div class="recipes-list" id="crafting-recipes-list">
+                                    <!-- Renderizado via app.js -->
+                                </div>
+
+                                <!-- DETALHES DA RECEITA SELECIONADA -->
+                                <div class="recipe-details" id="recipe-details-panel">
+                                    <div class="recipe-hero">
+                                        <div class="recipe-icon-box" id="recipe-icon-box">
+                                            <img id="recipe-detail-img" src="./images/weapon_unity.png" alt="Recipe Output">
+                                        </div>
+                                        <div class="recipe-hero-info">
+                                            <h3 class="recipe-title" id="recipe-detail-title">Selecione uma Receita</h3>
+                                            <span class="recipe-meta" id="recipe-detail-meta">Tempo: -- | Rendimento: --</span>
+                                        </div>
+                                    </div>
+
+                                    <p class="recipe-desc" id="recipe-detail-desc">Escolha uma blueprint ao lado para ver os requisitos de manufatura.</p>
+
+                                    <div class="recipe-reqs-section">
+                                        <span class="section-tag">// INSUMOS & RECURSOS NECESSÁRIOS</span>
+                                        <div class="recipe-reqs-list" id="recipe-reqs-list">
+                                            <!-- Lista de materiais necessários -->
+                                        </div>
+                                    </div>
+
+                                    <!-- BARRA DE PROGRESSO DE FABRICAÇÃO -->
+                                    <div id="craft-progress-box" class="craft-progress-box hidden">
+                                        <div class="craft-prog-labels">
+                                            <span>FABRICANDO ITEM...</span>
+                                            <span id="craft-prog-timer">3.0s</span>
+                                        </div>
+                                        <div class="craft-prog-track">
+                                            <div id="craft-prog-fill" class="craft-prog-fill"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- BOTÃO DE AÇÃO FABRICAR -->
+                                    <div class="recipe-actions">
+                                        <button id="btn-craft-item" class="kiroshi-btn primary craft-action-btn" type="button" disabled>
+                                            <span class="btn-scanlines"></span>
+                                            <span class="btn-text">INICIAR FABRICAÇÃO</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PAINEL 3: CONTAINER SECUNDÁRIO (PORTA-MALAS / BAÚ) -->
+                        <div id="side-panel-secondary" class="side-panel hidden">
+                            <div class="column-header">
+                                <div class="column-title-wrap">
+                                    <span class="col-title" id="secondary-title">// CONTAINER EXTERNO</span>
+                                    <span class="col-badge" id="secondary-slot-count">0 / 30 SLOTS</span>
+                                </div>
+                                <div class="weight-bar-wrap">
+                                    <div class="weight-labels">
+                                        <span>CAPACIDADE DO RECIPIENTE</span>
+                                        <span id="secondary-weight-text">0.0 / 80.0 kg</span>
+                                    </div>
+                                    <div class="weight-track">
+                                        <div id="secondary-weight-fill" class="weight-fill" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="inventory-grid" id="secondary-inventory-grid">
+                                <!-- Renderizado dinamicamente -->
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="modal-footer inv-footer">
+                    <div class="hud-status-line">
+                        <span class="status-indicator"></span>
+                        <span class="status-msg">SISTEMA KIROSHI ONLINE // [ DUPLO CLIQUE: USAR/CONSUMIR ]  •  [ CLIQUE DIREITO: EQUIPAR NO RADIAL ]  •  [ ARRASTAR: ORGANIZAR ]</span>
+                    </div>
+                    <div class="hud-keybinds">
+                        <button id="btn-close-inv" class="kiroshi-btn text key-group" type="button">
+                            <kbd>ESC</kbd> <span>FECHAR INVENTÁRIO</span>
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- QUICK RADIAL MENU (RODA DE ACESSO RÁPIDO HOLOGRÁFICA) -->
+        <div id="radial-overlay" class="radial-overlay hidden">
+            <div class="radial-container">
+                <!-- FUNDO HOLOGRÁFICO CIRCULAR -->
+                <div class="radial-backdrop-disc"></div>
+                <div class="radial-brackets"></div>
+
+                <!-- SVG DAS 8 FATIAS/SETORES -->
+                <svg id="radial-svg" class="radial-svg" viewBox="0 0 400 400" width="400" height="400">
+                    <circle cx="200" cy="200" r="185" class="radial-outer-ring"/>
+                    <circle cx="200" cy="200" r="70" class="radial-inner-ring"/>
+                    <g id="radial-slices-group">
+                        <!-- Fatias geradas via app.js -->
+                    </g>
+                </svg>
+
+                <!-- ÍCONES E SLOTS DISPOSTOS EM CÍRCULO -->
+                <div id="radial-slots-layer" class="radial-slots-layer">
+                    <!-- 8 nós posicionados ao redor do centro -->
+                </div>
+
+                <!-- NÚCLEO CENTRAL (DEADZONE & INFORMAÇÃO DO ITEM SELECIONADO) -->
+                <div class="radial-core" id="radial-core">
+                    <div class="core-reticle"></div>
+                    <div class="core-icon-wrap" id="radial-core-icon">
+                        <img src="./images/weapon_unity.png" alt="Item Selecionado">
+                    </div>
+                    <span class="core-item-name" id="radial-core-name">SELECIONE UM ITEM</span>
+                    <span class="core-item-type" id="radial-core-meta">[ RÁPIDO ]</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOLTIP DIEGÉTICO KIROSHI HUD (PADRÃO CYBERPUNK 2077 // REF 1.PNG) -->
+        <div id="kiroshi-item-tooltip" class="kiroshi-tooltip hidden">
+            <div class="tooltip-bracket tl"></div>
+            <div class="tooltip-bracket tr"></div>
+            <div class="tooltip-bracket bl"></div>
+            <div class="tooltip-bracket br"></div>
+
+            <div class="tooltip-header">
+                <div class="tooltip-title-wrap">
+                    <span id="tooltip-item-type" class="tooltip-type-tag">WEAPON // POWER PISTOL</span>
+                    <h4 id="tooltip-item-name" class="tooltip-name">Arasaka Tamayura</h4>
+                </div>
+                <span id="tooltip-item-rarity" class="tooltip-rarity rarity-rare">RARO</span>
+            </div>
+
+            <!-- HERO PREVIEW BOX -->
+            <div class="tooltip-hero-box" id="tooltip-hero-box">
+                <img id="tooltip-item-img" src="./images/weapon_tamayura.png" alt="Item Preview" class="tooltip-hero-img">
+            </div>
+
+            <!-- TABELA DE ESPECIFICAÇÕES DIEGÉTICAS -->
+            <div class="tooltip-specs-table" id="tooltip-specs-table">
+                <div class="tooltip-spec-row" id="tooltip-spec-dps-row">
+                    <span class="spec-label">DANO / DPS:</span>
+                    <strong class="spec-val highlight" id="tooltip-stat-dps">185.4 DPS</strong>
+                </div>
+                <div class="tooltip-spec-row">
+                    <span class="spec-label">PESO UNITÁRIO:</span>
+                    <strong class="spec-val" id="tooltip-item-weight">1.10 kg</strong>
+                </div>
+                <div class="tooltip-spec-row">
+                    <span class="spec-label">QUANTIDADE NA MOCHILA:</span>
+                    <strong class="spec-val" id="tooltip-item-count">x1</strong>
+                </div>
+            </div>
+
+            <!-- EFEITOS DINÂMICOS / BUFFS -->
+            <div id="tooltip-item-effects" class="tooltip-effects hidden"></div>
+
+            <!-- DESCRIÇÃO NARRATIVA -->
+            <p id="tooltip-item-desc" class="tooltip-desc">Descrição técnica do item em Night City.</p>
+
+            <!-- AÇÕES RÁPIDAS NO RODAPÉ -->
+            <div class="tooltip-actions-hint">
+                <span>[ DUPLO CLIQUE: USAR/EQUIPAR ]</span>
+                <span>[ CLIQUE DIREITO: ATALHO RADIAL ]</span>
+            </div>
+        </div>
 
         <!-- EFEITO DE DANO ORGÂNICO (DESIDRATAÇÃO / INANIÇÃO) -->
         <div id="damage-vignette" class="damage-vignette"></div>
     </main>
 
+    <script src="./catalog.js"></script>
     <script src="./app.js"></script>
 </body>
 </html>

@@ -118,6 +118,7 @@ end
 
 local function closeSpawnSelector()
     isSpawnActive = false
+    pendingOpenData = nil
     setPlayerFrozen(false)
 
     if page then
@@ -126,20 +127,25 @@ local function closeSpawnSelector()
         page:setFocus(false, false)
     end
 
+    -- Notifica o servidor para destravar a locomoção de forma autoritativa
+    TriggerServerEvent("ls:spawn:unlock")
+
     -- Restaura a visibilidade do Biomonitor HUD
     TriggerEvent("ls:ui:modalStateChanged", false)
 end
 
 -- =============================================================================
--- EVENTOS DE REDE
+-- EVENTOS DE REDE & CICLO DE VIDA DO ENGINE
 -- =============================================================================
 
 -- Recebe ordem do servidor para abrir o seletor de spawn (personagens existentes)
 RegisterNetEvent("ls:spawn:open", function(data)
+    pendingOpenData = data
     openSpawnSelector(data)
 end)
 
 AddEventHandler("ls:spawn:internalOpen", function(data)
+    pendingOpenData = data
     openSpawnSelector(data)
 end)
 
@@ -170,6 +176,48 @@ RegisterNetEvent("ls:spawn:firstSpawnWelcome", function(data)
         tostring(data and data.locationName), tostring(data and data.message)
     ))
 end)
+
+-- Evento de segurança para destravar o jogador
+RegisterNetEvent("ls:spawn:unlock", function()
+    closeSpawnSelector()
+end)
+
+-- Handshake com o término do bootstrap do REDengine (momento exato em que a apresentação de WebUI é destravada)
+AddEventHandler("open77:playerReset:complete", function()
+    Open77.log.info("[ls_spawn] REDengine player bootstrap concluído. Verificando estado do seletor...")
+    if isSpawnActive or pendingOpenData then
+        if page and webUiReady then
+            page:setFocus(true, true)
+            page:send("spawn:open", pendingOpenData or {})
+        else
+            createSpawnPage()
+        end
+    else
+        -- Se a UI ainda não recebeu ordem de spawn após o bootstrap, solicita ao servidor
+        TriggerServerEvent("ls:spawn:requestOpen")
+    end
+end)
+
+-- =============================================================================
+-- COMANDOS DE FALLBACK E DESTRACAMENTO
+-- =============================================================================
+
+RegisterCommand("spawnmenu", function()
+    Open77.log.info("[ls_spawn] Comando /spawnmenu acionado pelo cliente.")
+    TriggerServerEvent("ls:spawn:requestOpen")
+end, false)
+
+RegisterCommand("respawnmenu", function()
+    Open77.log.info("[ls_spawn] Comando /respawnmenu acionado pelo cliente.")
+    TriggerServerEvent("ls:spawn:requestOpen")
+end, false)
+
+RegisterCommand("unfreezeme", function()
+    setPlayerFrozen(false)
+    TriggerServerEvent("ls:spawn:unlock")
+    closeSpawnSelector()
+    Open77.log.info("[ls_spawn] Comando emergencial /unfreezeme executado.")
+end, false)
 
 -- =============================================================================
 -- GERENCIAMENTO DE BLIPS E MARCADORES 3D NO MUNDO

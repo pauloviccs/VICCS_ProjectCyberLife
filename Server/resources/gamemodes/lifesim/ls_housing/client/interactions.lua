@@ -105,8 +105,8 @@ end)
 -- Loop de interação com tecla [E]
 CreateThread(function()
     while true do
-        Wait(10)
         if nearbyInteractiveItem then
+            Wait(100)
             if isInteractActionPressed() then
                 local it = nearbyInteractiveItem
                 local inter = it.data and it.data.interaction
@@ -132,7 +132,7 @@ CreateThread(function()
                 Wait(500)
             end
         else
-            Wait(200)
+            Wait(500)
         end
     end
 end)

@@ -366,6 +366,95 @@ AddEventHandler("ls:core:playerUnloading", function(playerId, license, reason)
     SpawnServer.activePlayers[playerId] = nil
 end)
 
+-- Permite ao cliente solicitar a abertura do seletor após sua WebUI estar montada
+RegisterNetEvent("ls:spawn:requestOpen", function()
+    local playerId = source
+    if not playerId or playerId <= 0 then return end
+
+    local license = exports["ls_core"]:getPlayerLicense(playerId)
+    if not license then
+        Open77.log.warn(("[ls_spawn] requestOpen recebido para jogador %d sem licença ativa no Core."):format(playerId))
+        return
+    end
+
+    local loadCall = Open77.exports.call("ls_data", "cacheLoad", "spawn_state", license)
+    local stateData = nil
+    if loadCall then
+        stateData = loadCall:await()
+    else
+        stateData = exports["ls_data"]:cacheGet("spawn_state", license)
+    end
+    stateData = stateData or { firstSpawnDone = true }
+    handlePublicSpawnSelection(playerId, license, stateData)
+end)
+
+-- Permite ao cliente solicitar o descongelamento seguro no servidor
+RegisterNetEvent("ls:spawn:unlock", function()
+    local playerId = source
+    if not playerId or playerId <= 0 then return end
+    pcall(function()
+        if Open77.players and Open77.players.setFrozen then
+            Open77.players.setFrozen(playerId, false)
+        end
+    end)
+    SpawnServer.pendingSpawns[playerId] = nil
+end)
+
+-- Watchdog de segurança: impede que qualquer jogador fique congelado indefinidamente
+CreateThread(function()
+    while true do
+        Wait(5000)
+        local now = getTimestamp()
+        for playerId, p in pairs(SpawnServer.pendingSpawns) do
+            local elapsed = now - (p.openedAt or now)
+            if elapsed >= 75 then
+                Open77.log.warn(("[ls_spawn] Watchdog acionado: Jogador %d inativo no seletor de spawn por %ds. Executando auto-spawn seguro."):format(playerId, elapsed))
+                local playerEntry = SpawnServer.activePlayers[playerId]
+                local spawnState = playerEntry and playerEntry.spawnState or {}
+                local targetCoords = (spawnState.lastPosition and spawnState.lastPosition.x) and spawnState.lastPosition or Config.FirstSpawn.coords
+                local targetName = (spawnState.lastPosition and spawnState.lastPosition.x) and "Última Conexão Registrada" or Config.FirstSpawn.name
+                local targetDistrict = Config.FirstSpawn.district
+
+                SpawnServer.pendingSpawns[playerId] = nil
+
+                pcall(function()
+                    if exports["ls_core"] and exports["ls_core"].place then
+                        exports["ls_core"]:place(playerId, targetCoords, { heading = targetCoords.heading or 0.0, fade = true })
+                    end
+                end)
+
+                pcall(function()
+                    if Open77.players and Open77.players.setFrozen then
+                        Open77.players.setFrozen(playerId, false)
+                    end
+                end)
+
+                TriggerClientEvent("ls:spawn:completed", playerId, {
+                    spawnId = "watchdog_fallback",
+                    name = targetName,
+                    district = targetDistrict,
+                    coords = targetCoords
+                })
+            end
+        end
+    end
+end)
+
+-- Comando de emergência para destravar o jogador se necessário
+RegisterCommand("unlockspawn", function(src, args)
+    local targetId = tonumber(args[1]) or src
+    if targetId and targetId > 0 then
+        SpawnServer.pendingSpawns[targetId] = nil
+        pcall(function()
+            if Open77.players and Open77.players.setFrozen then
+                Open77.players.setFrozen(targetId, false)
+            end
+        end)
+        TriggerClientEvent("ls:spawn:unlock", targetId)
+        Open77.log.info(("[ls_spawn] Comando /unlockspawn executado para jogador %d."):format(targetId))
+    end
+end, false)
+
 -- =============================================================================
 -- EXPORTS PÚBLICOS
 -- =============================================================================

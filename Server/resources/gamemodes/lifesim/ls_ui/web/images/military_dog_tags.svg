@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(12, 18, 30, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(18, 36, 56, 0.95)"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Card com cantos chanfrados -->
+  <polygon points="12,4 88,4 96,12 96,88 88,96 12,96 4,88 4,12" fill="url(#bgGrad)" stroke="#22d8e2" stroke-width="1.8" stroke-opacity="0.85"/>
+  <!-- Cantoneiras Cibernéticas (L-Brackets) -->
+  <path d="M 8 16 L 8 8 L 16 8" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <path d="M 92 16 L 92 8 L 84 8" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <path d="M 8 84 L 8 92 L 16 92" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <path d="M 92 84 L 92 92 L 84 92" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <!-- Conteúdo Principal do Ícone -->
+  
+  <!-- Corrente de Bolinhas -->
+  <path d="M 34 20 Q 50 12 66 20" fill="none" stroke="#22d8e2" stroke-width="2" stroke-dasharray="3,2"/>
+  <!-- Plaqueta 1 -->
+  <rect x="32" y="24" width="22" height="36" rx="6" fill="#142232" stroke="#22d8e2" stroke-width="2"/>
+  <circle cx="43" cy="29" r="2" fill="#00e5ff"/>
+  <line x1="36" y1="36" x2="50" y2="36" stroke="#22d8e2" stroke-width="1.5"/>
+  <line x1="36" y1="42" x2="50" y2="42" stroke="#22d8e2" stroke-width="1.5"/>
+  <line x1="36" y1="48" x2="46" y2="48" stroke="#22d8e2" stroke-width="1.5"/>
+  <!-- Plaqueta 2 Inclinada Atrás -->
+  <rect x="46" y="34" width="22" height="36" rx="6" fill="#101a26" stroke="#fcee0a" stroke-width="2"/>
+  <circle cx="57" cy="39" r="2" fill="#fcee0a"/>
+  <line x1="50" y1="46" x2="64" y2="46" stroke="#fcee0a" stroke-width="1.5"/>
+  <line x1="50" y1="52" x2="64" y2="52" stroke="#fcee0a" stroke-width="1.5"/>
+
+</svg>

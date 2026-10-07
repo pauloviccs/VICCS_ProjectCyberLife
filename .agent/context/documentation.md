@@ -399,3 +399,120 @@ Tanto o cliente quanto o servidor oferecem suporte nativo de primeira classe a t
 | `ExecuteCommand(line)` | `ExecuteCommand(line)` | No cliente: resolve apenas comandos locais daquele cliente (não envia ao servidor). No servidor: enfileirado e restrito por permissões ACL (`runtime.commands` / `resources.control`). |
 | `SendNUIMessage` / `RegisterNUICallback` | `page:send` / `page:on` (Lua) + `Open77.on` / `Open77.emit` (JS) | NUI do FiveM não existe. Toda comunicação WebUI ocorre via instâncias CEF de `Open77.webui`. |
 | `PlayerId()` / `PlayerPedId()` | `Open77.session.playerId()` | IDs FiveM não existem. Sessões são mapeadas por IDs inteiros autenticados da conexão. |
+
+---
+
+## 15. Catálogo de Cobertura da API OPEN//77 (Métricas Oficiais Canônicas)
+
+O OPEN//77 possui três superfícies de script estritamente isoladas, cobertas pelas ferramentas de auditoria contínua da plataforma:
+
+| Superfície de Execução | Referência Canônica | Cobertura Validada |
+|---|---|---|
+| **Client Native Runtime** | Referência **CLIENT** (`index.html`) | **443 funções em 59 namespaces**, cobrindo chamadas do host e os prelúdios globais do cliente; assinaturas inspecionadas e descrições detalhadas. |
+| **Dedicated Server Runtime** | Referência **SERVER** e `server-api.md` | **413 funções em 43 namespaces**, incluindo 64 métodos autoritativos de veículos e 12 métodos de IA veicular, tipos `Open77.Promise`, `Open77.EventVerdict` e 119 globais de baixo nível. |
+| **Official Client Packages** | `resource-exports.md` | **129 exportações ativas** em 25 pacotes oficiais do sistema. |
+
+### Validação de Ferramental:
+```powershell
+python wiki/tools/extract-api.py --json
+python wiki/tools/audit-api.py
+```
+
+---
+
+## 16. Mapeamento de Teclas & Input (`RegisterKeyMapping`)
+
+O OPEN//77 implementa a primitiva de motor `RegisterKeyMapping` para configuração de teclas no cliente:
+- **Persistência Global:** Atalhos registrados persistem entre sessões e são expostos diretamente na aba **KEY BINDINGS** do menu de pausa nativo do Cyberpunk 2077.
+- **Padrão Press/Hold:** Mapeamento de ações contínuas utiliza o par de comandos `+comando` (ao pressionar) e `-comando` (ao soltar), permitindo rodas de seleção e menus radiais.
+- **Sintaxe Universal:**
+  ```lua
+  RegisterCommand("+radialmenu", function()
+      -- Tecla pressionada
+  end, false)
+
+  RegisterCommand("-radialmenu", function()
+      -- Tecla solta
+  end, false)
+
+  RegisterKeyMapping("+radialmenu", "Roda de Seleção Kiroshi", "keyboard", "TAB")
+  ```
+- **Leitura Direta:** APIs adicionais permitem inspeção direta de posição do cursor, botão do mouse, roda de rolagem e gamepads analógicos.
+- **Input Blocking:** Capacidade de bloquear temporariamente entradas específicas do jogador com vocabulário curado (`input-blocking.md`).
+
+---
+
+## 17. Interações Contextuais & Substituição de Dispositivos Vanilla
+
+O motor expõe um canal de controle para desligar interações padrão da REDengine em dispositivos urbanos:
+- **Interceptação de Dispositivos:** Permite suprimir os prompts nativos de máquinas de conveniência, ATMs e terminais de dados da cidade (`device-interactions.md`).
+- **Gatilho Canônico:** O evento `open77:deviceUsed` captura a ativação diegética e direciona o fluxo para o recurso responsável (ex: `ls_economy` assumindo o controle com WebUI CEF).
+- **WorldUI:** Elementos de interface e marcadores holográficos ancorados no espaço 3D com rastreamento de visibilidade e descarte automático ao abrir modais CEF.
+
+---
+
+## 18. Painel Administrativo Warden & Roster Operacional
+
+O servidor dedicado expõe nativamente o painel de gerenciamento **Warden** na porta HTTP `11780`:
+- **Autenticação:** Setup inicial seguro via PIN temporário gerado no boot do servidor no console.
+- **Aba Players:** Roster em tempo real monitorando latência (ping), saúde, estado biológico e sessão. Ações administrativas integradas por linha: warn, kick, ban, concessão de permissões, heal, freeze e teleporte.
+- **Aba Hub Resources:** Gerenciamento centralizado de pacotes de recursos (instalação, atualização, reversão/rollback e cópias de segurança com retenção histórica).
+
+---
+
+## 19. Subsistemas de Combate, Veículos & Áudio
+
+- **Leases de Ativação de Habilidades:** Habilidades especiais (Dash, Air Dash, Ground Slam/Quake) operam sob o modelo de concessão de leases temporários (`ability-activation-leases.md`), garantindo responsividade imediata no cliente com validação autoritativa assíncrona no servidor.
+- **Combate Veicular:** Suporte a disparo de passageiros em veículos (*Passenger Drive-by*), janelas sincronizadas em rede e controle balístico de armamentos veiculares montados.
+- **Voz Integrada (VOIP):** Codec nativo Opus com canais de proximidade 3D com atenuação espacial HRTF, frequências de rádio e ligações telefônicas.
+- **Sincronização Labial (Voice Lipsync):** Animação facial e movimentação labial diegética em tempo real guiada pelo sinal de áudio da voz de jogadores masculinos e femininos.
+
+---
+
+## 20. Índice Consolidado de Guias Oficiais OPEN//77
+
+| Guia Oficial | Escopo & Assunto |
+|---|---|
+| `loading-screens.md` | Loading screens WebUI customizadas, eventos de carregamento e ocultação de HUD |
+| `vehicle-seat-switching.md` | Troca de assentos animada na cabine e controle autoritativo de motorista |
+| `player-utilities.md` | Verificações de integridade, telemetria e controles do corpo do jogador |
+| `package-audio.md` | Pacotes de áudio locais e espaciais via rede |
+| `screen-picking.md` | Seleção de entidades e pontos espaciais com raio da tela / cursor |
+| `context-menu.md` | Menus contextuais reutilizáveis em terceira/primeira pessoa (ALT + clique) |
+| `hacking.md` | Curto-circuito, Self-ICE, expurgo de aliados e combate cibernético |
+| `ground-slam.md` | Ground Slam / Quake nativo terrestre e aéreo com validação de impacto |
+| `ability-activation-leases.md` | Ativação instantânea de habilidades via leases de autoridade |
+| `server-resources.md` | Manifestos, isolamento de runtimes, assinatura criptográfica e recarregamento |
+| `community-hub-warden.md` | Gestão de recursos via painel Warden (instalação, atualização e rollback) |
+| `warden-players.md` | Monitoramento e moderação de jogadores ao vivo pelo Warden |
+| `mods.md` / `server-mods.md` | Camadas de mods de arquivo (.archive), distribuição e validação de hashes |
+| `sky-advertising.md` | Painéis holográficos aéreos nos céus de Night City com texturas XBM |
+| `server-api.md` | Documentação completa de todas as APIs globais do servidor Lua |
+| `fivem-compatibility.md` | Aliases de compatibilidade FiveM (`Citizen`, `SetTick`, `promise.new`) |
+| `dash.md` | Habilidades de esquiva rápida terrestre e no ar (*Air Dash*) |
+| `connection-control.md` | Controle de fila de conexão, deferrals, rejeições e listas de permissão |
+| `world-queries.md` | Raycasts, ray de mira, cálculo de altura do solo e pesquisa de objetos |
+| `state-bags.md` | Estado replicado de alto desempenho com cotas e escuta reativa |
+| `client-players.md` | Enumeração de jogadores na visão do cliente e mapeamento ID <-> Avatar |
+| `travel.md` | Movimentação segura, teleporte com assertiva tripla (*settle watch*) e noclip |
+| `vectors.md` | Tipos vetoriais nativos (`vector2`, `vector3`, `vector4`, `quat`) |
+| `resource-exports.md` / `server-exports.md` | Exportações cliente e servidor entre recursos isolados |
+| `lua-modules.md` | Módulos locais via `require('@recurso/modulo')` no cliente |
+| `callbacks.md` | Callbacks de rede bidirecionais assíncronos (`Open77.net.call` / `callClient`) |
+| `data-reference.md` / `data-catalogues.md` | Catálogo canônico de NPCs, veículos, assentos, armas, animações e SFX |
+| `server-acl.md` / `identity.md` | Autenticação, ACL hierárquica e persistência durável de identidades |
+| `equipment.md` / `weapons-api.md` | Gestão de guarda-roupa, slots de armas e snapshots balísticos |
+| `perspective.md` / `photo-mode.md` | Câmera de primeira e terceira pessoa jogável e controle de photo mode |
+| `player-stats.md` / `player-freeze.md` | Leitura e ajuste autoritativo de vida, stamina e congelamento físico |
+| `cyberware.md` / `gorilla-arms.md` | Framework de implantes cibernéticos, transações e braços de gorila |
+| `weather.md` / `world-time.md` | Clima dinâmico de Night City e controle de escala temporal (*slow motion*) |
+| `vehicles.md` / `vehicle-ai.md` | Direção autônoma, autoridade veicular e controle por IA |
+| `native-map.md` / `blips.md` | Waypoints nativos, marcadores no minimapa e pins dinâmicos |
+| `interactions.md` / `worldui.md` | Prompts contextuais e cards holográficos diegéticos no mundo |
+| `polyzone.md` / `zones.md` | Volumes tridimensionais, histerese de entrada/saída e testes OBB |
+| `ui-kit.md` / `notifications.md` | Barras de progresso, alertas, menus e notificações holográficas WebUI |
+| `elevators.md` / `doors.md` | Portas dinâmicas em rede e elevadores autoritativos com streaming |
+| `rp-animations.md` / `rp-kit.md` | Catálogo de 70 animações de RP sincronizadas e kit de contenção |
+| `props.md` / `effects.md` / `sound.md` | Objetos sincronizados, efeitos audiovisuais (VFX/SFX) e áudio 3D HRTF |
+| `voice.md` / `voice-lipsync.md` | Chat de voz Opus integrado e sincronização labial diegética |
+

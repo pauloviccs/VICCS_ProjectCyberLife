@@ -44,49 +44,64 @@
         youtube: { enabled: false, videoId: "kPvG0j3zFjA", startSeconds: 0 },
         vanillaScenes: [
             {
+                id: "scene_watson",
+                image: "./media/scenes/scene_watson.jpg",
                 district: "WATSON // KABUKI",
                 title: "WATSON DISTRICT // KABUKI ROUNDABOUT",
                 subtitle: "ZONA INDUSTRIAL & MERCADOS NOTURNOS // SUB-DISTRITO D9",
                 threat: "ELEVADA // MAELSTROM & TYGER CLAWS",
-                gradient: "radial-gradient(ellipse at 50% 40%, rgba(34, 216, 226, 0.18) 0%, rgba(8, 18, 30, 0.92) 50%, rgba(3, 7, 14, 0.98) 100%)",
                 accent: "#22D8E2",
                 coords: "X: -1420.44 | Y: 1289.12 | Z: 18.5"
             },
             {
+                id: "scene_corpo",
+                image: "./media/scenes/scene_corpo.jpg",
                 district: "CITY CENTER // CORPO PLAZA",
                 title: "CORPO PLAZA // ARASAKA TOWER",
                 subtitle: "ZONA CORPORATIVA RESTRITA // CORREDOR DE AERODINOS",
                 threat: "SEGURANÇA MÁXIMA ARASAKA SEC",
-                gradient: "radial-gradient(ellipse at 50% 40%, rgba(255, 0, 60, 0.18) 0%, rgba(24, 8, 16, 0.92) 50%, rgba(6, 2, 8, 0.98) 100%)",
                 accent: "#FF003C",
                 coords: "X: -188.75 | Y: -240.50 | Z: 124.0"
             },
             {
+                id: "scene_westbrook",
+                image: "./media/scenes/scene_westbrook.jpg",
                 district: "WESTBROOK // JAPANTOWN",
                 title: "JAPANTOWN // CHERRY BLOSSOM MARKET",
                 subtitle: "CORREDOR HOLOGRÁFICO DE NEON & CASINOS ILUMINADOS",
                 threat: "MODERADA // POLICIAMENTO PRIVADO NCPD",
-                gradient: "radial-gradient(ellipse at 50% 40%, rgba(252, 238, 10, 0.16) 0%, rgba(24, 20, 6, 0.92) 50%, rgba(7, 5, 2, 0.98) 100%)",
                 accent: "#FCEE0A",
                 coords: "X: 342.11 | Y: 720.89 | Z: 45.2"
             },
             {
+                id: "scene_pacifica",
+                image: "./media/scenes/scene_pacifica.jpg",
                 district: "PACIFICA // COASTVIEW",
                 title: "PACIFICA // GRAND IMPERIAL COASTVIEW",
                 subtitle: "TERRITÓRIO DESREGULAMENTADO // REDE NEURAL DESCENTRALIZADA",
                 threat: "EXTREMA // VOODOO BOYS & ANIMAIS",
-                gradient: "radial-gradient(ellipse at 50% 40%, rgba(0, 255, 157, 0.16) 0%, rgba(6, 24, 18, 0.92) 50%, rgba(2, 8, 6, 0.98) 100%)",
                 accent: "#00FF9D",
                 coords: "X: -1100.80 | Y: -1850.32 | Z: 12.0"
             },
             {
+                id: "scene_badlands",
+                image: "./media/scenes/scene_badlands.jpg",
                 district: "BADLANDS // HIGHWAY 101",
                 title: "BADLANDS // DUST HIGHWAY 101",
                 subtitle: "PLANÍCIE NÔMADE // ROTAS DOS ALDECALDOS & WRAITHS",
                 threat: "ALTA // EMBOSCADAS NÔMADES",
-                gradient: "radial-gradient(ellipse at 50% 40%, rgba(255, 122, 0, 0.18) 0%, rgba(28, 14, 6, 0.92) 50%, rgba(10, 4, 2, 0.98) 100%)",
                 accent: "#FF7A00",
                 coords: "X: 2450.60 | Y: -890.15 | Z: 32.7"
+            },
+            {
+                id: "scene_heywood",
+                image: "./media/scenes/scene_heywood.jpg",
+                district: "HEYWOOD // VISTA DEL REY",
+                title: "HEYWOOD // THE GLEN & VISTA DEL REY",
+                subtitle: "CONDOMÍNIOS POPULARES // VALENTINOS & EL COYOTE COJO",
+                threat: "MÉDIA-ALTA // GUERRA TERRITORIAL VALENTINOS",
+                accent: "#00F0FF",
+                coords: "X: -180.20 | Y: -840.40 | Z: 42.1"
             }
         ],
         playlist: [
@@ -166,18 +181,40 @@
         }, config.sceneIntervalMs || 7000);
     }
 
+    let initialSceneApplied = false;
+
     function applyScene(index) {
         const scene = config.vanillaScenes[index];
         if (!scene) return;
 
-        const targetBg = activeBackdrop === "a" ? $("scene-bg-b") : $("scene-bg-a");
-        const currentBg = activeBackdrop === "a" ? $("scene-bg-a") : $("scene-bg-b");
-
-        if (targetBg && currentBg) {
-            targetBg.style.background = scene.gradient;
-            targetBg.classList.add("active");
-            currentBg.classList.remove("active");
+        let targetBg, currentBg;
+        if (!initialSceneApplied) {
+            targetBg = $("scene-bg-a");
+            currentBg = $("scene-bg-b");
+            initialSceneApplied = true;
+            activeBackdrop = "a";
+        } else {
+            targetBg = activeBackdrop === "a" ? $("scene-bg-b") : $("scene-bg-a");
+            currentBg = activeBackdrop === "a" ? $("scene-bg-a") : $("scene-bg-b");
             activeBackdrop = activeBackdrop === "a" ? "b" : "a";
+        }
+
+        if (targetBg) {
+            if (scene.image) {
+                targetBg.style.backgroundImage = `url("${scene.image}")`;
+            }
+            targetBg.classList.add("active");
+            if (currentBg) {
+                currentBg.classList.remove("active");
+            }
+        }
+
+        // Preload next scene image
+        const nextIndex = (index + 1) % config.vanillaScenes.length;
+        const nextScene = config.vanillaScenes[nextIndex];
+        if (nextScene && nextScene.image) {
+            const img = new Image();
+            img.src = nextScene.image;
         }
 
         if ($("scene-district")) $("scene-district").textContent = scene.district || "";

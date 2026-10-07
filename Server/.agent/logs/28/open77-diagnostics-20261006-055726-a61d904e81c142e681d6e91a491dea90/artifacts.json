@@ -1,0 +1,458 @@
+[
+  {
+    "path": "archive/pc/mod/Open77.archive",
+    "bytes": 43470848,
+    "sha256": "2a7e49ae9102df491ba680dff6d7bdc86491a0fd5ec96229fc670eeb4bac0605",
+    "status": "matches-install-journal",
+    "expectedSha256": "2a7e49ae9102df491ba680dff6d7bdc86491a0fd5ec96229fc670eeb4bac0605",
+    "package": "open77-core"
+  },
+  {
+    "path": "archive/pc/mod/Open77Mirror.archive",
+    "bytes": 10780672,
+    "sha256": "ab0d61fadf6f1b5261b3974c10d1840f7d5a7847ac3a3a4d8f3cf2d4ee045a51",
+    "status": "matches-install-journal",
+    "expectedSha256": "ab0d61fadf6f1b5261b3974c10d1840f7d5a7847ac3a3a4d8f3cf2d4ee045a51",
+    "package": "open77-core"
+  },
+  {
+    "path": "archive/pc/mod/Open77RP.archive",
+    "bytes": 417792,
+    "sha256": "ffa62d7e687db080e8cac3685f4141ed8a6adde8f9403557c40f3c71b4724926",
+    "status": "matches-install-journal",
+    "expectedSha256": "ffa62d7e687db080e8cac3685f4141ed8a6adde8f9403557c40f3c71b4724926",
+    "package": "open77-core"
+  },
+  {
+    "path": "bin/x64/Cyberpunk2077.exe",
+    "bytes": 59945608,
+    "sha256": "a7de82945c03e041fc7339fcf9066224d98db2f5d80fea50f7947bb350a60991",
+    "status": "observed",
+    "expectedSha256": null,
+    "package": null
+  },
+  {
+    "path": "r6/scripts/Open77/Open77BlipVisuals.reds",
+    "bytes": 9114,
+    "sha256": "0c5ac01e34dfef13fff64f136b6c7b71cc8e674816456d1d0230cbf310fa3df8",
+    "status": "matches-install-journal",
+    "expectedSha256": "0c5ac01e34dfef13fff64f136b6c7b71cc8e674816456d1d0230cbf310fa3df8",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77Consumables.reds",
+    "bytes": 22163,
+    "sha256": "918b18eb073481110df8dc6502f9fd0d03278f33a545fbc8def0e5aa9e6631cd",
+    "status": "matches-install-journal",
+    "expectedSha256": "918b18eb073481110df8dc6502f9fd0d03278f33a545fbc8def0e5aa9e6631cd",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77CyberwareActions.reds",
+    "bytes": 7612,
+    "sha256": "1eca77186398b76528792f2e253370424f4c64c70848618a096b531a4d4a734d",
+    "status": "matches-install-journal",
+    "expectedSha256": "1eca77186398b76528792f2e253370424f4c64c70848618a096b531a4d4a734d",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77CyberwareKnockdown.reds",
+    "bytes": 2786,
+    "sha256": "9298d845f13f2bb7b1866745a70f3280c7941648fe3ddcb9fb385328b45623bf",
+    "status": "matches-install-journal",
+    "expectedSha256": "9298d845f13f2bb7b1866745a70f3280c7941648fe3ddcb9fb385328b45623bf",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77CyberwareLegs.reds",
+    "bytes": 12974,
+    "sha256": "55e5722a18352698d4a93dcac017f9dab13991148bd8d0d414ec4231f220d444",
+    "status": "matches-install-journal",
+    "expectedSha256": "55e5722a18352698d4a93dcac017f9dab13991148bd8d0d414ec4231f220d444",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77Dash.reds",
+    "bytes": 11921,
+    "sha256": "2753621167f9826f492af082fdfe25c76e0ff398a60c5adf6509c01f51e1ab85",
+    "status": "matches-install-journal",
+    "expectedSha256": "2753621167f9826f492af082fdfe25c76e0ff398a60c5adf6509c01f51e1ab85",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77DeadDriver.reds",
+    "bytes": 13077,
+    "sha256": "02677d79d903962e6478be87b14da1b31af84159e03787c3347e7a43f946b4bd",
+    "status": "matches-install-journal",
+    "expectedSha256": "02677d79d903962e6478be87b14da1b31af84159e03787c3347e7a43f946b4bd",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77DevicePolicy.reds",
+    "bytes": 4143,
+    "sha256": "78209bae264ac6866adc4220bceed71edee2963e64e8464d58c0a7b00e6c5b28",
+    "status": "matches-install-journal",
+    "expectedSha256": "78209bae264ac6866adc4220bceed71edee2963e64e8464d58c0a7b00e6c5b28",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77Districts.reds",
+    "bytes": 5366,
+    "sha256": "de58f425febafcb036ff1f2b10b91a83af4e3c14b49cb35dba01e313075b9cb4",
+    "status": "matches-install-journal",
+    "expectedSha256": "de58f425febafcb036ff1f2b10b91a83af4e3c14b49cb35dba01e313075b9cb4",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77DriveBy.reds",
+    "bytes": 8200,
+    "sha256": "6a7edae603c55bf2abbf6b5323f4d496b554252a07b593aad2d16ce064088fa1",
+    "status": "matches-install-journal",
+    "expectedSha256": "6a7edae603c55bf2abbf6b5323f4d496b554252a07b593aad2d16ce064088fa1",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77FallShield.reds",
+    "bytes": 3807,
+    "sha256": "6d077fd9427da47a165391cf7c735c08848f1df5a734b8f95554075b7310fa26",
+    "status": "matches-install-journal",
+    "expectedSha256": "6d077fd9427da47a165391cf7c735c08848f1df5a734b8f95554075b7310fa26",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77GroundSlam.reds",
+    "bytes": 11575,
+    "sha256": "e6d702f96920143d6d30f459ace630c6413d65fe2feab50d452a3051a96afd13",
+    "status": "matches-install-journal",
+    "expectedSha256": "e6d702f96920143d6d30f459ace630c6413d65fe2feab50d452a3051a96afd13",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77HackingPresentation.reds",
+    "bytes": 12932,
+    "sha256": "8d7d868c728559c40c59c952e0a2c58b4074402c7f98b441bd8b201779bd6bb0",
+    "status": "matches-install-journal",
+    "expectedSha256": "8d7d868c728559c40c59c952e0a2c58b4074402c7f98b441bd8b201779bd6bb0",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77HealthDiagnostics.reds",
+    "bytes": 2051,
+    "sha256": "4c31c93ee9550934ff216b5f48678454146e377b04c5cb5e3b06c79b16d86fbf",
+    "status": "matches-install-journal",
+    "expectedSha256": "4c31c93ee9550934ff216b5f48678454146e377b04c5cb5e3b06c79b16d86fbf",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77LootSuppression.reds",
+    "bytes": 7428,
+    "sha256": "ac71b238ecc7a9bc820bb342ff57208b789d15745fca952df3c604c48fb51a82",
+    "status": "matches-install-journal",
+    "expectedSha256": "ac71b238ecc7a9bc820bb342ff57208b789d15745fca952df3c604c48fb51a82",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77MantisWeapons.reds",
+    "bytes": 9354,
+    "sha256": "314271e8b2e65d7ea431a612f847a008ac0864260aa01153073ae6a3c309edf0",
+    "status": "matches-install-journal",
+    "expectedSha256": "314271e8b2e65d7ea431a612f847a008ac0864260aa01153073ae6a3c309edf0",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77MapLegend.reds",
+    "bytes": 12609,
+    "sha256": "764b3202015c20a58f89fb0e6b14c3c093cba1cd5a1179ab6c6194f7956186dc",
+    "status": "matches-install-journal",
+    "expectedSha256": "764b3202015c20a58f89fb0e6b14c3c093cba1cd5a1179ab6c6194f7956186dc",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77MapScreen.reds",
+    "bytes": 24954,
+    "sha256": "b76dca9541d3b2da2f4f3fa5176c0d339a74d73927b9e6d2f1ac9b7b525929d8",
+    "status": "matches-install-journal",
+    "expectedSha256": "b76dca9541d3b2da2f4f3fa5176c0d339a74d73927b9e6d2f1ac9b7b525929d8",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77MapTravel.reds",
+    "bytes": 7443,
+    "sha256": "699b3d3d2b4897cdfc4770c5b8d113bad2503285c24726f13cc15795b67f130a",
+    "status": "matches-install-journal",
+    "expectedSha256": "699b3d3d2b4897cdfc4770c5b8d113bad2503285c24726f13cc15795b67f130a",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77MultiplayerPolicy.reds",
+    "bytes": 199246,
+    "sha256": "aadb49e91caea0aba68b4355b5ca3967187ef45cceb45e7508bb31727c1b2d24",
+    "status": "matches-install-journal",
+    "expectedSha256": "aadb49e91caea0aba68b4355b5ca3967187ef45cceb45e7508bb31727c1b2d24",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77NativeInput.reds",
+    "bytes": 1398,
+    "sha256": "f3dbdd1594b09b3fe083f81443a6fce097bcd5cfaa881f6d94a8b120907381c3",
+    "status": "matches-install-journal",
+    "expectedSha256": "f3dbdd1594b09b3fe083f81443a6fce097bcd5cfaa881f6d94a8b120907381c3",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77NativeMap.reds",
+    "bytes": 9285,
+    "sha256": "5e4b691f01c8041dc5720da7d0cda2f1f06e6cce8215b1f18f3adf191d59e3ff",
+    "status": "matches-install-journal",
+    "expectedSha256": "5e4b691f01c8041dc5720da7d0cda2f1f06e6cce8215b1f18f3adf191d59e3ff",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77NetworkDoors.reds",
+    "bytes": 16059,
+    "sha256": "7c3fac3c6a8216278a89688b8ccbfaa4642d310587872b1d4c1c7a9536db71e9",
+    "status": "matches-install-journal",
+    "expectedSha256": "7c3fac3c6a8216278a89688b8ccbfaa4642d310587872b1d4c1c7a9536db71e9",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77Noclip.reds",
+    "bytes": 3169,
+    "sha256": "f76c8472609f70015690470a2322ec4fc113955696fdf038e55b7237ce59a17a",
+    "status": "matches-install-journal",
+    "expectedSha256": "f76c8472609f70015690470a2322ec4fc113955696fdf038e55b7237ce59a17a",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77NpcBehavior.reds",
+    "bytes": 933,
+    "sha256": "207e94b4e48191787697f555d9ee38063919c7ddf38d99c7c23d1a16b2ef4061",
+    "status": "matches-install-journal",
+    "expectedSha256": "207e94b4e48191787697f555d9ee38063919c7ddf38d99c7c23d1a16b2ef4061",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77NpcContactTrace.reds",
+    "bytes": 3294,
+    "sha256": "b4dcf676797b9e3440f6a11341f1f7c76232ae34bea9baaac4b2b560cac489a9",
+    "status": "matches-install-journal",
+    "expectedSha256": "b4dcf676797b9e3440f6a11341f1f7c76232ae34bea9baaac4b2b560cac489a9",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77PhotoMode.reds",
+    "bytes": 1076,
+    "sha256": "14439fa2aa4afb7da14bb23fc45ecd1f7dba74ec780fd8e45b758e13b4cda16a",
+    "status": "matches-install-journal",
+    "expectedSha256": "14439fa2aa4afb7da14bb23fc45ecd1f7dba74ec780fd8e45b758e13b4cda16a",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77PlayerControls.reds",
+    "bytes": 5159,
+    "sha256": "fec639effb2bc6ce5fd848ccb814a17db7901973cf153af4356e0276967b2664",
+    "status": "matches-install-journal",
+    "expectedSha256": "fec639effb2bc6ce5fd848ccb814a17db7901973cf153af4356e0276967b2664",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77PlayerInteractions.reds",
+    "bytes": 2768,
+    "sha256": "6b12e05dad17802ad63347048ededde3d38d96fcb6a62ed0b768bb098de9dc66",
+    "status": "matches-install-journal",
+    "expectedSha256": "6b12e05dad17802ad63347048ededde3d38d96fcb6a62ed0b768bb098de9dc66",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77PlayerModels.reds",
+    "bytes": 6573,
+    "sha256": "3a9c7337faa60ffa2e9c7c2acd27f01cd2009c9832d936ace01622fcdde73df1",
+    "status": "matches-install-journal",
+    "expectedSha256": "3a9c7337faa60ffa2e9c7c2acd27f01cd2009c9832d936ace01622fcdde73df1",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77Pointing.reds",
+    "bytes": 323,
+    "sha256": "95331ad5baf3aa5a40969f7f905c84b9b0a385c4f16f92ea0b61986f45c9c05e",
+    "status": "matches-install-journal",
+    "expectedSha256": "95331ad5baf3aa5a40969f7f905c84b9b0a385c4f16f92ea0b61986f45c9c05e",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77PreGame.reds",
+    "bytes": 13699,
+    "sha256": "2e261a3bf23f92f0709ec71c5676376ffc20c62463b22cc973824a721ee39a95",
+    "status": "matches-install-journal",
+    "expectedSha256": "2e261a3bf23f92f0709ec71c5676376ffc20c62463b22cc973824a721ee39a95",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77ProgressionPolicy.reds",
+    "bytes": 3684,
+    "sha256": "aa6d37631e5397fdfa73b8d97129294d672e74c70fafed985243aa0e38f77210",
+    "status": "matches-install-journal",
+    "expectedSha256": "aa6d37631e5397fdfa73b8d97129294d672e74c70fafed985243aa0e38f77210",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77RemoteCamera.reds",
+    "bytes": 7405,
+    "sha256": "fe2e2c45aeb0090ef503476a212feacc1418cb59d12cea58e2a82b9b826d22b6",
+    "status": "matches-install-journal",
+    "expectedSha256": "fe2e2c45aeb0090ef503476a212feacc1418cb59d12cea58e2a82b9b826d22b6",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77SafeAreaPolicy.reds",
+    "bytes": 17331,
+    "sha256": "bcac02edaf329802cc07aaaebdbe3eea3eeda7a677e1e9776b039db74c1fe115",
+    "status": "matches-install-journal",
+    "expectedSha256": "bcac02edaf329802cc07aaaebdbe3eea3eeda7a677e1e9776b039db74c1fe115",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77SavePolicy.reds",
+    "bytes": 8913,
+    "sha256": "a42796b421054d3fb96197d6e9a96ed974db1fbf5ad87f81b6f13f91c4c0151d",
+    "status": "matches-install-journal",
+    "expectedSha256": "a42796b421054d3fb96197d6e9a96ed974db1fbf5ad87f81b6f13f91c4c0151d",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77ScriptBridge.reds",
+    "bytes": 240755,
+    "sha256": "5439125bd0258e00fdd8f97c13f3737e864c090984d887b6cb792263667bd7cf",
+    "status": "matches-install-journal",
+    "expectedSha256": "5439125bd0258e00fdd8f97c13f3737e864c090984d887b6cb792263667bd7cf",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77StaminaProjection.reds",
+    "bytes": 557,
+    "sha256": "db6299bd7d3a1d070280f769ba4c7b01d2361561f856e76d2d283264b1d95b8e",
+    "status": "matches-install-journal",
+    "expectedSha256": "db6299bd7d3a1d070280f769ba4c7b01d2361561f856e76d2d283264b1d95b8e",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77Startup.reds",
+    "bytes": 1560,
+    "sha256": "f547b11dd12099e482e40843d73d75c94f448da07feab0d5fca4dc533f1a1759",
+    "status": "matches-install-journal",
+    "expectedSha256": "f547b11dd12099e482e40843d73d75c94f448da07feab0d5fca4dc533f1a1759",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleCamera.reds",
+    "bytes": 2983,
+    "sha256": "3f630f11dbbf73d6a0cecd6652c075d852497ad52a864974e1cb3bc0ed7b891a",
+    "status": "matches-install-journal",
+    "expectedSha256": "3f630f11dbbf73d6a0cecd6652c075d852497ad52a864974e1cb3bc0ed7b891a",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleControls.reds",
+    "bytes": 4132,
+    "sha256": "f0529dd2e38c5051023c508226352a6a12e425d5271bdba908bb1e05f0d5a05d",
+    "status": "matches-install-journal",
+    "expectedSha256": "f0529dd2e38c5051023c508226352a6a12e425d5271bdba908bb1e05f0d5a05d",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleDriving.reds",
+    "bytes": 80052,
+    "sha256": "578d21c48d71150792422417746d1651d7c0310452802e36484df4186bf7e926",
+    "status": "matches-install-journal",
+    "expectedSha256": "578d21c48d71150792422417746d1651d7c0310452802e36484df4186bf7e926",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleFlightInput.reds",
+    "bytes": 1238,
+    "sha256": "2629d2135565295b0aa6eec3519772ca2fa7304ac5fd6cb503b618ce10245598",
+    "status": "matches-install-journal",
+    "expectedSha256": "2629d2135565295b0aa6eec3519772ca2fa7304ac5fd6cb503b618ce10245598",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehiclePaint.reds",
+    "bytes": 4398,
+    "sha256": "fd2265003597bd51a6c29e039c39a82145642104539875cb3091d9613961876e",
+    "status": "matches-install-journal",
+    "expectedSha256": "fd2265003597bd51a6c29e039c39a82145642104539875cb3091d9613961876e",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleSeatSwitch.reds",
+    "bytes": 7385,
+    "sha256": "536fa49bad6859e4e4cff24b56efd508f16f864bee09a6fd62ab63c671f053c7",
+    "status": "matches-install-journal",
+    "expectedSha256": "536fa49bad6859e4e4cff24b56efd508f16f864bee09a6fd62ab63c671f053c7",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleSteering.reds",
+    "bytes": 4791,
+    "sha256": "870c9b062d8567061def0fcc69d4a77e6b847df51008318e00b697f31bcb5580",
+    "status": "matches-install-journal",
+    "expectedSha256": "870c9b062d8567061def0fcc69d4a77e6b847df51008318e00b697f31bcb5580",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77VehicleWeapons.reds",
+    "bytes": 7668,
+    "sha256": "1fd38553bc62bc4035cd47ce5817bb855729a051f891dec18b0cd051a77c2286",
+    "status": "matches-install-journal",
+    "expectedSha256": "1fd38553bc62bc4035cd47ce5817bb855729a051f891dec18b0cd051a77c2286",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77WalkMode.reds",
+    "bytes": 3845,
+    "sha256": "41e4871a49d32a85c805c0da7edb3e0b20fdc843941c71dce94403b79bfacba8",
+    "status": "matches-install-journal",
+    "expectedSha256": "41e4871a49d32a85c805c0da7edb3e0b20fdc843941c71dce94403b79bfacba8",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77WardrobeProjection.reds",
+    "bytes": 14263,
+    "sha256": "b6c26ee8c9c6964fd9b751541a57f31a2a246c575d216464cea5f0b781c74afa",
+    "status": "matches-install-journal",
+    "expectedSha256": "b6c26ee8c9c6964fd9b751541a57f31a2a246c575d216464cea5f0b781c74afa",
+    "package": "open77-core"
+  },
+  {
+    "path": "r6/scripts/Open77/Open77WardrobeSettlement.reds",
+    "bytes": 1003,
+    "sha256": "848db03b19063059c95a27c8a8cf71fb990650d8ae25f46481eabd44845b50f4",
+    "status": "matches-install-journal",
+    "expectedSha256": "848db03b19063059c95a27c8a8cf71fb990650d8ae25f46481eabd44845b50f4",
+    "package": "open77-core"
+  },
+  {
+    "path": "red4ext/RED4ext.dll",
+    "bytes": 1248256,
+    "sha256": "59309a78a9606481d13f87e8fbf9ea9c0b735115389ded0295537180c9e52511",
+    "status": "matches-install-journal",
+    "expectedSha256": "59309a78a9606481d13f87e8fbf9ea9c0b735115389ded0295537180c9e52511",
+    "package": "red4ext"
+  },
+  {
+    "path": "red4ext/plugins/Open77/Open77.dll",
+    "bytes": 12109312,
+    "sha256": "8e3e4a672bc1fbf479face4a5c6af3cc33752a0454174de96118dd4af874d1b0",
+    "status": "matches-install-journal",
+    "expectedSha256": "8e3e4a672bc1fbf479face4a5c6af3cc33752a0454174de96118dd4af874d1b0",
+    "package": "open77-core"
+  },
+  {
+    "path": "red4ext/plugins/Open77/web/Open77.WebHost.exe",
+    "bytes": 2271232,
+    "sha256": "ecefa1aa8495c67f9a4ec456b0863245df4aae3bba4cef7e24b87ad7fab2839d",
+    "status": "matches-install-journal",
+    "expectedSha256": "ecefa1aa8495c67f9a4ec456b0863245df4aae3bba4cef7e24b87ad7fab2839d",
+    "package": "open77-webui"
+  }
+]

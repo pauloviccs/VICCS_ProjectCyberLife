@@ -122,8 +122,9 @@ function Core.maybeAnnounce(playerId)
     local isPlatformReady = (Open77.ready and Open77.ready.isReady and Open77.ready.isReady(playerId)) or false
     local timeSinceLoad = nowMs() - (s.loadedAtMs or nowMs())
 
-    -- Não bloqueia indefinidamente por holds de outros mods: anuncia se o cliente confirmou ou após tolerância de 3s
-    if not (isClientReady or isPlatformReady or timeSinceLoad >= 3000) then
+    -- Anuncia quando o cliente confirmou prontidão física (clientReady),
+    -- ou pelo gate da plataforma (isPlatformReady), ou fallback seguro de 25s (para evitar premature spawn durante bootstrap REDengine).
+    if not (isClientReady or isPlatformReady or timeSinceLoad >= 25000) then
         return
     end
 

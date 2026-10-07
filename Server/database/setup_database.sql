@@ -98,6 +98,31 @@ CREATE TABLE IF NOT EXISTS `inventories` (
   INDEX `idx_inventories_owner` (`owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `ls_inventories` (
+  `inventory_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `owner_type` varchar(32) NOT NULL DEFAULT 'character',
+  `owner_id` varchar(64) NOT NULL,
+  `max_weight` int(11) NOT NULL DEFAULT 35000,
+  `max_slots` int(11) NOT NULL DEFAULT 40,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`inventory_id`),
+  UNIQUE KEY `uq_ls_inv_owner` (`owner_type`, `owner_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `ls_inventory_items` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `inventory_id` bigint(20) unsigned NOT NULL,
+  `item_id` varchar(64) NOT NULL,
+  `slot` int(11) NOT NULL,
+  `count` int(11) NOT NULL DEFAULT 1,
+  `metadata` longtext NOT NULL DEFAULT '{}',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  INDEX `idx_ls_inv_slot` (`inventory_id`, `slot`),
+  CONSTRAINT `fk_ls_inv_items_parent` FOREIGN KEY (`inventory_id`) REFERENCES `ls_inventories` (`inventory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS `properties` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,

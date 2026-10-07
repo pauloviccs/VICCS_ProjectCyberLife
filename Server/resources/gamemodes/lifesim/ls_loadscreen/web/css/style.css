@@ -24,11 +24,12 @@
     --hud-border: rgba(34, 216, 226, 0.45);
 }
 
-body {
+html, body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #040810;
+    background: #02070c !important;
+    background-color: #02070c !important;
     font-family: var(--op77-font-body, 'Rajdhani', sans-serif);
     color: #FFFFFF;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -37,7 +38,7 @@ body {
 }
 
 /* =============================================================================
-   SCANLINES E VINHETA DIEGÉTICA DE RETINA KIROSHI
+   SCANLINES E VINHETA DIEGÉTICA DE RETINA KIROSHI (TRANSPARENTE PARA CUTSCENE 3D)
    ============================================================================= */
 
 .screen-scanlines {
@@ -47,12 +48,12 @@ body {
     z-index: 900;
     background: repeating-linear-gradient(
         0deg,
-        rgba(0, 0, 0, 0.15) 0px,
-        rgba(0, 0, 0, 0.15) 1px,
+        rgba(0, 0, 0, 0.05) 0px,
+        rgba(0, 0, 0, 0.05) 1px,
         transparent 1px,
         transparent 2px
     );
-    opacity: 0.75;
+    opacity: 0.35;
 }
 
 .screen-vignette {
@@ -62,9 +63,9 @@ body {
     z-index: 899;
     background: radial-gradient(
         ellipse at center,
-        transparent 45%,
-        rgba(2, 5, 10, 0.55) 80%,
-        rgba(1, 2, 4, 0.95) 100%
+        transparent 65%,
+        rgba(2, 5, 10, 0.15) 88%,
+        rgba(1, 2, 4, 0.35) 100%
     );
 }
 
@@ -216,13 +217,15 @@ body {
     inset: 0;
     z-index: 100;
     overflow: hidden;
+    background: transparent !important;
 }
 
-/* Sub-Camada A: Vanilla Cut-scenes */
+/* Sub-Camada A: Vanilla Cut-scenes (Renderizada diretamente pela REDengine 4) */
 .vanilla-layer {
     position: absolute;
     inset: 0;
     display: none;
+    background: transparent !important;
 }
 
 .vanilla-layer.active {
@@ -236,20 +239,55 @@ body {
     height: 100%;
     z-index: 105;
     pointer-events: none;
+    background: transparent !important;
 }
 
 .scene-backdrop {
     position: absolute;
     inset: 0;
-    opacity: 0;
-    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 102;
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 101;
+    pointer-events: none;
+    transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.4s ease;
+    will-change: opacity, transform;
 }
 
 .scene-backdrop.active {
     opacity: 1;
+    visibility: visible;
+    z-index: 102;
+    animation: kenBurnsZoom 20s ease-in-out infinite alternate;
+}
+
+.scene-backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(2, 7, 12, 0.68) 0%,
+        rgba(2, 7, 12, 0.25) 45%,
+        rgba(2, 7, 12, 0.72) 100%
+    );
+    pointer-events: none;
+}
+
+@keyframes kenBurnsZoom {
+    0% {
+        transform: scale(1.0) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.05) translate(-0.8%, -0.4%);
+    }
+    100% {
+        transform: scale(1.02) translate(0.5%, 0.5%);
+    }
 }
 
 /* HUD de Telemetria Central de Cena */

@@ -1,0 +1,2901 @@
+{
+  "schema": "op77.modstack.projection/1",
+  "files": [
+    {
+      "path": "archive/pc/mod/Open77.archive",
+      "sha256": "2a7e49ae9102df491ba680dff6d7bdc86491a0fd5ec96229fc670eeb4bac0605",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "archive/pc/mod/Open77Mirror.archive",
+      "sha256": "ab0d61fadf6f1b5261b3974c10d1840f7d5a7847ac3a3a4d8f3cf2d4ee045a51",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "archive/pc/mod/Open77RP.archive",
+      "sha256": "ffa62d7e687db080e8cac3685f4141ed8a6adde8f9403557c40f3c71b4724926",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "bin/x64/winmm.dll",
+      "sha256": "22690f3ac5efbfa825b758028f114d0e7d83833160716f199c56056db01fc8be",
+      "modId": "red4ext",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "engine/config/base/scripts.ini",
+      "sha256": "ea8281682d4130f872e1703b25aa989a823f136fa1d886077af24aedb08b0d4c",
+      "modId": "redscript",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "engine/tools/scc.exe",
+      "sha256": "da2c0de580173010c907a05fdd2f3cd2430d6e62bf748339d65060118ae32edd",
+      "modId": "redscript",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "engine/tools/scc_lib.dll",
+      "sha256": "49eb60a3613c990cd13b6136e827a74f9f64ad68e2f911d8c93e4e3d3f53c100",
+      "modId": "redscript",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/config/cybercmd/Open77.toml",
+      "sha256": "52b6c816216066a5393fb84da7b80065d9140990f32d1667251452cd2b039673",
+      "modId": "cybercmd-compat",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/config/cybercmd/scc.toml",
+      "sha256": "05802a334d72e87194d49765b7b852c2a983f8849851abcf3fd1366f64d4a934",
+      "modId": "cybercmd-compat",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77BlipVisuals.reds",
+      "sha256": "0c5ac01e34dfef13fff64f136b6c7b71cc8e674816456d1d0230cbf310fa3df8",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77Consumables.reds",
+      "sha256": "918b18eb073481110df8dc6502f9fd0d03278f33a545fbc8def0e5aa9e6631cd",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77CyberwareActions.reds",
+      "sha256": "1eca77186398b76528792f2e253370424f4c64c70848618a096b531a4d4a734d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77CyberwareKnockdown.reds",
+      "sha256": "9298d845f13f2bb7b1866745a70f3280c7941648fe3ddcb9fb385328b45623bf",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77CyberwareLegs.reds",
+      "sha256": "55e5722a18352698d4a93dcac017f9dab13991148bd8d0d414ec4231f220d444",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77Dash.reds",
+      "sha256": "2753621167f9826f492af082fdfe25c76e0ff398a60c5adf6509c01f51e1ab85",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77DeadDriver.reds",
+      "sha256": "02677d79d903962e6478be87b14da1b31af84159e03787c3347e7a43f946b4bd",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77DevicePolicy.reds",
+      "sha256": "78209bae264ac6866adc4220bceed71edee2963e64e8464d58c0a7b00e6c5b28",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77Districts.reds",
+      "sha256": "de58f425febafcb036ff1f2b10b91a83af4e3c14b49cb35dba01e313075b9cb4",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77DriveBy.reds",
+      "sha256": "c66f0b4b2fb30486b89472fae5640c7d4f264061a1211c9dd6b9b48b737b0e58",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77FallShield.reds",
+      "sha256": "6d077fd9427da47a165391cf7c735c08848f1df5a734b8f95554075b7310fa26",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77GroundSlam.reds",
+      "sha256": "e6d702f96920143d6d30f459ace630c6413d65fe2feab50d452a3051a96afd13",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77HackingPresentation.reds",
+      "sha256": "8d7d868c728559c40c59c952e0a2c58b4074402c7f98b441bd8b201779bd6bb0",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77HealthDiagnostics.reds",
+      "sha256": "4c31c93ee9550934ff216b5f48678454146e377b04c5cb5e3b06c79b16d86fbf",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77LootSuppression.reds",
+      "sha256": "5509d5272d46c69d636beb410ec4a17f980b6d8a3ab1a2a0d2037b9a6123123b",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77MantisWeapons.reds",
+      "sha256": "314271e8b2e65d7ea431a612f847a008ac0864260aa01153073ae6a3c309edf0",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77MapLegend.reds",
+      "sha256": "764b3202015c20a58f89fb0e6b14c3c093cba1cd5a1179ab6c6194f7956186dc",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77MapScreen.reds",
+      "sha256": "b76dca9541d3b2da2f4f3fa5176c0d339a74d73927b9e6d2f1ac9b7b525929d8",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77MapTravel.reds",
+      "sha256": "699b3d3d2b4897cdfc4770c5b8d113bad2503285c24726f13cc15795b67f130a",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77MultiplayerPolicy.reds",
+      "sha256": "579aba92b34fd753936c047ef19346e04289e547ac7901818e880a96332ca71e",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77NativeInput.reds",
+      "sha256": "f3dbdd1594b09b3fe083f81443a6fce097bcd5cfaa881f6d94a8b120907381c3",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77NativeMap.reds",
+      "sha256": "5e4b691f01c8041dc5720da7d0cda2f1f06e6cce8215b1f18f3adf191d59e3ff",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77NetworkDoors.reds",
+      "sha256": "7c3fac3c6a8216278a89688b8ccbfaa4642d310587872b1d4c1c7a9536db71e9",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77Noclip.reds",
+      "sha256": "f76c8472609f70015690470a2322ec4fc113955696fdf038e55b7237ce59a17a",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77NpcBehavior.reds",
+      "sha256": "207e94b4e48191787697f555d9ee38063919c7ddf38d99c7c23d1a16b2ef4061",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77NpcContactTrace.reds",
+      "sha256": "b4dcf676797b9e3440f6a11341f1f7c76232ae34bea9baaac4b2b560cac489a9",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77PhotoMode.reds",
+      "sha256": "14439fa2aa4afb7da14bb23fc45ecd1f7dba74ec780fd8e45b758e13b4cda16a",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77PlayerControls.reds",
+      "sha256": "fec639effb2bc6ce5fd848ccb814a17db7901973cf153af4356e0276967b2664",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77PlayerInteractions.reds",
+      "sha256": "6b12e05dad17802ad63347048ededde3d38d96fcb6a62ed0b768bb098de9dc66",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77PlayerModels.reds",
+      "sha256": "3a9c7337faa60ffa2e9c7c2acd27f01cd2009c9832d936ace01622fcdde73df1",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77Pointing.reds",
+      "sha256": "fa6a3692158f26696806e0c3546a79da97ca1ef2ebd9e547db0fc4ad1dfd1e10",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77PreGame.reds",
+      "sha256": "2e261a3bf23f92f0709ec71c5676376ffc20c62463b22cc973824a721ee39a95",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77ProgressionPolicy.reds",
+      "sha256": "aa6d37631e5397fdfa73b8d97129294d672e74c70fafed985243aa0e38f77210",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77RemoteCamera.reds",
+      "sha256": "fe2e2c45aeb0090ef503476a212feacc1418cb59d12cea58e2a82b9b826d22b6",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77SafeAreaPolicy.reds",
+      "sha256": "bcac02edaf329802cc07aaaebdbe3eea3eeda7a677e1e9776b039db74c1fe115",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77SavePolicy.reds",
+      "sha256": "a42796b421054d3fb96197d6e9a96ed974db1fbf5ad87f81b6f13f91c4c0151d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77ScriptBridge.reds",
+      "sha256": "a7f07fb6a86b770cb6e0e280f70a77aba16e83744c01bfd1795819e01e511be0",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77StaminaProjection.reds",
+      "sha256": "db6299bd7d3a1d070280f769ba4c7b01d2361561f856e76d2d283264b1d95b8e",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77Startup.reds",
+      "sha256": "f547b11dd12099e482e40843d73d75c94f448da07feab0d5fca4dc533f1a1759",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleCamera.reds",
+      "sha256": "3f630f11dbbf73d6a0cecd6652c075d852497ad52a864974e1cb3bc0ed7b891a",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleControls.reds",
+      "sha256": "f0529dd2e38c5051023c508226352a6a12e425d5271bdba908bb1e05f0d5a05d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleDriving.reds",
+      "sha256": "fbc48d1c184a79078e6cf10bc6c5a55c14725d4952a2dedb4023cbe82d195bc7",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleFlightInput.reds",
+      "sha256": "2629d2135565295b0aa6eec3519772ca2fa7304ac5fd6cb503b618ce10245598",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehiclePaint.reds",
+      "sha256": "fd2265003597bd51a6c29e039c39a82145642104539875cb3091d9613961876e",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleSeatSwitch.reds",
+      "sha256": "972a3a4213eb8e435ea30f97db39ea3bb3eeb39f14d0f2179ab49bf82b37d7af",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleSteering.reds",
+      "sha256": "7f88dc9c56cfeed6bf69268d74d2a6404c13a342c7dbfd55255a5d95178458be",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77VehicleWeapons.reds",
+      "sha256": "57f104270145c0e26dbc310e52394c26bfb3b65164d8a8327c235771b734fcbf",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77WalkMode.reds",
+      "sha256": "41e4871a49d32a85c805c0da7edb3e0b20fdc843941c71dce94403b79bfacba8",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77WardrobeProjection.reds",
+      "sha256": "b6c26ee8c9c6964fd9b751541a57f31a2a246c575d216464cea5f0b781c74afa",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "r6/scripts/Open77/Open77WardrobeSettlement.reds",
+      "sha256": "848db03b19063059c95a27c8a8cf71fb990650d8ae25f46481eabd44845b50f4",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/config.ini",
+      "sha256": "06478d643528fa9d4dd9c047322aff4c2aee668be2f202b181f3db86ad1ea865",
+      "modId": "red4ext",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/LICENSE.txt",
+      "sha256": "a0b08b28ae3931a5a41a1788aac6c7a391513bfc3599272021ea5b2c1af2f6f6",
+      "modId": "red4ext",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/assets/Saves/NCMP-Template-F/metadata.9.json",
+      "sha256": "237fc85d66c9553b3ecab55fd7b2ad370ae6ceac42f6080e89ff3c1d3aac40ba",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/assets/Saves/NCMP-Template-F/sav.dat",
+      "sha256": "8512a50251a308e54e0b477b6b5f009abf3e104048e863ce1ad9b021b7920261",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/assets/Saves/NCMP-Template-F/screenshot.png",
+      "sha256": "668179fa2e18a2a6ccea52df6452475716d5c1af326512afef06904988fdab93",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/assets/Saves/NCMP-Template-M/metadata.9.json",
+      "sha256": "f827a4450c0ce3b022ff8d71f527c3e4fa1c0de34b7acff0e61fd937f692037c",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/assets/Saves/NCMP-Template-M/sav.dat",
+      "sha256": "86d781a69b33fffacdf46db3a45630aeeb0899b7255a6b84fdb220a4232d7b37",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/assets/Saves/NCMP-Template-M/screenshot.png",
+      "sha256": "002f1e28a1f2567f08ed5b5019b74955ccb70469f7864c3ac9149bcafbb3548c",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_blips/client/main.lua",
+      "sha256": "5f8b723e9874b3540d510017f51dd44574fd61317b3351e41c829b11eb3080ee",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_blips/open77.lua",
+      "sha256": "49fba1e53395a09e80300b751ffa5a0dd69ac1440dd88e37bd77a4d84791bdd9",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_blips/web/index.html",
+      "sha256": "78df4cd51b47b6863ee6f84788e6b4b1cfe52c6c8aa080f7655804b8842f657d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_death/client/main.lua",
+      "sha256": "1be447bdfe81c3ef1e6ffd50a26de3732aa7c7f8b12734440a8d5924f7fa2c9b",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_death/open77.lua",
+      "sha256": "5f87a0316e7d6e7217d4b2b9b1cba85a9888191551728f5d5c954d4dfe6a0224",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/assets/blips/job-center.png",
+      "sha256": "880f711e2b9ae57cf1e17a4d871f0ac87d82b47a23b25e475d58b2fe92806d5b",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/client/main.lua",
+      "sha256": "c82e8da114ca12c1317141a0e30be142145b1206adcaa2edcc0255c4011e5ff3",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/open77.lua",
+      "sha256": "9f6e5434cefe0640f612a50825120cd3a00c13412039937d61bd1ba4e4ab3b75",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/server/main.lua",
+      "sha256": "770fef294590190a80bf13198fbd57d0e94890c005a9d1009b3e0009b8095040",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/web/app.css",
+      "sha256": "c1a9c2b0516644eb3ae9292cb66d6cfffb9b947d529196738f483ebbe8d142e9",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/web/index.html",
+      "sha256": "9fa6fc76e261252750957d02f668541a4df15dd82272745b1001e4d0f543397f",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_debug/web/open77-ui.css",
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/client/main.lua",
+      "sha256": "3db185bacdc51cde7c2830caff8668496bee617be03d12c800a19aa459e82a52",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/open77.lua",
+      "sha256": "5f411267d972e413b1e588c2ab9ca0e90550631520c96296d917c74211ee7571",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/shared/strings.lua",
+      "sha256": "464d74b985132a5c1ccf7f030ef53406af84e49d3d21ee47682f35dcab66af31",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/tests/browser-branding.cjs",
+      "sha256": "f1b5186b9502da9a50ef2f659bf60b9e229ffd003aabb57602ee98f7dc9e7d71",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/tests/browser-transitions.cjs",
+      "sha256": "f08b7e1ea3cfb368690e51e2244ff4d4b935e2e17c0c9a7aa9b9535f2832eb28",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/address-privacy.css",
+      "sha256": "f96cdc8b67ce835e250304fa0f79274afcebe066305f458e3e8b95b17b28950d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/address-privacy.js",
+      "sha256": "3a6c1feb224d574a809f19258b6c3a540d8b76845e211d72c1a77a33a27a46b9",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/app.css",
+      "sha256": "fd7536e92a0ab63a3e761283f8d2336e21d61a7c20a1e8435c6b7adb31beccb0",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/branding.js",
+      "sha256": "0e65c12842f4b420431c67829ebd75c2a747039b4ecdfd77ef195f9a1bd1bc55",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/design-system.css",
+      "sha256": "32fa8f72dc039d94ffa58f1f1ad436d80a14bd44f8358e2b78a0f3992f556248",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/i18n.js",
+      "sha256": "ed08435b2dd8295ac7170f6ab5d883626ee93277ae65736476dc491c0282756a",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/index.html",
+      "sha256": "ff9dc7d525701f5c1c4e93bc7791c8cec5811955a647ae619d8ff233b5b3273c",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/open77-ui.css",
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_pause/web/open77.png",
+      "sha256": "bb1416ea7f1ddebf3ffccee87b1d47ed7f386a7c7db03d044cef829d0668a1ab",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/client/main.lua",
+      "sha256": "a338255e3c52ca98f37434d5de6462cf06252d4e47ea3540b8b51239b1d1a331",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/open77.lua",
+      "sha256": "2577f7815d59d9b75d0ee4a4cd422d79de3ca3faa4ac95727df811cba0076b97",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/tests/reticle.test.cjs",
+      "sha256": "c87a6419793aae7db8f6bd31c982fe600c2dd3aca7c635320ee788c6e492d139",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/tests/reticle_test.lua",
+      "sha256": "11f72f72dcde0ceded3da2089a5a9412a578f11d72237c520ff4aaeac4b4e501",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/web/index.html",
+      "sha256": "7d6c3ba24e00925df7643be0f418c0575c8f64870bba2f097d826db21e19ef88",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/web/reticle.css",
+      "sha256": "d3b379e9cbb3c896fd5b1d008753705a555f82a7c959b0a473c3ba04c6649c19",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_reticle/web/reticle.js",
+      "sha256": "f18acb0f13f05cfc4eaa5b7ba5c90bf9f27e1340b4f72069442eb7660fd4e28a",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/client/main.lua",
+      "sha256": "cb165a2ecf6b0bb9f11c9466d2401a79d5ca45505a8a23d53109926602eac2e0",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/open77.lua",
+      "sha256": "2fa43f7d1234612154b366d850e0e9edce423b09e015d9e162c5667f1c7073ad",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/README.md",
+      "sha256": "3bfe5b45f7fad371156b70e38031f4b2daf1726fd7869c8820d6e7e8091d6877",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/tests/connection_test.lua",
+      "sha256": "ba4fc3a50f811cdb2a3b03d612bcc4848626280dc42a232e4b176644e425dda4",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/address-privacy.css",
+      "sha256": "f96cdc8b67ce835e250304fa0f79274afcebe066305f458e3e8b95b17b28950d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/address-privacy.js",
+      "sha256": "3a6c1feb224d574a809f19258b6c3a540d8b76845e211d72c1a77a33a27a46b9",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/app.css",
+      "sha256": "32673ac08e811c0122d7316e17faedfb2ff4191741594be51dd1f9db63848538",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/app.js",
+      "sha256": "27ba818d6e248500f45a31705ee41f92198bc097698459186732250a27d0a627",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/audio/lobby.mp3",
+      "sha256": "8497331546ccd174ce958109a82a0e64e386b2a2b79c753ff790981acbfddd1f",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/connection-errors.js",
+      "sha256": "c30309aeff8b8564787594daff97a50413975bfaf5b2ad5b2d6a27fc5473357d",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/design-system.css",
+      "sha256": "bc0bb60bbfc8b4992918b3b3cd1e6252bca63baed0f7f519b2b05b170710b6ab",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/index.html",
+      "sha256": "896ccf1664fdfdb012963db56792e3356e40a4d432f80c8850bee072e9231c76",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/logo.png",
+      "sha256": "b921036f5f7256105b59fc4d0e3d901f1ccba97916d7f1a452d02d010e115a54",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/music.js",
+      "sha256": "b1c56a7a281f2668b3a33ae38ac8d0a338af5648a4d0eea6f8b3c6ece3a3f582",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/open77-ui.css",
+      "sha256": "1abe8c96d51b556bfe353b0d596d456454ee9711b3559568414f85afd6faeab5",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/open77.png",
+      "sha256": "bb1416ea7f1ddebf3ffccee87b1d47ed7f386a7c7db03d044cef829d0668a1ab",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/web/resource-errors.js",
+      "sha256": "db87950df27d1cb79d4bbf2a7513c430deb2f0803f9d0120a1793aa6153d4ee2",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/GameNetworkingSockets.dll",
+      "sha256": "1d60801e8692ae06c90262651327e74a845e5fad7a4fce78ff48940037913e14",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/insecure-transport.allow",
+      "sha256": "93a5bc388a6ec64dd4e135e9ee0f3402aa7b97bb6f2a1d0245cb4bea2add80df",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/Open77.dll",
+      "sha256": "8af39167a2c6f2f1e9dea21ab447919e31fd7588bfbc6d6e832226c169a6713e",
+      "modId": "open77-core",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/bootstrap.exe",
+      "sha256": "ecefa1aa8495c67f9a4ec456b0863245df4aae3bba4cef7e24b87ad7fab2839d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/bootstrapc.exe",
+      "sha256": "6c760d364212a06098ed4227011f8666f5ebbb8c0261b74d8cc3fbb84ffe3da2",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/CEF-LICENSE.txt",
+      "sha256": "2e69c36a7eaa4fa153426eab635c607ea0356cbc7a68a70f42a49e8ab8eb8106",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/chrome_100_percent.pak",
+      "sha256": "70902d85825e5c80a858c367d18e4744a480fd34cb5396646ce68471e6d86804",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/chrome_200_percent.pak",
+      "sha256": "340e3a2b8a5c82291a8c9b8f93c7cfbe4af90de5f6521d61a3eb76554f4e45fd",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/chrome_elf.dll",
+      "sha256": "e269f70006ef8e7701e5685d5c205fd77a6c79eb18ee4e8682a782b54bec029d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/d3dcompiler_47.dll",
+      "sha256": "c8e25abd3d45dfb55966a74613258c39b4a83ea2ac77f2f80903499f4d5c03f0",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/dxcompiler.dll",
+      "sha256": "c104ca9d7bb0632f75a616aa55ac2d257479aea4ee04a666c17243e628ea0409",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/dxil.dll",
+      "sha256": "436f128f22050ae27323da61321a469de0678def7a4e6d86f9ccad4858724f0a",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/icudtl.dat",
+      "sha256": "1cf67874b5a87a8363a86fb3f81e3cbbed54d389062dab8fb52308d5cf8c8612",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/libcef.dll",
+      "sha256": "c8a31272d7237adb0082e4a071f603c3a9c397c4c50fb4d6f435b525e505c62c",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/libEGL.dll",
+      "sha256": "1153580c36781ad5b7632a10a99fef663a67389a187f4dec670f217b6e630184",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/libGLESv2.dll",
+      "sha256": "b1c81cf8b8b6e3eee7fc3458d96a720d0e9ad57cc4310930e55e1a0239fa7b33",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/af.pak",
+      "sha256": "656c829e881493c3bf88427ea1361bcbaa0f1157d5f0bbbc5af72b7117a8afe2",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/af_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/af_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/af_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/am.pak",
+      "sha256": "ecff706ba94fb3bce42ae420311139564a4bcd5c0d62938a33a32c4fba6324fb",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/am_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/am_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/am_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ar.pak",
+      "sha256": "c6d896582afa962181a36345df3c40511257c17f168e5de2d0486d3543214369",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ar_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ar_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ar_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bg.pak",
+      "sha256": "f64bed12d6cb60b2414368a352fad3345a557626427ca4346c682a7325f9775a",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bg_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bg_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bg_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bn.pak",
+      "sha256": "2b66f30a56f85965700a5083caf2db0e19751c0ffb5d1ac3ea57839fe17ad731",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bn_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bn_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/bn_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ca.pak",
+      "sha256": "861ff7dcd442b3a069b9561a9eaf5b3a3ecbeba6128e87faab08010454350a01",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ca_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ca_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ca_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/cs.pak",
+      "sha256": "4f97cfcb10342df39c8aa3a0ac5bc1ffb810fcde5e43dec7c65405a40430f1ba",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/cs_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/cs_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/cs_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/da.pak",
+      "sha256": "7c3fef8e8de4f00591daa216030500647a378652a9e351032157ead5ba72cf30",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/da_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/da_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/da_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/de.pak",
+      "sha256": "da886575e4038d07db92187d67695a8ac284a33bc4c790ec8d53716c1e0ea3e5",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/de_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/de_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/de_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/el.pak",
+      "sha256": "ee4f5a983e7e8099efa81f16be83ad0ea4947dc4773a9258250da04f1055df76",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/el_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/el_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/el_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-GB.pak",
+      "sha256": "176ac851bc27be710cd65ede811de9a891e6e52e6d1e196fa0561864ebb87b90",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-GB_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-GB_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-GB_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-US.pak",
+      "sha256": "ff07de45a08062910e0aaa7f4df2192696ab7ff9aab0bf2511d5c6a15cee9ac8",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-US_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-US_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/en-US_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es-419.pak",
+      "sha256": "ed4a6f625b77aa1a10bd61723476a3edd7b4c950773e767085a46812eae82de9",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es-419_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es-419_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es-419_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es.pak",
+      "sha256": "68d26d99a11625a09d8eab389e56f7b25032ca3fd38de5fdd697dcada471b4d4",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/es_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/et.pak",
+      "sha256": "b554740f2adb0a329a3d3658abe1c5cac60ce1a487505af85e2a73ec98881ea2",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/et_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/et_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/et_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fa.pak",
+      "sha256": "7b4bb50bc4cefc45a1b40c9e147cf8838fa2902ccbca8e7e1e12ee6676dd5537",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fa_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fa_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fa_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fi.pak",
+      "sha256": "f1e31058d01fd0ee837ffb70d9677ea06147a90eee16a76a7dc22b1d8de12511",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fil.pak",
+      "sha256": "1b1ff4ddc176ead79df34918784c4268f5af0e8e01fe21ba3008c9a261fd885e",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fil_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fil_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fil_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fi_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fi_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fi_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fr.pak",
+      "sha256": "d1e327673ed92cf407e835eda1226c70634ef9d4c5025cd83a26f91c8dedd5ab",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fr_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fr_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/fr_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/gu.pak",
+      "sha256": "3a6b67b29cb0489ec844008cbd44176b33cc0260bbc1256594e3ba5bd518f0b2",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/gu_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/gu_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/gu_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/he.pak",
+      "sha256": "d0f272b87391643ea8bca7dfe1e09e61bc9d412b61c516422310618572fb75cf",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/he_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/he_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/he_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hi.pak",
+      "sha256": "81322bd68f8b58bfe81bf9cf7206e77b1e973cfb782570d489e46f0652e09f97",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hi_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hi_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hi_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hr.pak",
+      "sha256": "e6fb04d3ec8663ef14ada4c19010917afa4cde5920367c49dc06011bde6011e6",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hr_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hr_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hr_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hu.pak",
+      "sha256": "f7b58d21c6dc80d67f467dcaf44359b49954533b1b8abc46efafadebc8ddc0cc",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hu_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hu_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/hu_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/id.pak",
+      "sha256": "68fc657f575c1b84e53b7e05249b18d24d42c41447bd0f3d002414f840bf8901",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/id_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/id_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/id_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/it.pak",
+      "sha256": "2695f1d22a6f69148d557517bd670838efe78e434e3e03d2f57e429221eea16d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/it_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/it_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/it_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ja.pak",
+      "sha256": "34480516fcbe465b0560d2c493c7a963a3835617376a03f76d89ad2ee3106c0c",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ja_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ja_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ja_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/kn.pak",
+      "sha256": "5f6b0c66e6d7fdb528734a237c9869bc89b3d88f750a8cdaedb94b5ddf049ec6",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/kn_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/kn_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/kn_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ko.pak",
+      "sha256": "191f0038165436ede7b8cdc29ce69e45ed783da1fad36434cb7f90253392fa66",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ko_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ko_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ko_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lt.pak",
+      "sha256": "820c8654a39498337468fed3bf3a48844664d7406a111a0834152527931a5ee8",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lt_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lt_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lt_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lv.pak",
+      "sha256": "d400dce2c7e85b6d56d81a5b75958f78c13b22c01831d6161079e534e7ba9e2f",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lv_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lv_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/lv_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ml.pak",
+      "sha256": "a3edd5e5fdc7ebc3b28a1d468fe1b8735c84551f03789a78265abc89fc474176",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ml_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ml_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ml_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/mr.pak",
+      "sha256": "7356a8ffdd5c3a004eb8abd3ea35c7d540402cc76fd1d74c43c303b67443c502",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/mr_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/mr_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/mr_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ms.pak",
+      "sha256": "12101e7b48f8de493e69ccf1d06b2d70c8b6e6dbddcb877ea5e1662359cc9a4e",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ms_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ms_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ms_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nb.pak",
+      "sha256": "a1e4aaa411850bc45ded58c0dba0a45ace0f82d634ae948c7364a92099f2fdf1",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nb_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nb_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nb_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nl.pak",
+      "sha256": "171941e8a9c1af14c0f2f3214cb286b837631a4747e72180c27587637f525e85",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nl_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nl_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/nl_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pl.pak",
+      "sha256": "c867c5c12b890a1be34dac9a69731b98ff215cb482f53236194bc7356f47a218",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pl_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pl_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pl_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-BR.pak",
+      "sha256": "4e52b2a8305c29cf01ea332e310120c348854054531666effd38059c9333c221",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-BR_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-BR_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-BR_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-PT.pak",
+      "sha256": "177c97ed2dac5b5a01d8aab1fad4be171150c8dd1d94227644856b52f589451d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-PT_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-PT_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/pt-PT_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ro.pak",
+      "sha256": "0260488d39144e45884383567fc07c63783372c9367d69ee0587bfa3508c81a2",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ro_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ro_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ro_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ru.pak",
+      "sha256": "7ca5ffa3a6ac827afd776784355b20db4d7d7629bf05a8feffcfc245636b5ba6",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ru_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ru_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ru_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sk.pak",
+      "sha256": "3fe15b19596e836848bf01aa2d0b1e2d7e8a3504461baf8e37e76567a1ce1319",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sk_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sk_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sk_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sl.pak",
+      "sha256": "3334636ad1c6c1ade26f18d966dfd5db22e6d2ac377dd633c39e6eee2b68193d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sl_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sl_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sl_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sr.pak",
+      "sha256": "3082149d577480a7390649994cdcdfcbcd63c650c6777badff46108a455a1430",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sr_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sr_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sr_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sv.pak",
+      "sha256": "caa825ebc1f0e947f302e1d7f64bfc2637f29754b46bb4221eee51b7c18f4c83",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sv_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sv_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sv_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sw.pak",
+      "sha256": "920cf9b465f807299850e5d5a7eb8936ad91ee960b7d298a0136fc4bba4d677d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sw_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sw_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/sw_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ta.pak",
+      "sha256": "5a2211d5c585f050a6835f63c08c2caec04470c1d420efeebafabd5976359cdd",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ta_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ta_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ta_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/te.pak",
+      "sha256": "64f4d85e2210fe678cc305e9450ac98c94eb25eb4a8270a690d6da4d1d4e6e6e",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/te_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/te_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/te_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/th.pak",
+      "sha256": "eb34abb045a8cbf19f9d565103a7f0e992180bc66549617a59eec97d4a4ca287",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/th_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/th_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/th_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/tr.pak",
+      "sha256": "721043c34b288e60b076396b57cdf921066697b4f876c75e0e2845cd772cbb03",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/tr_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/tr_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/tr_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/uk.pak",
+      "sha256": "ee60720f7738fd89a98937f7f2bc6219ee48559aa911b5276318947824346bad",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/uk_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/uk_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/uk_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ur.pak",
+      "sha256": "75b02f02665b4b64a8af285a0bb7f16c1aee51f8e4e69e4daba48d3c5a154276",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ur_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ur_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/ur_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/vi.pak",
+      "sha256": "902b4c606b7f318ff79f2ca52f06700562515996f22f25dfe020457a126dcb25",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/vi_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/vi_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/vi_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-CN.pak",
+      "sha256": "fc5bbccbff006232e4f6acf3892d7185a4c9f9bced055b3f2cb67dda952fa013",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-CN_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-CN_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-CN_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-TW.pak",
+      "sha256": "dac5a565ea63806022bd3c2938ed572d30ef2e3ab15a60813e3fcfa634c2a048",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-TW_FEMININE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-TW_MASCULINE.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/locales/zh-TW_NEUTER.pak",
+      "sha256": "ca73097bd968b363b7145e86b64f3c595e533808b0763dc8863a27fc363cfa51",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/Open77.WebHost.dll",
+      "sha256": "25d5d1651df11713d6104a0a3cc55c6cbc3a1f25f69aef664cf1ba965fb1bc61",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/Open77.WebHost.exe",
+      "sha256": "ecefa1aa8495c67f9a4ec456b0863245df4aae3bba4cef7e24b87ad7fab2839d",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/resources.pak",
+      "sha256": "e51c0765ad66b6c61cb76dbbc8c903fad6003d7bf6cc40ce08eaaa021cd974d3",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/v8_context_snapshot.bin",
+      "sha256": "830e4e31e91da95e64085b0864e760741efcccc3e5e67169a249d821c565af66",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/vk_swiftshader.dll",
+      "sha256": "03e5d00bf81ff000653a926f182cdab463e01a4324fca3bca8d9b768626d0ba4",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/vk_swiftshader_icd.json",
+      "sha256": "32d83ff113fef532a9f97e0d2831f8656628ab1c99e9060f0332b1532839afd9",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/plugins/Open77/web/vulkan-1.dll",
+      "sha256": "4f04bf1a4cd8a17373b09b1a308b26d32f0bf9d238c65f01adc6803f22171179",
+      "modId": "open77-webui",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/RED4ext.dll",
+      "sha256": "59309a78a9606481d13f87e8fbf9ea9c0b735115389ded0295537180c9e52511",
+      "modId": "red4ext",
+      "mode": "link",
+      "ownership": "contested",
+      "layer": "stack"
+    },
+    {
+      "path": "red4ext/THIRD_PARTY_LICENSES.txt",
+      "sha256": "b49e3d32f961c21e0b15f4c9b11da9455d7c9905a457b1dfa88504f6592220ff",
+      "modId": "red4ext",
+      "mode": "link",
+      "ownership": "exclusive",
+      "layer": "stack"
+    }
+  ]
+}

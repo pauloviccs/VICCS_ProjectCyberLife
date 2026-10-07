@@ -7,7 +7,7 @@
     $("virtualCursor").classList.add("visible");
   },{passive:true});
   let target=null, client={}, server={}, attempt=0, started=0, failure=null, resourceDiagnostic=null;
-  let checkpoint=-1, connecting=false, terminal=false, stage="standby", report="", busy=false;
+  let checkpoint=-1, connecting=false, terminal=false, stage="standby", report="", busy=false, suppressed=false;
   const privacy = window.Open77AddressPrivacy;
   Open77.on("privacy:state", value => privacy.setVisible(value?.visible === true));
   window.addEventListener("address-privacy:request", event => Open77.emit("privacy:set", event.detail));
@@ -21,6 +21,7 @@
     world:[4,"Loading Night City"]
   };
   function view(next, source) {
+    if(suppressed && next!=="suppressed")return;
     const before=document.body.dataset.view;
     if(before===next)return;
     document.body.dataset.view=next;
@@ -51,7 +52,7 @@
     if(known)$("track").setAttribute("aria-valuenow",String(percent));else $("track").removeAttribute("aria-valuenow");
   }
   function phase(name,detail) {
-    if(terminal)return;
+    if(terminal || suppressed)return;
     connecting=true;stage=name;
     const entry=phases[name]||[Math.max(checkpoint,1),"Preparing session"];
     checkpoint=Math.max(checkpoint,entry[0]);paintSteps();
@@ -167,15 +168,25 @@
       value.total?bytes(value.received)+" / "+bytes(value.total):""].filter(Boolean);
     phase(value.phase,parts.join(" · "));progress(value.received,value.total);
   });
-  Open77.on("world:loading:begin",()=>{phase("world","Streaming the world");progress(0,0);});
-  Open77.on("world:loading",value=>{if(!terminal){phase("world","Streaming the world");progress(value?.progress,1);}});
+  Open77.on("shell:suppress",value=>{
+    suppressed=value?.suppressed===true;
+    document.body.classList.toggle("suppressed",suppressed);
+    if(suppressed){
+      document.body.dataset.view="suppressed";
+    }else if(!connecting){
+      view("idle","shell_unsuppressed");
+    }
+  });
+  Open77.on("world:loading:begin",()=>{if(!suppressed){phase("world","Streaming the world");progress(0,0);}});
+  Open77.on("world:loading",value=>{if(!terminal && !suppressed){phase("world","Streaming the world");progress(value?.progress,1);}});
   Open77.on("session:ended",value=>{
     const reason=value?.reason||"server_disconnected";
     if(failure){view("failed","session_ended_preserves_error");return;}
     if(["user_quit","connection_cancelled","client_disconnect"].includes(reason))idle(reason);else fail(reason);
   });
-  Open77.on("shell:cover",()=>{if(!terminal)view("loading","shell_cover");});
+  Open77.on("shell:cover",()=>{if(!terminal && !suppressed)view("loading","shell_cover");});
   Open77.on("shell:reveal",()=>{
+    if(suppressed)return;
     if(failure){view("failed","shell_reveal_preserves_error");return;}
     if(!connecting)view("idle","shell_reveal");
   });

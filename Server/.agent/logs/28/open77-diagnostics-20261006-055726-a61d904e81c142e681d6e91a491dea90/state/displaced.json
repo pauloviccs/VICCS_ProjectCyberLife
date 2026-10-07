@@ -1,0 +1,11 @@
+{
+  "schema": "op77.modstack.displaced/1",
+  "files": [
+    {
+      "path": "red4ext/plugins/Open77/bootstrap/open77_shell/client/main.lua",
+      "sha256": "541d5f152e84d48d074389ea0f5dab4fc9e4a769596ece403215ce46e94d572e",
+      "size": 52675,
+      "lastWriteUtcTicks": 639265979389010273
+    }
+  ]
+}

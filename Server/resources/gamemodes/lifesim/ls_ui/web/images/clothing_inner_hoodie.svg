@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(12, 18, 30, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(18, 36, 56, 0.95)"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Card com cantos chanfrados -->
+  <polygon points="12,4 88,4 96,12 96,88 88,96 12,96 4,88 4,12" fill="url(#bgGrad)" stroke="#22d8e2" stroke-width="1.8" stroke-opacity="0.85"/>
+  <!-- Cantoneiras Cibernéticas (L-Brackets) -->
+  <path d="M 8 16 L 8 8 L 16 8" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <path d="M 92 16 L 92 8 L 84 8" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <path d="M 8 84 L 8 92 L 16 92" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <path d="M 92 84 L 92 92 L 84 92" fill="none" stroke="#22d8e2" stroke-width="2"/>
+  <!-- Conteúdo Principal do Ícone -->
+  
+  <!-- Moletom Streetwear com Capuz -->
+  <path d="M 36 28 L 18 40 L 26 52 L 34 46 L 34 76 L 66 76 L 66 46 L 74 52 L 82 40 L 64 28 Z" fill="#142232" stroke="#22d8e2" stroke-width="2.2"/>
+  <!-- Capuz Traseiro Sobreposto -->
+  <path d="M 36 28 C 36 18, 64 18, 64 28 C 60 36, 40 36, 36 28 Z" fill="#101a26" stroke="#22d8e2" stroke-width="2"/>
+  <!-- Bolso Canguru Frontal -->
+  <path d="M 40 58 L 60 58 L 64 70 L 36 70 Z" fill="#182c3e" stroke="#fcee0a" stroke-width="1.8"/>
+  <line x1="46" y1="36" x2="46" y2="48" stroke="#fcee0a" stroke-width="1.5"/>
+  <line x1="54" y1="36" x2="54" y2="48" stroke="#fcee0a" stroke-width="1.5"/>
+
+</svg>

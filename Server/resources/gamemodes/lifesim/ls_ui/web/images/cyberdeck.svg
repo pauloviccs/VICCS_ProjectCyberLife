@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(12, 18, 30, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(18, 36, 56, 0.95)"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Card com cantos chanfrados -->
+  <polygon points="12,4 88,4 96,12 96,88 88,96 12,96 4,88 4,12" fill="url(#bgGrad)" stroke="#ff003c" stroke-width="1.8" stroke-opacity="0.85"/>
+  <!-- Cantoneiras Cibernéticas (L-Brackets) -->
+  <path d="M 8 16 L 8 8 L 16 8" fill="none" stroke="#ff003c" stroke-width="2"/>
+  <path d="M 92 16 L 92 8 L 84 8" fill="none" stroke="#ff003c" stroke-width="2"/>
+  <path d="M 8 84 L 8 92 L 16 92" fill="none" stroke="#ff003c" stroke-width="2"/>
+  <path d="M 92 84 L 92 92 L 84 92" fill="none" stroke="#ff003c" stroke-width="2"/>
+  <!-- Conteúdo Principal do Ícone -->
+  
+  <!-- Deck Netrunner com Luzes de Barramento -->
+  <rect x="22" y="24" width="56" height="52" rx="4" fill="#0e1624" stroke="#ff003c" stroke-width="2.2"/>
+  <!-- Entradas de Cabo Monowire / Jack de Conexão -->
+  <circle cx="32" cy="34" r="3.5" fill="#16283c" stroke="#00e5ff" stroke-width="1.8"/>
+  <circle cx="44" cy="34" r="3.5" fill="#16283c" stroke="#00e5ff" stroke-width="1.8"/>
+  <circle cx="56" cy="34" r="3.5" fill="#16283c" stroke="#00e5ff" stroke-width="1.8"/>
+  <circle cx="68" cy="34" r="3.5" fill="#16283c" stroke="#00e5ff" stroke-width="1.8"/>
+  <!-- Display de RAM e Buffer -->
+  <rect x="28" y="46" width="44" height="20" fill="#122438" stroke="#fcee0a" stroke-width="1.5"/>
+  <text x="50" y="58" text-anchor="middle" fill="#05ffa1" font-family="monospace" font-size="8" font-weight="bold">RAM // 16</text>
+  <line x1="32" y1="62" x2="68" y2="62" stroke="#ff003c" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+</svg>

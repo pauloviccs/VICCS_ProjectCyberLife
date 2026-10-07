@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <rect width="100" height="100" rx="10" fill="#0c121e" stroke="#22d8e2" stroke-width="2"/>
+        <rect x="36" y="28" width="28" height="50" rx="6" fill="#102533" stroke="#22d8e2" stroke-width="3"/>
+        <rect x="42" y="20" width="16" height="8" fill="#22d8e2"/>
+        <path d="M40 55 Q 50 48, 60 55 T 60 72 Q 50 78, 40 72 Z" fill="#22d8e2" opacity="0.6"/>
+        <text x="50" y="44" text-anchor="middle" fill="#22d8e2" font-family="monospace" font-size="10" font-weight="bold">GEL</text>
+    </svg>

@@ -466,6 +466,11 @@ local function modifyPlayerVitals(playerId, deltas)
     return true, v
 end
 
+AddEventHandler("ls:vitals:applyEffects", function(playerId, effects)
+    if not LS.isPlayerId(playerId) or type(effects) ~= "table" then return end
+    modifyPlayerVitals(playerId, effects)
+end)
+
 ---Aplica o consumo de um item catalogado aos vitais do jogador
 ---@param playerId integer
 ---@param itemKey string
@@ -556,16 +561,91 @@ local function buyItem(playerId, itemKey, preferredPayment)
         return false, "insufficient_funds"
     end
 
-    -- Consome o item e aplica os vitais
-    consumeItem(playerId, itemKey)
+    -- 1. Tentar adicionar o item à mochila do jogador (ls_inventory)
+    local addedToInventory = false
+    local addFailureReason = nil
 
-    local successMsg = ("'%s' dispensado por E$ %d via %s."):format(item.label, price, paymentType)
-    TriggerClientEvent("ls:ui:vendingFeedback", playerId, { success = true, message = successMsg })
-    TriggerClientEvent("open77:chat:addMessage", playerId, {
-        color = { 34, 216, 226 },
-        multiline = false,
-        args = { "MÁQUINA DE VENDAS", successMsg }
-    })
+    -- 1a. Tentativa canônica OPEN//77 via Open77.exports.call com await protegido
+    if Open77 and Open77.exports and Open77.exports.call then
+        local okCall, pending = pcall(Open77.exports.call, "ls_inventory", "AddItem", playerId, itemKey, 1)
+        if okCall and pending then
+            if type(pending) == "table" and pending.await then
+                local okAwait, res, reason = pcall(function() return pending:await() end)
+                if okAwait and (res == true or (type(res) == "table" and res[1] == true)) then
+                    addedToInventory = true
+                else
+                    addFailureReason = reason or res
+                end
+            elseif pending == true then
+                addedToInventory = true
+            end
+        end
+    end
+
+    -- 1b. Tentativa via Open77.exports.callSync
+    if not addedToInventory and Open77 and Open77.exports and Open77.exports.callSync then
+        local okSync, syncRes, syncErr = pcall(Open77.exports.callSync, "ls_inventory", "AddItem", playerId, itemKey, 1)
+        if okSync and (syncRes == true or (type(syncRes) == "table" and syncRes[1] == true)) then
+            addedToInventory = true
+        end
+    end
+
+    -- 1c. Tentativa direta via TriggerEvent interno com callback síncrono
+    if not addedToInventory then
+        TriggerEvent("ls:inventory:addItem", playerId, itemKey, 1, {}, function(success, reason)
+            if success == true then
+                addedToInventory = true
+            else
+                addFailureReason = addFailureReason or reason
+            end
+        end)
+    end
+
+    -- 1d. Fallback FiveM table se disponível
+    if not addedToInventory and exports and exports["ls_inventory"] then
+        local exp = exports["ls_inventory"]
+        pcall(function()
+            if exp.AddItem then addedToInventory = (exp:AddItem(playerId, itemKey, 1) == true) end
+            if not addedToInventory and exp.addItem then addedToInventory = (exp:addItem(playerId, itemKey, 1) == true) end
+        end)
+    end
+
+    Open77.log.info(("[ls_vitals] Compra de '%s' (E$ %d) por jogador [%d]: addedToInventory=%s (motivo: %s)"):format(
+        itemKey, price, playerId, tostring(addedToInventory), tostring(addFailureReason or "none")
+    ))
+
+    if addedToInventory then
+        local successMsg = ("'%s' adquirido por E$ %d e guardado na sua mochila."):format(item.label, price)
+        TriggerClientEvent("ls:ui:vendingFeedback", playerId, { success = true, message = successMsg })
+        TriggerClientEvent("ls:ui:notify", playerId, {
+            type = "success",
+            title = "COMPRA REALIZADA",
+            message = item.label .. " adicionado à sua mochila."
+        })
+        TriggerClientEvent("open77:chat:addMessage", playerId, {
+            color = { 34, 216, 226 },
+            multiline = false,
+            args = { "MÁQUINA DE VENDAS", successMsg }
+        })
+        return true, "success"
+    else
+        -- Reembolso obrigatório! NUNCA consumir o item automaticamente na compra
+        pcall(function()
+            if preferredPayment == "bank" then
+                Open77.exports.call("ls_economy", "addMoney", playerId, "bank", price, "Reembolso: Falha no Inventário")
+            else
+                Open77.exports.call("ls_economy", "addMoney", playerId, "cash", price, "Reembolso: Falha no Inventário")
+            end
+        end)
+        local fullMsg = ("Mochila cheia ou indisponível! Não foi possível armazenar '%s'. E$ %d reembolsados."):format(item.label, price)
+        TriggerClientEvent("ls:ui:vendingFeedback", playerId, { success = false, message = fullMsg })
+        TriggerClientEvent("open77:chat:addMessage", playerId, {
+            color = { 255, 60, 60 },
+            multiline = false,
+            args = { "MÁQUINA DE VENDAS", fullMsg }
+        })
+        return false, "inventory_unavailable"
+    end
 
     return true, "success"
 end
@@ -573,7 +653,9 @@ end
 RegisterNetEvent("ls:vitals:buy", function(itemKey, paymentType)
     local src = source
     if not LS.isPlayerId(src) or type(itemKey) ~= "string" then return end
-    buyItem(src, itemKey, paymentType)
+    CreateThread(function()
+        buyItem(src, itemKey, paymentType)
+    end)
 end)
 
 
@@ -594,7 +676,9 @@ local function handleBuyCommand(source, args)
         return
     end
 
-    buyItem(source, tostring(itemKey))
+    CreateThread(function()
+        buyItem(source, tostring(itemKey))
+    end)
 end
 
 RegisterCommand("comprar", handleBuyCommand, false)

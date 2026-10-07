@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(12, 18, 30, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(18, 36, 56, 0.95)"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Card com cantos chanfrados -->
+  <polygon points="12,4 88,4 96,12 96,88 88,96 12,96 4,88 4,12" fill="url(#bgGrad)" stroke="#fcee0a" stroke-width="1.8" stroke-opacity="0.85"/>
+  <!-- Cantoneiras Cibernéticas (L-Brackets) -->
+  <path d="M 8 16 L 8 8 L 16 8" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 92 16 L 92 8 L 84 8" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 8 84 L 8 92 L 16 92" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 92 84 L 92 92 L 84 92" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <!-- Conteúdo Principal do Ícone -->
+  
+  <!-- Pão Superior -->
+  <path d="M 24 44 C 24 24, 76 24, 76 44 Z" fill="#fcee0a" fill-opacity="0.3" stroke="#fcee0a" stroke-width="2.2"/>
+  <!-- Gergelim -->
+  <circle cx="42" cy="32" r="1.5" fill="#fcee0a"/>
+  <circle cx="52" cy="28" r="1.5" fill="#fcee0a"/>
+  <circle cx="60" cy="34" r="1.5" fill="#fcee0a"/>
+  <!-- Queijo Sintético Derretido Neon -->
+  <polygon points="26,44 74,44 70,52 62,48 54,54 44,48 36,54 30,48" fill="#fcee0a" stroke="#fcee0a" stroke-width="1.5"/>
+  <!-- Bife de Proteína Clonada -->
+  <rect x="22" y="52" width="56" height="8" rx="4" fill="#ff003c" stroke="#ff003c" stroke-width="2"/>
+  <!-- Pão Inferior -->
+  <path d="M 26 64 C 26 72, 74 72, 74 64 Z" fill="#fcee0a" fill-opacity="0.3" stroke="#fcee0a" stroke-width="2.2"/>
+
+</svg>

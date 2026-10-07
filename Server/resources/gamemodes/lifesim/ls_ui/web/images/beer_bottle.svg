@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(12, 18, 30, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(18, 36, 56, 0.95)"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Card com cantos chanfrados -->
+  <polygon points="12,4 88,4 96,12 96,88 88,96 12,96 4,88 4,12" fill="url(#bgGrad)" stroke="#fcee0a" stroke-width="1.8" stroke-opacity="0.85"/>
+  <!-- Cantoneiras Cibernéticas (L-Brackets) -->
+  <path d="M 8 16 L 8 8 L 16 8" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 92 16 L 92 8 L 84 8" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 8 84 L 8 92 L 16 92" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 92 84 L 92 92 L 84 92" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <!-- Conteúdo Principal do Ícone -->
+  
+  <!-- Garrafa de Cerveja Broseph / Arasaka -->
+  <path d="M 46 16 L 54 16 L 54 28 C 58 34, 62 40, 62 48 L 62 82 L 38 82 L 38 48 C 38 40, 42 34, 46 28 Z" fill="#162436" stroke="#fcee0a" stroke-width="2.2"/>
+  <rect x="44" y="14" width="12" height="4" fill="#fcee0a"/>
+  <!-- Rótulo Frontal da Cerveja -->
+  <rect x="40" y="50" width="20" height="22" rx="2" fill="#1c2c3e" stroke="#22d8e2" stroke-width="1.5"/>
+  <text x="50" y="62" text-anchor="middle" fill="#fcee0a" font-family="monospace" font-size="6" font-weight="bold">BEER</text>
+  <circle cx="50" cy="67" r="2.5" fill="#ff003c"/>
+
+</svg>

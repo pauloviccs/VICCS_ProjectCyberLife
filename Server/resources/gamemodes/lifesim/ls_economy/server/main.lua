@@ -137,37 +137,41 @@ end
 local DB = {
     query = function(sql, params)
         params = params or {}
-        local ok, res = pcall(function()
-            if exports["ls_data"] and exports["ls_data"].query then
-                return exports["ls_data"]:query(sql, params)
-            elseif MySQL and MySQL.query and MySQL.query.await then
+        local ok, rows = pcall(function()
+            if MySQL and MySQL.query and MySQL.query.await then
                 return MySQL.query.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.query and Open77.database.query.await then
+                return Open77.database.query.await(sql, params)
             elseif Open77 and Open77.database and Open77.database.query then
-                return Open77.database.query(sql, params)
+                local p = Open77.database.query(sql, params)
+                return (p and p.await) and p:await() or p
             end
             return nil
         end)
-        if ok and type(res) == "table" then return res end
+        if ok and type(rows) == "table" then return rows end
+        if not ok then
+            Open77.log.error(("[ls_economy:DB] Erro ao executar query SQL: %s | Query: %s"):format(tostring(rows), tostring(sql)))
+        end
         return nil
     end,
     update = function(sql, params)
         params = params or {}
         local ok, res = pcall(function()
-            if exports["ls_data"] and exports["ls_data"].update then
-                return exports["ls_data"]:update(sql, params)
-            elseif exports["ls_data"] and exports["ls_data"].execute then
-                return exports["ls_data"]:execute(sql, params)
-            elseif MySQL and MySQL.update and MySQL.update.await then
+            if MySQL and MySQL.update and MySQL.update.await then
                 return MySQL.update.await(sql, params)
+            elseif Open77 and Open77.database and Open77.database.update and Open77.database.update.await then
+                return Open77.database.update.await(sql, params)
             elseif Open77 and Open77.database and Open77.database.update then
-                return Open77.database.update(sql, params)
-            elseif Open77 and Open77.database and Open77.database.rawExecute then
-                return Open77.database.rawExecute(sql, params)
+                local p = Open77.database.update(sql, params)
+                return (p and p.await) and p:await() or p
             end
             return nil
         end)
         if ok and res ~= nil then return res end
-        return true
+        if not ok then
+            Open77.log.error(("[ls_economy:DB] Erro ao executar update SQL: %s | Query: %s"):format(tostring(res), tostring(sql)))
+        end
+        return false
     end
 }
 
@@ -178,19 +182,20 @@ local function loadPlayerAccount(playerId, license)
     if not LS.isPlayerId(playerId) or not license then return end
 
     CreateThread(function()
-        -- Query resiliente no MariaDB via DB helper
+        -- Query síncrona/direta no MariaDB via driver nativo
         local rows = DB.query("SELECT cash, bank FROM ls_accounts WHERE license = ? LIMIT 1", { license })
 
         local account
 
         if type(rows) == "table" and #rows > 0 then
+            -- Conta já existente no banco de dados: respeita estritamente os saldos persistidos
             account = {
                 license = license,
                 cash = tonumber(rows[1].cash) or EconomyConfig.DefaultBalances.Cash,
                 bank = tonumber(rows[1].bank) or EconomyConfig.DefaultBalances.Bank
             }
-        else
-            -- Novo cidadão de Night City: concede saldos iniciais de fábrica
+        elseif type(rows) == "table" and #rows == 0 then
+            -- Novo cidadão de Night City: conta verdadeiramente inexistente
             account = {
                 license = license,
                 cash = EconomyConfig.DefaultBalances.Cash,
@@ -207,6 +212,39 @@ local function loadPlayerAccount(playerId, license)
             Open77.log.info(("[ls_economy] Nova conta bancária criada para [%d] (%s): E$ %d Cash, E$ %d Bank"):format(
                 playerId, license, account.cash, account.bank
             ))
+        else
+            -- Falha na consulta do banco de dados (rows == nil): NUNCA conceder starter_grant por engano!
+            Open77.log.warn(("[ls_economy] Tentando recuperar conta de [%d] (%s) após falha inicial na consulta SQL..."):format(
+                playerId, license
+            ))
+            Wait(800)
+            local retryRows = DB.query("SELECT cash, bank FROM ls_accounts WHERE license = ? LIMIT 1", { license })
+            if type(retryRows) == "table" and #retryRows > 0 then
+                account = {
+                    license = license,
+                    cash = tonumber(retryRows[1].cash) or EconomyConfig.DefaultBalances.Cash,
+                    bank = tonumber(retryRows[1].bank) or EconomyConfig.DefaultBalances.Bank
+                }
+            elseif type(retryRows) == "table" and #retryRows == 0 then
+                account = {
+                    license = license,
+                    cash = EconomyConfig.DefaultBalances.Cash,
+                    bank = EconomyConfig.DefaultBalances.Bank
+                }
+                DB.update(
+                    "INSERT INTO ls_accounts (license, cash, bank) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE cash = VALUES(cash), bank = VALUES(bank)",
+                    { license, account.cash, account.bank }
+                )
+            else
+                account = {
+                    license = license,
+                    cash = EconomyConfig.DefaultBalances.Cash,
+                    bank = EconomyConfig.DefaultBalances.Bank
+                }
+                Open77.log.error(("[ls_economy] Falha persistente no MariaDB para [%d] (%s). Usando fallback volátil de segurança."):format(
+                    playerId, license
+                ))
+            end
         end
 
         Economy.players[playerId] = account

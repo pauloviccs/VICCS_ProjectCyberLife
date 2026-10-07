@@ -10,6 +10,7 @@ local ready = false
 local currentVitals = nil
 local currentMoney = nil
 local savedBiomonitorPos = nil
+local cachedInventoryBag = nil
 local isModalActive = false
 
 local function setModalActive(active)
@@ -91,6 +92,11 @@ AddEventHandler("onClientResourceStart", function(name)
                 local acc = exports["ls_economy"]:getAccount()
                 if acc then dispatchMoney(acc) end
             end)
+        end
+
+        -- 5. Sincronizar com inventário em cache, se existente
+        if cachedInventoryBag and type(cachedInventoryBag) == "table" then
+            page:send("inventory:updateBag", cachedInventoryBag)
         end
     end)
 
@@ -175,6 +181,98 @@ AddEventHandler("onClientResourceStart", function(name)
             page:setFocus(false, false)
         end
     end)
+
+    -- Comunicação e ações do Inventário e Crafting
+    page:on("inventory:moveItem", function(data)
+        if type(data) == "table" and data.fromSlot and data.toSlot then
+            TriggerServerEvent("ls:inventory:moveItem", data.fromSlot, data.toSlot)
+        end
+    end)
+
+    page:on("inventory:useItem", function(data)
+        if type(data) == "table" and data.slot then
+            TriggerServerEvent("ls:inventory:useItem", data.slot)
+        end
+    end)
+
+    page:on("inventory:startCraft", function(data)
+        if type(data) == "table" and data.recipeId then
+            TriggerServerEvent("ls:inventory:startCrafting", data.recipeId)
+        end
+    end)
+
+    page:on("inventory:close", function()
+        setModalActive(false)
+        if page then
+            page:setFocus(false, false)
+        end
+        TriggerEvent("ls:inventory:closedFromUI")
+    end)
+
+    -- Ação rápida disparada pelo Quick Radial Menu
+    page:on("radial:triggerAction", function(data)
+        if type(data) == "table" and data.slot then
+            TriggerServerEvent("ls:inventory:useItem", data.slot)
+        end
+    end)
+end)
+
+-- =============================================================================
+-- INTEGRAÇÃO NATIVA DE INVENTÁRIO, CRAFTING E RADIAL MENU
+-- =============================================================================
+
+RegisterNetEvent("ls:ui:syncInventoryBag", function(bagData)
+    if type(bagData) == "table" then
+        cachedInventoryBag = bagData
+        if page and ready then
+            page:send("inventory:updateBag", bagData)
+        end
+    end
+end)
+
+RegisterNetEvent("ls:ui:toggleInventoryModal", function(open)
+    if not page or not ready then return end
+    local shouldOpen = open == true
+    setModalActive(shouldOpen)
+    page:setFocus(shouldOpen, shouldOpen)
+    if shouldOpen then
+        if cachedInventoryBag and type(cachedInventoryBag) == "table" then
+            page:send("inventory:updateBag", cachedInventoryBag)
+        end
+        TriggerServerEvent("ls:inventory:requestSync")
+    end
+    page:send("inventory:toggle", { open = shouldOpen })
+end)
+
+RegisterNetEvent("ls:ui:setRadialState", function(active)
+    if not page or not ready then return end
+    local shouldActive = active == true
+    setModalActive(shouldActive)
+    if shouldActive and cachedInventoryBag and type(cachedInventoryBag) == "table" then
+        page:send("inventory:updateBag", cachedInventoryBag)
+    end
+    if page then
+        page:setFocus(false, shouldActive) -- Libera ponteiro do mouse para navegação no SVG sem travar câmera do jogador
+        page:send("radial:toggle", { active = shouldActive })
+    end
+end)
+
+RegisterNetEvent("ls:ui:craftProgressStarted", function(data)
+    if page and ready and type(data) == "table" then
+        page:send("crafting:progress", data)
+    end
+end)
+
+RegisterNetEvent("ls:ui:craftSuccess", function(data)
+    if page and ready and type(data) == "table" then
+        page:send("crafting:success", data)
+    end
+end)
+
+RegisterNetEvent("ls:ui:craftFailed", function(reason)
+    if page and ready then
+        page:send("crafting:failed", { message = tostring(reason) })
+    end
 end)
 
 

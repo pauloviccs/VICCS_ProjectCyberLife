@@ -1,0 +1,409 @@
+{
+  "active": [
+    {
+      "scope": "system",
+      "name": "open77_blips",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "system",
+      "name": "open77_death",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "system",
+      "name": "open77_debug",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "system",
+      "name": "open77_pause",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "system",
+      "name": "open77_reticle",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "system",
+      "name": "open77_shell",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_core",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_cyberware",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_data",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_economy",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_housing",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_inventory",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_loadscreen",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_spawn",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_ui",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "ls_vitals",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open-voice",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_admin",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_animations",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_appearance",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_chat",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_contextmenu",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_coords",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_cyberware",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_dash",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_doors",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_effects",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_elevators",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_equipment",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_interactions",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_media",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_nameplates",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_notifications",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_perspective",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_player_interactions",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_prediction",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_prevention",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_props",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_reflex",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_remote_camera",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_vehicles",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_voice",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_wardrobe",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_wardrobe_ui",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_watermark",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_weapons",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_weather",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_worldui",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "open77_zones",
+      "state": "running",
+      "generation": 1
+    },
+    {
+      "scope": "server",
+      "name": "polyzone",
+      "state": "running",
+      "generation": 1
+    }
+  ],
+  "distribution": {
+    "digest": "cf3f673a6705df203da7e1a687b07b2532076feb7bd300eed0ed4f1307229630",
+    "generation": "1",
+    "phase": "ready",
+    "source": "server",
+    "evidence": "last runtime observation; digest identifies the resource set, not a semantic per-resource version"
+  },
+  "cachedPackageDigests": [
+    "015c1af70d314a2b0d44896757c0f90a106ea2e574df0148e6d0787c5e124bd4",
+    "064fe4772c39e8213c09e8bc1c9e3e238858caac9e07aa64d50611675d2b0027",
+    "074ac543fd05f0483e56f10c4fa87243c232d6c2a5086999335b2a1758069155",
+    "0b0260e1cb460eb0b7610eecc182eeab66f8a09ff93c7852b171b09b6bdb8a44",
+    "0d6acd88fad530ff19e580865e1909a1883761240d541ae3fcf83dc655fbe583",
+    "158b32e6930dd78ad5979b7243accf830185247ed2acafc4d22356c63da34716",
+    "16ba8febfa577d0bb214c018b7c790d19fa3cb0d51d306d2688166ce666aeac2",
+    "16bebb1f291792ba56a61c4cd6a85aba702e4f87294bd2687ef3806f2987734d",
+    "1bc5fe97ff214002ac0877164f4b934216c4c97fefcb9f900d34b54552d45ada",
+    "1dc67bdbae5cbcbbd6b8a4ab70914b896487e48692121d313cd2ecd50a501e84",
+    "1deab678df6320f2631c494077a4acd247c12892ba132d460d4fad49c9a898b5",
+    "20eeeac62240d867cf1cbb380cac2ff2099176237b8ebb10554efde55c69f189",
+    "250f275da59f50802bc91bc7aed28ad477fefae5a3658903b384719d0998c3c0",
+    "27a5fe5b511cc5d568876e8096b2b3fbddb8d5f60f6d91ed96220a937285449c",
+    "295b4566f7867e6756e7bcb19e1bf592e08b72f4ba1017e07470294282a3e8ef",
+    "333665324d2e767bcf6f86d2eb96fe35736ac8b064023045215beb6e1d810e06",
+    "3580d655b65d104c8445ab90cfa44d48522b6f5eb1b955635961af872646c536",
+    "36389b660417dd60e9ca5e892bde1e02f5031464e84e3b431b061ef75f711fc1",
+    "383d2708e4b568a3dbe690d4c8ecf8ce06feff396d98c6a5cd5de04362377f7a",
+    "3ac43bdb71e42ab1bde465041914092ec649f4798b93985814633826dc632d94",
+    "3c8050ebb01b4c52534789d1e3b4e8c7b883385c58e621497e65584cea9033e8",
+    "3eacb87ada6536a053d41a19af74b20c25d6d3919492b947ae4736c738f1355a",
+    "413b6c9f4febd109c7f1db2ea7dbad6462f4a5a34a901fe5106ec0b5592c0f60",
+    "4233a67b64eaf527592bbc5e3f314d9de0e55c2e52f3b9527dc2acd2ca991196",
+    "4732eb13e89382b372730ff6402b1e98cc68632639cfbae923c1918704591bc4",
+    "47d3555589032b9e64f9f577b7ac7bae53dd572858be7b9e2b3406ad8c0f53b2",
+    "4a55b4cad6354b7ecdb8e54c175707650d04924aae301cb3348e96608c6719bd",
+    "4b678b768b85308bd7c4f6721209df88106a6cf64d412b9cc337d554c6975c3f",
+    "4ee6bd43233f255b8fd9c76900585745ba87099d8987e749c8eaea1695656b55",
+    "50e15095f800ea7e0d551effbc7f485994d24c972db0c0d63802271d6341f58d",
+    "531cf783e5c8d0ad4576bd8f10a6af6fb0286d1aac262936bad4ac979022ab20",
+    "53f3d24987e211cd6fee8a714d353865bb1ddd281ca937c0051575f065bd3159",
+    "5a5dae58bf1289e2885a0ae98bfe0ecb120c8b1ec442cbaa80ea93c6c64fe70a",
+    "5c864576bff717dc46ad87310af6f820db230b9fceeb2a04f9808b52bbe2b183",
+    "5edfc4112445f5019a78dc13b9d5c07fb4ee5c998b6e50ccb3f23bb739be1d86",
+    "5f180d50d44330256c7f5bbd990b9668819cc7c29b0da27b65cc66ff414aafcd",
+    "6405ca7b32b36f918d4ebc4b283ed9361c8553607484d1032a9d1ec2fb16327e",
+    "642a58d0172331048bea320c0a724b4f420792202b44e98ad660433e7cd49e70",
+    "69b3cd53d72bd73782696d2cfbee10aca457cad5f6bc2298d1d734c4da976c83",
+    "6a75cf80374905f62f59b9c47e37aea30c49697ff9f7b6cc55e6520e63ec64bb",
+    "6c15f1b2258fa923847505f4c96311494a6907ce6cd7c7f66624bbb97eb3990d",
+    "70454cae56907a9de7d22289742db41479605dcad701371bafc0fc525261565d",
+    "70e321ea8cab41e249cfad6cd6d766e404a2b17dba4320e8f43e129c6a703bd7",
+    "719a4eec5996ab37d1aa7bb0f71eca7de8a3b7b0738478a3c090b6c0780d9c2a",
+    "728ddfc33125b0c76f44d8e6817cedd6349c39e43439be5cadbd458fd0e7bc32",
+    "755e800f7822fa2895cc1085738519b72b99e7038c501e1a261fd4d52c3f3006",
+    "76f48eb93a4ac740c75b81a0c2c6c83e0136794047bdf25ded7862ac7230e9fc",
+    "78eedd847ffaf8c42ea0f097ba39952048921cd0f86ef7353a496c2c9ebbd14f",
+    "7a2198cf57cef61ace190219ba0b00fef04fefb1eda3c46d4ffb07a08020c508",
+    "7b43acf7a325e3d7ec38b8f8ec0343e248c769bdbdd9f38fa34c325d580e2249",
+    "7bc749a92516b8b022721c0c739941fe3ab02d9b98d1585e8b326e74d125febb",
+    "7df36939edd169211ac4ad7d0f2390123cf7bd69ae437ebd95d23f03fe0aaa8a",
+    "7e9949f430ab5fead0fc0e87b6b73b475e2220891bcd14593e8644275e449332",
+    "7ed95285f6bb6eb7f9000330929e29aab5f9e8d1b5b6f53647116587739559b9",
+    "803729eb5397cc5da9305f17006e2894ff471550c48910b3f0b69c8aac392c68",
+    "8a6ce78464d8b943c629614b0e4a2bc19bf7d9c3a06aa20aa1c9aaa97a501c47",
+    "8ac7d756d94a8c3b3e70950b31ced0addf0b84644ecb0d45bcad8f5bf08d84b2",
+    "8ea7436fcb0909b3ecc91426965ec7e3933bc4ce4da30e0f97e38e72fdcf610a",
+    "8fd3eed28a5ecfd4186c54892faa411d0f155eb5d8df308f16aa180a4cb896a4",
+    "9055ef9993eb95e1ff4ee6859960c53321f2a802380f992f21a2067eb56d3a0c",
+    "92ebb985d5bf5bfc42d81d39890d2a1f095d330faa71d3467265890cfd1527c1",
+    "93ce0209a280f9cdea5194bdd2792fa8f2be65b015b0bd249122b4b01a041c09",
+    "978753f37b08fada625ec2f8edd2fd5dde5ab057cef8d2cfaa8b373cb06cd773",
+    "9e57366775e47eb53a825f0749a7938346a178b42b62835ea2be3d3e167c3c7d",
+    "a219ec0a51b64cb9fef10fbe8f4b6f175078965806c22f755cb9b1723a99a470",
+    "ac006bee5e551fb410f27cc483e2719d4054415c75585c062ba28f7a94e06c9f",
+    "ae75c5faa864ef9ee38555165913f80e9449a6b323e0e5f88cb99da89c69a4cf",
+    "b2987064d08f94ca8a80b88307a0a4c483a6aaa64dfda6a8a6da121b96c48d22",
+    "b4d6debb3d7610afc7444d058aa2cf85b45fc7796c0fce81f9adb92d3f10e890",
+    "b4ef519dd0d24a15c0cb722e5517332bf58dd8e91ef4f5ff6af77cfbac77d6af",
+    "b5f6f09ff3cd25e25d6d5c2629724548d0e72de7367164e8edf902dd39a98bd7",
+    "b98a4934b5348bafd561b2a67bdfc145bfa062a8c42df4f7d68268127c416a9d",
+    "bc74d783df78994eba4287022a86d774c86a74ebff484c798a72d1a25e557f11",
+    "c315a07cd019f781dfb1cd95abb386908249cc3c5e8fbb96da87bd853c46a6f5",
+    "c6ebd2bcfdc676f3eaca2ec03ee898c55e015133c267421d6f30befad1791885",
+    "c6f0ff2702c63d3e39e54d0c953cca891e873d8884084c3a2b59ace0aca1bae4",
+    "c9d8c14a5e38a7d499a172e4afcc87f00613fcc7610c38b187d40c3f9df01824",
+    "cab4ee0d07029891e4782f6b92a459a24bc092ec0c20f7d414bcdee3f16317f4",
+    "cafdb2d09f9e7cd2b8fbc8feda930eecc49dd33f368a3ed8736cd21d4dee9dc6",
+    "ce36ae44e27d84a4fb14628b825d3f11feb060ebe5f76369c37db5918899b31c",
+    "d097b841676492f37201ef2826a8a6e3f59d73b9bd7c88703aeab05809fa6827",
+    "d394dd5b926df0eec954409b1fc1718b1d04c11dcd18be8cd52ec0ac0eda963a",
+    "d4d360543db06f5ff59816f4c164c0eca430e549d044bc2dc65f4144dfbb46d5",
+    "da1373376c6912471b0bb618137c29d02927e627145c57a09e2f7886f2d76e88",
+    "dab19168d8b491b588652f1b14b9bd5e9bbaa3b75caf3220b071f5474b7c244e",
+    "e114e6db842e0e48f923a47ed7fcb76f8dfe720acdd60b7f1e4e173444dcd10e",
+    "e42ca683546439a545f9f1120379076b5a1878f4acabe814a00aae42401d8541",
+    "eb62c6e87e3a3b24330d73f91362606bf4fde5d1f11461a4ad530d27b477c92a",
+    "ecd9c103e11d0bd375a339c755a09c26528259bce7c2e625eebbe87291443678",
+    "ee6b31c65de91f02daa3f9af9166e5d54478636027db4f4c05c14004fa45c85a",
+    "f17ab2cbf5acf491eb2371445de3afe8711043188274c7101f9ca8b173ffcf42",
+    "f19b255e22d452a44dde5b6b196dc048e3d818b8fdce5f78346afb8db6d6d2e8",
+    "f4d04445fc315e24698675a94bbbc7d3f41a1d3e89de5149a77433de4cbf277c",
+    "f8df9e2313b0ee47977de962bd6b33a56addb9821a5b97337e75f3382415c9d7",
+    "fe764b9c1c9ab455fc2c711f0664ff0908ab6b139d67e10cb8c1c659e02539b4"
+  ],
+  "warning": "Cached packages are NOT proof of the active resource set. Runtime observations are timestamped in timeline.json."
+}

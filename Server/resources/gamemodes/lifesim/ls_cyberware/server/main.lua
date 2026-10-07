@@ -363,6 +363,9 @@ local function applyPharmaceutical(playerId, pharmaId)
     end
 
     local item = CyberwareConfig.Pharmaceuticals[pharmaId]
+    if not item and pharmaId == "neuroblocker" then
+        item = CyberwareConfig.Pharmaceuticals["neuroblocker_booster"]
+    end
     if not item then
         return false, "invalid_pharmaceutical"
     end
@@ -370,7 +373,7 @@ local function applyPharmaceutical(playerId, pharmaId)
     local data = pState.data
     local currentSec = nowSec()
 
-    if pharmaId == "neuroblocker_booster" then
+    if pharmaId == "neuroblocker_booster" or pharmaId == "neuroblocker" then
         -- Concede 30 minutos de supressão neural
         data.neuroblocker_expires = currentSec + item.durationSeconds
         data.neural_stability = math.min(CyberwareConfig.BaseStability, (data.neural_stability or 50.0) + item.stabilityBoost)
@@ -405,6 +408,18 @@ local function applyPharmaceutical(playerId, pharmaId)
 
     return true, "success"
 end
+
+AddEventHandler("ls:cyberware:applyPharmaceutical", function(playerId, pharmaId)
+    if not LS.isPlayerId(playerId) or type(pharmaId) ~= "string" then return end
+    applyPharmaceutical(playerId, pharmaId)
+end)
+
+AddEventHandler("ls:cyberware:modifyStability", function(playerId, amount)
+    if not LS.isPlayerId(playerId) then return end
+    local pState = Cyberware.players[playerId]
+    if not pState or not pState.data then return end
+    pState.data.neural_stability = math.min(CyberwareConfig.BaseStability, math.max(0.0, (pState.data.neural_stability or 50.0) + tonumber(amount)))
+end)
 
 RegisterNetEvent("ls:cyberware:usePharmaceutical", function(pharmaId)
     local src = source
@@ -470,30 +485,51 @@ local function buyPharmaceutical(playerId, pharmaId)
         return false, "insufficient_funds"
     end
 
-    local ok, reason = applyPharmaceutical(playerId, pharmaId)
-    if ok then
-        local successMsg = ("'%s' adquirido por E$ %d via %s e aplicado com sucesso."):format(item.name, price, paymentType)
+    -- 1. Tentar adicionar à mochila do jogador
+    local addedToBag = false
+    local okAdd, addRes = pcall(function()
+        if exports["ls_inventory"] then
+            if exports["ls_inventory"].AddItem then
+                return exports["ls_inventory"]:AddItem(playerId, pharmaId, 1)
+            elseif exports["ls_inventory"].addItem then
+                return exports["ls_inventory"]:addItem(playerId, pharmaId, 1)
+            end
+        end
+        return false
+    end)
+
+    if okAdd and addRes == true then
+        local successMsg = ("'%s' adquirido por E$ %d via %s e guardado na sua mochila."):format(item.name, price, paymentType)
         TriggerClientEvent("ls:ui:ripperdocFeedback", playerId, { success = true, message = successMsg })
+        TriggerClientEvent("ls:ui:notify", playerId, {
+            type = "success",
+            title = "FARMÁCIA RIPPERDOC",
+            message = item.name .. " adicionado à sua mochila."
+        })
         TriggerClientEvent("open77:chat:addMessage", playerId, {
             color = { 34, 216, 226 },
             multiline = false,
             args = { "FARMA-CORP NC", successMsg }
         })
+        return true, "success"
     else
-        -- Estorno em caso de falha de aplicação
+        -- Reembolso obrigatório! NUNCA aplicar ou consumir o item automaticamente na compra
         pcall(function()
-            Open77.exports.call("ls_economy", "addMoney", playerId, "bank", price, "Reembolso Farmácia: Falha de aplicação")
+            if paymentType == "Night City Bank" then
+                Open77.exports.call("ls_economy", "addMoney", playerId, "bank", price, "Reembolso Farmácia: Falha de inventário")
+            else
+                Open77.exports.call("ls_economy", "addMoney", playerId, "cash", price, "Reembolso Farmácia: Falha de inventário")
+            end
         end)
-        local errRev = ("Falha de aplicação médica. E$ %d estornados."):format(price)
+        local errRev = ("Mochila cheia ou indisponível para '%s'. E$ %d estornados."):format(item.name, price)
         TriggerClientEvent("ls:ui:ripperdocFeedback", playerId, { success = false, message = errRev })
         TriggerClientEvent("open77:chat:addMessage", playerId, {
             color = { 255, 60, 60 },
             multiline = false,
             args = { "FARMA-CORP NC", errRev }
         })
+        return false, "inventory_unavailable"
     end
-
-    return ok, reason
 end
 
 
@@ -911,3 +947,166 @@ RegisterCommand("cw_cure", function(source, args, raw)
         })
     end
 end, false)
+
+-- =============================================================================
+-- SISTEMA DE COMPRAS DA CLÍNICA RIPPERDOC & FARMÁCIA NEURAL (ENTREGA NA MOCHILA)
+-- =============================================================================
+
+local RIPPER_PRICES = {
+    -- Farmacêuticos
+    ["neuroblocker_booster"] = { label = "Injetor de Neurobloqueador", price = 250 },
+    ["cryo_spray"] = { label = "Spray Criogênico Craniano", price = 180 },
+    ["immuno_shot"] = { label = "Ampola Imunossupressora", price = 190 },
+    -- Implantes Corporais
+    ["kiroshi_optics_mk1"] = { label = "Kiroshi Optics Mk.1", price = 1200 },
+    ["kiroshi_optics_mk2"] = { label = "Kiroshi Optics Mk.2", price = 3500 },
+    ["kiroshi_optics_stalker"] = { label = "Kiroshi 'Stalker' Mk.3", price = 12500 },
+    ["bioconductor_mk1"] = { label = "Biocondutor Zetatech Mk.1", price = 4200 },
+    ["memory_boost_mk2"] = { label = "Amplificador Dynalar", price = 8500 },
+    ["second_heart_mk1"] = { label = "Segundo Coração Moore", price = 28000 },
+    ["subdermal_armor_mk1"] = { label = "Armadura Militech", price = 2500 },
+    ["optical_camo_mk1"] = { label = "Camuflagem Arasaka", price = 22000 },
+    ["militech_sandevistan_mk4"] = { label = "Militech Sandevistan Mk.4", price = 35000 },
+    ["arasaka_cyberdeck_mk3"] = { label = "Cyberdeck Arasaka Mk.3", price = 16000 },
+    ["smart_link"] = { label = "Smart Link Arasaka", price = 4500 },
+    ["mantis_blades"] = { label = "Lâminas Mantis Carbono", price = 15000 },
+    ["gorilla_arms"] = { label = "Braços de Gorila", price = 15000 },
+    ["reinforced_tendons"] = { label = "Tendões Reforçados", price = 9000 }
+}
+
+local function processStorePurchase(src, itemId, storeName)
+    local item = RIPPER_PRICES[itemId]
+    if not item then
+        Open77.log.warn(("[ls_cyberware] Item não catalogado para compra na clínica: %s"):format(tostring(itemId)))
+        TriggerClientEvent("ls:ui:ripperdocFeedback", src, { success = false, message = "Item indisponível no catálogo da clínica." })
+        return
+    end
+
+    local price = item.price
+    local paid = false
+    local paymentSource = "cash"
+
+    -- 1. Cobrança via ls_economy (Tenta dinheiro em mãos primeiro, depois banco)
+    local okCash, canCash = pcall(function()
+        local res = Open77.exports.call("ls_economy", "canAfford", src, "cash", price)
+        return res and res:await()
+    end)
+    if okCash and canCash then
+        local okSub = pcall(function()
+            local res = Open77.exports.call("ls_economy", "removeMoney", src, "cash", price, ("Compra Clínica: %s"):format(item.label))
+            return res and res:await()
+        end)
+        if okSub then
+            paid = true
+            paymentSource = "cash"
+        end
+    end
+
+    if not paid then
+        local okBank, canBank = pcall(function()
+            local res = Open77.exports.call("ls_economy", "canAfford", src, "bank", price)
+            return res and res:await()
+        end)
+        if okBank and canBank then
+            local okSub = pcall(function()
+                local res = Open77.exports.call("ls_economy", "removeMoney", src, "bank", price, ("Compra Clínica: %s"):format(item.label))
+                return res and res:await()
+            end)
+            if okSub then
+                paid = true
+                paymentSource = "bank"
+            end
+        end
+    end
+
+    if not paid then
+        local failMsg = ("Saldo insuficiente! '%s' custa E$ %d."):format(item.label, price)
+        TriggerClientEvent("ls:ui:ripperdocFeedback", src, { success = false, message = failMsg })
+        TriggerClientEvent("open77:chat:addMessage", src, {
+            color = { 255, 60, 60 },
+            multiline = false,
+            args = { storeName, failMsg }
+        })
+        return
+    end
+
+    -- 2. Entregar o item adquirido na MOCHILA do jogador (ls_inventory)
+    local addedToInventory = false
+    local addFailureReason = nil
+
+    if Open77 and Open77.exports and Open77.exports.call then
+        local okCall, pending = pcall(Open77.exports.call, "ls_inventory", "AddItem", src, itemId, 1)
+        if okCall and pending then
+            if type(pending) == "table" and pending.await then
+                local okAwait, res, reason = pcall(function() return pending:await() end)
+                if okAwait and (res == true or (type(res) == "table" and res[1] == true)) then
+                    addedToInventory = true
+                else
+                    addFailureReason = reason or res
+                end
+            elseif pending == true then
+                addedToInventory = true
+            end
+        end
+    end
+
+    if not addedToInventory and Open77 and Open77.exports and Open77.exports.callSync then
+        local okSync, syncRes = pcall(Open77.exports.callSync, "ls_inventory", "AddItem", src, itemId, 1)
+        if okSync and (syncRes == true or (type(syncRes) == "table" and syncRes[1] == true)) then
+            addedToInventory = true
+        end
+    end
+
+    if not addedToInventory then
+        TriggerEvent("ls:inventory:addItem", src, itemId, 1, {}, function(success, reason)
+            if success == true then
+                addedToInventory = true
+            else
+                addFailureReason = addFailureReason or reason
+            end
+        end)
+    end
+
+    if addedToInventory then
+        local successMsg = ("'%s' adquirido por E$ %d e guardado na sua mochila."):format(item.label, price)
+        TriggerClientEvent("ls:ui:ripperdocFeedback", src, { success = true, message = successMsg })
+        TriggerClientEvent("ls:ui:notify", src, {
+            type = "success",
+            title = "COMPRA REALIZADA",
+            message = item.label .. " adicionado à sua mochila."
+        })
+        TriggerClientEvent("open77:chat:addMessage", src, {
+            color = { 34, 216, 226 },
+            multiline = false,
+            args = { storeName, successMsg }
+        })
+    else
+        -- Reembolso automático imediato
+        pcall(function()
+            Open77.exports.call("ls_economy", "addMoney", src, paymentSource, price, "Reembolso: Falha no Inventário")
+        end)
+        local fullMsg = ("Mochila cheia ou indisponível! Não foi possível armazenar '%s'. E$ %d reembolsados."):format(item.label, price)
+        TriggerClientEvent("ls:ui:ripperdocFeedback", src, { success = false, message = fullMsg })
+        TriggerClientEvent("open77:chat:addMessage", src, {
+            color = { 255, 60, 60 },
+            multiline = false,
+            args = { storeName, fullMsg }
+        })
+    end
+end
+
+RegisterNetEvent("ls:cyberware:buyPharmaceutical", function(pharmaId)
+    local src = source
+    if not src or src <= 0 or type(pharmaId) ~= "string" then return end
+    CreateThread(function()
+        processStorePurchase(src, pharmaId, "FARMÁCIA NEURAL")
+    end)
+end)
+
+RegisterNetEvent("ls:cyberware:buyImplant", function(implantId)
+    local src = source
+    if not src or src <= 0 or type(implantId) ~= "string" then return end
+    CreateThread(function()
+        processStorePurchase(src, implantId, "CLÍNICA RIPPERDOC")
+    end)
+end)

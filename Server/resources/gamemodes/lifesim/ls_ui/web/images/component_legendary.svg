@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <rect width="100" height="100" rx="10" fill="#0c121e" stroke="#ffb822" stroke-width="2.5"/>
+        <polygon points="50,15 82,35 82,65 50,85 18,65 18,35" fill="none" stroke="#ffb822" stroke-width="3.5"/>
+        <circle cx="50" cy="50" r="14" fill="#ffb822" opacity="0.25"/>
+        <polygon points="50,30 65,50 50,70 35,50" fill="#ffb822"/>
+        <text x="50" y="96" text-anchor="middle" fill="#ffb822" font-family="monospace" font-size="9" font-weight="bold">LEGENDARY</text>
+    </svg>

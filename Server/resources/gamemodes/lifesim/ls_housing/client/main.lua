@@ -51,7 +51,7 @@ local function createHousingPage()
         fps = 60,
         zIndex = 9999,
         transparent = true,
-        visible = true
+        visible = false
     })
 
     if not page then
@@ -139,25 +139,10 @@ local function registerDoorInteractions()
         local doors = getDoorList(apt)
         for doorIdx, d in ipairs(doors) do
             if d and d.x and d.y and d.z then
-                -- 1. Criação do anel holográfico de chão 3D via Open77.markers nativo
-                pcall(function()
-                    if Open77.markers and Open77.markers.create then
-                        local markerId, err = Open77.markers.create({
-                            position = { x = d.x, y = d.y, z = d.z + 0.05 },
-                            shape = "ring",
-                            style = "objective",
-                            radius = 1.6,
-                            maxDistance = 45.0,
-                            color = { 0, 255, 157, 210 }
-                        })
-                        if markerId then
-                            createdWorldMarkers[#createdWorldMarkers + 1] = markerId
-                        end
-                    end
-                end)
-
-                -- 2. Registro do card de interação diegético via open77_worldui
                 local doorLabel = d.label or apt.name
+                local hasWorldUi = false
+
+                -- 1. Registro unificado via open77_worldui (já gerencia marcador de chão 3D e card holográfico sem duplicatas)
                 pcall(function()
                     local promise = Open77.exports.call("open77_worldui", "create", {
                         id = "housing_door_" .. apt.id .. "_" .. doorIdx,
@@ -173,6 +158,7 @@ local function registerDoorInteractions()
                         args = { aptId = apt.id, doorIndex = doorIdx }
                     })
                     if promise and promise.await then
+                        hasWorldUi = true
                         CreateThread(function()
                             local res = promise:await()
                             if res and res.ok and res.handle then
@@ -181,6 +167,25 @@ local function registerDoorInteractions()
                         end)
                     end
                 end)
+
+                -- 2. Fallback para Open77.markers apenas caso open77_worldui não esteja instalado
+                if not hasWorldUi then
+                    pcall(function()
+                        if Open77.markers and Open77.markers.create then
+                            local markerId = Open77.markers.create({
+                                position = { x = d.x, y = d.y, z = d.z + 0.05 },
+                                shape = "ring",
+                                style = "objective",
+                                radius = 1.6,
+                                maxDistance = 45.0,
+                                color = { 0, 255, 157, 210 }
+                            })
+                            if markerId then
+                                createdWorldMarkers[#createdWorldMarkers + 1] = markerId
+                            end
+                        end
+                    end)
+                end
             end
         end
     end
@@ -192,24 +197,9 @@ local function registerInteriorExitInteraction(apt)
     local inExit = apt.interiorExitCoords or apt.interiorCoords
     if not inExit or not inExit.x then return end
 
-    -- 1. Anel holográfico de chão 3D no interior (indicando o portal de saída)
-    pcall(function()
-        if Open77.markers and Open77.markers.create then
-            local markerId, err = Open77.markers.create({
-                position = { x = inExit.x, y = inExit.y, z = inExit.z + 0.05 },
-                shape = "ring",
-                style = "objective",
-                radius = 1.6,
-                maxDistance = 25.0,
-                color = { 255, 71, 87, 210 }
-            })
-            if markerId then
-                createdWorldMarkers[#createdWorldMarkers + 1] = markerId
-            end
-        end
-    end)
+    local hasWorldUi = false
 
-    -- 2. Card de interação diegético via open77_worldui
+    -- 1. Card de interação diegético unificado via open77_worldui
     pcall(function()
         local promise = Open77.exports.call("open77_worldui", "create", {
             id = "housing_exit_" .. tostring(apt.id),
@@ -225,6 +215,7 @@ local function registerInteriorExitInteraction(apt)
             args = { aptId = apt.id }
         })
         if promise and promise.await then
+            hasWorldUi = true
             CreateThread(function()
                 local res = promise:await()
                 if res and res.ok and res.handle then
@@ -233,6 +224,25 @@ local function registerInteriorExitInteraction(apt)
             end)
         end
     end)
+
+    -- 2. Fallback para Open77.markers apenas caso open77_worldui não esteja ativo
+    if not hasWorldUi then
+        pcall(function()
+            if Open77.markers and Open77.markers.create then
+                local markerId = Open77.markers.create({
+                    position = { x = inExit.x, y = inExit.y, z = inExit.z + 0.05 },
+                    shape = "ring",
+                    style = "objective",
+                    radius = 1.6,
+                    maxDistance = 25.0,
+                    color = { 255, 71, 87, 210 }
+                })
+                if markerId then
+                    createdWorldMarkers[#createdWorldMarkers + 1] = markerId
+                end
+            end
+        end)
+    end
 end
 
 RegisterNetEvent("ls:housing:clientTriggerExit", function(args)
@@ -360,25 +370,31 @@ CreateThread(function()
     end
 end)
 
--- Tecla [E] para interagir com a porta ou saída (fallback de proximidade direta com detecção de transição)
+-- Tecla [E] para interagir com a porta ou saída (fallback adaptativo para evitar consumo contínuo de CPU/frames)
 CreateThread(function()
     local wasPressed = false
     while true do
-        Wait(15)
-        local isPressed = isInteractActionPressed()
+        local isNear = (nearbyDoorApt and not isInsideApartment) or (nearInteriorExit and isInsideApartment and currentApartment)
+        if isNear then
+            Wait(100)
+            local isPressed = isInteractActionPressed()
 
-        if isPressed and not wasPressed then
-            if nearbyDoorApt and not isInsideApartment then
-                Open77.log.info("[ls_housing] Tecla [E] pressionada na porta de: " .. tostring(nearbyDoorApt.name) .. " (porta #" .. tostring(nearbyDoorIndex or 1) .. ")")
-                TriggerServerEvent("ls:housing:requestInfo", nearbyDoorApt.id)
-                Wait(400)
-            elseif nearInteriorExit and isInsideApartment and currentApartment then
-                Open77.log.info("[ls_housing] Tecla [E] pressionada para sair de: " .. tostring(currentApartment.name))
-                TriggerServerEvent("ls:housing:exit", currentApartment.id, entryDoorIndex or 1)
-                Wait(400)
+            if isPressed and not wasPressed then
+                if nearbyDoorApt and not isInsideApartment then
+                    Open77.log.info("[ls_housing] Tecla [E] pressionada na porta de: " .. tostring(nearbyDoorApt.name) .. " (porta #" .. tostring(nearbyDoorIndex or 1) .. ")")
+                    TriggerServerEvent("ls:housing:requestInfo", nearbyDoorApt.id)
+                    Wait(400)
+                elseif nearInteriorExit and isInsideApartment and currentApartment then
+                    Open77.log.info("[ls_housing] Tecla [E] pressionada para sair de: " .. tostring(currentApartment.name))
+                    TriggerServerEvent("ls:housing:exit", currentApartment.id, entryDoorIndex or 1)
+                    Wait(400)
+                end
             end
+            wasPressed = isPressed
+        else
+            wasPressed = false
+            Wait(500)
         end
-        wasPressed = isPressed
     end
 end)
 

@@ -1,0 +1,23 @@
+[
+  {
+    "module": "bin/x64/Cyberpunk2077.exe",
+    "guid": "d58c4767-9555-4446-960e-3c0d82bf4ad3",
+    "age": 1,
+    "pdb": "cpLauncher.pdb",
+    "fileVersion": "3.0.5294808"
+  },
+  {
+    "module": "red4ext/RED4ext.dll",
+    "guid": "26ff6d6a-3edd-449d-bbfd-f45407100eb4",
+    "age": 1,
+    "pdb": "RED4ext.pdb",
+    "fileVersion": "1.30.0"
+  },
+  {
+    "module": "red4ext/plugins/Open77/web/Open77.WebHost.exe",
+    "guid": "390a07cb-a0f3-879b-4c4c-44205044422e",
+    "age": 1,
+    "pdb": "bootstrap.exe.pdb",
+    "fileVersion": "144.0.32\u002Bg5ce7d26\u002Bchromium-144.0.7559.258"
+  }
+]

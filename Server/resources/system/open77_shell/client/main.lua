@@ -197,6 +197,9 @@ local function unmountServerLoadScreen()
     loadScreenPage = nil
     pcall(function() page:hide() end)
     pcall(function() page:destroy() end)
+    if shell then
+        pcall(function() shell:send("shell:suppress", { suppressed = false }) end)
+    end
     transitionLog("server loadscreen unmounted")
 end
 
@@ -211,7 +214,7 @@ local function mountServerLoadScreen(serverName)
         width = 1920,
         height = 1080,
         fps = 60,
-        transparent = true,
+        transparent = false,
         visible = true
     })
     if not page then
@@ -219,6 +222,12 @@ local function mountServerLoadScreen(serverName)
         return false
     end
     loadScreenPage = page
+    if shell then
+        pcall(function()
+            shell:send("shell:suppress", { suppressed = true })
+            shell:hide()
+        end)
+    end
     pcall(function()
         page:on("connection:cancel", function()
             transitionLog("server loadscreen requested connection cancel")
@@ -421,15 +430,13 @@ local function connectionWorker(server, request, generation)
                     end
                     transitionLog("pristine load accepted family=%s; waiting for world handoff", family)
                     armWorldHandoffWatchdog(family)
-                    -- The world is now streaming behind the cover. Tell the page
-                    -- so it shows the "Loading world" phase with a moving bar
-                    -- (estimated until the native real-% capture ships), instead
-                    -- of leaving the player on a blind, motionless wait.
-                    send("world:loading:begin", {})
                     -- If this server ships its own loadscreen, it is on disk now
                     -- (the pack finished downloading before the pristine load).
                     -- Mount it over the built-in cover for the world-stream phase.
                     mountServerLoadScreen(server.name)
+                    if not loadScreenPage then
+                        send("world:loading:begin", {})
+                    end
                     connecting = false
                     reply(request, {
                         accepted = true,
@@ -542,6 +549,9 @@ AddEventHandler("onClientResourceStart", function(name)
             if lastConnection.event ~= "session:ended" and lastResourceProgress then
                 shell:send("resources:loading", lastResourceProgress)
             end
+        end
+        if loadScreenPage then
+            shell:send("shell:suppress", { suppressed = true })
         end
     end)
     -- What the page says it is showing, and why it changed. The Lua side can
@@ -707,7 +717,9 @@ end)
 -- page applies it only while the loading view is up and ignores it otherwise.
 AddEventHandler("open77:loading:progress", function(progress)
     local value = tonumber(progress) or 0
-    send("world:loading", { progress = value })
+    if not loadScreenPage then
+        send("world:loading", { progress = value })
+    end
     -- Feed the same real fill to a mounted server loadscreen, and stop its own
     -- estimate the moment the engine's true value takes over.
     if loadScreenPage then
@@ -885,10 +897,18 @@ AddEventHandler("open77:shell:cover", function()
     transitionLog(
         "cover requested visible=%s loading=%s bootstrap=%s",
         tostring(shellVisible), tostring(loadingTransitionActive), tostring(lastBootstrapPhase))
+    if loadScreenPage then
+        pcall(function()
+            shell:send("shell:suppress", { suppressed = true })
+            shell:hide()
+        end)
+        setMusicVisible(false)
+        return
+    end
     shell:send("shell:cover", { active = true })
     shell:setFocus(false, false)
     shell:show()
-    setMusicVisible(not loadScreenPage)
+    setMusicVisible(true)
 end)
 
 -- The loading screen is held for a moment before the shell goes away.

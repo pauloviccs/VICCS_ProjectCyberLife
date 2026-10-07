@@ -155,6 +155,35 @@ CREATE TABLE IF NOT EXISTS `ls_player_spawns` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
+### 11. `ls_inventories` (Fase 5.5 - Mochilas & Armazenamento Autoritativo)
+```sql
+CREATE TABLE IF NOT EXISTS `ls_inventories` (
+    `inventory_id` BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `owner_type`   VARCHAR(32)     NOT NULL DEFAULT 'character',
+    `owner_id`     VARCHAR(64)     NOT NULL,
+    `max_weight`   INT             NOT NULL DEFAULT 35000,
+    `max_slots`    INT             NOT NULL DEFAULT 40,
+    `created_at`   TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`   TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY `uq_ls_inv_owner` (`owner_type`, `owner_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+
+### 12. `ls_inventory_items` (Fase 5.5 - Itens em Slots com Metadata JSON)
+```sql
+CREATE TABLE IF NOT EXISTS `ls_inventory_items` (
+    `id`           BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `inventory_id` BIGINT UNSIGNED NOT NULL,
+    `item_id`      VARCHAR(64)     NOT NULL,
+    `slot`         INT             NOT NULL,
+    `count`        INT             NOT NULL DEFAULT 1,
+    `metadata`     LONGTEXT        NOT NULL DEFAULT '{}',
+    `created_at`   TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_ls_inv_slot` (`inventory_id`, `slot`),
+    CONSTRAINT `fk_ls_inv_items_parent` FOREIGN KEY (`inventory_id`) REFERENCES `ls_inventories`(`inventory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+```
+
 ---
 
 ## 3. Estrutura de Cache em Memória (`CacheService` Lua)

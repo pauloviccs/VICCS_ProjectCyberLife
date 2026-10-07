@@ -73,6 +73,21 @@
 - [x] **Resolução do Log 20 (Débito de Moeda e Banco de Dados):** Exportações formais no `ls_data` (`query`, `update`, `execute`, `transaction`) e exports autoritativos no `ls_economy` com fallback automático de débito para dinheiro vivo (Cash).
 - [x] **Ferramenta de Telemetria e Coordenadas (`open77_coords`):** Interface Kiroshi Spatial Scanner com comando `/coords` autoritativo para roles `admin`, `moderator`, `support` e exportação multidimensional.
 - [x] **Resolução do Log 21 (Crash `/coords` e Gatilho [E] no Housing):** Desempacotamento de vetores numéricos múltiplos de `Open77.character.position()` em C++, extração regex de `aptId` via `interactionId` do `open77_worldui`, detecção de tecla [E] nativa via `Open77.input.isDown("e")` e sincronização de visibilidade CEF com `page:show()`.
+- [x] **Poka-Yoke Protocol & Mistake-Proof Skill (`mistake-proof.skill`):** Criação da workspace skill `.agents/skills/mistake-proof/SKILL.md` e SOP `.agent/workflows/mistake_proof_skill.md` com 7 padrões comprovados para prevenção perpétua de regressões.
+- [x] **Estabilização de Inventário, Quick Radial & Moeda (Logs 25-26):** Permissão `input.actions` no `ls_inventory`, spec table nativa do OPEN//77 para teclas "I" e "TAB", foco de mouse no CEF radial, eliminação do erro `export_yielded` no `ls_economy` com queries diretas `MySQL.*.await` e proteção de persistência de conta sem rollback.
+- [x] **Otimização de Performance Espacial no Housing (Log 26):** Deduplicação de anéis 3D no REDengine, eliminação de loops frênicos de 10ms/15ms com polling adaptativo e WebUI de moradia criada com `visible = false`.
+
+## Fase 5.5: Inventário, Crafting, Itens Canônicos & Quick Radial Loadout (100% Concluída & Validada)
+- [x] **Persistência Relacional de Inventário (`ls_inventory`):** Esquema relacional no MariaDB (`ls_inventories` e `ls_inventory_items`) com integridade referencial `ON DELETE CASCADE`, limites estritos de 40 slots e 35.000g (35kg).
+- [x] **Resolução Canônica de Identidade (Log 28):** Substituição do método inexistente `GetPlayerCharacterId` pela função autoritativa `resolvePlayerLicense(src)` via `exports["ls_core"]:getSession(src).license`, listener do evento canônico `ls:core:playerLoaded` e suporte a hot-reload em `onResourceStart`.
+- [x] **Starter Kit de Sobrevivência:** Injeção automática de kit inicial (`weapon_unity`, `ammo_handgun`, `burrito_xxl`, `clean_water`, `maxdoc_mk1`, `component_common`, `metal_scrap`) para novos jogadores ou contas vazias.
+- [x] **Eliminação de Perda de Pacotes no Cliente CEF:** Criação de `cachedInventoryBag` no cliente Lua (`ls_ui`), garantindo entrega íntegra da mochila após `ls:ui:ready` e sync sob demanda ao abrir a mochila.
+- [x] **Catálogo Canônico de Itens (`items_catalog.lua`):** Mais de 40 itens cadastrados com identificadores canônicos, descrições ricas, raridades, pesos em gramas, categorias e integração diegética de consumo com vitais e equipamento de armas no REDengine 4.
+- [x] **Bancada de Manufatura e Crafting:** Catálogo declarativo de receitas (`recipes.lua`), validação atômica de insumos no servidor e barra de progresso holográfica no HUD CEF.
+- [x] **Sistema de Loadout do Quick Radial Menu (8 Slots Direcionais):** Painel diegético de 8 atalhos na base da mochila (`[1] ↑` a `[8] ↖`), suporte completo a Drag & Drop e Clique com Botão Direito, persistência no `localStorage` (`ls_radial_loadout_slots`) e Roda Radial SVG (`CAPSLOCK`) sincronizada em tempo real com validação de estoque e disparo nativo de ações.
+- [x] **Redimensionamento Responsivo (Box Verde Aprovada):** Substituição da moldura rígida de 1150px x 740px (box vermelha) por dimensionamento fluido com `width: clamp(1050px, 92vw, 1720px); height: clamp(680px, 88vh, 980px);` e grid adaptável para 1080p, 1440p, 4K e Ultrawide 21:9/32:9.
+- [x] **Desacoplamento de Keybinds Nativas e Reconfiguração in-Game:** Migração de `TAB` para `CAPSLOCK`, registro de keymappings no menu Pause nativo do jogo e comandos `/keybinds`, `/atalhos`, `/mochila`, `/inv` e `/radial`.
+- [x] **Transparência de Loading Screen:** Eliminação de fundos escuros sólidos, tornando as cutscenes 3D vanilla visíveis sob o HUD durante o carregamento.
 
 ## Fase 6: Carreiras e Facções
 - [ ] Implementar `ls_jobs`: carreiras corporativas, serviços de entrega, turnos e progressão salarial.

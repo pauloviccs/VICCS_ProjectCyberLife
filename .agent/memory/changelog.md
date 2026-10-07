@@ -1,5 +1,101 @@
 # Changelog
 
+## [2026-10-06] - Auditoria de Paridade Visual de Itens (Log 31) & Poka-Yoke MP-013
+
+### Adicionado
+- **58 Novos Ícones Vetoriais SVG Cyberpunk Dedicados (`ls_ui/web/images/`):**
+  - Desenvolvidos com padrão diegético Kiroshi Optics: moldura L-brackets, scanlines, paleta neon (`#22d8e2`, `#fcee0a`, `#ff003c`, `#05ffa1`) e fundos chanfrados escuros translúcidos.
+  - Cobertura de 15 tipos de vestuário, 14 itens alimentícios/bebidas, 18 colecionáveis/loot e 11 itens de cyberware, blindagem balística e primeiros socorros.
+  - Biblioteca visual ampliada de 210 para **268 ativos físicos em disco**.
+- **Poka-Yoke Knowledge Base Expandida:**
+  - Registrado `[MP-013]` (Paridade Estrita de Catálogos Lua/CEF & Prevenção de Placeholders Visuais Fantasmas) em `.agents/skills/mistake-proof/SKILL.md` e `.agent/workflows/mistake_proof_skill.md`.
+
+### Modificado
+- **Catálogo Canônico Compartilhado (`items_catalog.lua` & `catalog.js`):**
+  - Reescritas 151 declarações de `image` substituindo `default_item.svg` e `shard.png` por referências diretas e exclusivas aos novos SVGs dedicados.
+  - Paridade 1:1 absoluta e atômica estabelecida entre o backend autoritativo Lua e a interface Web CEF.
+  - 100% dos 385 itens catalogados agora possuem arte individual e representativa.
+- **Auditoria de Integridade Automatizada (`verify_images.py`):**
+  - Validada ausência de erros 404 (0 links quebrados).
+  - Eliminado 100% do uso de `default_item.svg` (contagem zerada tanto em Lua quanto em JS).
+
+---
+
+## [2026-10-06] - Correções Críticas Urgentes (Log 28) & Poka-Yoke MP-011 a MP-012
+
+### Corrigido
+- **Inventário Vazio e Erro Fatal de Export no Servidor (`ls_inventory`):**
+  - Eliminado o erro fatal `export ls_core:GetPlayerCharacterId export_not_found` nos logs do servidor.
+  - Criada função autoritativa `resolvePlayerLicense(src)` consultando a sessão canônica `exports["ls_core"]:getSession(src).license` e `Open77.players.identifiers(src).license`.
+  - Conectado o inventário ao evento canônico de login `ls:core:playerLoaded(playerId, license)`.
+  - Adicionado suporte a hot-reload em `onResourceStart` para sincronizar jogadores já conectados.
+  - Adicionada permissão `"database.access"` no manifesto `ls_inventory/open77.lua`.
+  - Injetado starter kit de sobrevivência (`weapon_unity`, `ammo_handgun`, `burrito_xxl`, `clean_water`, `maxdoc_mk1`, `component_common`, `metal_scrap`) para novos jogadores ou contas vazias.
+  - Adicionado cache `cachedInventoryBag` no cliente Lua (`ls_ui/client/main.lua`) para entrega instantânea ao CEF assim que o evento `ls:ui:ready` for emitido, além de solicitar sync sob demanda ao abrir a mochila.
+- **Redimensionamento e Responsividade do Inventário (Box Verde) (`ls_ui`):**
+  - Substituídas as dimensões fixas de 1150px x 740px (box vermelha) por escala responsiva fluida `width: clamp(1050px, 92vw, 1720px); height: clamp(680px, 88vh, 980px);` (box verde).
+  - `.inv-body` ajustado para `flex: 1; height: auto; min-height: 0;`, aproveitando toda a área útil da tela sem sobrepor barras do sistema.
+  - Grid de slots redesenhado com `grid-auto-rows: clamp(72px, 8.2vh, 92px); gap: 8px;`, slots maiores, ícones nítidos com drop-shadow vibrante e responsividade impecável em Full HD, 2K, 4K e Ultrawide.
+
+### Adicionado
+- **Sistema de Equipar Itens no Quick Radial Menu (`ls_ui` / `ls_inventory`):**
+  - Implementado painel de **8 Atalhos Rápidos // Radial Loadout [1] a [8]** no inventário, com indicadores de bússola direcional (`[1] ↑`, `[2] ↗`, `[3] →`, `[4] ↘`, `[5] ↓`, `[6] ↙`, `[7] ←`, `[8] ↖`).
+  - Suporte completo a **Drag & Drop** (arrastar itens da mochila para os slots do radial) e **Clique com Botão Direito** em qualquer item para equipar/desequipar instantaneamente.
+  - Persistência imediata no `localStorage` (`ls_radial_loadout_slots`).
+  - Quick Radial Menu (`CAPSLOCK`) totalmente acoplado ao loadout: valida estoque em tempo real, mostra contagem de itens, alerta visual para itens esgotados e dispara uso/equipamento nativo (`radial:triggerAction`).
+- **Poka-Yoke Knowledge Base Expandida:**
+  - Registrados `[MP-011]` (Resolução de Identidade de Inventário & Caching de Estado CEF) e `[MP-012]` (Loadout Persistente do Quick Radial Menu & Dimensionamento Responsivo CEF) em `.agents/skills/mistake-proof/SKILL.md` e `.agent/workflows/mistake_proof_skill.md`.
+
+---
+
+## [2026-10-06] - Resolução Forense de Bugs Críticos (Log 27) & Poka-Yoke MP-008 a MP-010
+
+### Corrigido
+- **Front-End do Inventário e Quick Radial Menu Invisíveis (`ls_ui`):**
+  - Identificada a causa raiz de `#inventory-modal` e `#radial-overlay` não renderizarem: fechamento ausente (`</footer></div></div>`) em `#ripperdoc-modal` na linha 465 de `ls_ui/web/index.html`.
+  - Ambos os modais estavam aninhados como elementos-filho de `#ripperdoc-modal`, que possuía a classe `.hidden` (`display: none !important`), causando a supressão de renderização pelo Chromium CEF por herança CSS.
+  - Fechamento aplicado, isolando `#inventory-modal` e `#radial-overlay` como elementos root de `<main id="hud-viewport">`.
+  - Atualizada a sincronização do Biomonitor HUD em `app.js` (`syncBiomonitorVisibilityWithModals`) para ocultar o Biomonitor ao abrir o inventário.
+- **Desacoplamento da Tecla TAB & Quick Radial Reconfigurável in-Game (`ls_inventory`):**
+  - Mudada a keybind padrão de `TAB` para `CAPSLOCK` em `ls_inventory/shared/config.lua` e `ls_inventory/client/main.lua`, liberando o `TAB` para o futuro sistema de Scanner/Quickhacking vanilla.
+  - Registrados mapeamentos no motor OPEN//77 (`inventory_toggle` e `radial_menu_hold`) via `Open77.input.registerKeyMapping`. Eles aparecem automaticamente nas configurações in-game (**ESC > Settings > KEY BINDINGS**), onde o próprio usuário pode personalizar livremente suas teclas.
+  - Criados comandos `/keybinds` e `/atalhos` notificando os jogadores, e comandos `/radial` e `/mochila`.
+  - Adicionado cálculo vetorial de ângulo do mouse com deadzone de 45px no overlay do Radial Menu em `ls_ui/web/app.js` para navegação fluida e precisa.
+- **Transparência e Exibição das Cutscenes 3D Vanilla na Loading Screen (`ls_loadscreen`):**
+  - Removido background sólido `#040810` e gradientes escuros opacos que cobriam o viewport 3D da REDengine.
+  - Definidos `html, body { background: transparent !important; }`, `.media-viewport { background: transparent !important; }` e `.scene-backdrop` com `mix-blend-mode: screen; pointer-events: none;`.
+  - Gradientes escuros de 98% de opacidade substituídos por iluminação holográfica ambiente transparente (`rgba(..., 0.12) 0%, transparent 65%`) em `config.json` e `app.js`.
+  - As cutscenes 3D cinematográficas vanilla do Cyberpunk 2077 agora aparecem 100% nítidas sob o HUD holográfico da loadscreen.
+
+### Adicionado
+- **Poka-Yoke Knowledge Base Expandida:**
+  - Registrados `[MP-008]` (Modais CEF Aninhados), `[MP-009]` (Oclusão de Cutscene 3D por Fundo Opaco) e `[MP-010]` (Desacoplamento de Keybinds Nativas e Mapeamento Reconfigurável) em `.agents/skills/mistake-proof/SKILL.md` e `.agent/workflows/mistake_proof_skill.md`.
+
+---
+
+## [2026-10-06] - Mistake-Proof Skill (Poka-Yoke Protocol) & Resolução de Falhas Críticas (Logs 25-26)
+
+### Adicionado
+- **Poka-Yoke Mistake-Proof Skill (`mistake-proof.skill`):**
+  - Criada skill nativa em `.agents/skills/mistake-proof/SKILL.md` e workflow canônico em `.agent/workflows/mistake_proof_skill.md`.
+  - Catálogo inicial de 7 soluções definitivas (`[MP-001]` a `[MP-007]`) cobrindo keymappings no OPEN//77, prevenção de `export_yielded`, blindagem contra rollback financeiro, deduplicação de marcadores 3D, polling adaptativo, visibilidade de WebUI e foco de mouse em camadas CEF.
+
+### Corrigido
+- **Keybindings "I" (Inventário) e "TAB" (Quick Radial) no `ls_inventory` & `ls_ui`:**
+  - Adicionada permissão primordial `"input.actions"` no manifesto `ls_inventory/open77.lua`.
+  - Migrado registro de teclas para a spec table nativa do motor OPEN//77 (`Open77.input.registerKeyMapping`), eliminando a assinatura inválida herdada do FiveM.
+  - Implementado `page:setFocus(false, true)` no `ls_ui/client/main.lua` para liberar navegação de cursor nas fatias SVG do Quick Menu.
+  - Adicionado listener universal de Escape e tecla I no `app.js` da WebUI.
+- **Rollback de Dinheiro no `ls_economy` (Currency Bug):**
+  - Substituídas chamadas a exports de banco com corrotinas (que quebravam com `export_yielded`) por queries diretas nativas `MySQL.query.await` e `MySQL.update.await`.
+  - Blindada a função `loadPlayerAccount`: falhas na consulta SQL (`rows == nil`) nunca concedem `starter_grant` e não sobrescrevem a conta do jogador no MariaDB.
+- **Stuttering Próximo a Apartamentos e Megabuilding H10 no `ls_housing`:**
+  - Removida a duplicação de anéis 3D no REDengine, centralizando renderização de chão e card diegético no `open77_worldui`.
+  - Substituídos loops agressivos de 10ms/15ms por polling adaptativo (500ms ocioso, 100ms quando próximo).
+  - Inicialização da WebUI de habitação corrigida para `visible = false`, poupando ciclos de renderização do Chromium Embedded Framework.
+
+---
+
 ## [2026-10-03] - Resolução de Incidentes (Logs 20 e 21), Ferramenta open77_coords & Regra Primordial Global
 
 ### Adicionado

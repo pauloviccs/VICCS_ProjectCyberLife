@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(12, 18, 30, 0.95)"/>
+      <stop offset="100%" stop-color="rgba(18, 36, 56, 0.95)"/>
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Card com cantos chanfrados -->
+  <polygon points="12,4 88,4 96,12 96,88 88,96 12,96 4,88 4,12" fill="url(#bgGrad)" stroke="#fcee0a" stroke-width="1.8" stroke-opacity="0.85"/>
+  <!-- Cantoneiras Cibernéticas (L-Brackets) -->
+  <path d="M 8 16 L 8 8 L 16 8" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 92 16 L 92 8 L 84 8" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 8 84 L 8 92 L 16 92" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <path d="M 92 84 L 92 92 L 84 92" fill="none" stroke="#fcee0a" stroke-width="2"/>
+  <!-- Conteúdo Principal do Ícone -->
+  
+  <!-- Pulseira de Couro -->
+  <rect x="42" y="14" width="16" height="72" rx="3" fill="#1a2636" stroke="#fcee0a" stroke-width="1.5"/>
+  <!-- Caixa Redonda de Ouro -->
+  <circle cx="50" cy="50" r="22" fill="#0c1624" stroke="#fcee0a" stroke-width="2.5"/>
+  <!-- Mostrador e Ponteiros de Safira -->
+  <circle cx="50" cy="50" r="18" fill="none" stroke="#22d8e2" stroke-width="1"/>
+  <line x1="50" y1="50" x2="50" y2="36" stroke="#22d8e2" stroke-width="2"/>
+  <line x1="50" y1="50" x2="60" y2="50" stroke="#fcee0a" stroke-width="2"/>
+  <circle cx="50" cy="50" r="2.5" fill="#ff003c"/>
+  <!-- Coroa de Ajuste -->
+  <rect x="72" y="47" width="4" height="6" fill="#fcee0a"/>
+
+</svg>

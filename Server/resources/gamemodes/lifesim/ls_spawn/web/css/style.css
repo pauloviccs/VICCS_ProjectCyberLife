@@ -17,6 +17,7 @@ body {
   overflow: hidden;
   user-select: none;
   background: transparent;
+  pointer-events: none;
   font-family: var(--op77-font-body);
   color: var(--op77-text);
   -webkit-font-smoothing: antialiased;
@@ -35,16 +36,20 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 99990;
+  pointer-events: auto;
   background: radial-gradient(circle at center, rgba(10, 18, 32, 0.65) 0%, rgba(4, 7, 13, 0.94) 100%);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition: opacity var(--op77-dur-slow) var(--op77-ease);
 }
 
-.spawn-screen.hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
+.spawn-screen.hidden,
+.hidden,
+[hidden] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  display: none !important;
 }
 
 .hologram-overlay {

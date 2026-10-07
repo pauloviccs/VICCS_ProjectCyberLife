@@ -65,3 +65,31 @@ body[data-view=notice] .music-dock{display:none}
 @media(max-width:1000px){.workspace{padding-bottom:116px}.music-dock{right:20px;bottom:18px}}
 @media(max-width:700px){.music-dock{right:16px;bottom:12px;width:min(348px,calc(100% - 32px))}}
 @media(prefers-reduced-motion:reduce){#musicPlaying.active b{animation:none;height:7px}}
+
+/* Custom loadscreen suppression: completely hide shell workspace and background */
+body.suppressed,
+body[data-view=suppressed] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  overflow: hidden !important;
+}
+body.suppressed .workspace,
+body.suppressed #connection,
+body.suppressed .music-dock,
+body.suppressed #virtualCursor,
+body.suppressed footer,
+body[data-view=suppressed] .workspace,
+body[data-view=suppressed] #connection,
+body[data-view=suppressed] .music-dock,
+body[data-view=suppressed] #virtualCursor,
+body[data-view=suppressed] footer {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
